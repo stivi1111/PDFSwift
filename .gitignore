@@ -1,0 +1,6 @@
+node_modules/
+scratch/
+run_tests.js
+package.json
+package-lock.json
+.DS_Store

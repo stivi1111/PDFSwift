@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDFSwift - 100% Free & Unlimited Online PDF Suite</title>
+  <meta name="description" content="24+ Free Online PDF Tools. PDF to Word, Word to PDF, Merge, Split, Compress, Excel, PPTX, Page Numbers, Unlock, Grayscale, Crop, Extract Images & More. 100% Client-Side.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- External JS Libraries (CDN) for Client-Side Processing -->
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  
+  <!-- Word (.docx) & Office Conversion Libraries -->
+  <script src="https://unpkg.com/docx@7.8.2/build/index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Excel (.xlsx) & PowerPoint (.pptx) CDN Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+
+  <!-- Markdown (.md) Parsing CDN Library for AI workflows -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.1.1/marked.min.js"></script>
+</head>
+<body data-theme="dark">
+
+  <!-- Header / Navigation -->
+  <header class="app-header">
+    <div class="header-container">
+      
+      <!-- Left: Brand Logo -->
+      <div class="logo-wrapper">
+        <a href="#" class="logo">
+          <img src="assets/favicon.svg" alt="PDFSwift Logo">
+          <span>PDFSWIFT</span>
+        </a>
+      </div>
+
+      <!-- Center: 100% Perfectly Centered Navbar Category Buttons -->
+      <nav class="header-nav">
+        
+        <!-- 1. Convert PDF Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="nav-btn">
+            <span>Convert PDF</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown dropdown-sm">
+            <div class="mini-dropdown-grid">
+              <div class="mini-col">
+                <div class="mega-title">CONVERT FROM PDF</div>
+                <a href="#" class="mega-item" data-tool="pdf-to-word">PDF to Word</a>
+                <a href="#" class="mega-item" data-tool="pdf-to-excel">PDF to Excel</a>
+                <a href="#" class="mega-item" data-tool="pdf-to-pptx">PDF to PowerPoint</a>
+                <a href="#" class="mega-item" data-tool="pdf-to-img">PDF to JPG / PNG</a>
+                <a href="#" class="mega-item" data-tool="pdf-to-md">PDF to Markdown</a>
+              </div>
+              <div class="mini-col">
+                <div class="mega-title">CONVERT TO PDF</div>
+                <a href="#" class="mega-item" data-tool="word-to-pdf">Word to PDF</a>
+                <a href="#" class="mega-item" data-tool="excel-to-pdf">Excel to PDF</a>
+                <a href="#" class="mega-item" data-tool="pptx-to-pdf">PowerPoint to PDF</a>
+                <a href="#" class="mega-item" data-tool="img-to-pdf">Images to PDF</a>
+                <a href="#" class="mega-item" data-tool="md-to-pdf">Markdown to PDF</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Merge & Split Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="nav-btn">
+            <span>Merge & Split</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown dropdown-single">
+            <div class="mini-col">
+              <a href="#" class="mega-item" data-tool="merge">Merge PDF</a>
+              <a href="#" class="mega-item" data-tool="split">Split PDF</a>
+              <a href="#" class="mega-item" data-tool="delete-pages">Delete Pages</a>
+              <a href="#" class="mega-item" data-tool="page-numbers">Page Numbers</a>
+              <a href="#" class="mega-item" data-tool="rotate">Rotate PDF</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Direct Compress PDF Button -->
+        <a href="#" class="nav-btn nav-link-btn" data-tool="compress">
+          <span>Compress PDF</span>
+        </a>
+
+      </nav>
+
+      <!-- Right: Unified Privacy & Free Badge -->
+      <div class="header-actions">
+        <div class="unified-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>100% Private & Free Forever • No File Limits</span>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Left & Right Vertical Side Skyscraper Ad Slots -->
+  <aside class="side-ad side-ad-left">
+    <div class="ad-slot-container" data-ad-slot="skyscraper-left"></div>
+  </aside>
+  <aside class="side-ad side-ad-right">
+    <div class="ad-slot-container" data-ad-slot="skyscraper-right"></div>
+  </aside>
+
+  <!-- Hero Section -->
+  <section id="heroSection" class="hero">
+    <h1>All-in-One PDF Suite</h1>
+    <p>Convert PDF to Word, Word to PDF, Excel, PowerPoint, Merge, Split, Compress & Edit directly in browser with zero restrictions.</p>
+  </section>
+
+  <!-- Main Content & Massive Tools Grid -->
+  <main class="main-content">
+    
+    <!-- Category Filter Tabs -->
+    <div class="category-tabs">
+      <button class="tab-btn active" data-category="all">All Tools (24)</button>
+      <button class="tab-btn" data-category="convert">Convert & Office</button>
+      <button class="tab-btn" data-category="organize">Merge & Organize</button>
+      <button class="tab-btn" data-category="security">Security & Edit</button>
+    </div>
+
+    <!-- 24 Tools Compact Rectangular Grid -->
+    <div id="toolsGrid" class="tools-grid">
+
+      <!-- 1. PDF to Word -->
+      <div class="tool-card" data-tool="pdf-to-word" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M9 13v-1h6v1"/><path d="M12 12v6"/><path d="M10 18h4"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF to Word</h3>
+            <span class="tool-badge hot">POPULAR</span>
+          </div>
+          <p>Convert PDF into editable Microsoft Word (.docx).</p>
+        </div>
+      </div>
+
+      <!-- 2. Word to PDF -->
+      <div class="tool-card" data-tool="word-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Word to PDF</h3>
+            <span class="tool-badge hot">POPULAR</span>
+          </div>
+          <p>Convert Word (.docx) documents into clean PDF.</p>
+        </div>
+      </div>
+
+      <!-- NEW: PDF to Markdown (AI & LLM Trend) -->
+      <div class="tool-card" data-tool="pdf-to-md" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF to Markdown</h3>
+            <span class="tool-badge hot">AI READY</span>
+          </div>
+          <p>Convert PDF into clean Markdown (.md) for LLMs & Notion.</p>
+        </div>
+      </div>
+
+      <!-- NEW: Markdown to PDF (AI & LLM Trend) -->
+      <div class="tool-card" data-tool="md-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Markdown to PDF</h3>
+            <span class="tool-badge hot">AI READY</span>
+          </div>
+          <p>Convert Markdown (.md) files into styled PDF documents.</p>
+        </div>
+      </div>
+
+      <!-- 3. Merge PDF -->
+      <div class="tool-card" data-tool="merge" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Merge PDF</h3>
+            <span class="tool-badge popular">TOP TOOL</span>
+          </div>
+          <p>Combine multiple PDF files into one document.</p>
+        </div>
+      </div>
+
+      <!-- 4. PDF to Image -->
+      <div class="tool-card" data-tool="pdf-to-img" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF to JPG / PNG</h3>
+            <span class="tool-badge">ZIP</span>
+          </div>
+          <p>Extract PDF pages into JPG or PNG images.</p>
+        </div>
+      </div>
+
+      <!-- 5. Images to PDF -->
+      <div class="tool-card" data-tool="img-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Images to PDF</h3>
+          </div>
+          <p>Convert JPG, PNG, or WebP photos into a PDF.</p>
+        </div>
+      </div>
+
+      <!-- 6. Compress PDF -->
+      <div class="tool-card" data-tool="compress" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14.89 12 19l8-4.11M4 9.11 12 13l8-3.89M12 3l8 4.11-8 4.11L4 7.11 12 3z"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Compress PDF</h3>
+            <span class="tool-badge">FAST</span>
+          </div>
+          <p>Shrink PDF file size for easy email sharing.</p>
+        </div>
+      </div>
+
+      <!-- 7. Split PDF -->
+      <div class="tool-card" data-tool="split" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Split PDF</h3>
+          </div>
+          <p>Separate PDF pages or extract custom page ranges.</p>
+        </div>
+      </div>
+
+      <!-- 8. PDF to Excel -->
+      <div class="tool-card" data-tool="pdf-to-excel" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF to Excel</h3>
+            <span class="tool-badge">OFFICE</span>
+          </div>
+          <p>Extract PDF tables into Excel (.xlsx / .csv).</p>
+        </div>
+      </div>
+
+      <!-- 9. Excel to PDF -->
+      <div class="tool-card" data-tool="excel-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h8"/><path d="M8 17h8"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Excel to PDF</h3>
+            <span class="tool-badge">OFFICE</span>
+          </div>
+          <p>Convert Excel spreadsheets (.xlsx) to PDF.</p>
+        </div>
+      </div>
+
+      <!-- 10. PDF to PowerPoint -->
+      <div class="tool-card" data-tool="pdf-to-pptx" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF to PowerPoint</h3>
+            <span class="tool-badge">SLIDES</span>
+          </div>
+          <p>Turn PDF pages into PowerPoint slides (.pptx).</p>
+        </div>
+      </div>
+
+      <!-- 11. PowerPoint to PDF -->
+      <div class="tool-card" data-tool="pptx-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-4"/><path d="M10 14h4"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PowerPoint to PDF</h3>
+            <span class="tool-badge">SLIDES</span>
+          </div>
+          <p>Convert PowerPoint (.pptx) into PDF file.</p>
+        </div>
+      </div>
+
+      <!-- 12. Page Numbers -->
+      <div class="tool-card" data-tool="page-numbers" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Page Numbers</h3>
+            <span class="tool-badge">NEW</span>
+          </div>
+          <p>Add page numbers into your PDF document header/footer.</p>
+        </div>
+      </div>
+
+      <!-- 13. Rotate PDF -->
+      <div class="tool-card" data-tool="rotate" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Rotate PDF</h3>
+          </div>
+          <p>Rotate PDF pages 90°, 180°, or 270° degrees.</p>
+        </div>
+      </div>
+
+      <!-- 14. Unlock PDF -->
+      <div class="tool-card" data-tool="unlock" data-category="security">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Unlock PDF</h3>
+            <span class="tool-badge">NEW</span>
+          </div>
+          <p>Remove security passwords & restrictions from PDF.</p>
+        </div>
+      </div>
+
+      <!-- 15. Delete PDF Pages -->
+      <div class="tool-card" data-tool="delete-pages" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Delete Pages</h3>
+          </div>
+          <p>Remove unwanted pages from a PDF document.</p>
+        </div>
+      </div>
+
+      <!-- 16. PDF to HTML -->
+      <div class="tool-card" data-tool="pdf-to-html" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF to HTML</h3>
+          </div>
+          <p>Convert PDF documents into web-ready HTML code.</p>
+        </div>
+      </div>
+
+      <!-- 17. HTML to PDF -->
+      <div class="tool-card" data-tool="html-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15h6"/><path d="M9 11h6"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>HTML to PDF</h3>
+          </div>
+          <p>Convert web HTML text code into a PDF file.</p>
+        </div>
+      </div>
+
+      <!-- 18. Grayscale PDF -->
+      <div class="tool-card" data-tool="grayscale" data-category="security">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 0 0 20z" fill="currentColor"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Grayscale PDF</h3>
+            <span class="tool-badge">INK SAVER</span>
+          </div>
+          <p>Convert colored PDF documents into Black & White.</p>
+        </div>
+      </div>
+
+      <!-- 19. Extract Embedded Images -->
+      <div class="tool-card" data-tool="extract-images" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Extract Images</h3>
+          </div>
+          <p>Extract all high-res photos inside a PDF to ZIP.</p>
+        </div>
+      </div>
+
+      <!-- 20. PDF to Text -->
+      <div class="tool-card" data-tool="pdf-to-text" data-category="security">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Extract Text</h3>
+          </div>
+          <p>Extract all text content into plain text (.txt).</p>
+        </div>
+      </div>
+
+      <!-- 21. Protect PDF -->
+      <div class="tool-card" data-tool="protect" data-category="security">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Protect PDF</h3>
+            <span class="tool-badge">SECURE</span>
+          </div>
+          <p>Encrypt PDF document with a password.</p>
+        </div>
+      </div>
+
+      <!-- 22. Watermark PDF -->
+      <div class="tool-card" data-tool="watermark" data-category="security">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Watermark PDF</h3>
+          </div>
+          <p>Add a custom text watermark across pages.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Active Tool Workspace View (Hidden by default) -->
+    <div id="toolWorkspace" class="tool-workspace">
+      <div class="workspace-header">
+        <button id="backBtn" class="back-btn back-btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span>Back to All Tools</span>
+        </button>
+
+        <div class="workspace-title-box">
+          <h2 id="workspaceTitle">Tool Title</h2>
+          <p id="workspaceDesc">Tool description goes here.</p>
+        </div>
+      </div>
+
+      <!-- Dropzone -->
+      <div id="dropzone" class="dropzone">
+        <div class="dropzone-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </div>
+        <div class="dropzone-text">
+          <h3>Drag & Drop files here</h3>
+          <p>Unlimited files • No file size limits</p>
+        </div>
+        <input type="file" id="fileInput" style="display:none;">
+      </div>
+
+      <!-- File Previews Grid -->
+      <div id="filePreviewList" class="file-list-preview"></div>
+
+      <!-- Dynamic Settings Form -->
+      <div id="toolSettings" class="tool-settings" style="display:none;"></div>
+
+      <!-- Sidebar Ad Slot inside workspace -->
+      <div class="ad-slot" style="margin-top:1.5rem;">
+        <div class="ad-slot-container" data-ad-slot="sidebar"></div>
+      </div>
+
+      <!-- Action Button & Progress -->
+      <div class="process-actions">
+        <button id="processBtn" class="btn-primary" disabled>
+          <span id="processBtnText">Process PDF</span>
+        </button>
+      </div>
+
+      <div id="progressContainer" class="progress-container">
+        <p id="progressText">Processing document client-side...</p>
+        <div class="progress-bar-bg">
+          <div id="progressBarFill" class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <!-- Download Box -->
+      <div id="downloadBox" class="download-box">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div>
+          <h3>File is ready!</h3>
+          <p>Processed safely in your browser.</p>
+        </div>
+        <button id="downloadBtn" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download File
+        </button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Sticky Footer Ad Slot -->
+  <div class="ad-slot">
+    <div class="ad-slot-container" data-ad-slot="footer"></div>
+  </div>
+
+  <!-- Clean Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="logo">
+        <img src="assets/favicon.svg" alt="PDFSwift Logo">
+        <span>PDFSWIFT</span>
+      </div>
+      <p class="copyright">© 2026 PDFSwift. 100% Free Forever • No File Limits • Zero Server Uploads.</p>
+    </div>
+  </footer>
+
+  <!-- App Scripts -->
+  <script src="js/ad-manager.js"></script>
+  <script src="js/pdf-engine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <rect width="100" height="100" rx="20" fill="#000000"/>
+  <!-- Outer glowing border -->
+  <rect x="2" y="2" width="96" height="96" rx="18" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.3"/>
+  <!-- Geometric Sharp Document Silhouette -->
+  <path d="M28 22 H58 L72 36 V78 C72 80 70 82 68 82 H28 C26 82 24 80 24 78 V26 C24 24 26 22 28 22 Z" fill="#ffffff"/>
+  <!-- Folded Corner -->
+  <path d="M58 22 V36 H72" fill="#18181b"/>
+  <!-- Fast Lightning / Swift Bolt Accent Cutout -->
+  <path d="M54 44 L40 58 H50 L44 72 L58 56 H48 Z" fill="#000000"/>
+</svg>
