@@ -82,6 +82,14 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         e.stopPropagation();
         
+        // If opening language dropdown on mobile, close Tools drawer!
+        if (wrapper.classList.contains('lang-dropdown-wrapper') && headerNav) {
+          headerNav.classList.remove('active');
+          if (typeof updateMobileBtnState === 'function') {
+            updateMobileBtnState(false);
+          }
+        }
+
         const isSelfActive = wrapper.classList.contains('active');
         allDropdownWrappers.forEach(w => {
           if (w !== wrapper) w.classList.remove('active');
