@@ -35,6 +35,27 @@ document.addEventListener('DOMContentLoaded', () => {
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
   }
 
+  // Light / Dark Theme Controller
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const savedTheme = localStorage.getItem('pdfaxiom_theme') || 'dark';
+
+  if (savedTheme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const activeTheme = document.documentElement.getAttribute('data-theme');
+      if (activeTheme === 'light') {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('pdfaxiom_theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('pdfaxiom_theme', 'light');
+      }
+    });
+  }
+
   // Mobile Menu Drawer Handler
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const headerNav = document.querySelector('.header-nav');

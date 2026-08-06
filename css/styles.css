@@ -46,6 +46,15 @@
   --accent-white: #000000;
 }
 
+/* Theme Toggle Button Icons */
+[data-theme="light"] .theme-toggle-btn .sun-icon {
+  display: none !important;
+}
+
+[data-theme="light"] .theme-toggle-btn .moon-icon {
+  display: block !important;
+}
+
 /* Reset & Base */
 *, *::before, *::after {
   box-sizing: border-box;
