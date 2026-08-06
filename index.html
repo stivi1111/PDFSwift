@@ -116,6 +116,26 @@
 
       </nav>
 
+      <!-- Right: International Language Selector (5 Global Languages) -->
+      <div class="header-actions">
+        <div class="dropdown-wrapper lang-dropdown-wrapper">
+          <button class="nav-btn lang-btn" id="langBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span id="currentLangText">EN</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown dropdown-single lang-dropdown-menu">
+            <div class="mini-col">
+              <a href="#" class="mega-item lang-option active" data-lang="en">🇬🇧 English (EN)</a>
+              <a href="#" class="mega-item lang-option" data-lang="it">🇮🇹 Italiano (IT)</a>
+              <a href="#" class="mega-item lang-option" data-lang="es">🇪🇸 Español (ES)</a>
+              <a href="#" class="mega-item lang-option" data-lang="de">🇩🇪 Deutsch (DE)</a>
+              <a href="#" class="mega-item lang-option" data-lang="zh">🇨🇳 中文 (ZH)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </header>
 
@@ -537,6 +557,7 @@
   </footer>
 
   <!-- App Scripts -->
+  <script src="js/i18n.js"></script>
   <script src="js/ad-manager.js"></script>
   <script src="js/pdf-engine.js"></script>
   <script src="js/app.js"></script>

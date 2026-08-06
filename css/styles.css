@@ -129,6 +129,18 @@ a {
   position: relative;
 }
 
+.lang-dropdown-menu {
+  right: 0;
+  left: auto;
+  min-width: 170px;
+}
+
+.lang-option.active {
+  background: var(--bg-input);
+  color: var(--text-primary);
+  font-weight: 800;
+}
+
 .nav-btn {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
