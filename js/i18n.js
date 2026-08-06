@@ -416,6 +416,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const selectedLang = opt.getAttribute('data-lang');
       if (selectedLang && translations[selectedLang]) {
         setLanguage(selectedLang);
+        const wrapper = opt.closest('.dropdown-wrapper');
+        if (wrapper) wrapper.classList.remove('active');
       }
     });
   });
