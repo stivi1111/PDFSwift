@@ -78,19 +78,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const btn = wrapper.querySelector('.nav-btn');
       if (btn) {
         btn.addEventListener('click', (e) => {
-          if (window.innerWidth <= 768) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const isSelfActive = wrapper.classList.contains('active');
-            dropdownWrappers.forEach(w => {
-              if (w !== wrapper) w.classList.remove('active');
-            });
-            if (isSelfActive) {
-              wrapper.classList.remove('active');
-            } else {
-              wrapper.classList.add('active');
-            }
+          e.preventDefault();
+          e.stopPropagation();
+          
+          const isSelfActive = wrapper.classList.contains('active');
+          dropdownWrappers.forEach(w => {
+            if (w !== wrapper) w.classList.remove('active');
+          });
+
+          if (isSelfActive) {
+            wrapper.classList.remove('active');
+          } else {
+            wrapper.classList.add('active');
           }
         });
       }

@@ -161,6 +161,14 @@ a {
   border-color: var(--text-primary);
 }
 
+.nav-btn svg {
+  transition: transform 0.25s ease;
+}
+
+.dropdown-wrapper.active .nav-btn svg {
+  transform: rotate(180deg);
+}
+
 .nav-link-btn {
   text-decoration: none;
 }
