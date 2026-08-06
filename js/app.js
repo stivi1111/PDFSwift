@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     mobileMenuBtn.addEventListener('click', (e) => {
       e.stopPropagation();
+      document.querySelectorAll('.dropdown-wrapper').forEach(w => w.classList.remove('active'));
       const isActive = headerNav.classList.contains('active');
       if (isActive) {
         headerNav.classList.remove('active');
