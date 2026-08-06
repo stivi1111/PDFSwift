@@ -80,6 +80,7 @@ a {
   top: 0;
   z-index: 100;
   background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .header-container {
@@ -214,6 +215,7 @@ a {
   text-transform: uppercase;
   margin-bottom: 0.35rem;
   padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .mega-item {
@@ -753,6 +755,7 @@ a {
 
 /* Footer */
 .app-footer {
+  border-top: 1px solid var(--border-color);
   background: var(--bg-primary);
   padding: 2.5rem 1.5rem;
   margin-top: auto;
