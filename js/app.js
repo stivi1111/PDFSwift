@@ -35,22 +35,34 @@ document.addEventListener('DOMContentLoaded', () => {
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
   }
 
-  // Mobile Menu Drawer Handler
+  // Mobile Menu Drawer & Sub-Accordion Handler
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const headerNav = document.querySelector('.header-nav');
   if (mobileMenuBtn && headerNav) {
+    const dropdownWrappers = headerNav.querySelectorAll('.dropdown-wrapper');
+
+    function closeAllMobileSubMenus() {
+      dropdownWrappers.forEach(w => w.classList.remove('active'));
+    }
+
     mobileMenuBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      headerNav.classList.toggle('active');
+      const isActive = headerNav.classList.contains('active');
+      if (isActive) {
+        headerNav.classList.remove('active');
+        closeAllMobileSubMenus();
+      } else {
+        headerNav.classList.add('active');
+      }
     });
 
     document.addEventListener('click', (e) => {
       if (!headerNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
         headerNav.classList.remove('active');
+        closeAllMobileSubMenus();
       }
     });
 
-    const dropdownWrappers = headerNav.querySelectorAll('.dropdown-wrapper');
     dropdownWrappers.forEach(wrapper => {
       const btn = wrapper.querySelector('.nav-btn');
       if (btn) {
@@ -58,10 +70,27 @@ document.addEventListener('DOMContentLoaded', () => {
           if (window.innerWidth <= 768) {
             e.preventDefault();
             e.stopPropagation();
-            wrapper.classList.toggle('active');
+            
+            const isSelfActive = wrapper.classList.contains('active');
+            dropdownWrappers.forEach(w => {
+              if (w !== wrapper) w.classList.remove('active');
+            });
+            if (isSelfActive) {
+              wrapper.classList.remove('active');
+            } else {
+              wrapper.classList.add('active');
+            }
           }
         });
       }
+
+      const megaItems = wrapper.querySelectorAll('.mega-item');
+      megaItems.forEach(item => {
+        item.addEventListener('click', () => {
+          headerNav.classList.remove('active');
+          closeAllMobileSubMenus();
+        });
+      });
     });
   }
 
