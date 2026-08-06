@@ -463,25 +463,43 @@ a {
   transform: translateY(-2px);
 }
 
-/* Monochromatic Icon Container */
-.tool-icon-wrapper {
-  width: 42px;
-  height: 42px;
-  min-width: 42px;
+/* Custom User SVG Icon Row & Box Styling */
+.icon-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.icon-box {
+  width: 40px;
+  height: 40px;
   border-radius: var(--radius-md);
+  background: var(--bg-input);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-input);
+  flex: 0 0 auto;
   color: var(--text-primary);
   border: 1px solid var(--border-color);
-  flex-shrink: 0;
   transition: var(--transition);
 }
 
-.tool-card:hover .tool-icon-wrapper {
+.tool-card:hover .icon-box {
   background: var(--bg-card-hover);
   border-color: var(--text-primary);
+}
+
+.icon-box svg {
+  width: 24px;
+  height: 24px;
+}
+
+.arrow-icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  color: var(--text-muted);
 }
 
 .tool-card-content {
