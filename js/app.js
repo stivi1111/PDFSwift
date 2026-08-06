@@ -509,9 +509,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // About Us & Privacy Modal Handler
+  // About Us Modal Handler
   const aboutUsLink = document.getElementById('aboutUsLink');
-  const privacyLink = document.getElementById('privacyLink');
   const aboutModal = document.getElementById('aboutModal');
   const modalCloseBtn = document.getElementById('modalCloseBtn');
 
@@ -525,13 +524,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (aboutUsLink) {
     aboutUsLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      openAboutModal();
-    });
-  }
-
-  if (privacyLink) {
-    privacyLink.addEventListener('click', (e) => {
       e.preventDefault();
       openAboutModal();
     });

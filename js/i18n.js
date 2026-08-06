@@ -529,26 +529,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const aboutUsLink = document.getElementById('aboutUsLink');
     if (aboutUsLink) aboutUsLink.textContent = (lang === 'it') ? "Chi Siamo" : ((lang === 'es') ? "Sobre Nosotros" : ((lang === 'de') ? "Über Uns" : ((lang === 'fr') ? "À Propos" : "About Us")));
 
-    const privacyLink = document.getElementById('privacyLink');
-    if (privacyLink) privacyLink.textContent = (lang === 'it') ? "Privacy" : ((lang === 'es') ? "Privacidad" : ((lang === 'de') ? "Datenschutz" : "Privacy"));
-
     const modalTitle = document.getElementById('modalTitle');
     if (modalTitle) modalTitle.textContent = ((lang === 'it') ? "Chi Siamo" : "About Us") + " - PDFAxiom";
 
     const modalMissionTitle = document.getElementById('modalMissionTitle');
-    if (modalMissionTitle) modalMissionTitle.textContent = "🚀 " + ((lang === 'it') ? "La Nostra Missione" : "Our Mission");
+    if (modalMissionTitle) modalMissionTitle.textContent = (lang === 'it') ? "La Nostra Missione" : "Our Mission";
 
     const modalMissionText = document.getElementById('modalMissionText');
     if (modalMissionText) modalMissionText.textContent = (lang === 'it') ? "PDFAxiom nasce per offrire una suite di strumenti PDF 100% gratuita, senza limiti di dimensione ed accessibile da qualsiasi dispositivo senza registrazione." : "PDFAxiom is built to offer a 100% free, unlimited PDF suite accessible from any device without registration.";
 
     const modalPrivacyTitle = document.getElementById('modalPrivacyTitle');
-    if (modalPrivacyTitle) modalPrivacyTitle.textContent = "🔒 " + ((lang === 'it') ? "Garanzia di Privacy Assoluta" : "Absolute Privacy Guarantee");
+    if (modalPrivacyTitle) modalPrivacyTitle.textContent = (lang === 'it') ? "Garanzia di Privacy Assoluta" : "Absolute Privacy Guarantee";
 
     const modalPrivacyText = document.getElementById('modalPrivacyText');
     if (modalPrivacyText) modalPrivacyText.textContent = (lang === 'it') ? "I tuoi documenti vengono elaborati in modo sicuro e riservato direttamente nella memoria RAM del tuo browser. Nessun file viene mai caricato o salvato su server esterni." : "Your documents are processed safely and confidentially directly in your browser RAM. No files are ever uploaded or saved on external servers.";
 
     const modalContactTitle = document.getElementById('modalContactTitle');
-    if (modalContactTitle) modalContactTitle.textContent = "✉️ " + ((lang === 'it') ? "Contatti e Supporto" : "Contact & Support");
+    if (modalContactTitle) modalContactTitle.textContent = (lang === 'it') ? "Contatti e Supporto" : "Contact & Support";
 
     const modalContactText = document.getElementById('modalContactText');
     if (modalContactText) {
