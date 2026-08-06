@@ -370,4 +370,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
   });
+
+  // Reset Tool & Convert Another File Trigger
+  const resetToolBtn = document.getElementById('resetToolBtn');
+  if (resetToolBtn) {
+    resetToolBtn.addEventListener('click', () => {
+      state.files = [];
+      state.processedBlob = null;
+      state.processedFilename = '';
+      downloadBox.style.display = 'none';
+      progressContainer.style.display = 'none';
+      fileInput.value = '';
+      renderFilePreviews();
+      processBtn.disabled = true;
+    });
+  }
 });
