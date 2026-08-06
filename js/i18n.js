@@ -14,6 +14,8 @@ const translations = {
     navEdit: "Edit & Security",
     navCompress: "Compress PDF",
     navImages: "Image Tools",
+    mobileMenu: "Tools",
+    mobileClose: "Close",
     tabAll: "All Tools",
     tabConvert: "Convert & Office",
     tabOrganize: "Merge & Organize",
@@ -37,6 +39,8 @@ const translations = {
     navEdit: "Modifica & Sicurezza",
     navCompress: "Comprimi PDF",
     navImages: "Strumenti Immagini",
+    mobileMenu: "Tools",
+    mobileClose: "Chiudi",
     tabAll: "Tutti i Tool",
     tabConvert: "Conversione & Office",
     tabOrganize: "Unisci & Organizza",
@@ -60,6 +64,8 @@ const translations = {
     navEdit: "Edición y Seguridad",
     navCompress: "Comprimir PDF",
     navImages: "Herramientas Imagen",
+    mobileMenu: "Herramientas",
+    mobileClose: "Cerrar",
     tabAll: "Todas las Herramientas",
     tabConvert: "Conversión y Office",
     tabOrganize: "Unir y Organizar",
@@ -83,6 +89,8 @@ const translations = {
     navEdit: "Bearbeiten & Sicherheit",
     navCompress: "PDF Komprimieren",
     navImages: "Bild-Werkzeuge",
+    mobileMenu: "Werkzeuge",
+    mobileClose: "Schließen",
     tabAll: "Alle Werkzeuge",
     tabConvert: "Konvertieren & Office",
     tabOrganize: "Organisieren & Teilen",
@@ -106,6 +114,8 @@ const translations = {
     navEdit: "编辑与安全",
     navCompress: "压缩 PDF",
     navImages: "图片工具",
+    mobileMenu: "工具",
+    mobileClose: "关闭",
     tabAll: "所有工具",
     tabConvert: "转换与 Office",
     tabOrganize: "合并与组织",
@@ -129,6 +139,8 @@ const translations = {
     navEdit: "Editare & Securitate",
     navCompress: "Comprimă PDF",
     navImages: "Instrumente Imagini",
+    mobileMenu: "Instrumente",
+    mobileClose: "Închide",
     tabAll: "Toate Instrumentele",
     tabConvert: "Conversie & Office",
     tabOrganize: "Unește & Organizează",
@@ -152,6 +164,8 @@ const translations = {
     navEdit: "संपादन और सुरक्षा",
     navCompress: "पीडीएफ कंप्रेस करें",
     navImages: "इमेज टूल्स",
+    mobileMenu: "टूल्स",
+    mobileClose: "बंद करें",
     tabAll: "सभी टूल्स",
     tabConvert: "कन्वर्ट और ऑफिस",
     tabOrganize: "मर्ज और व्यवस्थित करें",
@@ -175,6 +189,8 @@ const translations = {
     navEdit: "Редактирование и Защита",
     navCompress: "Сжать PDF",
     navImages: "Инструменты Изображений",
+    mobileMenu: "Инструменты",
+    mobileClose: "Закрыть",
     tabAll: "Все Инструменты",
     tabConvert: "Конвертация и Офис",
     tabOrganize: "Объединение и Порядок",
@@ -448,6 +464,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const heroSub = document.querySelector('.hero-subtext');
     if (heroSub) heroSub.textContent = t.heroSubtext;
+
+    // Update Mobile Menu Button Text (Tools / Close)
+    const mobileMenuBtnSpan = document.querySelector('#mobileMenuBtn span');
+    const headerNav = document.querySelector('.header-nav');
+    if (mobileMenuBtnSpan && headerNav) {
+      const isOpen = headerNav.classList.contains('active');
+      mobileMenuBtnSpan.textContent = isOpen ? (t.mobileClose || "Close") : (t.mobileMenu || "Tools");
+    }
 
     // Navbar (4 Uniform Category Dropdowns)
     const navBtns = document.querySelectorAll('.header-nav .nav-btn span');

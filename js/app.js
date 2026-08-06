@@ -40,10 +40,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const headerNav = document.querySelector('.header-nav');
   if (mobileMenuBtn && headerNav) {
     function updateMobileBtnState(isOpen) {
+      const currentLang = localStorage.getItem('pdfaxiom_lang') || 'en';
+      const t = (typeof translations !== 'undefined' && translations[currentLang]) ? translations[currentLang] : { mobileMenu: 'Tools', mobileClose: 'Close' };
+      const closeText = t.mobileClose || 'Close';
+      const menuText = t.mobileMenu || 'Tools';
+
       if (isOpen) {
-        mobileMenuBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>Close</span>';
+        mobileMenuBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>${closeText}</span>`;
       } else {
-        mobileMenuBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg><span>Tools</span>';
+        mobileMenuBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg><span>${menuText}</span>`;
       }
     }
 
