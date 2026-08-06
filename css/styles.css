@@ -811,20 +811,27 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
     gap: 0.75rem;
     padding: 0.75rem 1rem;
+  }
+  .header-actions {
+    order: 2;
   }
   .header-nav {
     order: 3;
     width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
     gap: 0.5rem;
-    margin-top: 0.25rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    padding-bottom: 0.35rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
-  .header-actions {
-    order: 2;
+  .header-nav::-webkit-scrollbar {
+    display: none;
   }
   .tools-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -834,16 +841,32 @@ a {
 
 @media (max-width: 768px) {
   .hero {
-    padding: 1.75rem 1rem 1.25rem 1rem;
+    padding: 1.5rem 1rem 1rem 1rem;
   }
   .hero h1 {
-    font-size: 1.85rem;
+    font-size: 1.75rem;
   }
   .hero p {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
   .hero-subtext {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+  }
+  .category-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.45rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding: 0.25rem 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .category-tabs::-webkit-scrollbar {
+    display: none;
   }
   .tools-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -879,14 +902,17 @@ a {
 @media (max-width: 520px) {
   .header-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    gap: 0.75rem;
+    padding: 0.65rem 0.85rem;
   }
-  .header-nav {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
+  .logo {
+    font-size: 1.15rem;
+  }
+  .logo img {
+    width: 28px;
+    height: 28px;
   }
   .tools-grid {
     grid-template-columns: 1fr;
@@ -895,6 +921,7 @@ a {
   .tab-btn {
     padding: 0.35rem 0.75rem;
     font-size: 0.78rem;
+    flex-shrink: 0;
   }
 }
 

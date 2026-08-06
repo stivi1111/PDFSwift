@@ -451,8 +451,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const navBtns = document.querySelectorAll('.header-nav .nav-btn span');
     if (navBtns[0]) navBtns[0].textContent = t.navConvert;
     if (navBtns[1]) navBtns[1].textContent = t.navMergeSplit;
-    if (navBtns[2]) navBtns[2].textContent = t.navEdit || "Edit & Security";
-    if (navBtns[3]) navBtns[3].textContent = t.navImages;
+    if (navBtns[2]) navBtns[2].textContent = t.navImages;
+    if (navBtns[3]) navBtns[3].textContent = t.navEdit || "Edit & Security";
 
     // Category Tabs
     const tabs = document.querySelectorAll('.category-tabs .tab-btn');
