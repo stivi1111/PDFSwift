@@ -839,32 +839,50 @@ a {
   flex-direction: column;
   align-items: center;
   gap: 1.25rem;
-  text-align: center;
+  width: 100%;
 }
 
-.footer-links {
+.footer-row {
+  position: relative;
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 1rem;
-}
-
-.footer-links a {
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: var(--transition);
-}
-
-.footer-links a:hover {
-  color: var(--text-primary);
-  text-decoration: underline;
+  align-items: center;
 }
 
 .copyright {
   font-size: 0.8rem;
   color: var(--text-muted);
+  text-align: center;
+}
+
+.footer-about-right {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: var(--transition);
+}
+
+.footer-about-right:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .footer-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .footer-about-right {
+    position: static;
+    transform: none;
+  }
 }
 
 /* About Us Floating Modal Overlay & Card */
