@@ -184,8 +184,18 @@ a {
   animation: fadeIn 0.2s ease-out;
 }
 
-.dropdown-wrapper:hover .mega-dropdown {
-  display: block;
+@media (hover: hover) and (pointer: fine) {
+  .dropdown-wrapper:hover .mega-dropdown {
+    display: block;
+  }
+}
+
+.dropdown-wrapper.active .mega-dropdown {
+  display: block !important;
+}
+
+.dropdown-wrapper:not(.active) .mega-dropdown {
+  display: none !important;
 }
 
 .mega-grid {
