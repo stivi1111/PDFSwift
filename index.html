@@ -580,9 +580,41 @@
         <img src="assets/favicon.svg" alt="PDFAxiom Logo">
         <span>PDFAXIOM</span>
       </div>
+      <div class="footer-links">
+        <a href="#" id="aboutUsLink">Chi Siamo</a>
+        <span class="footer-dot">•</span>
+        <a href="#" id="privacyLink">Privacy</a>
+      </div>
       <p class="copyright">© 2026 PDFAxiom. 100% Free Forever • No File Limits.</p>
     </div>
   </footer>
+
+  <!-- About Us Floating Modal Overlay -->
+  <div class="modal-overlay" id="aboutModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="modal-close" id="modalCloseBtn" aria-label="Close Modal">&times;</button>
+      <div class="modal-header">
+        <div class="modal-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        </div>
+        <h3 id="modalTitle">Chi Siamo - PDFAxiom</h3>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section">
+          <h4 id="modalMissionTitle">🚀 La Nostra Missione</h4>
+          <p id="modalMissionText">PDFAxiom nasce per offrire una suite di strumenti PDF 100% gratuita, senza limiti di dimensione ed accessibile da qualsiasi dispositivo senza registrazione.</p>
+        </div>
+        <div class="modal-section">
+          <h4 id="modalPrivacyTitle">🔒 Garanzia di Privacy Assoluta</h4>
+          <p id="modalPrivacyText">I tuoi documenti vengono elaborati in modo sicuro e riservato direttamente nella memoria RAM del tuo browser. Nessun file viene mai caricato o salvato su server esterni.</p>
+        </div>
+        <div class="modal-section">
+          <h4 id="modalContactTitle">✉️ Contatti e Supporto</h4>
+          <p id="modalContactText">Hai domande, suggerimenti o richieste? Scrivici a <a href="mailto:support@pdfaxiom.com" class="modal-link">support@pdfaxiom.com</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- App Scripts -->
   <script src="js/i18n.js"></script>

@@ -508,4 +508,48 @@ document.addEventListener('DOMContentLoaded', () => {
       processBtn.disabled = true;
     });
   }
+
+  // About Us & Privacy Modal Handler
+  const aboutUsLink = document.getElementById('aboutUsLink');
+  const privacyLink = document.getElementById('privacyLink');
+  const aboutModal = document.getElementById('aboutModal');
+  const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+  function openAboutModal() {
+    if (aboutModal) aboutModal.classList.add('active');
+  }
+
+  function closeAboutModal() {
+    if (aboutModal) aboutModal.classList.remove('active');
+  }
+
+  if (aboutUsLink) {
+    aboutUsLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      openAboutModal();
+    });
+  }
+
+  if (privacyLink) {
+    privacyLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      openAboutModal();
+    });
+  }
+
+  if (modalCloseBtn) {
+    modalCloseBtn.addEventListener('click', closeAboutModal);
+  }
+
+  if (aboutModal) {
+    aboutModal.addEventListener('click', (e) => {
+      if (e.target === aboutModal) closeAboutModal();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && aboutModal && aboutModal.classList.contains('active')) {
+      closeAboutModal();
+    }
+  });
 });
