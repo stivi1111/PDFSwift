@@ -307,7 +307,14 @@ a {
 .hero p {
   font-size: 1.05rem;
   color: var(--text-secondary);
+  margin-bottom: 0.35rem;
+}
+
+.hero-subtext {
+  font-size: 0.95rem;
+  color: var(--text-muted);
   margin-bottom: 1.5rem;
+  font-weight: 500;
 }
 
 /* Category Filter Tabs (Black & White Minimal) */
@@ -422,15 +429,15 @@ a {
   overflow: hidden;
 }
 
-/* Minimalist Monochrome Badges (Sleek Less-Tall Height) */
+/* Minimalist Monochrome Badges (Balanced Middle Ground Size) */
 .tool-badge {
-  font-size: 0.61rem;
+  font-size: 0.63rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  padding: 0.08rem 0.38rem;
-  line-height: 1;
-  border-radius: 3px;
+  padding: 0.12rem 0.42rem;
+  line-height: 1.1;
+  border-radius: 4px;
   background: var(--bg-input);
   color: var(--text-secondary);
   border: 1px solid var(--border-color);
