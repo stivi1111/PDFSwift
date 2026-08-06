@@ -51,23 +51,12 @@
 [data-theme="light"] .nav-btn,
 [data-theme="light"] .mega-grid,
 [data-theme="light"] .mini-dropdown-grid,
+[data-theme="light"] .dropdown-single .mini-col,
 [data-theme="light"] .header-container,
 [data-theme="light"] .tool-workspace,
 [data-theme="light"] .dropzone {
   border-width: 1.5px !important;
   border-color: #94a3b8 !important;
-}
-
-/* Prevent double card / overlapping box bug in Light Mode on Mobile */
-@media (max-width: 768px) {
-  [data-theme="light"] .dropdown-single .mini-col,
-  [data-theme="light"] .mini-col,
-  [data-theme="light"] .mini-dropdown-grid,
-  [data-theme="light"] .mega-grid {
-    border: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-  }
 }
 
 [data-theme="light"] .tool-card:hover,
@@ -463,25 +452,18 @@ a {
   transform: translateY(-2px);
 }
 
-/* Monochromatic Icon Container */
+/* Compact Monochromatic Icon */
 .tool-icon-wrapper {
-  width: 42px;
-  height: 42px;
-  min-width: 42px;
-  border-radius: var(--radius-md);
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--bg-input);
   color: var(--text-primary);
   border: 1px solid var(--border-color);
-  flex-shrink: 0;
-  transition: var(--transition);
-}
-
-.tool-card:hover .tool-icon-wrapper {
-  background: var(--bg-card-hover);
-  border-color: var(--text-primary);
 }
 
 .tool-card-content {
