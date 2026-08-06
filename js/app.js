@@ -147,25 +147,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Drag & Drop Handling
+  // Global Drag & Drop Handling across the ENTIRE Window / Page
   dropzone.addEventListener('click', () => fileInput.click());
 
-  ['dragenter', 'dragover'].forEach(eventName => {
-    dropzone.addEventListener(eventName, (e) => {
+  ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    window.addEventListener(eventName, (e) => {
       e.preventDefault();
+      e.stopPropagation();
+    });
+  });
+
+  ['dragenter', 'dragover'].forEach(eventName => {
+    window.addEventListener(eventName, () => {
       dropzone.classList.add('drag-over');
     });
   });
 
   ['dragleave', 'drop'].forEach(eventName => {
-    dropzone.addEventListener(eventName, (e) => {
-      e.preventDefault();
+    window.addEventListener(eventName, () => {
       dropzone.classList.remove('drag-over');
     });
   });
 
-  dropzone.addEventListener('drop', (e) => {
+  window.addEventListener('drop', (e) => {
     const droppedFiles = Array.from(e.dataTransfer.files);
+    if (!droppedFiles || droppedFiles.length === 0) return;
+
+    // If on homepage view (no tool open), automatically open matching tool based on file extension
+    if (toolWorkspace.style.display === 'none' || !state.activeTool) {
+      const ext = droppedFiles[0].name.split('.').pop().toLowerCase();
+      let targetTool = 'pdf-to-word';
+      if (ext === 'docx' || ext === 'doc') targetTool = 'word-to-pdf';
+      else if (ext === 'xlsx' || ext === 'xls') targetTool = 'excel-to-pdf';
+      else if (ext === 'pptx' || ext === 'ppt') targetTool = 'pptx-to-pdf';
+      else if (['jpg', 'jpeg', 'png', 'webp'].includes(ext)) targetTool = 'img-to-pdf';
+      else if (ext === 'md') targetTool = 'md-to-pdf';
+      else if (ext === 'html' || ext === 'htm') targetTool = 'html-to-pdf';
+      else if (droppedFiles.length > 1 && ext === 'pdf') targetTool = 'merge';
+
+      openToolWorkspace(targetTool);
+    }
+
     handleFilesSelected(droppedFiles);
   });
 
