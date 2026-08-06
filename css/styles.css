@@ -820,18 +820,19 @@ a {
   .header-nav {
     order: 3;
     width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    overflow-x: auto;
-    white-space: nowrap;
-    flex-wrap: nowrap;
-    padding-bottom: 0.35rem;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.45rem;
+    margin-top: 0.25rem;
   }
-  .header-nav::-webkit-scrollbar {
-    display: none;
+  .header-nav .dropdown-wrapper {
+    width: 100%;
+  }
+  .header-nav .nav-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.45rem 0.5rem;
+    font-size: 0.78rem;
   }
   .tools-grid {
     grid-template-columns: repeat(2, 1fr);
