@@ -35,12 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
   }
 
-  // Mobile Menu Drawer & Sub-Accordion Handler
+  // Mobile Menu Drawer Handler
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const headerNav = document.querySelector('.header-nav');
   if (mobileMenuBtn && headerNav) {
-    const dropdownWrappers = headerNav.querySelectorAll('.dropdown-wrapper');
-
     function updateMobileBtnState(isOpen) {
       if (isOpen) {
         mobileMenuBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>Close</span>';
@@ -50,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function closeAllMobileSubMenus() {
-      dropdownWrappers.forEach(w => w.classList.remove('active'));
+      document.querySelectorAll('.dropdown-wrapper').forEach(w => w.classList.remove('active'));
     }
 
     mobileMenuBtn.addEventListener('click', (e) => {
@@ -73,37 +71,55 @@ document.addEventListener('DOMContentLoaded', () => {
         updateMobileBtnState(false);
       }
     });
+  }
 
-    dropdownWrappers.forEach(wrapper => {
-      const btn = wrapper.querySelector('.nav-btn');
-      if (btn) {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          
-          const isSelfActive = wrapper.classList.contains('active');
-          dropdownWrappers.forEach(w => {
-            if (w !== wrapper) w.classList.remove('active');
-          });
-
-          if (isSelfActive) {
-            wrapper.classList.remove('active');
-          } else {
-            wrapper.classList.add('active');
-          }
+  // Universal Dropdown Controller (Support BOTH Hover and Click on PC, plus Language Dropdown)
+  const allDropdownWrappers = document.querySelectorAll('.dropdown-wrapper');
+  allDropdownWrappers.forEach(wrapper => {
+    const btn = wrapper.querySelector('.nav-btn');
+    if (btn) {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const isSelfActive = wrapper.classList.contains('active');
+        allDropdownWrappers.forEach(w => {
+          if (w !== wrapper) w.classList.remove('active');
         });
+
+        if (isSelfActive) {
+          wrapper.classList.remove('active');
+        } else {
+          wrapper.classList.add('active');
+        }
+      });
+    }
+
+    // Hover support on PC/Desktop
+    wrapper.addEventListener('mouseenter', () => {
+      if (window.innerWidth > 768) {
+        wrapper.classList.add('active');
       }
+    });
 
-      const megaItems = wrapper.querySelectorAll('.mega-item');
-      megaItems.forEach(item => {
-        item.addEventListener('click', () => {
-          headerNav.classList.remove('active');
-          closeAllMobileSubMenus();
+    wrapper.addEventListener('mouseleave', () => {
+      if (window.innerWidth > 768) {
+        wrapper.classList.remove('active');
+      }
+    });
+
+    // Auto-close menu when selecting a tool inside dropdown
+    const megaItems = wrapper.querySelectorAll('.mega-item');
+    megaItems.forEach(item => {
+      item.addEventListener('click', () => {
+        wrapper.classList.remove('active');
+        if (headerNav) headerNav.classList.remove('active');
+        if (mobileMenuBtn && typeof updateMobileBtnState === 'function') {
           updateMobileBtnState(false);
-        });
+        }
       });
     });
-  }
+  });
 
   // Tool Definitions Configuration (24 Tools)
   const toolsConfig = {

@@ -184,18 +184,27 @@ a {
   animation: fadeIn 0.2s ease-out;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .dropdown-wrapper:hover .mega-dropdown {
-    display: block;
+/* Desktop: Support BOTH Hover AND Click on PC */
+@media (min-width: 769px) {
+  .dropdown-wrapper:hover .mega-dropdown,
+  .dropdown-wrapper.active .mega-dropdown {
+    display: block !important;
+  }
+
+  .dropdown-wrapper:hover .nav-btn svg,
+  .dropdown-wrapper.active .nav-btn svg {
+    transform: rotate(180deg);
   }
 }
 
-.dropdown-wrapper.active .mega-dropdown {
-  display: block !important;
-}
-
-.dropdown-wrapper:not(.active) .mega-dropdown {
-  display: none !important;
+/* Mobile: Strict Active Toggle */
+@media (max-width: 768px) {
+  .dropdown-wrapper.active .mega-dropdown {
+    display: block !important;
+  }
+  .dropdown-wrapper:not(.active) .mega-dropdown {
+    display: none !important;
+  }
 }
 
 .mega-grid {
