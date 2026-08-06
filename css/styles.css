@@ -30,20 +30,38 @@
 }
 
 [data-theme="light"] {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f4f4f5;
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
   --bg-card: #ffffff;
-  --bg-card-hover: #f4f4f5;
-  --bg-input: #e4e4e7;
+  --bg-card-hover: #f1f5f9;
+  --bg-input: #e2e8f0;
   
-  --border-color: #e4e4e7;
-  --border-color-hover: #000000;
+  --border-color: #94a3b8;
+  --border-color-hover: #0f172a;
   
-  --text-primary: #09090b;
-  --text-secondary: #52525b;
-  --text-muted: #a1a1aa;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
   
-  --accent-white: #000000;
+  --accent-white: #0f172a;
+}
+
+/* Thicker High-Contrast Borders in Light Mode */
+[data-theme="light"] .tool-card,
+[data-theme="light"] .nav-btn,
+[data-theme="light"] .mega-grid,
+[data-theme="light"] .mini-dropdown-grid,
+[data-theme="light"] .dropdown-single .mini-col,
+[data-theme="light"] .header-container,
+[data-theme="light"] .tool-workspace,
+[data-theme="light"] .dropzone {
+  border-width: 1.5px !important;
+  border-color: #94a3b8 !important;
+}
+
+[data-theme="light"] .tool-card:hover,
+[data-theme="light"] .nav-btn:hover {
+  border-color: #0f172a !important;
 }
 
 /* Theme Toggle Button Icons */
