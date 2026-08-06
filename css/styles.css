@@ -51,12 +51,23 @@
 [data-theme="light"] .nav-btn,
 [data-theme="light"] .mega-grid,
 [data-theme="light"] .mini-dropdown-grid,
-[data-theme="light"] .dropdown-single .mini-col,
 [data-theme="light"] .header-container,
 [data-theme="light"] .tool-workspace,
 [data-theme="light"] .dropzone {
   border-width: 1.5px !important;
   border-color: #94a3b8 !important;
+}
+
+/* Prevent double card / overlapping box bug in Light Mode on Mobile */
+@media (max-width: 768px) {
+  [data-theme="light"] .dropdown-single .mini-col,
+  [data-theme="light"] .mini-col,
+  [data-theme="light"] .mini-dropdown-grid,
+  [data-theme="light"] .mega-grid {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
 }
 
 [data-theme="light"] .tool-card:hover,
