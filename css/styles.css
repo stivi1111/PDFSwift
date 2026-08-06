@@ -899,12 +899,19 @@ a {
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
-    grid-template-columns: 1fr !important;
-    padding: 0.85rem !important;
-    gap: 1.25rem !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    padding: 0.65rem 0.25rem !important;
+    gap: 0.5rem !important;
     box-shadow: none !important;
     border: none !important;
     background: transparent !important;
+    overflow: hidden !important;
+  }
+
+  .mini-col {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
   }
 
   .dropdown-single .mini-col {
@@ -914,6 +921,19 @@ a {
     padding: 0.5rem 0 !important;
     border: none !important;
     background: transparent !important;
+  }
+
+  .header-nav .mega-item {
+    padding: 0.45rem 0.35rem !important;
+    font-size: 0.76rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .header-nav .mega-title {
+    font-size: 0.62rem !important;
+    margin-bottom: 0.4rem !important;
   }
 
   .hero {
