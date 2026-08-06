@@ -949,12 +949,7 @@ a {
     font-size: 0.8rem;
   }
   .category-tabs {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    flex-wrap: wrap;
-    width: 100%;
+    display: none !important;
   }
   .tools-grid {
     grid-template-columns: repeat(2, 1fr);
