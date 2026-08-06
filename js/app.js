@@ -41,6 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mobileMenuBtn && headerNav) {
     const dropdownWrappers = headerNav.querySelectorAll('.dropdown-wrapper');
 
+    function updateMobileBtnState(isOpen) {
+      if (isOpen) {
+        mobileMenuBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>Close</span>';
+      } else {
+        mobileMenuBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg><span>Tools</span>';
+      }
+    }
+
     function closeAllMobileSubMenus() {
       dropdownWrappers.forEach(w => w.classList.remove('active'));
     }
@@ -51,8 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isActive) {
         headerNav.classList.remove('active');
         closeAllMobileSubMenus();
+        updateMobileBtnState(false);
       } else {
         headerNav.classList.add('active');
+        updateMobileBtnState(true);
       }
     });
 
@@ -60,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!headerNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
         headerNav.classList.remove('active');
         closeAllMobileSubMenus();
+        updateMobileBtnState(false);
       }
     });
 
@@ -89,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('click', () => {
           headerNav.classList.remove('active');
           closeAllMobileSubMenus();
+          updateMobileBtnState(false);
         });
       });
     });
