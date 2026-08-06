@@ -11,6 +11,7 @@ const translations = {
     heroSubtext: "100% free, unlimited use, no signup required.",
     navConvert: "Convert PDF",
     navMergeSplit: "Merge & Split",
+    navEdit: "Edit & Security",
     navCompress: "Compress PDF",
     navImages: "Image Tools",
     tabAll: "All Tools (24)",
@@ -33,6 +34,7 @@ const translations = {
     heroSubtext: "100% gratuito, uso illimitato, nessuna registrazione richiesta.",
     navConvert: "Converti PDF",
     navMergeSplit: "Unisci e Dividi",
+    navEdit: "Modifica & Sicurezza",
     navCompress: "Comprimi PDF",
     navImages: "Strumenti Immagini",
     tabAll: "Tutti i Tool (24)",
@@ -55,6 +57,7 @@ const translations = {
     heroSubtext: "100% gratuito, uso ilimitado, sin registro.",
     navConvert: "Convertir PDF",
     navMergeSplit: "Unir y Dividir",
+    navEdit: "Edición y Seguridad",
     navCompress: "Comprimir PDF",
     navImages: "Herramientas Imagen",
     tabAll: "Todas las Herramientas (24)",
@@ -77,6 +80,7 @@ const translations = {
     heroSubtext: "100% kostenlos, unbegrenzt nutzbar, keine Registrierung erforderlich.",
     navConvert: "PDF Konvertieren",
     navMergeSplit: "Zusammenfügen & Teilen",
+    navEdit: "Bearbeiten & Sicherheit",
     navCompress: "PDF Komprimieren",
     navImages: "Bild-Werkzeuge",
     tabAll: "Alle Werkzeuge (24)",
@@ -99,6 +103,7 @@ const translations = {
     heroSubtext: "100% 免费，无限使用，无需注册。",
     navConvert: "转换 PDF",
     navMergeSplit: "合并与拆分",
+    navEdit: "编辑与安全",
     navCompress: "压缩 PDF",
     navImages: "图片工具",
     tabAll: "所有工具 (24)",
@@ -121,6 +126,7 @@ const translations = {
     heroSubtext: "100% gratuit, utilizare nelimitată, fără înregistrare.",
     navConvert: "Convertește PDF",
     navMergeSplit: "Unește & Divide",
+    navEdit: "Editare & Securitate",
     navCompress: "Comprimă PDF",
     navImages: "Instrumente Imagini",
     tabAll: "Toate Instrumentele (24)",
@@ -143,6 +149,7 @@ const translations = {
     heroSubtext: "100% मुफ्त, असीमित उपयोग, कोई साइनअप आवश्यक नहीं।",
     navConvert: "पीडीएफ कन्वर्ट करें",
     navMergeSplit: "मर्ज और स्प्लिट",
+    navEdit: "संपादन और सुरक्षा",
     navCompress: "पीडीएफ कंप्रेस करें",
     navImages: "इमेज टूल्स",
     tabAll: "सभी टूल्स (24)",
@@ -165,6 +172,7 @@ const translations = {
     heroSubtext: "100% бесплатно, без ограничений, без регистрации.",
     navConvert: "Конвертировать PDF",
     navMergeSplit: "Объединить и Разделить",
+    navEdit: "Редактирование и Защита",
     navCompress: "Сжать PDF",
     navImages: "Инструменты Изображений",
     tabAll: "Все Инструменты (24)",
@@ -439,15 +447,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroSub = document.querySelector('.hero-subtext');
     if (heroSub) heroSub.textContent = t.heroSubtext;
 
-    // Navbar
+    // Navbar (4 Uniform Category Dropdowns)
     const navBtns = document.querySelectorAll('.header-nav .nav-btn span');
     if (navBtns[0]) navBtns[0].textContent = t.navConvert;
     if (navBtns[1]) navBtns[1].textContent = t.navMergeSplit;
-
-    const compressNav = document.querySelector('.header-nav .nav-link-btn span');
-    if (compressNav) compressNav.textContent = t.navCompress;
-
-    if (navBtns[2]) navBtns[2].textContent = t.navImages;
+    if (navBtns[2]) navBtns[2].textContent = t.navEdit || "Edit & Security";
+    if (navBtns[3]) navBtns[3].textContent = t.navImages;
 
     // Category Tabs
     const tabs = document.querySelectorAll('.category-tabs .tab-btn');
