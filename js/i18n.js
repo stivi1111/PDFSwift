@@ -6,7 +6,7 @@
 
 const translations = {
   en: {
-    heroTitle: "All in One PDF Suite",
+    heroTitle: "ALL IN ONE PDFAXIOM",
     heroDesc: "Convert PDF to Word, Word to PDF, Excel, PowerPoint, Merge, Split, Compress & Edit",
     heroSubtext: "100% free, unlimited use, no signup required.",
     navConvert: "Convert PDF",
@@ -31,7 +31,7 @@ const translations = {
     footerCopy: "© 2026 PDFAxiom. 100% Free Forever • No File Limits."
   },
   it: {
-    heroTitle: "Suite PDF Tutto in Uno",
+    heroTitle: "ALL IN ONE PDFAXIOM",
     heroDesc: "Converti PDF in Word, Word in PDF, Excel, PowerPoint, Unisci, Dividi, Comprimi e Modifica",
     heroSubtext: "100% gratuito, uso illimitato, nessuna registrazione richiesta.",
     navConvert: "Converti PDF",
@@ -39,7 +39,7 @@ const translations = {
     navEdit: "Modifica & Sicurezza",
     navCompress: "Comprimi PDF",
     navImages: "Strumenti Immagini",
-    mobileMenu: "Tools",
+    mobileMenu: "Strumenti",
     mobileClose: "Chiudi",
     tabAll: "Tutti i Tool",
     tabConvert: "Conversione & Office",
@@ -56,7 +56,7 @@ const translations = {
     footerCopy: "© 2026 PDFAxiom. 100% Gratuito per Sempre • Nessun Limite."
   },
   es: {
-    heroTitle: "Suite PDF Todo en Uno",
+    heroTitle: "ALL IN ONE PDFAXIOM",
     heroDesc: "Convierte PDF a Word, Word a PDF, Excel, PowerPoint, Une, Divide, Comprime y Edita",
     heroSubtext: "100% gratuito, uso ilimitado, sin registro.",
     navConvert: "Convertir PDF",
@@ -81,7 +81,7 @@ const translations = {
     footerCopy: "© 2026 PDFAxiom. 100% Gratis para Siempre • Sin Límites."
   },
   de: {
-    heroTitle: "Alles in Einem PDF Suite",
+    heroTitle: "ALL IN ONE PDFAXIOM",
     heroDesc: "Konvertieren Sie PDF in Word, Word in PDF, Excel, PowerPoint, Zusammenfügen & Komprimieren",
     heroSubtext: "100% kostenlos, unbegrenzt nutzbar, keine Registrierung erforderlich.",
     navConvert: "PDF Konvertieren",
@@ -106,7 +106,7 @@ const translations = {
     footerCopy: "© 2026 PDFAxiom. 100% Kostenlos für Immer • Keine Limits."
   },
   zh: {
-    heroTitle: "全功能 PDF 工具箱",
+    heroTitle: "ALL IN ONE PDFAXIOM",
     heroDesc: "转换 PDF 至 Word、Word 转 PDF、Excel、PowerPoint、合并、拆分与压缩",
     heroSubtext: "100% 免费，无限使用，无需注册。",
     navConvert: "转换 PDF",
@@ -131,7 +131,7 @@ const translations = {
     footerCopy: "© 2026 PDFAxiom. 永久免费 • 无限制。"
   },
   ro: {
-    heroTitle: "Suite PDF Totul în Unul",
+    heroTitle: "ALL IN ONE PDFAXIOM",
     heroDesc: "Convertește PDF în Word, Word în PDF, Excel, PowerPoint, Unește, Divide, Comprimă și Editează",
     heroSubtext: "100% gratuit, utilizare nelimitată, fără înregistrare.",
     navConvert: "Convertește PDF",
@@ -156,7 +156,7 @@ const translations = {
     footerCopy: "© 2026 PDFAxiom. 100% Gratuit Pentru Totdeauna • Fără Limite."
   },
   hi: {
-    heroTitle: "ऑल इन वन पीडीएफ सूट",
+    heroTitle: "ALL IN ONE PDFAXIOM",
     heroDesc: "पीडीएफ को वर्ड, वर्ड को पीडीएफ, एक्सेल, पावरपॉइंट में बदलें, मर्ज, स्प्लिट और कंप्रेस करें",
     heroSubtext: "100% मुफ्त, असीमित उपयोग, कोई साइनअप आवश्यक नहीं।",
     navConvert: "पीडीएफ कन्वर्ट करें",
@@ -181,7 +181,7 @@ const translations = {
     footerCopy: "© 2026 PDFAxiom. हमेशा 100% मुफ़्त • कोई सीमा नहीं।"
   },
   ru: {
-    heroTitle: "Все в Одном PDF Набор",
+    heroTitle: "ALL IN ONE PDFAXIOM",
     heroDesc: "Конвертируйте PDF в Word, Word в PDF, Excel, PowerPoint, Объединяйте, Разделяйте и Сжимайте",
     heroSubtext: "100% бесплатно, без ограничений, без регистрации.",
     navConvert: "Конвертировать PDF",
