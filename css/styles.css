@@ -1152,19 +1152,19 @@ a {
     overflow: hidden !important;
   }
 
-  .mini-col {
-    width: 100% !important;
-    min-width: 0 !important;
-    box-sizing: border-box !important;
-  }
-
-  .dropdown-single .mini-col {
+  /* Fix Mobile Light Mode Sub-menu Double Card / Overlapping Box Bug */
+  .dropdown-single .mini-col,
+  .mini-col,
+  [data-theme="light"] .mini-col,
+  [data-theme="light"] .dropdown-single .mini-col,
+  [data-theme="light"] .mini-dropdown-grid {
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
-    padding: 0.5rem 0 !important;
+    padding: 0.25rem 0 !important;
     border: none !important;
     background: transparent !important;
+    box-shadow: none !important;
   }
 
   .header-nav .mega-item {
