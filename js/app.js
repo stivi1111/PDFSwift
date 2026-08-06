@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         progressText.textContent = 'Packaging all converted files into ZIP archive...';
         state.processedBlob = await zip.generateAsync({ type: 'blob' });
-        state.processedFilename = `PDFSwift_Batch_Converted_${state.files.length}_Files.zip`;
+        state.processedFilename = `PDFAxiom_Batch_Converted_${state.files.length}_Files.zip`;
       }
 
       progressBarFill.style.width = '100%';
