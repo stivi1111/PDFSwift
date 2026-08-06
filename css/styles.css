@@ -107,9 +107,10 @@ a {
 }
 
 .logo img {
-  width: 30px;
-  height: 30px;
-  filter: grayscale(100%) brightness(200%);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: contain;
 }
 
 /* 100% Mathematically Centered Navbar Category Dropdowns */
