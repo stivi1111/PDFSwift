@@ -1,6 +1,7 @@
 /**
  * PDFAxiom - 5-Language Internationalization (i18n) Engine
  * Languages: English (EN), Italian (IT), Spanish (ES), German (DE), Chinese (ZH)
+ * Translates UI headers, hero, tabs, actions, AND ALL 24 TOOL CARDS & DESCRIPTIONS!
  */
 
 const translations = {
@@ -116,6 +117,139 @@ const translations = {
   }
 };
 
+const toolTranslations = {
+  en: {
+    'pdf-to-word': { title: 'PDF to Word', desc: 'Convert PDF files to editable Word documents (.docx).' },
+    'word-to-pdf': { title: 'Word to PDF', desc: 'Convert Word documents (.docx) to PDF format.' },
+    'img-to-pdf': { title: 'Images to PDF', desc: 'Convert JPG, PNG, WEBP images into a PDF document.' },
+    'pdf-to-img': { title: 'PDF to JPG / PNG', desc: 'Extract PDF pages into high-resolution JPG or PNG images.' },
+    'merge': { title: 'Merge PDF', desc: 'Combine multiple PDF files into one single document.' },
+    'compress': { title: 'Compress PDF', desc: 'Reduce PDF file size while maintaining maximum quality.' },
+    'split': { title: 'Split PDF', desc: 'Separate PDF pages or extract custom page ranges.' },
+    'delete-pages': { title: 'Delete Pages', desc: 'Remove unwanted pages from a PDF document.' },
+    'pdf-to-excel': { title: 'PDF to Excel', desc: 'Extract PDF tables into Excel (.xlsx / .csv).' },
+    'excel-to-pdf': { title: 'Excel to PDF', desc: 'Convert Excel spreadsheets (.xlsx) to PDF.' },
+    'pdf-to-pptx': { title: 'PDF to PowerPoint', desc: 'Turn PDF pages into PowerPoint slides (.pptx).' },
+    'pptx-to-pdf': { title: 'PowerPoint to PDF', desc: 'Convert PowerPoint (.pptx) into PDF file.' },
+    'unlock': { title: 'Unlock PDF', desc: 'Remove security passwords & restrictions from PDF.' },
+    'protect': { title: 'Protect PDF', desc: 'Encrypt PDF with custom user password.' },
+    'rotate': { title: 'Rotate PDF', desc: 'Rotate PDF pages 90°, 180°, or 270° degrees.' },
+    'page-numbers': { title: 'Page Numbers', desc: 'Add page numbers into your PDF document header/footer.' },
+    'watermark': { title: 'Watermark PDF', desc: 'Add custom text watermark across PDF pages.' },
+    'grayscale': { title: 'Grayscale PDF', desc: 'Convert colored PDF documents into Black & White.' },
+    'pdf-to-html': { title: 'PDF to HTML', desc: 'Convert PDF documents into web-ready HTML code.' },
+    'html-to-pdf': { title: 'HTML to PDF', desc: 'Convert web HTML text code into a PDF file.' },
+    'pdf-to-md': { title: 'PDF to Markdown', desc: 'Convert PDF into clean Markdown (.md) for LLMs & Notion.' },
+    'md-to-pdf': { title: 'Markdown to PDF', desc: 'Convert Markdown (.md) files into styled PDF documents.' },
+    'pdf-to-text': { title: 'Extract Text', desc: 'Extract plain raw text (.txt) content from PDF.' },
+    'extract-images': { title: 'Extract Images', desc: 'Extract all embedded image assets inside PDF.' }
+  },
+  it: {
+    'pdf-to-word': { title: 'Da PDF a Word', desc: 'Converti file PDF in documenti Word modificabili (.docx).' },
+    'word-to-pdf': { title: 'Da Word a PDF', desc: 'Converti documenti Word (.docx) in formato PDF.' },
+    'img-to-pdf': { title: 'Da Immagini a PDF', desc: 'Converti immagini JPG, PNG, WEBP in un documento PDF.' },
+    'pdf-to-img': { title: 'Da PDF a JPG / PNG', desc: 'Estrai le pagine del PDF in immagini ad alta risoluzione.' },
+    'merge': { title: 'Unisci PDF', desc: 'Combina più file PDF in un unico documento.' },
+    'compress': { title: 'Comprimi PDF', desc: 'Riduci la dimensione del PDF mantenendo la massima qualità.' },
+    'split': { title: 'Dividi PDF', desc: 'Separa le pagine del PDF o estrai intervalli personalizzati.' },
+    'delete-pages': { title: 'Elimina Pagine', desc: 'Rimuovi le pagine indesiderate da un documento PDF.' },
+    'pdf-to-excel': { title: 'Da PDF a Excel', desc: 'Estrai tabelle PDF in fogli Excel (.xlsx / .csv).' },
+    'excel-to-pdf': { title: 'Da Excel a PDF', desc: 'Converti fogli di calcolo Excel (.xlsx) in PDF.' },
+    'pdf-to-pptx': { title: 'Da PDF a PowerPoint', desc: 'Trasforma pagine PDF in diapositive PowerPoint (.pptx).' },
+    'pptx-to-pdf': { title: 'Da PowerPoint a PDF', desc: 'Converti presentazioni PowerPoint (.pptx) in PDF.' },
+    'unlock': { title: 'Sblocca PDF', desc: 'Rimuovi password di protezione e restrizioni dai PDF.' },
+    'protect': { title: 'Proteggi PDF', desc: 'Crittografa il tuo PDF con una password personalizzata.' },
+    'rotate': { title: 'Ruota PDF', desc: 'Ruota le pagine del PDF di 90°, 180° o 270°.' },
+    'page-numbers': { title: 'Numeri di Pagina', desc: 'Aggiungi numeri di pagina nell’intestazione o piè di pagina.' },
+    'watermark': { title: 'Filigrana PDF', desc: 'Aggiungi un testo di filigrana personalizzato sulle pagine.' },
+    'grayscale': { title: 'PDF in Bianco e Nero', desc: 'Converti i PDF a colori in formato Bianco e Nero (Grayscale).' },
+    'pdf-to-html': { title: 'Da PDF a HTML', desc: 'Converti documenti PDF in codice web HTML.' },
+    'html-to-pdf': { title: 'Da HTML a PDF', desc: 'Converti codice testo HTML in un file PDF.' },
+    'pdf-to-md': { title: 'Da PDF a Markdown', desc: 'Converti PDF in testo pulito Markdown (.md) per AI & Notion.' },
+    'md-to-pdf': { title: 'Da Markdown a PDF', desc: 'Converti file Markdown (.md) in documenti PDF stilizzati.' },
+    'pdf-to-text': { title: 'Estrai Testo', desc: 'Estrai il contenuto di testo puro (.txt) dal PDF.' },
+    'extract-images': { title: 'Estrai Immagini', desc: 'Estrai tutte le immagini incorporate all’interno del PDF.' }
+  },
+  es: {
+    'pdf-to-word': { title: 'PDF a Word', desc: 'Convierte archivos PDF a documentos Word editables (.docx).' },
+    'word-to-pdf': { title: 'Word a PDF', desc: 'Convierte documentos Word (.docx) a formato PDF.' },
+    'img-to-pdf': { title: 'Imágenes a PDF', desc: 'Convierte imágenes JPG, PNG, WEBP en un documento PDF.' },
+    'pdf-to-img': { title: 'PDF a JPG / PNG', desc: 'Extrae páginas PDF en imágenes JPG o PNG de alta resolución.' },
+    'merge': { title: 'Unir PDF', desc: 'Combina múltiples archivos PDF en un solo documento.' },
+    'compress': { title: 'Comprimir PDF', desc: 'Reduce el tamaño del PDF manteniendo la máxima calidad.' },
+    'split': { title: 'Dividir PDF', desc: 'Separa páginas PDF o extrae rangos personalizados.' },
+    'delete-pages': { title: 'Eliminar Páginas', desc: 'Elimina páginas no deseadas de un documento PDF.' },
+    'pdf-to-excel': { title: 'PDF a Excel', desc: 'Extrae tablas PDF a hojas de cálculo Excel (.xlsx / .csv).' },
+    'excel-to-pdf': { title: 'Excel a PDF', desc: 'Convierte hojas de cálculo Excel (.xlsx) a PDF.' },
+    'pdf-to-pptx': { title: 'PDF a PowerPoint', desc: 'Convierte páginas PDF en diapositivas PowerPoint (.pptx).' },
+    'pptx-to-pdf': { title: 'PowerPoint a PDF', desc: 'Convierte presentaciones PowerPoint (.pptx) a PDF.' },
+    'unlock': { title: 'Desbloquear PDF', desc: 'Elimina contraseñas de seguridad y restricciones de tu PDF.' },
+    'protect': { title: 'Proteger PDF', desc: 'Encripta tu PDF con una contraseña personalizada.' },
+    'rotate': { title: 'Rotar PDF', desc: 'Gira las páginas del PDF 90°, 180° o 270°.' },
+    'page-numbers': { title: 'Números de Página', desc: 'Añade números de página en el encabezado o pie de página.' },
+    'watermark': { title: 'Marca de Agua PDF', desc: 'Añade marca de agua de texto personalizada en tu PDF.' },
+    'grayscale': { title: 'PDF Blanco y Negro', desc: 'Convierte documentos PDF a color en Blanco y Negro.' },
+    'pdf-to-html': { title: 'PDF a HTML', desc: 'Convierte documentos PDF a código web HTML.' },
+    'html-to-pdf': { title: 'HTML a PDF', desc: 'Convierte código texto HTML en un archivo PDF.' },
+    'pdf-to-md': { title: 'PDF a Markdown', desc: 'Convierte PDF a Markdown (.md) limpio para IA y Notion.' },
+    'md-to-pdf': { title: 'Markdown a PDF', desc: 'Convierte archivos Markdown (.md) a PDF estilizados.' },
+    'pdf-to-text': { title: 'Extraer Texto', desc: 'Extrae el contenido de texto plano (.txt) del PDF.' },
+    'extract-images': { title: 'Extraer Imágenes', desc: 'Extrae todas las imágenes incrustadas dentro del PDF.' }
+  },
+  de: {
+    'pdf-to-word': { title: 'PDF in Word', desc: 'Konvertieren Sie PDF-Dateien in bearbeitbare Word-Dokumente (.docx).' },
+    'word-to-pdf': { title: 'Word in PDF', desc: 'Konvertieren Sie Word-Dokumente (.docx) in das PDF-Format.' },
+    'img-to-pdf': { title: 'Bilder in PDF', desc: 'Konvertieren Sie JPG, PNG, WEBP Bilder in ein PDF-Dokument.' },
+    'pdf-to-img': { title: 'PDF in JPG / PNG', desc: 'Extrahieren Sie PDF-Seiten als hochauflösende Bilder.' },
+    'merge': { title: 'PDF Zusammenfügen', desc: 'Kombinieren Sie mehrere PDF-Dateien zu einem Dokument.' },
+    'compress': { title: 'PDF Komprimieren', desc: 'Reduzieren Sie die PDF-Dateigröße bei maximaler Qualität.' },
+    'split': { title: 'PDF Teilen', desc: 'Trennen Sie PDF-Seiten oder extrahieren Sie Seitenbereiche.' },
+    'delete-pages': { title: 'Seiten Löschen', desc: 'Entfernen Sie unerwünschte Seiten aus Ihrem PDF-Dokument.' },
+    'pdf-to-excel': { title: 'PDF in Excel', desc: 'Extrahieren Sie PDF-Tabellen in Excel (.xlsx / .csv).' },
+    'excel-to-pdf': { title: 'Excel in PDF', desc: 'Konvertieren Sie Excel-Tabellen (.xlsx) in PDF.' },
+    'pdf-to-pptx': { title: 'PDF in PowerPoint', desc: 'Wandeln Sie PDF-Seiten in PowerPoint-Folien (.pptx) um.' },
+    'pptx-to-pdf': { title: 'PowerPoint in PDF', desc: 'Konvertieren Sie PowerPoint-Präsentationen (.pptx) in PDF.' },
+    'unlock': { title: 'PDF Entsperren', desc: 'Entfernen Sie Passwörter und Einschränkungen aus PDFs.' },
+    'protect': { title: 'PDF Schützen', desc: 'Verschlüsseln Sie Ihr PDF mit einem benutzerdefinierten Passwort.' },
+    'rotate': { title: 'PDF Drehen', desc: 'Drehen Sie PDF-Seiten um 90°, 180° oder 270°.' },
+    'page-numbers': { title: 'Seitenzahlen', desc: 'Fügen Sie Seitenzahlen in Kopf- oder Fußzeile ein.' },
+    'watermark': { title: 'PDF Wasserzeichen', desc: 'Fügen Sie ein benutzerdefiniertes Text-Wasserzeichen hinzu.' },
+    'grayscale': { title: 'PDF Schwarz-Weiß', desc: 'Konvertieren Sie farbige PDFs in Schwarz-Weiß (Graustufen).' },
+    'pdf-to-html': { title: 'PDF in HTML', desc: 'Konvertieren Sie PDF-Dokumente in HTML-Webcode.' },
+    'html-to-pdf': { title: 'HTML in PDF', desc: 'Konvertieren Sie HTML-Textcode in eine PDF-Datei.' },
+    'pdf-to-md': { title: 'PDF in Markdown', desc: 'Konvertieren Sie PDF in sauberes Markdown (.md) für KI.' },
+    'md-to-pdf': { title: 'Markdown in PDF', desc: 'Konvertieren Sie Markdown-Dateien in gestylte PDF-Dokumente.' },
+    'pdf-to-text': { title: 'Text Extrahieren', desc: 'Extrahieren Sie reinen Textinhalt (.txt) aus dem PDF.' },
+    'extract-images': { title: 'Bilder Extrahieren', desc: 'Extrahieren Sie alle eingebetteten Bilder aus dem PDF.' }
+  },
+  zh: {
+    'pdf-to-word': { title: 'PDF 转 Word', desc: '将 PDF 文件转换为可编辑的 Word 文档 (.docx)。' },
+    'word-to-pdf': { title: 'Word 转 PDF', desc: '将 Word 文档 (.docx) 转换为 PDF 格式。' },
+    'img-to-pdf': { title: '图片转 PDF', desc: '将 JPG、PNG、WEBP 图片转换为 PDF 文档。' },
+    'pdf-to-img': { title: 'PDF 转 JPG / PNG', desc: '将 PDF 页面提取为高分辨率图片。' },
+    'merge': { title: '合并 PDF', desc: '将多个 PDF 文件合并为一个文档。' },
+    'compress': { title: '压缩 PDF', desc: '在保持清晰度的同时减小 PDF 文件体积。' },
+    'split': { title: '拆分 PDF', desc: '分离 PDF 页面或提取自定义页面范围。' },
+    'delete-pages': { title: '删除页面', desc: '从 PDF 文档中删除不需要的页面。' },
+    'pdf-to-excel': { title: 'PDF 转 Excel', desc: '将 PDF 表格提取为 Excel (.xlsx / .csv)。' },
+    'excel-to-pdf': { title: 'Excel 转 PDF', desc: '将 Excel 表格 (.xlsx) 转换为 PDF 文件。' },
+    'pdf-to-pptx': { title: 'PDF 转 PowerPoint', desc: '将 PDF 页面转换为 PowerPoint 幻灯片 (.pptx)。' },
+    'pptx-to-pdf': { title: 'PowerPoint 转 PDF', desc: '将 PowerPoint 演示文稿 (.pptx) 转换为 PDF。' },
+    'unlock': { title: 'PDF 解密', desc: '移除 PDF 的安全密码与限制。' },
+    'protect': { title: 'PDF 加密', desc: '使用自定义密码加密您的 PDF 文件。' },
+    'rotate': { title: '旋转 PDF', desc: '旋转 PDF 页面 90°、180° 或 270°。' },
+    'page-numbers': { title: '页码添加', desc: '在 PDF 页眉或页脚中添加页码。' },
+    'watermark': { title: 'PDF 水印', desc: '在 PDF 页面上添加自定义文本水印。' },
+    'grayscale': { title: 'PDF 转黑白', desc: '将彩色 PDF 文档转换为黑白（灰度）格式。' },
+    'pdf-to-html': { title: 'PDF 转 HTML', desc: '将 PDF 文档转换为 Web HTML 代码。' },
+    'html-to-pdf': { title: 'HTML 转 PDF', desc: '将 HTML 文本代码转换为 PDF 文件。' },
+    'pdf-to-md': { title: 'PDF 转 Markdown', desc: '将 PDF 转换为 Markdown (.md) 供 AI 与 Notion 使用。' },
+    'md-to-pdf': { title: 'Markdown 转 PDF', desc: '将 Markdown (.md) 文件转换为排版精美的 PDF。' },
+    'pdf-to-text': { title: '提取文本', desc: '从 PDF 中提取纯文本 (.txt) 内容。' },
+    'extract-images': { title: '提取图片', desc: '提取 PDF 内部嵌入的所有图片资源。' }
+  }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   const currentLangText = document.getElementById('currentLangText');
   const langOptions = document.querySelectorAll('.lang-option');
@@ -149,6 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const t = translations[lang] || translations.en;
+    const toolsT = toolTranslations[lang] || toolTranslations.en;
 
     // Update Text Elements
     const heroH1 = document.querySelector('.hero h1');
@@ -214,5 +349,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const copyright = document.querySelector('.copyright');
     if (copyright) copyright.textContent = t.footerCopy;
+
+    // UPDATE ALL 24 TOOL CARDS DYNAMICALLY!
+    const toolCards = document.querySelectorAll('.tool-card');
+    toolCards.forEach(card => {
+      const toolId = card.getAttribute('data-tool');
+      if (toolId && toolsT[toolId]) {
+        const h3 = card.querySelector('h3');
+        const p = card.querySelector('p');
+        if (h3) h3.textContent = toolsT[toolId].title;
+        if (p) p.textContent = toolsT[toolId].desc;
+      }
+    });
+
+    // UPDATE NAVBAR MEGA DROPDOWN ITEMS
+    const megaItems = document.querySelectorAll('.mega-item[data-tool]');
+    megaItems.forEach(item => {
+      const toolId = item.getAttribute('data-tool');
+      if (toolId && toolsT[toolId]) {
+        item.textContent = toolsT[toolId].title;
+      }
+    });
   }
 });
