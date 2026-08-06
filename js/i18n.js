@@ -27,7 +27,7 @@ const translations = {
     footerCopy: "© 2026 PDFAxiom. 100% Free Forever • No File Limits."
   },
   it: {
-    heroTitle: "Suite PDF Tutto-in-Uno",
+    heroTitle: "Suite PDF Tutto in Uno",
     heroDesc: "Converti PDF in Word, Word in PDF, Excel, PowerPoint, Unisci, Dividi, Comprimi e Modifica",
     heroSubtext: "100% gratuito, uso illimitato, nessuna registrazione richiesta.",
     navConvert: "Converti PDF",
@@ -71,7 +71,7 @@ const translations = {
     footerCopy: "© 2026 PDFAxiom. 100% Gratis para Siempre • Sin Límites."
   },
   de: {
-    heroTitle: "Alles-in-Einem PDF Suite",
+    heroTitle: "Alles in Einem PDF Suite",
     heroDesc: "Konvertieren Sie PDF in Word, Word in PDF, Excel, PowerPoint, Zusammenfügen & Komprimieren",
     heroSubtext: "100% kostenlos, unbegrenzt nutzbar, keine Registrierung erforderlich.",
     navConvert: "PDF Konvertieren",
