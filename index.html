@@ -7,25 +7,30 @@
   <meta name="description" content="Convert PDF to Word, Word to PDF, Excel, PowerPoint, Merge, Split, Compress & Edit PDF files directly in your browser with zero limits. 100% private.">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   
+  <!-- Performance CDN Preconnect & DNS Prefetch -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  
   <!-- CSS Styles -->
   <link rel="stylesheet" href="css/styles.css">
   
-  <!-- External JS Libraries (CDN) for Client-Side Processing -->
-  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <!-- Core PDF Libraries (Client-Side) -->
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
   
   <!-- Word (.docx) & Office Conversion Libraries -->
-  <script src="https://unpkg.com/docx@7.8.2/build/index.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://unpkg.com/docx@7.8.2/build/index.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
 
   <!-- Excel (.xlsx) & PowerPoint (.pptx) CDN Libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/dist/pptxgen.bundle.js" defer></script>
 
-  <!-- Markdown (.md) Parsing CDN Library for AI workflows -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.1.1/marked.min.js"></script>
+  <!-- Markdown (.md) Parsing CDN Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.1.1/marked.min.js" defer></script>
 </head>
 <body data-theme="dark">
 
@@ -512,7 +517,7 @@
         <img src="assets/favicon.svg" alt="PDFAxiom Logo">
         <span>PDFAXIOM</span>
       </div>
-      <p class="copyright">© 2026 PDFAxiom. 100% Free Forever • No File Limits • Zero Server Uploads.</p>
+      <p class="copyright">© 2026 PDFAxiom. 100% Free Forever • No File Limits.</p>
     </div>
   </footer>
 
