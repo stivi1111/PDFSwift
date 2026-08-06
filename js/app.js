@@ -35,6 +35,36 @@ document.addEventListener('DOMContentLoaded', () => {
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
   }
 
+  // Mobile Menu Drawer Handler
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const headerNav = document.querySelector('.header-nav');
+  if (mobileMenuBtn && headerNav) {
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      headerNav.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!headerNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        headerNav.classList.remove('active');
+      }
+    });
+
+    const dropdownWrappers = headerNav.querySelectorAll('.dropdown-wrapper');
+    dropdownWrappers.forEach(wrapper => {
+      const btn = wrapper.querySelector('.nav-btn');
+      if (btn) {
+        btn.addEventListener('click', (e) => {
+          if (window.innerWidth <= 768) {
+            e.preventDefault();
+            e.stopPropagation();
+            wrapper.classList.toggle('active');
+          }
+        });
+      }
+    });
+  }
+
   // Tool Definitions Configuration (24 Tools)
   const toolsConfig = {
     'pdf-to-word': { title: 'PDF to Word Converter', desc: 'Convert PDF into editable Microsoft Word (.docx) format.', multiple: false, accept: '.pdf', btnText: 'Convert PDF to Word', outputExt: '.docx' },
