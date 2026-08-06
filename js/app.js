@@ -35,12 +35,14 @@ document.addEventListener('DOMContentLoaded', () => {
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
   }
 
-  // Light / Dark Theme Controller
+  // Light / Dark Theme Controller (Default: Light Mode)
   const themeToggleBtn = document.getElementById('themeToggleBtn');
-  const savedTheme = localStorage.getItem('pdfaxiom_theme') || 'dark';
+  const savedTheme = localStorage.getItem('pdfaxiom_theme') || 'light';
 
   if (savedTheme === 'light') {
     document.documentElement.setAttribute('data-theme', 'light');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
   }
 
   if (themeToggleBtn) {
