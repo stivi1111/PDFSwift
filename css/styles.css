@@ -124,6 +124,7 @@ a {
 
 .logo-wrapper {
   justify-self: start;
+  margin-left: 12px;
 }
 
 .logo {
@@ -137,9 +138,9 @@ a {
 }
 
 .logo img, .brand-logo-img {
-  height: 54px;
+  height: 56px;
   width: auto;
-  max-width: 280px;
+  max-width: 320px;
   object-fit: contain;
   display: block;
 }
