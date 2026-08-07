@@ -136,11 +136,12 @@ a {
   color: var(--text-primary);
 }
 
-.logo img {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
+.logo img, .brand-logo-img {
+  height: 34px;
+  width: auto;
+  max-width: 145px;
   object-fit: contain;
+  display: block;
 }
 
 /* 100% Mathematically Centered Navbar Category Dropdowns */
