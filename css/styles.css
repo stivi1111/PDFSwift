@@ -1025,17 +1025,17 @@ a {
   gap: 0.5rem;
 }
 
-/* Responsive Desktop Window Resize Adaptability (769px to 1200px) */
-@media (max-width: 1200px) and (min-width: 993px) {
+/* Responsive Desktop Window Resize Adaptability (881px to 1200px) */
+@media (max-width: 1200px) and (min-width: 881px) {
   .header-container {
-    padding: 0.65rem 1rem;
+    padding: 0.55rem 0.85rem;
   }
   .header-nav {
-    gap: 0.45rem;
+    gap: 0.35rem;
   }
   .nav-btn {
-    padding: 0.4rem 0.65rem;
-    font-size: 0.81rem;
+    padding: 0.38rem 0.55rem;
+    font-size: 0.8rem;
   }
   .tools-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -1043,8 +1043,8 @@ a {
   }
 }
 
-/* Responsive Breakpoints & Mobile Drawer Triggered Earlier at 992px */
-@media (max-width: 992px) {
+/* Responsive Breakpoints & Mobile Drawer Triggered at Sweet-Spot 880px */
+@media (max-width: 880px) {
   .mobile-menu-btn {
     display: flex;
   }
