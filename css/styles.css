@@ -1185,45 +1185,49 @@ a {
   }
 
   .mini-dropdown-grid,
-  .mega-grid {
+  .mega-grid,
+  [data-theme="light"] .mini-dropdown-grid,
+  [data-theme="light"] .mega-grid {
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    padding: 0.65rem 0.25rem !important;
-    gap: 0.5rem !important;
+    padding: 0.65rem 0.75rem !important;
+    gap: 0.75rem !important;
     box-shadow: none !important;
     border: none !important;
     background: transparent !important;
     overflow: hidden !important;
   }
 
-  /* Fix Mobile Light Mode Sub-menu Double Card / Overlapping Box Bug */
+  /* Fix Mobile Light Mode Sub-menu Double Card / Overlapping Box & Edge Alignment Bug */
   .dropdown-single .mini-col,
   .mini-col,
   [data-theme="light"] .mini-col,
-  [data-theme="light"] .dropdown-single .mini-col,
-  [data-theme="light"] .mini-dropdown-grid {
+  [data-theme="light"] .dropdown-single .mini-col {
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
-    padding: 0.25rem 0 !important;
+    padding: 0.25rem 0.4rem !important;
     border: none !important;
     background: transparent !important;
     box-shadow: none !important;
   }
 
   .header-nav .mega-item {
-    padding: 0.45rem 0.35rem !important;
-    font-size: 0.76rem !important;
+    padding: 0.5rem 0.6rem !important;
+    font-size: 0.78rem !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
+    border-radius: var(--radius-sm) !important;
   }
 
   .header-nav .mega-title {
-    font-size: 0.62rem !important;
-    margin-bottom: 0.4rem !important;
+    font-size: 0.65rem !important;
+    margin-bottom: 0.45rem !important;
+    padding-left: 0.35rem !important;
+    letter-spacing: 0.05em !important;
   }
 
   .hero {
