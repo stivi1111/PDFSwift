@@ -124,7 +124,7 @@ a {
 
 .logo-wrapper {
   justify-self: start;
-  margin-left: 12px;
+  margin-left: 28px;
 }
 
 .logo {
@@ -1104,9 +1104,10 @@ a {
     gap: 0.4rem;
   }
 
-  .logo img {
-    width: 24px;
-    height: 24px;
+  .logo img, .brand-logo-img {
+    height: 46px !important;
+    width: auto !important;
+    max-width: 220px !important;
   }
 
   .header-actions {
