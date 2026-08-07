@@ -39,10 +39,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeToggleBtn = document.getElementById('themeToggleBtn');
   const savedTheme = localStorage.getItem('pdfaxiom_theme') || 'light';
 
+  function updateFavicon(theme) {
+    const favicon = document.getElementById('dynamicFavicon') || document.querySelector('link[rel="icon"]');
+    if (favicon) {
+      favicon.href = theme === 'light' ? 'assets/favicon-light-mode.png' : 'assets/favicon-dark-mode.png';
+    }
+  }
+
   if (savedTheme === 'light') {
     document.documentElement.setAttribute('data-theme', 'light');
+    updateFavicon('light');
   } else {
     document.documentElement.removeAttribute('data-theme');
+    updateFavicon('dark');
   }
 
   if (themeToggleBtn) {
@@ -51,9 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (activeTheme === 'light') {
         document.documentElement.removeAttribute('data-theme');
         localStorage.setItem('pdfaxiom_theme', 'dark');
+        updateFavicon('dark');
       } else {
         document.documentElement.setAttribute('data-theme', 'light');
         localStorage.setItem('pdfaxiom_theme', 'light');
+        updateFavicon('light');
       }
     });
   }
