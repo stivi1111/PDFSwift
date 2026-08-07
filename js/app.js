@@ -72,29 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if (savedTheme === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
-    updateFavicon('light');
-  } else {
-    document.documentElement.removeAttribute('data-theme');
-    updateFavicon('dark');
-  }
-
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      const activeTheme = document.documentElement.getAttribute('data-theme');
-      if (activeTheme === 'light') {
-        document.documentElement.removeAttribute('data-theme');
-        localStorage.setItem('pdfaxiom_theme', 'dark');
-        updateFavicon('dark');
-      } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('pdfaxiom_theme', 'light');
-        updateFavicon('light');
-      }
-    });
-  }
-
   // Mobile Menu Drawer Handler
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const headerNav = document.querySelector('.header-nav');
