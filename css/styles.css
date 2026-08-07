@@ -137,9 +137,9 @@ a {
 }
 
 .logo img, .brand-logo-img {
-  height: 34px;
+  height: 42px;
   width: auto;
-  max-width: 145px;
+  max-width: 180px;
   object-fit: contain;
   display: block;
 }
