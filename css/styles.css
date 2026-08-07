@@ -2,7 +2,7 @@
    PDFAxiom - Black & White Minimalist Compact Edition
    ========================================================================== */
 
-:root {
+:root, [data-theme="dark"] {
   /* Black & White Monochrome Palette (Dark Default) */
   --bg-primary: #000000;
   --bg-secondary: #09090b;

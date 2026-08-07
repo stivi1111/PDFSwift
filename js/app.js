@@ -35,13 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
   }
 
-  // Light / Dark Theme Controller (Default: Light Mode)
+  // Light / Dark Theme Controller
   const themeToggleBtn = document.getElementById('themeToggleBtn');
-  const savedTheme = localStorage.getItem('pdfaxiom_theme') || 'light';
-
-  // Preload Favicon Images for Instant Zero-Delay Switching
-  const favLight = new Image(); favLight.src = 'assets/favicon-light-mode.png';
-  const favDark = new Image(); favDark.src = 'assets/favicon-dark-mode.png';
 
   function updateFavicon(theme) {
     const favicon = document.getElementById('dynamicFavicon') || document.querySelector('link[rel="icon"]');
@@ -50,25 +45,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  if (savedTheme === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
-    updateFavicon('light');
-  } else {
-    document.documentElement.removeAttribute('data-theme');
-    updateFavicon('dark');
+  function setTheme(theme) {
+    if (theme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('pdfaxiom_theme', 'light');
+      updateFavicon('light');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('pdfaxiom_theme', 'dark');
+      updateFavicon('dark');
+    }
   }
+
+  // Initialize Saved Theme (Default: Dark Mode or saved preference)
+  const savedTheme = localStorage.getItem('pdfaxiom_theme') || 'dark';
+  setTheme(savedTheme);
 
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {
-      const activeTheme = document.documentElement.getAttribute('data-theme');
-      if (activeTheme === 'light') {
-        document.documentElement.removeAttribute('data-theme');
-        localStorage.setItem('pdfaxiom_theme', 'dark');
-        updateFavicon('dark');
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'light') {
+        setTheme('dark');
       } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('pdfaxiom_theme', 'light');
-        updateFavicon('light');
+        setTheme('light');
       }
     });
   }
