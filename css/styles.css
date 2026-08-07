@@ -1056,11 +1056,14 @@ a {
 }
 
 /* Responsive Breakpoints & Mobile Device Mode Triggered ONLY at 900px */
-@media (max-width: 900px) {
+@media (max-width: 900px) and (min-width: 521px) {
   .tools-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 0.75rem !important;
   }
+}
+
+@media (max-width: 900px) {
   .mobile-menu-btn {
     display: flex;
   }
@@ -1271,8 +1274,8 @@ a {
 
 @media (max-width: 520px) {
   .tools-grid {
-    grid-template-columns: 1fr;
-    gap: 0.6rem;
+    grid-template-columns: 1fr !important;
+    gap: 0.6rem !important;
   }
   .tab-btn {
     padding: 0.35rem 0.65rem;
