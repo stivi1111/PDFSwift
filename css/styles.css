@@ -437,7 +437,7 @@ a {
   gap: 1rem;
 }
 
-/* Rectangular Tool Card (Sleek & Less Tall Height) */
+/* Rectangular Tool Card (Fixed 64px Height - NEVER Increases in Height) */
 .tool-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -449,18 +449,19 @@ a {
   cursor: pointer;
   transition: var(--transition);
   position: relative;
-  min-height: 58px;
-  max-height: 76px;
+  height: 64px;
+  min-height: 64px;
+  max-height: 64px;
+  box-sizing: border-box;
   overflow: hidden;
 }
 
 .tool-card p {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0;
+  font-size: 0.8rem;
 }
 
 .tool-card:hover {
@@ -1036,8 +1037,8 @@ a {
   gap: 0.5rem;
 }
 
-/* Responsive Desktop Window Resize Adaptability (921px to 1200px) */
-@media (max-width: 1200px) and (min-width: 921px) {
+/* Responsive Desktop Window Resize Adaptability (901px to 1200px) */
+@media (max-width: 1200px) and (min-width: 901px) {
   .header-container {
     padding: 0.5rem 0.8rem;
   }
@@ -1054,8 +1055,8 @@ a {
   }
 }
 
-/* Responsive Breakpoints & Mobile Device Mode Triggered at 920px (Before Cards Grow in Height) */
-@media (max-width: 920px) {
+/* Responsive Breakpoints & Mobile Device Mode Triggered ONLY at 900px */
+@media (max-width: 900px) {
   .tools-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 0.75rem !important;
