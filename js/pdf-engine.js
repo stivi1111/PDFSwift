@@ -11,38 +11,53 @@ window.PDFEngine = {
    * Helper: Call Server-Side Stirling-PDF API on AWS Lightsail VM
    */
   callServerApi: async function(endpoint, formData, onProgress) {
-    let currentPct = 15;
+    let currentPct = 10;
     if (onProgress) onProgress(currentPct, "Invio file al server sicuro...");
 
     const timer = setInterval(() => {
-      if (currentPct < 92) {
-        currentPct += currentPct < 45 ? 6 : (currentPct < 75 ? 3 : 1);
+      if (currentPct < 94) {
+        // Slow down smoothly as progress approaches 90s to avoid freezing at 92%
+        if (currentPct < 40) currentPct += 2;
+        else if (currentPct < 70) currentPct += 1;
+        else if (currentPct < 90) currentPct += 0.5;
+        else currentPct += 0.2;
+
         let msg = "Conversione in corso sul server...";
-        if (currentPct > 65) msg = "Elaborazione layout ed impaginazione...";
-        if (currentPct > 85) msg = "Finalizzazione documento...";
-        if (onProgress) onProgress(currentPct, msg);
+        if (currentPct > 35) msg = "Analisi pagine e lettura testo...";
+        if (currentPct > 65) msg = "Elaborazione immagini e tabelle...";
+        if (currentPct > 88) msg = "Finalizzazione e generazione documento...";
+        if (onProgress) onProgress(Math.floor(currentPct), msg);
       }
-    }, 350);
+    }, 800);
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 180000); // 3 minutes timeout handle
 
     try {
       const response = await fetch(`${this.API_BASE_URL}${endpoint}`, {
         method: 'POST',
-        body: formData
+        body: formData,
+        signal: controller.signal
       });
 
+      clearTimeout(timeoutId);
       clearInterval(timer);
 
       if (!response.ok) {
         const errText = await response.text().catch(() => '');
-        throw new Error(`Server processing failed (${response.status}): ${errText}`);
+        throw new Error(`Server error (${response.status}): ${errText || 'Conversione non riuscita'}`);
       }
 
-      if (onProgress) onProgress(95, "Download file convertito...");
+      if (onProgress) onProgress(98, "Download file convertito...");
       const blob = await response.blob();
       if (onProgress) onProgress(100, "Conversione completata!");
       return blob;
     } catch (err) {
+      clearTimeout(timeoutId);
       clearInterval(timer);
+      if (err.name === 'AbortError') {
+        throw new Error("Il file è molto grande ed ha superato il tempo massimo di attesa. Riprova con un file più piccolo o riprova tra poco.");
+      }
       throw err;
     }
   },
