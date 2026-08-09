@@ -5,6 +5,29 @@
 
 window.PDFEngine = {
   
+  API_BASE_URL: 'http://3.254.61.27',
+
+  /**
+   * Helper: Call Server-Side Stirling-PDF API on AWS Lightsail VM
+   */
+  callServerApi: async function(endpoint, formData, onProgress) {
+    if (onProgress) onProgress(25);
+    const response = await fetch(`${this.API_BASE_URL}${endpoint}`, {
+      method: 'POST',
+      body: formData
+    });
+
+    if (onProgress) onProgress(75);
+    if (!response.ok) {
+      const errText = await response.text().catch(() => '');
+      throw new Error(`Server processing failed (${response.status}): ${errText}`);
+    }
+
+    const blob = await response.blob();
+    if (onProgress) onProgress(100);
+    return blob;
+  },
+
   /**
    * Helper: Read File as ArrayBuffer
    */
@@ -21,6 +44,14 @@ window.PDFEngine = {
    * 1. PDF TO WORD (.docx)
    */
   pdfToWord: async function(file, onProgress) {
+    try {
+      const formData = new FormData();
+      formData.append('fileInput', file);
+      return await this.callServerApi('/api/v1/convert/pdf/word', formData, onProgress);
+    } catch (err) {
+      console.warn("Server PDF-to-Word failed, using client fallback:", err);
+    }
+
     const fileBytes = await this.readFileAsArrayBuffer(file);
     const pdf = await pdfjsLib.getDocument({ data: fileBytes }).promise;
     const numPages = pdf.numPages;
@@ -76,6 +107,14 @@ window.PDFEngine = {
    * 2. WORD (.docx) TO PDF
    */
   wordToPDF: async function(file, onProgress) {
+    try {
+      const formData = new FormData();
+      formData.append('fileInput', file);
+      return await this.callServerApi('/api/v1/convert/file/pdf', formData, onProgress);
+    } catch (err) {
+      console.warn("Server Word-to-PDF failed, using client fallback:", err);
+    }
+
     const arrayBuffer = await this.readFileAsArrayBuffer(file);
     if (onProgress) onProgress(30);
 
@@ -202,6 +241,14 @@ window.PDFEngine = {
    * 3. PDF TO EXCEL (.xlsx)
    */
   pdfToExcel: async function(file, onProgress) {
+    try {
+      const formData = new FormData();
+      formData.append('fileInput', file);
+      return await this.callServerApi('/api/v1/convert/pdf/xlsx', formData, onProgress);
+    } catch (err) {
+      console.warn("Server PDF-to-Excel failed, using client fallback:", err);
+    }
+
     const fileBytes = await this.readFileAsArrayBuffer(file);
     const pdf = await pdfjsLib.getDocument({ data: fileBytes }).promise;
     const sheetData = [];
@@ -241,6 +288,14 @@ window.PDFEngine = {
    * 4. EXCEL TO PDF
    */
   excelToPDF: async function(file, onProgress) {
+    try {
+      const formData = new FormData();
+      formData.append('fileInput', file);
+      return await this.callServerApi('/api/v1/convert/file/pdf', formData, onProgress);
+    } catch (err) {
+      console.warn("Server Excel-to-PDF failed, using client fallback:", err);
+    }
+
     const fileBytes = await this.readFileAsArrayBuffer(file);
     if (onProgress) onProgress(30);
 
@@ -273,6 +328,14 @@ window.PDFEngine = {
    * 5. PDF TO POWERPOINT (.pptx)
    */
   pdfToPPTX: async function(file, onProgress) {
+    try {
+      const formData = new FormData();
+      formData.append('fileInput', file);
+      return await this.callServerApi('/api/v1/convert/pdf/presentation', formData, onProgress);
+    } catch (err) {
+      console.warn("Server PDF-to-PPTX failed, using client fallback:", err);
+    }
+
     const fileBytes = await this.readFileAsArrayBuffer(file);
     const pdf = await pdfjsLib.getDocument({ data: fileBytes }).promise;
     
@@ -297,6 +360,14 @@ window.PDFEngine = {
    * 6. POWERPOINT TO PDF
    */
   pptxToPDF: async function(file, onProgress) {
+    try {
+      const formData = new FormData();
+      formData.append('fileInput', file);
+      return await this.callServerApi('/api/v1/convert/file/pdf', formData, onProgress);
+    } catch (err) {
+      console.warn("Server PPTX-to-PDF failed, using client fallback:", err);
+    }
+
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
     
@@ -395,6 +466,14 @@ window.PDFEngine = {
    * 11. PDF TO HTML
    */
   pdfToHTML: async function(file, onProgress) {
+    try {
+      const formData = new FormData();
+      formData.append('fileInput', file);
+      return await this.callServerApi('/api/v1/convert/pdf/html', formData, onProgress);
+    } catch (err) {
+      console.warn("Server PDF-to-HTML failed, using client fallback:", err);
+    }
+
     const fileBytes = await this.readFileAsArrayBuffer(file);
     const pdf = await pdfjsLib.getDocument({ data: fileBytes }).promise;
     let htmlStr = `<!DOCTYPE html><html><head><title>${file.name}</title></head><body>`;
@@ -508,6 +587,15 @@ window.PDFEngine = {
    * 17. COMPRESS PDF
    */
   compressPDF: async function(file, onProgress) {
+    try {
+      const formData = new FormData();
+      formData.append('fileInput', file);
+      formData.append('optimizeLevel', '2');
+      return await this.callServerApi('/api/v1/general/compress-pdf', formData, onProgress);
+    } catch (err) {
+      console.warn("Server Compress-PDF failed, using client fallback:", err);
+    }
+
     const { PDFDocument } = PDFLib;
     const fileBytes = await this.readFileAsArrayBuffer(file);
     if (onProgress) onProgress(40);
@@ -591,6 +679,14 @@ window.PDFEngine = {
    * 20. PDF TO TEXT
    */
   pdfToText: async function(file, onProgress) {
+    try {
+      const formData = new FormData();
+      formData.append('fileInput', file);
+      return await this.callServerApi('/api/v1/convert/pdf/text', formData, onProgress);
+    } catch (err) {
+      console.warn("Server PDF-to-Text failed, using client fallback:", err);
+    }
+
     const fileBytes = await this.readFileAsArrayBuffer(file);
     const pdf = await pdfjsLib.getDocument({ data: fileBytes }).promise;
     let fullText = `--- Extracted Text from ${file.name} ---\n\n`;
@@ -608,7 +704,27 @@ window.PDFEngine = {
   },
 
   /**
-   * 21. PROTECT PDF
+   * 21. OCR PDF (Server-Side High-Accuracy Tesseract Engine)
+   */
+  ocrPDF: async function(file, onProgress) {
+    const formData = new FormData();
+    formData.append('fileInput', file);
+    formData.append('ocrType', 'SearchablePDF');
+    return await this.callServerApi('/api/v1/misc/ocr-pdf', formData, onProgress);
+  },
+
+  /**
+   * 22. PDF TO PDF/A (Archive Compliance)
+   */
+  pdfToPDFA: async function(file, onProgress) {
+    const formData = new FormData();
+    formData.append('fileInput', file);
+    formData.append('pdfFormat', 'pdfa-2b');
+    return await this.callServerApi('/api/v1/convert/pdf/pdfa', formData, onProgress);
+  },
+
+  /**
+   * 23. PROTECT PDF
    */
   protectPDF: async function(file, password, onProgress) {
     const { PDFDocument } = PDFLib;
@@ -627,7 +743,7 @@ window.PDFEngine = {
   },
 
   /**
-   * 22. WATERMARK PDF
+   * 24. WATERMARK PDF
    */
   watermarkPDF: async function(file, text, onProgress) {
     const { PDFDocument, StandardFonts, rgb, degrees } = PDFLib;
