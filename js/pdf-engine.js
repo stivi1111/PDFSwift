@@ -63,63 +63,9 @@ window.PDFEngine = {
    * 1. PDF TO WORD (.docx)
    */
   pdfToWord: async function(file, onProgress) {
-    try {
-      const formData = new FormData();
-      formData.append('file', file);
-      return await this.callServerApi('/v1/convert/pdf-to-word', formData, onProgress);
-    } catch (err) {
-      console.warn("Server PDF-to-Word failed, using client fallback:", err);
-    }
-
-    const fileBytes = await this.readFileAsArrayBuffer(file);
-    const pdf = await pdfjsLib.getDocument({ data: fileBytes }).promise;
-    const numPages = pdf.numPages;
-
-    const { Document, Paragraph, TextRun, Packer } = window.docx;
-    const docParagraphs = [];
-
-    for (let i = 1; i <= numPages; i++) {
-      if (onProgress) onProgress(Math.round((i / numPages) * 80));
-      const page = await pdf.getPage(i);
-      const textContent = await page.getTextContent();
-      
-      docParagraphs.push(
-        new Paragraph({
-          children: [
-            new TextRun({ text: `--- Page ${i} ---`, bold: true, color: "000000", size: 24 })
-          ]
-        })
-      );
-
-      let currentLine = "";
-      let lastY = null;
-
-      for (const item of textContent.items) {
-        if (lastY !== null && Math.abs(item.transform[5] - lastY) > 5) {
-          if (currentLine.trim()) {
-            docParagraphs.push(
-              new Paragraph({ children: [new TextRun({ text: currentLine.trim(), size: 22 })] })
-            );
-          }
-          currentLine = "";
-        }
-        currentLine += item.str + " ";
-        lastY = item.transform[5];
-      }
-
-      if (currentLine.trim()) {
-        docParagraphs.push(
-          new Paragraph({ children: [new TextRun({ text: currentLine.trim(), size: 22 })] })
-        );
-      }
-    }
-
-    if (onProgress) onProgress(90);
-    const doc = new Document({ sections: [{ properties: {}, children: docParagraphs }] });
-
-    const docxBlob = await Packer.toBlob(doc);
-    if (onProgress) onProgress(100);
-    return docxBlob;
+    const formData = new FormData();
+    formData.append('file', file);
+    return await this.callServerApi('/v1/convert/pdf-to-word', formData, onProgress);
   },
 
   /**
