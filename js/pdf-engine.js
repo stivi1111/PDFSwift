@@ -5,7 +5,7 @@
 
 window.PDFEngine = {
   
-  API_BASE_URL: 'https://3.254.61.27.sslip.io',
+  API_BASE_URL: window.location.hostname.includes('netlify.app') ? '/api' : 'https://3.254.61.27.sslip.io',
 
   /**
    * Helper: Call Server-Side Stirling-PDF API on AWS Lightsail VM
