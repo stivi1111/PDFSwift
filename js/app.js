@@ -467,9 +467,9 @@ document.addEventListener('DOMContentLoaded', () => {
         state.processedFilename = `converted_from_images.pdf`;
       } else if (state.files.length === 1) {
         const file = state.files[0];
-        const updateProgress = (pct) => {
+        const updateProgress = (pct, msg) => {
           progressBarFill.style.width = `${pct}%`;
-          progressText.textContent = `Processing file... ${pct}%`;
+          progressText.textContent = msg ? `${msg} ${pct}%` : `Elaborazione file... ${pct}%`;
         };
         const baseName = file.name.replace(/\.[^/.]+$/, "");
         state.processedFilename = `${baseName}${config.outputExt}`;
@@ -483,7 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const file = state.files[i];
           const pct = Math.round(((i + 1) / totalFiles) * 100);
           progressBarFill.style.width = `${pct}%`;
-          progressText.textContent = `Converting file ${i + 1} of ${totalFiles}: ${file.name}...`;
+          progressText.textContent = `Conversione file ${i + 1} di ${totalFiles}: ${file.name}...`;
 
           const fileBlob = await runSingleToolAction(state.activeTool, file, null);
           const baseName = file.name.replace(/\.[^/.]+$/, "");
@@ -492,17 +492,19 @@ document.addEventListener('DOMContentLoaded', () => {
           zip.file(outName, arrayBuffer);
         }
 
-        progressText.textContent = 'Packaging all converted files into ZIP archive...';
+        progressText.textContent = 'Creazione pacchetto ZIP...';
         state.processedBlob = await zip.generateAsync({ type: 'blob' });
         state.processedFilename = `PDFAxiom_Batch_Converted_${state.files.length}_Files.zip`;
       }
 
       progressBarFill.style.width = '100%';
-      progressText.textContent = 'Done! All files ready for download.';
+      progressText.textContent = 'Conversione completata con successo!';
 
       setTimeout(() => {
         progressContainer.style.display = 'none';
         downloadBox.style.display = 'flex';
+        // Auto-trigger automatic browser file download
+        if (downloadBtn) downloadBtn.click();
       }, 500);
 
     } catch (err) {

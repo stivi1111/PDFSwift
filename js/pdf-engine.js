@@ -11,21 +11,40 @@ window.PDFEngine = {
    * Helper: Call Server-Side Stirling-PDF API on AWS Lightsail VM
    */
   callServerApi: async function(endpoint, formData, onProgress) {
-    if (onProgress) onProgress(25);
-    const response = await fetch(`${this.API_BASE_URL}${endpoint}`, {
-      method: 'POST',
-      body: formData
-    });
+    let currentPct = 15;
+    if (onProgress) onProgress(currentPct, "Invio file al server sicuro...");
 
-    if (onProgress) onProgress(75);
-    if (!response.ok) {
-      const errText = await response.text().catch(() => '');
-      throw new Error(`Server processing failed (${response.status}): ${errText}`);
+    const timer = setInterval(() => {
+      if (currentPct < 92) {
+        currentPct += currentPct < 45 ? 6 : (currentPct < 75 ? 3 : 1);
+        let msg = "Conversione in corso sul server...";
+        if (currentPct > 65) msg = "Elaborazione layout ed impaginazione...";
+        if (currentPct > 85) msg = "Finalizzazione documento...";
+        if (onProgress) onProgress(currentPct, msg);
+      }
+    }, 350);
+
+    try {
+      const response = await fetch(`${this.API_BASE_URL}${endpoint}`, {
+        method: 'POST',
+        body: formData
+      });
+
+      clearInterval(timer);
+
+      if (!response.ok) {
+        const errText = await response.text().catch(() => '');
+        throw new Error(`Server processing failed (${response.status}): ${errText}`);
+      }
+
+      if (onProgress) onProgress(95, "Download file convertito...");
+      const blob = await response.blob();
+      if (onProgress) onProgress(100, "Conversione completata!");
+      return blob;
+    } catch (err) {
+      clearInterval(timer);
+      throw err;
     }
-
-    const blob = await response.blob();
-    if (onProgress) onProgress(100);
-    return blob;
   },
 
   /**
