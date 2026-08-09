@@ -46,8 +46,8 @@ window.PDFEngine = {
   pdfToWord: async function(file, onProgress) {
     try {
       const formData = new FormData();
-      formData.append('fileInput', file);
-      return await this.callServerApi('/api/v1/convert/pdf/word', formData, onProgress);
+      formData.append('file', file);
+      return await this.callServerApi('/v1/convert/pdf-to-word', formData, onProgress);
     } catch (err) {
       console.warn("Server PDF-to-Word failed, using client fallback:", err);
     }
@@ -109,8 +109,8 @@ window.PDFEngine = {
   wordToPDF: async function(file, onProgress) {
     try {
       const formData = new FormData();
-      formData.append('fileInput', file);
-      return await this.callServerApi('/api/v1/convert/file/pdf', formData, onProgress);
+      formData.append('file', file);
+      return await this.callServerApi('/v1/convert/word-to-pdf', formData, onProgress);
     } catch (err) {
       console.warn("Server Word-to-PDF failed, using client fallback:", err);
     }
@@ -146,6 +146,13 @@ window.PDFEngine = {
    * NEW: PDF TO MARKDOWN (.md) - High-demand AI & LLM tool
    */
   pdfToMD: async function(file, onProgress) {
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      return await this.callServerApi('/v1/convert/pdf-to-markdown', formData, onProgress);
+    } catch (err) {
+      console.warn("Server PDF-to-Markdown failed, using client fallback:", err);
+    }
     const fileBytes = await this.readFileAsArrayBuffer(file);
     const pdf = await pdfjsLib.getDocument({ data: fileBytes }).promise;
     const numPages = pdf.numPages;
@@ -192,6 +199,13 @@ window.PDFEngine = {
    * NEW: MARKDOWN (.md) TO PDF
    */
   mdToPDF: async function(file, onProgress) {
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      return await this.callServerApi('/v1/convert/markdown-to-pdf', formData, onProgress);
+    } catch (err) {
+      console.warn("Server Markdown-to-PDF failed, using client fallback:", err);
+    }
     const mdText = await file.text();
     if (onProgress) onProgress(40);
 
@@ -243,8 +257,8 @@ window.PDFEngine = {
   pdfToExcel: async function(file, onProgress) {
     try {
       const formData = new FormData();
-      formData.append('fileInput', file);
-      return await this.callServerApi('/api/v1/convert/pdf/xlsx', formData, onProgress);
+      formData.append('file', file);
+      return await this.callServerApi('/v1/convert/pdf-to-excel', formData, onProgress);
     } catch (err) {
       console.warn("Server PDF-to-Excel failed, using client fallback:", err);
     }
@@ -290,8 +304,8 @@ window.PDFEngine = {
   excelToPDF: async function(file, onProgress) {
     try {
       const formData = new FormData();
-      formData.append('fileInput', file);
-      return await this.callServerApi('/api/v1/convert/file/pdf', formData, onProgress);
+      formData.append('file', file);
+      return await this.callServerApi('/v1/convert/excel-to-pdf', formData, onProgress);
     } catch (err) {
       console.warn("Server Excel-to-PDF failed, using client fallback:", err);
     }
@@ -330,8 +344,8 @@ window.PDFEngine = {
   pdfToPPTX: async function(file, onProgress) {
     try {
       const formData = new FormData();
-      formData.append('fileInput', file);
-      return await this.callServerApi('/api/v1/convert/pdf/presentation', formData, onProgress);
+      formData.append('file', file);
+      return await this.callServerApi('/v1/convert/pdf-to-powerpoint', formData, onProgress);
     } catch (err) {
       console.warn("Server PDF-to-PPTX failed, using client fallback:", err);
     }
@@ -362,8 +376,8 @@ window.PDFEngine = {
   pptxToPDF: async function(file, onProgress) {
     try {
       const formData = new FormData();
-      formData.append('fileInput', file);
-      return await this.callServerApi('/api/v1/convert/file/pdf', formData, onProgress);
+      formData.append('file', file);
+      return await this.callServerApi('/v1/convert/powerpoint-to-pdf', formData, onProgress);
     } catch (err) {
       console.warn("Server PPTX-to-PDF failed, using client fallback:", err);
     }
@@ -468,8 +482,8 @@ window.PDFEngine = {
   pdfToHTML: async function(file, onProgress) {
     try {
       const formData = new FormData();
-      formData.append('fileInput', file);
-      return await this.callServerApi('/api/v1/convert/pdf/html', formData, onProgress);
+      formData.append('file', file);
+      return await this.callServerApi('/v1/convert/pdf-to-html', formData, onProgress);
     } catch (err) {
       console.warn("Server PDF-to-HTML failed, using client fallback:", err);
     }
@@ -495,6 +509,13 @@ window.PDFEngine = {
    * 12. HTML TO PDF
    */
   htmlToPDF: async function(file, onProgress) {
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      return await this.callServerApi('/v1/convert/html-to-pdf', formData, onProgress);
+    } catch (err) {
+      console.warn("Server HTML-to-PDF failed, using client fallback:", err);
+    }
     const text = await file.text();
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
@@ -589,9 +610,8 @@ window.PDFEngine = {
   compressPDF: async function(file, onProgress) {
     try {
       const formData = new FormData();
-      formData.append('fileInput', file);
-      formData.append('optimizeLevel', '2');
-      return await this.callServerApi('/api/v1/general/compress-pdf', formData, onProgress);
+      formData.append('file', file);
+      return await this.callServerApi('/v1/convert/compress-pdf', formData, onProgress);
     } catch (err) {
       console.warn("Server Compress-PDF failed, using client fallback:", err);
     }
@@ -681,8 +701,8 @@ window.PDFEngine = {
   pdfToText: async function(file, onProgress) {
     try {
       const formData = new FormData();
-      formData.append('fileInput', file);
-      return await this.callServerApi('/api/v1/convert/pdf/text', formData, onProgress);
+      formData.append('file', file);
+      return await this.callServerApi('/v1/convert/pdf-to-text', formData, onProgress);
     } catch (err) {
       console.warn("Server PDF-to-Text failed, using client fallback:", err);
     }
