@@ -253,19 +253,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Server-side privacy badge notice
     const serverTools = ['pdf-to-word', 'pdf-to-excel', 'pdf-to-pptx', 'pdf-to-md', 'pdf-to-html', 'word-to-pdf', 'excel-to-pdf', 'pptx-to-pdf', 'md-to-pdf', 'html-to-pdf', 'compress', 'protect', 'unlock', 'grayscale'];
     let privacyBadge = document.getElementById('privacyNoticeBadge');
-    if (serverTools.includes(toolId)) {
-      if (!privacyBadge) {
-        privacyBadge = document.createElement('div');
-        privacyBadge.id = 'privacyNoticeBadge';
-        privacyBadge.className = 'privacy-notice-badge';
-        privacyBadge.style.cssText = 'margin-top: 0.8rem; padding: 0.6rem 0.9rem; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: 8px; font-size: 0.8rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.5rem;';
-        workspaceDesc.parentNode.insertBefore(privacyBadge, workspaceDesc.nextSibling);
-      }
-      privacyBadge.innerHTML = `<span style="font-size: 1.1rem;">🔒</span><span><strong>Privacy Assoluta:</strong> Questo strumento elabora i tuoi file <strong>100% in locale nel tuo browser</strong>. Nessun file viene inviato su internet o salvato su server esterni.</span>`;
-      privacyBadge.style.display = 'flex';
-    } else if (privacyBadge) {
-      privacyBadge.style.display = 'none';
+    if (!privacyBadge) {
+      privacyBadge = document.createElement('div');
+      privacyBadge.id = 'privacyNoticeBadge';
+      privacyBadge.className = 'privacy-notice-badge';
+      privacyBadge.style.cssText = 'margin-top: 0.8rem; padding: 0.6rem 0.9rem; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: 8px; font-size: 0.8rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.5rem;';
+      workspaceDesc.parentNode.insertBefore(privacyBadge, workspaceDesc.nextSibling);
     }
+    
+    if (serverTools.includes(toolId)) {
+      privacyBadge.innerHTML = `<span style="font-size: 1.1rem;">🔒</span><span><strong>Privacy & Sicurezza Server:</strong> Questo strumento elabora il file temporaneamente sui nostri server sicuri in UE e lo cancella automaticamente subito dopo la conversione. Nessun file viene conservato.</span>`;
+    } else {
+      privacyBadge.innerHTML = `<span style="font-size: 1.1rem;">⚡</span><span><strong>Privacy Client-Side:</strong> Questo strumento elabora i tuoi file <strong>100% in locale nel tuo browser</strong>. Nessun file viene mai caricato su server esterni.</span>`;
+    }
+    privacyBadge.style.display = 'flex';
 
     toolSettings.innerHTML = config.settingsHTML || '';
     toolSettings.style.display = config.settingsHTML ? 'block' : 'none';
