@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
         privacyBadge.style.cssText = 'margin-top: 0.8rem; padding: 0.6rem 0.9rem; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: 8px; font-size: 0.8rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.5rem;';
         workspaceDesc.parentNode.insertBefore(privacyBadge, workspaceDesc.nextSibling);
       }
-      privacyBadge.innerHTML = `<span style="font-size: 1.1rem;">🔒</span><span><strong>Privacy & Sicurezza:</strong> Questo strumento elabora il file temporaneamente sui nostri server sicuri in UE e lo cancella automaticamente subito dopo la conversione. Nessun file viene conservato.</span>`;
+      privacyBadge.innerHTML = `<span style="font-size: 1.1rem;">🔒</span><span><strong>Privacy Assoluta:</strong> Questo strumento elabora i tuoi file <strong>100% in locale nel tuo browser</strong>. Nessun file viene inviato su internet o salvato su server esterni.</span>`;
       privacyBadge.style.display = 'flex';
     } else if (privacyBadge) {
       privacyBadge.style.display = 'none';
