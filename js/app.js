@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'pptx-to-pdf': { title: 'PowerPoint to PDF', desc: 'Convert PowerPoint (.pptx) into PDF format.', multiple: false, accept: '.pptx, .ppt', btnText: 'Convert PPTX to PDF', outputExt: '.pdf' },
     'page-numbers': { title: 'Add Page Numbers', desc: 'Add page numbers into PDF header or footer.', multiple: false, accept: '.pdf', btnText: 'Add Page Numbers', outputExt: '_numbered.pdf' },
     'rotate': { title: 'Rotate PDF Pages', desc: 'Rotate PDF pages by 90°, 180°, or 270°.', multiple: false, accept: '.pdf', btnText: 'Rotate PDF', outputExt: '_rotated.pdf' },
-    'unlock': { title: 'Unlock PDF Restrictions', desc: 'Remove passwords and permissions from PDF.', multiple: false, accept: '.pdf', btnText: 'Unlock PDF', outputExt: '_unlocked.pdf' },
+    'unlock': { title: 'Unlock PDF Restrictions', desc: 'Remove passwords and permissions from PDF.', multiple: false, accept: '.pdf', btnText: 'Unlock PDF', outputExt: '_unlocked.pdf', settingsHTML: `<div class="form-group"><label for="pdfPassword">Current PDF Password:</label><input type="password" id="pdfPassword" class="form-control" placeholder="Enter current password"></div>` },
     'delete-pages': { title: 'Delete PDF Pages', desc: 'Remove specific unwanted pages from PDF.', multiple: false, accept: '.pdf', btnText: 'Delete Pages', outputExt: '_edited.pdf', settingsHTML: `<div class="form-group"><label for="delPages">Pages to Delete (e.g. 1, 3):</label><input type="text" id="delPages" class="form-control" placeholder="e.g. 1, 3"></div>` },
     'pdf-to-html': { title: 'PDF to HTML', desc: 'Convert PDF into clean web HTML code.', multiple: false, accept: '.pdf', btnText: 'Convert to HTML', outputExt: '.html' },
     'html-to-pdf': { title: 'HTML to PDF', desc: 'Convert HTML code or text into PDF.', multiple: false, accept: '.html, .txt', btnText: 'Convert HTML to PDF', outputExt: '.pdf' },
@@ -385,35 +385,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Execute single file conversion action
   async function runSingleToolAction(toolId, file, updateProgress) {
+    // I 14 strumenti pesanti sono elaborati dal backend (vedi js/api-client.js).
+    // I restanti 10 girano client-side qui sotto, invariati.
+    if (PDFAxiomAPI.isServerTool(toolId)) {
+      const extra = {};
+      if (toolId === 'protect' || toolId === 'unlock') {
+        const pass = document.getElementById('pdfPassword')?.value;
+        if (!pass) throw new Error("Please enter a password.");
+        extra.password = pass;
+      }
+      return await PDFAxiomAPI.convert(toolId, file, updateProgress, extra);
+    }
+
     switch (toolId) {
-      case 'pdf-to-word': return await PDFEngine.pdfToWord(file, updateProgress);
-      case 'word-to-pdf': return await PDFEngine.wordToPDF(file, updateProgress);
-      case 'pdf-to-md': return await PDFEngine.pdfToMD(file, updateProgress);
-      case 'md-to-pdf': return await PDFEngine.mdToPDF(file, updateProgress);
-      case 'pdf-to-excel': return await PDFEngine.pdfToExcel(file, updateProgress);
-      case 'excel-to-pdf': return await PDFEngine.excelToPDF(file, updateProgress);
-      case 'pdf-to-pptx': return await PDFEngine.pdfToPPTX(file, updateProgress);
-      case 'pptx-to-pdf': return await PDFEngine.pptxToPDF(file, updateProgress);
       case 'page-numbers': return await PDFEngine.pageNumbersPDF(file, updateProgress);
       case 'rotate': return await PDFEngine.rotatePDF(file, 90, updateProgress);
-      case 'unlock': return await PDFEngine.unlockPDF(file, updateProgress);
       case 'delete-pages':
         const delStr = document.getElementById('delPages')?.value || '1';
         return await PDFEngine.deletePagesPDF(file, delStr, updateProgress);
-      case 'pdf-to-html': return await PDFEngine.pdfToHTML(file, updateProgress);
-      case 'html-to-pdf': return await PDFEngine.htmlToPDF(file, updateProgress);
-      case 'grayscale': return await PDFEngine.grayscalePDF(file, updateProgress);
       case 'extract-images': return await PDFEngine.extractEmbeddedImages(file, updateProgress);
       case 'split':
         const pagesStr = document.getElementById('splitPages')?.value || '';
         return await PDFEngine.splitPDF(file, pagesStr, updateProgress);
-      case 'compress': return await PDFEngine.compressPDF(file, updateProgress);
       case 'pdf-to-img': return await PDFEngine.pdfToImages(file, 'png', updateProgress);
       case 'pdf-to-text': return await PDFEngine.pdfToText(file, updateProgress);
-      case 'protect':
-        const pass = document.getElementById('pdfPassword')?.value;
-        if (!pass) throw new Error("Please enter a password.");
-        return await PDFEngine.protectPDF(file, pass, updateProgress);
       case 'watermark':
         const wmText = document.getElementById('watermarkText')?.value || 'CONFIDENTIAL';
         return await PDFEngine.watermarkPDF(file, wmText, updateProgress);
