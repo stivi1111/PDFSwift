@@ -91,7 +91,64 @@ window.PDFEngine = {
   pdfToWord: async function(file, onProgress) {
     const formData = new FormData();
     formData.append('file', file);
-    return await this.callServerApi('/v1/convert/pdf-to-word', formData, onProgress);
+
+    if (onProgress) onProgress(10, "Invio file al server in corso...");
+
+    // 1. Submit Async Conversion Job (returns HTTP 202 in ~2 seconds)
+    const submitRes = await fetch(`${this.API_BASE_URL}/v1/async/convert/pdf-to-word`, {
+      method: 'POST',
+      body: formData
+    });
+
+    if (!submitRes.ok) {
+      const errText = await submitRes.text().catch(() => '');
+      throw new Error(`Errore Server (${submitRes.status}): ${errText || 'Invio file non riuscito'}`);
+    }
+
+    const jobData = await submitRes.json();
+    const jobId = jobData.job_id;
+
+    if (onProgress) onProgress(30, "File preso in carico! Conversione in corso...");
+
+    // 2. Poll Job Status every 1 second
+    const startTime = Date.now();
+    while (true) {
+      await new Promise(r => setTimeout(r, 1000));
+
+      try {
+        const statusRes = await fetch(`${this.API_BASE_URL}/v1/jobs/status/${jobId}`);
+        if (!statusRes.ok) continue;
+
+        const info = await statusRes.json();
+        const status = info.status;
+        const progress = info.progress || 50;
+
+        if (status === 'processing' || status === 'queued') {
+          const msg = progress > 50 ? "Elaborazione immagini e tabelle Word..." : "Lettura layout e pagine...";
+          if (onProgress) onProgress(Math.min(95, Math.max(30, progress)), msg);
+        } else if (status === 'completed') {
+          if (onProgress) onProgress(98, "Download file convertito...");
+          break;
+        } else if (status === 'failed') {
+          throw new Error(`Conversione non riuscita: ${info.error || 'Errore server'}`);
+        }
+      } catch (err) {
+        if (err.message.includes('Conversione non riuscita')) throw err;
+      }
+
+      if (Date.now() - startTime > 180000) {
+        throw new Error("Tempo massimo di attesa superato.");
+      }
+    }
+
+    // 3. Download completed DOCX
+    const dlRes = await fetch(`${this.API_BASE_URL}/v1/jobs/download/${jobId}`);
+    if (!dlRes.ok) {
+      throw new Error("Impossibile scaricare il file convertito dal server.");
+    }
+
+    if (onProgress) onProgress(100, "Conversione completata!");
+    return await dlRes.blob();
   },
 
   /**
