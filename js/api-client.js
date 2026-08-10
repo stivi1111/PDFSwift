@@ -29,8 +29,20 @@ const PDFAxiomAPI = (() => {
 
   const isServerTool = (toolId) => Object.prototype.hasOwnProperty.call(TOOL_SLUGS, toolId);
 
+  // Secondi attesi per MB, misurati sul backend con documenti reali.
+  // Servono solo a far avanzare la barra a un ritmo credibile.
+  const SECONDS_PER_MB = {
+    'pdf-to-word': 7, 'pdf-to-markdown': 6, 'pdf-to-excel': 3,
+    'pdf-to-pptx': 3, 'pdf-to-html': 2
+  };
+
   function humanSize(bytes) {
     return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  }
+
+  function estimateSeconds(toolId, bytes) {
+    const perMb = SECONDS_PER_MB[toolId] || 1.5;
+    return Math.max(3, (bytes / (1024 * 1024)) * perMb);
   }
 
   /**
@@ -57,17 +69,32 @@ const PDFAxiomAPI = (() => {
       xhr.responseType = 'blob';
       xhr.timeout = 180000;
 
+      let ticker = null;
+      const stopTicker = () => { if (ticker) { clearInterval(ticker); ticker = null; } };
+
       xhr.upload.onprogress = (e) => {
         if (!updateProgress || !e.lengthComputable) return;
-        // L'upload occupa la prima metà della barra, l'elaborazione la seconda.
-        updateProgress(Math.round((e.loaded / e.total) * 50), 'Caricamento file...');
+        // L'upload occupa il primo 30% della barra, l'elaborazione il resto.
+        updateProgress(Math.round((e.loaded / e.total) * 30), 'Caricamento file...');
       };
 
+      // Il server non può comunicare il proprio avanzamento, quindi la barra
+      // avanza per stima e mostra i secondi trascorsi: senza questo sembrerebbe
+      // bloccata per tutta la durata della conversione.
       xhr.upload.onload = () => {
-        if (updateProgress) updateProgress(50, 'Elaborazione sul server...');
+        if (!updateProgress) return;
+        const started = Date.now();
+        const estimate = estimateSeconds(toolId, file.size);
+        ticker = setInterval(() => {
+          const elapsed = (Date.now() - started) / 1000;
+          // Asintotico: si avvicina al 95% senza mai raggiungerlo.
+          const pct = 30 + Math.round(65 * (1 - Math.exp(-elapsed / estimate)));
+          updateProgress(pct, `Conversione in corso... ${Math.round(elapsed)}s`);
+        }, 500);
       };
 
       xhr.onload = async () => {
+        stopTicker();
         if (xhr.status >= 200 && xhr.status < 300) {
           if (updateProgress) updateProgress(100, 'Completato');
           resolve(xhr.response);
@@ -76,8 +103,8 @@ const PDFAxiomAPI = (() => {
         reject(new Error(await readError(xhr)));
       };
 
-      xhr.onerror = () => reject(new Error('Impossibile contattare il server di conversione.'));
-      xhr.ontimeout = () => reject(new Error('Il server ha impiegato troppo tempo. Riprova con un file più piccolo.'));
+      xhr.onerror = () => { stopTicker(); reject(new Error('Impossibile contattare il server di conversione.')); };
+      xhr.ontimeout = () => { stopTicker(); reject(new Error('Il server ha impiegato troppo tempo. Riprova con un file più piccolo.')); };
 
       xhr.send(form);
     });
