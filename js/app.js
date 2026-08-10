@@ -250,19 +250,6 @@ document.addEventListener('DOMContentLoaded', () => {
     fileInput.multiple = config.multiple;
     fileInput.accept = config.accept;
 
-    // Privacy badge notice (100% Client-Side for ALL 24 tools)
-    let privacyBadge = document.getElementById('privacyNoticeBadge');
-    if (!privacyBadge) {
-      privacyBadge = document.createElement('div');
-      privacyBadge.id = 'privacyNoticeBadge';
-      privacyBadge.className = 'privacy-notice-badge';
-      privacyBadge.style.cssText = 'margin-top: 0.8rem; padding: 0.6rem 0.9rem; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: 8px; font-size: 0.8rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.5rem;';
-      workspaceDesc.parentNode.insertBefore(privacyBadge, workspaceDesc.nextSibling);
-    }
-    
-    privacyBadge.innerHTML = `<span style="font-size: 1.1rem;">⚡</span><span><strong>Privacy Client-Side:</strong> Questo strumento elabora i tuoi file <strong>100% in locale nel tuo browser</strong>. Nessun file viene mai caricato su server esterni.</span>`;
-    privacyBadge.style.display = 'flex';
-
     toolSettings.innerHTML = config.settingsHTML || '';
     toolSettings.style.display = config.settingsHTML ? 'block' : 'none';
 
