@@ -8,7 +8,7 @@ const translations = {
   en: {
     heroTitle: "PDFAXIOM All in One",
     heroDesc: "Convert PDF to Word, Word to PDF, Excel, PowerPoint, Merge, Split, Compress & Edit",
-    heroSubtext: "100% free, unlimited use, no signup required.",
+    heroSubtext: "Free to use, no signup required.",
     navConvert: "Convert PDF",
     navMergeSplit: "Merge & Split",
     navEdit: "Edit & Security",
@@ -21,19 +21,19 @@ const translations = {
     tabOrganize: "Merge & Organize",
     tabSecurity: "Security & Edit",
     dragTitle: "Drag & Drop files here",
-    dragSub: "Unlimited files • No file size limits",
+    dragSub: "Multiple files • Up to 100 MB each",
     backBtn: "Back to All Tools",
     processBtn: "Process PDF",
     readyTitle: "File is ready!",
-    readySub: "Processed safely in your browser.",
+    readySub: "Your file is ready to download.",
     downloadBtn: "Download File",
     resetBtn: "Convert Another File",
-    footerCopy: "© 2026 PDFAxiom. 100% Free Forever • No File Limits."
+    footerCopy: "© 2026 PDFAxiom. Free • No signup required."
   },
   it: {
     heroTitle: "PDFAXIOM Tutto in Uno",
     heroDesc: "Converti PDF in Word, Word in PDF, Excel, PowerPoint, Unisci, Dividi, Comprimi e Modifica",
-    heroSubtext: "100% gratuito, uso illimitato, nessuna registrazione richiesta.",
+    heroSubtext: "Gratuito, nessuna registrazione richiesta.",
     navConvert: "Converti PDF",
     navMergeSplit: "Unisci e Dividi",
     navEdit: "Modifica & Sicurezza",
@@ -46,19 +46,19 @@ const translations = {
     tabOrganize: "Unisci & Organizza",
     tabSecurity: "Sicurezza & Modifica",
     dragTitle: "Trascina qui i tuoi file",
-    dragSub: "File illimitati • Nessun limite di dimensione",
+    dragSub: "Più file • Fino a 100 MB ciascuno",
     backBtn: "Torna a Tutti i Tool",
     processBtn: "Elabora PDF",
     readyTitle: "Il file è pronto!",
-    readySub: "Elaborato in modo sicuro nel tuo browser.",
+    readySub: "Il tuo file è pronto per il download.",
     downloadBtn: "Scarica File",
     resetBtn: "Converti un Altro File",
-    footerCopy: "© 2026 PDFAxiom. 100% Gratuito per Sempre • Nessun Limite."
+    footerCopy: "© 2026 PDFAxiom. Gratuito • Nessuna registrazione."
   },
   es: {
     heroTitle: "PDFAXIOM Todo en Uno",
     heroDesc: "Convierte PDF a Word, Word a PDF, Excel, PowerPoint, Une, Divide, Comprime y Edita",
-    heroSubtext: "100% gratuito, uso ilimitado, sin registro.",
+    heroSubtext: "Gratis, sin registro.",
     navConvert: "Convertir PDF",
     navMergeSplit: "Unir y Dividir",
     navEdit: "Edición y Seguridad",
@@ -71,19 +71,19 @@ const translations = {
     tabOrganize: "Unir y Organizar",
     tabSecurity: "Seguridad y Edición",
     dragTitle: "Arrastra y suelta archivos aquí",
-    dragSub: "Archivos ilimitados • Sin límites de tamaño",
+    dragSub: "Varios archivos • Hasta 100 MB cada uno",
     backBtn: "Volver a Todas las Herramientas",
     processBtn: "Procesar PDF",
     readyTitle: "¡El archivo está listo!",
-    readySub: "Procesado de forma segura en tu navegador.",
+    readySub: "Tu archivo está listo para descargar.",
     downloadBtn: "Descargar Archivo",
     resetBtn: "Convertir Otro Archivo",
-    footerCopy: "© 2026 PDFAxiom. 100% Gratis para Siempre • Sin Límites."
+    footerCopy: "© 2026 PDFAxiom. Gratis • Sin registro."
   },
   de: {
     heroTitle: "PDFAXIOM Alles in Einem",
     heroDesc: "Konvertieren Sie PDF in Word, Word in PDF, Excel, PowerPoint, Zusammenfügen & Komprimieren",
-    heroSubtext: "100% kostenlos, unbegrenzt nutzbar, keine Registrierung erforderlich.",
+    heroSubtext: "Kostenlos, keine Registrierung erforderlich.",
     navConvert: "PDF Konvertieren",
     navMergeSplit: "Zusammenfügen & Teilen",
     navEdit: "Bearbeiten & Sicherheit",
@@ -96,19 +96,19 @@ const translations = {
     tabOrganize: "Organisieren & Teilen",
     tabSecurity: "Sicherheit & Bearbeiten",
     dragTitle: "Dateien hierhin ziehen",
-    dragSub: "Unbegrenzte Dateien • Keine Größenbeschränkung",
+    dragSub: "Mehrere Dateien • Bis zu 100 MB pro Datei",
     backBtn: "Zurück zu allen Werkzeugen",
     processBtn: "PDF Verarbeiten",
     readyTitle: "Datei ist fertig!",
-    readySub: "Sicher im Browser verarbeitet.",
+    readySub: "Ihre Datei steht zum Download bereit.",
     downloadBtn: "Datei Herunterladen",
     resetBtn: "Weitere Datei Konvertieren",
-    footerCopy: "© 2026 PDFAxiom. 100% Kostenlos für Immer • Keine Limits."
+    footerCopy: "© 2026 PDFAxiom. Kostenlos • Ohne Anmeldung."
   },
   zh: {
     heroTitle: "PDFAXIOM 全功能",
     heroDesc: "转换 PDF 至 Word、Word 转 PDF、Excel、PowerPoint、合并、拆分与压缩",
-    heroSubtext: "100% 免费，无限使用，无需注册。",
+    heroSubtext: "免费使用，无需注册。",
     navConvert: "转换 PDF",
     navMergeSplit: "合并与拆分",
     navEdit: "编辑与安全",
@@ -121,19 +121,19 @@ const translations = {
     tabOrganize: "合并与组织",
     tabSecurity: "安全与编辑",
     dragTitle: "拖放文件至此处",
-    dragSub: "无文件数量与大小限制",
+    dragSub: "支持多个文件 • 每个最大 100 MB",
     backBtn: "返回所有工具",
     processBtn: "处理 PDF",
     readyTitle: "文件已就绪！",
-    readySub: "在浏览器中安全处理。",
+    readySub: "您的文件已可下载。",
     downloadBtn: "下载文件",
     resetBtn: "转换其他文件",
-    footerCopy: "© 2026 PDFAxiom. 永久免费 • 无限制。"
+    footerCopy: "© 2026 PDFAxiom. 免费 • 无需注册。"
   },
   ro: {
     heroTitle: "PDFAXIOM Totul în Unul",
     heroDesc: "Convertește PDF în Word, Word în PDF, Excel, PowerPoint, Unește, Divide, Comprimă și Editează",
-    heroSubtext: "100% gratuit, utilizare nelimitată, fără înregistrare.",
+    heroSubtext: "Gratuit, fără înregistrare.",
     navConvert: "Convertește PDF",
     navMergeSplit: "Unește & Divide",
     navEdit: "Editare & Securitate",
@@ -146,19 +146,19 @@ const translations = {
     tabOrganize: "Unește & Organizează",
     tabSecurity: "Securitate & Editare",
     dragTitle: "Trage și plasează fișierele aici",
-    dragSub: "Fișiere nelimitate • Fără limită de mărime",
+    dragSub: "Mai multe fișiere • Până la 100 MB fiecare",
     backBtn: "Înapoi la toate instrumentele",
     processBtn: "Procesează PDF",
     readyTitle: "Fișierul este gata!",
-    readySub: "Procesat în siguranță în browserul tău.",
+    readySub: "Fișierul tău este gata de descărcare.",
     downloadBtn: "Descarcă Fișierul",
     resetBtn: "Convertește alt fișier",
-    footerCopy: "© 2026 PDFAxiom. 100% Gratuit Pentru Totdeauna • Fără Limite."
+    footerCopy: "© 2026 PDFAxiom. Gratuit • Fără înregistrare."
   },
   hi: {
     heroTitle: "PDFAXIOM ऑल इन वन",
     heroDesc: "पीडीएफ को वर्ड, वर्ड को पीडीएफ, एक्सेल, पावरपॉइंट में बदलें, मर्ज, स्प्लिट और कंप्रेस करें",
-    heroSubtext: "100% मुफ्त, असीमित उपयोग, कोई साइनअप आवश्यक नहीं।",
+    heroSubtext: "मुफ़्त उपयोग, कोई साइनअप आवश्यक नहीं।",
     navConvert: "पीडीएफ कन्वर्ट करें",
     navMergeSplit: "मर्ज और स्प्लिट",
     navEdit: "संपादन और सुरक्षा",
@@ -171,19 +171,19 @@ const translations = {
     tabOrganize: "मर्ज और व्यवस्थित करें",
     tabSecurity: "सुरक्षा और संपादन",
     dragTitle: "फ़ाइलों को यहाँ ड्रैग और ड्रॉप करें",
-    dragSub: "असीमित फ़ाइलें • कोई आकार सीमा नहीं",
+    dragSub: "कई फ़ाइलें • प्रत्येक 100 MB तक",
     backBtn: "सभी टूल्स पर वापस जाएं",
     processBtn: "पीडीएफ प्रोसेस करें",
     readyTitle: "फ़ाइल तैयार है!",
-    readySub: "आपके ब्राउज़र में सुरक्षित रूप से संसाधित।",
+    readySub: "आपकी फ़ाइल डाउनलोड के लिए तैयार है।",
     downloadBtn: "फ़ाइल डाउनलोड करें",
     resetBtn: "दूसरी फ़ाइल बदलें",
-    footerCopy: "© 2026 PDFAxiom. हमेशा 100% मुफ़्त • कोई सीमा नहीं।"
+    footerCopy: "© 2026 PDFAxiom. मुफ़्त • बिना पंजीकरण।"
   },
   ru: {
     heroTitle: "PDFAXIOM Все в Одном",
     heroDesc: "Конвертируйте PDF в Word, Word в PDF, Excel, PowerPoint, Объединяйте, Разделяйте и Сжимайте",
-    heroSubtext: "100% бесплатно, без ограничений, без регистрации.",
+    heroSubtext: "Бесплатно, без регистрации.",
     navConvert: "Конвертировать PDF",
     navMergeSplit: "Объединить и Разделить",
     navEdit: "Редактирование и Защита",
@@ -196,14 +196,14 @@ const translations = {
     tabOrganize: "Объединение и Порядок",
     tabSecurity: "Защита и Редактирование",
     dragTitle: "Перетащите файлы сюда",
-    dragSub: "Без ограничений по количеству и размеру",
+    dragSub: "Несколько файлов • До 100 МБ каждый",
     backBtn: "Назад ко всем инструментам",
     processBtn: "Обработать PDF",
     readyTitle: "Файл готов!",
-    readySub: "Безопасно обработано в вашем браузере.",
+    readySub: "Ваш файл готов к загрузке.",
     downloadBtn: "Скачать Файл",
     resetBtn: "Конвертировать Другой Файл",
-    footerCopy: "© 2026 PDFAxiom. 100% Бесплатно Навсегда • Без Ограничений."
+    footerCopy: "© 2026 PDFAxiom. Бесплатно • Без регистрации."
   }
 };
 
@@ -418,6 +418,167 @@ const toolTranslations = {
   }
 };
 
+/**
+ * Messaggi mostrati durante l'elaborazione e in caso di errore.
+ * Usati da app.js e api-client.js tramite PDFAxiomI18n.t().
+ * I segnaposto {s}, {i}, {n}, {size}, {code} vengono sostituiti a runtime.
+ */
+const uiMessages = {
+  en: {
+    uploading: "Uploading file...", processing: "Converting... {s}s", done: "Completed",
+    processingFiles: "Processing files...", merging: "Merging PDF files... {s}%",
+    fromImages: "Creating PDF from images... {s}%", batch: "Converting file {i} of {n}: {name}",
+    zipping: "Creating ZIP package...", success: "Conversion completed successfully!",
+    errTooBig: "File too large ({size}). The limit is 100 MB.",
+    errNetwork: "Could not reach the conversion server.",
+    errTimeout: "The server took too long. Try a smaller file.",
+    errServer: "Server error ({code}).", errRate: "Too many requests. Wait a minute and try again.",
+    errFormat: "The file content does not match the expected format.",
+    errFailed: "Conversion failed: the file may be damaged or protected.",
+    errUnavailable: "Conversion service temporarily unavailable.",
+    errPassword: "Please enter a password.",
+    reading: "Reading the file...", working: "Processing...",
+    generating: "Generating the document...", packaging: "Packaging the file...",
+    completed: "Completed!", pageOf: "Page {i} of {n}...", fileOf: "File {i} of {n}..."
+  },
+  it: {
+    uploading: "Caricamento file...", processing: "Conversione in corso... {s}s", done: "Completato",
+    processingFiles: "Elaborazione file...", merging: "Unione dei PDF... {s}%",
+    fromImages: "Creazione PDF dalle immagini... {s}%", batch: "Conversione file {i} di {n}: {name}",
+    zipping: "Creazione pacchetto ZIP...", success: "Conversione completata con successo!",
+    errTooBig: "File troppo grande ({size}). Il limite è 100 MB.",
+    errNetwork: "Impossibile contattare il server di conversione.",
+    errTimeout: "Il server ha impiegato troppo tempo. Riprova con un file più piccolo.",
+    errServer: "Errore del server ({code}).", errRate: "Troppe richieste. Attendi un minuto e riprova.",
+    errFormat: "Il contenuto del file non corrisponde al formato atteso.",
+    errFailed: "Conversione non riuscita: il file potrebbe essere danneggiato o protetto.",
+    errUnavailable: "Servizio di conversione temporaneamente non disponibile.",
+    errPassword: "Inserisci una password.",
+    reading: "Lettura del file...", working: "Elaborazione in corso...",
+    generating: "Generazione del documento...", packaging: "Creazione del file...",
+    completed: "Completato!", pageOf: "Pagina {i} di {n}...", fileOf: "File {i} di {n}..."
+  },
+  es: {
+    uploading: "Subiendo archivo...", processing: "Convirtiendo... {s}s", done: "Completado",
+    processingFiles: "Procesando archivos...", merging: "Uniendo PDF... {s}%",
+    fromImages: "Creando PDF desde imágenes... {s}%", batch: "Convirtiendo archivo {i} de {n}: {name}",
+    zipping: "Creando paquete ZIP...", success: "¡Conversión completada con éxito!",
+    errTooBig: "Archivo demasiado grande ({size}). El límite es 100 MB.",
+    errNetwork: "No se pudo contactar con el servidor de conversión.",
+    errTimeout: "El servidor tardó demasiado. Prueba con un archivo más pequeño.",
+    errServer: "Error del servidor ({code}).", errRate: "Demasiadas solicitudes. Espera un minuto e inténtalo de nuevo.",
+    errFormat: "El contenido del archivo no coincide con el formato esperado.",
+    errFailed: "Conversión fallida: el archivo puede estar dañado o protegido.",
+    errUnavailable: "Servicio de conversión temporalmente no disponible.",
+    errPassword: "Introduce una contraseña.",
+    reading: "Leyendo el archivo...", working: "Procesando...",
+    generating: "Generando el documento...", packaging: "Creando el archivo...",
+    completed: "¡Completado!", pageOf: "Página {i} de {n}...", fileOf: "Archivo {i} de {n}..."
+  },
+  de: {
+    uploading: "Datei wird hochgeladen...", processing: "Konvertierung läuft... {s}s", done: "Fertig",
+    processingFiles: "Dateien werden verarbeitet...", merging: "PDFs werden zusammengefügt... {s}%",
+    fromImages: "PDF wird aus Bildern erstellt... {s}%", batch: "Datei {i} von {n} wird konvertiert: {name}",
+    zipping: "ZIP-Paket wird erstellt...", success: "Konvertierung erfolgreich abgeschlossen!",
+    errTooBig: "Datei zu groß ({size}). Das Limit beträgt 100 MB.",
+    errNetwork: "Konvertierungsserver nicht erreichbar.",
+    errTimeout: "Der Server hat zu lange gebraucht. Versuchen Sie eine kleinere Datei.",
+    errServer: "Serverfehler ({code}).", errRate: "Zu viele Anfragen. Warten Sie eine Minute.",
+    errFormat: "Der Dateiinhalt entspricht nicht dem erwarteten Format.",
+    errFailed: "Konvertierung fehlgeschlagen: Die Datei ist möglicherweise beschädigt oder geschützt.",
+    errUnavailable: "Konvertierungsdienst vorübergehend nicht verfügbar.",
+    errPassword: "Bitte geben Sie ein Passwort ein.",
+    reading: "Datei wird gelesen...", working: "Wird verarbeitet...",
+    generating: "Dokument wird erstellt...", packaging: "Datei wird erstellt...",
+    completed: "Fertig!", pageOf: "Seite {i} von {n}...", fileOf: "Datei {i} von {n}..."
+  },
+  zh: {
+    uploading: "正在上传文件...", processing: "正在转换... {s}秒", done: "已完成",
+    processingFiles: "正在处理文件...", merging: "正在合并 PDF... {s}%",
+    fromImages: "正在从图片创建 PDF... {s}%", batch: "正在转换第 {i}/{n} 个文件：{name}",
+    zipping: "正在创建 ZIP 包...", success: "转换成功完成！",
+    errTooBig: "文件过大（{size}）。上限为 100 MB。",
+    errNetwork: "无法连接转换服务器。",
+    errTimeout: "服务器响应超时，请尝试较小的文件。",
+    errServer: "服务器错误（{code}）。", errRate: "请求过多，请稍等一分钟后重试。",
+    errFormat: "文件内容与预期格式不符。",
+    errFailed: "转换失败：文件可能已损坏或受保护。",
+    errUnavailable: "转换服务暂时不可用。",
+    errPassword: "请输入密码。",
+    reading: "正在读取文件...", working: "正在处理...",
+    generating: "正在生成文档...", packaging: "正在创建文件...",
+    completed: "已完成！", pageOf: "第 {i} 页，共 {n} 页...", fileOf: "第 {i} 个文件，共 {n} 个..."
+  },
+  ro: {
+    uploading: "Se încarcă fișierul...", processing: "Se convertește... {s}s", done: "Finalizat",
+    processingFiles: "Se procesează fișierele...", merging: "Se unesc PDF-urile... {s}%",
+    fromImages: "Se creează PDF din imagini... {s}%", batch: "Se convertește fișierul {i} din {n}: {name}",
+    zipping: "Se creează pachetul ZIP...", success: "Conversie finalizată cu succes!",
+    errTooBig: "Fișier prea mare ({size}). Limita este 100 MB.",
+    errNetwork: "Nu s-a putut contacta serverul de conversie.",
+    errTimeout: "Serverul a durat prea mult. Încearcă un fișier mai mic.",
+    errServer: "Eroare de server ({code}).", errRate: "Prea multe cereri. Așteaptă un minut și reîncearcă.",
+    errFormat: "Conținutul fișierului nu corespunde formatului așteptat.",
+    errFailed: "Conversie eșuată: fișierul poate fi deteriorat sau protejat.",
+    errUnavailable: "Serviciul de conversie este temporar indisponibil.",
+    errPassword: "Introdu o parolă.",
+    reading: "Se citește fișierul...", working: "Se procesează...",
+    generating: "Se generează documentul...", packaging: "Se creează fișierul...",
+    completed: "Finalizat!", pageOf: "Pagina {i} din {n}...", fileOf: "Fișierul {i} din {n}..."
+  },
+  hi: {
+    uploading: "फ़ाइल अपलोड हो रही है...", processing: "रूपांतरण जारी... {s} सेकंड", done: "पूर्ण",
+    processingFiles: "फ़ाइलें संसाधित हो रही हैं...", merging: "PDF जोड़े जा रहे हैं... {s}%",
+    fromImages: "छवियों से PDF बन रहा है... {s}%", batch: "फ़ाइल {i}/{n} रूपांतरित हो रही है: {name}",
+    zipping: "ZIP पैकेज बन रहा है...", success: "रूपांतरण सफलतापूर्वक पूर्ण हुआ!",
+    errTooBig: "फ़ाइल बहुत बड़ी है ({size})। सीमा 100 MB है।",
+    errNetwork: "रूपांतरण सर्वर से संपर्क नहीं हो सका।",
+    errTimeout: "सर्वर ने बहुत समय लिया। छोटी फ़ाइल आज़माएँ।",
+    errServer: "सर्वर त्रुटि ({code})।", errRate: "बहुत अधिक अनुरोध। एक मिनट प्रतीक्षा करें।",
+    errFormat: "फ़ाइल की सामग्री अपेक्षित प्रारूप से मेल नहीं खाती।",
+    errFailed: "रूपांतरण विफल: फ़ाइल क्षतिग्रस्त या सुरक्षित हो सकती है।",
+    errUnavailable: "रूपांतरण सेवा अस्थायी रूप से अनुपलब्ध है।",
+    errPassword: "कृपया पासवर्ड दर्ज करें।",
+    reading: "फ़ाइल पढ़ी जा रही है...", working: "प्रक्रिया जारी है...",
+    generating: "दस्तावेज़ बनाया जा रहा है...", packaging: "फ़ाइल बनाई जा रही है...",
+    completed: "पूर्ण!", pageOf: "पृष्ठ {i} / {n}...", fileOf: "फ़ाइल {i} / {n}..."
+  },
+  ru: {
+    uploading: "Загрузка файла...", processing: "Конвертация... {s}с", done: "Готово",
+    processingFiles: "Обработка файлов...", merging: "Объединение PDF... {s}%",
+    fromImages: "Создание PDF из изображений... {s}%", batch: "Конвертация файла {i} из {n}: {name}",
+    zipping: "Создание ZIP-архива...", success: "Конвертация успешно завершена!",
+    errTooBig: "Файл слишком большой ({size}). Лимит — 100 МБ.",
+    errNetwork: "Не удалось связаться с сервером конвертации.",
+    errTimeout: "Сервер отвечал слишком долго. Попробуйте файл меньшего размера.",
+    errServer: "Ошибка сервера ({code}).", errRate: "Слишком много запросов. Подождите минуту.",
+    errFormat: "Содержимое файла не соответствует ожидаемому формату.",
+    errFailed: "Конвертация не удалась: файл может быть повреждён или защищён.",
+    errUnavailable: "Служба конвертации временно недоступна.",
+    errPassword: "Введите пароль.",
+    reading: "Чтение файла...", working: "Обработка...",
+    generating: "Создание документа...", packaging: "Создание файла...",
+    completed: "Готово!", pageOf: "Страница {i} из {n}...", fileOf: "Файл {i} из {n}..."
+  }
+};
+
+/** Interfaccia usata dagli altri script per tradurre i messaggi a runtime. */
+window.PDFAxiomI18n = {
+  get lang() {
+    return localStorage.getItem('pdfaxiom_lang') || 'en';
+  },
+  t(chiave, valori) {
+    const set = uiMessages[this.lang] || uiMessages.en;
+    let testo = set[chiave] || uiMessages.en[chiave] || chiave;
+    if (valori) {
+      Object.entries(valori).forEach(([k, v]) => {
+        testo = testo.replace(new RegExp(`\\{${k}\\}`, 'g'), v);
+      });
+    }
+    return testo;
+  }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   const currentLangText = document.getElementById('currentLangText');
   const langOptions = document.querySelectorAll('.lang-option');
@@ -536,13 +697,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modalMissionTitle) modalMissionTitle.textContent = (lang === 'it') ? "La Nostra Missione" : "Our Mission";
 
     const modalMissionText = document.getElementById('modalMissionText');
-    if (modalMissionText) modalMissionText.textContent = (lang === 'it') ? "PDFAxiom nasce per offrire una suite di strumenti PDF 100% gratuita, senza limiti di dimensione ed accessibile da qualsiasi dispositivo senza registrazione." : "PDFAxiom is built to offer a 100% free, unlimited PDF suite accessible from any device without registration.";
+    if (modalMissionText) modalMissionText.textContent = (lang === 'it') ? "PDFAxiom nasce per offrire una suite di strumenti PDF gratuita, accessibile da qualsiasi dispositivo e senza registrazione." : "PDFAxiom offers a free PDF suite, accessible from any device without registration.";
 
     const modalPrivacyTitle = document.getElementById('modalPrivacyTitle');
-    if (modalPrivacyTitle) modalPrivacyTitle.textContent = (lang === 'it') ? "Garanzia di Privacy Assoluta" : "Absolute Privacy Guarantee";
+    if (modalPrivacyTitle) modalPrivacyTitle.textContent = (lang === 'it') ? "Come trattiamo i tuoi file" : "How we handle your files";
 
     const modalPrivacyText = document.getElementById('modalPrivacyText');
-    if (modalPrivacyText) modalPrivacyText.textContent = (lang === 'it') ? "I tuoi documenti vengono elaborati in modo sicuro e riservato direttamente nella memoria RAM del tuo browser. Nessun file viene mai caricato o salvato su server esterni." : "Your documents are processed safely and confidentially directly in your browser RAM. No files are ever uploaded or saved on external servers.";
+    if (modalPrivacyText) modalPrivacyText.textContent = (lang === 'it') ? "Gran parte degli strumenti elabora i documenti direttamente nel tuo browser: quei file non lasciano mai il tuo dispositivo. Le conversioni più complesse (Word, Excel, PowerPoint, HTML, compressione, protezione) vengono eseguite sui nostri server: il file viene elaborato e cancellato subito dopo, senza essere conservato né condiviso." : "Most tools process your documents directly in your browser: those files never leave your device. The heavier conversions (Word, Excel, PowerPoint, HTML, compression, protection) run on our servers: the file is processed and deleted immediately afterwards, never stored or shared.";
 
     const modalContactTitle = document.getElementById('modalContactTitle');
     if (modalContactTitle) modalContactTitle.textContent = (lang === 'it') ? "Contatti e Supporto" : "Contact & Support";

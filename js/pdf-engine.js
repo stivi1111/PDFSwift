@@ -1,8 +1,14 @@
 /**
- * PDFAxiom - 100% Client-Side Browser Engine
- * Every single conversion tool executes 100% locally inside the browser JS.
- * Zero server uploads • 100% Private & Unlimited.
+ * PDFAxiom - Client-Side Browser Engine
+ * Gli strumenti qui dentro girano interamente nel browser: il file non lascia
+ * mai il dispositivo. Le conversioni pesanti sono invece instradate al backend
+ * da api-client.js prima ancora di arrivare a questo motore.
  */
+
+/** Traduce nella lingua scelta dall'utente, con ripiego sull'inglese. */
+const tp = (chiave, valori) => window.PDFAxiomI18n
+  ? window.PDFAxiomI18n.t(chiave, valori)
+  : chiave;
 
 window.PDFEngine = {
 
@@ -17,7 +23,7 @@ window.PDFEngine = {
       const textContent = await page.getTextContent();
       const text = textContent.items.map(item => item.str).join(' ');
       pagesText.push(text);
-      if (onProgress) onProgress(Math.round((i / pdf.numPages) * 50), `Estrazione testo pagina ${i}/${pdf.numPages}...`);
+      if (onProgress) onProgress(Math.round((i / pdf.numPages) * 50), tp('pageOf', { i: i, n: pdf.numPages }));
     }
 
     return { pdf, pagesText, numPages: pdf.numPages };
@@ -40,10 +46,10 @@ window.PDFEngine = {
 
   // 1. PDF to Word (.docx)
   pdfToWord: async function(file, onProgress) {
-    if (onProgress) onProgress(10, "Estrazione testo ed elementi dal PDF...");
+    if (onProgress) onProgress(10, tp('reading'));
     const { pagesText, numPages } = await this.extractPdfPagesText(file, onProgress);
     
-    if (onProgress) onProgress(60, "Generazione documento Microsoft Word (.docx)...");
+    if (onProgress) onProgress(60, tp('generating'));
 
     const paragraphs = [];
     pagesText.forEach((pageText, idx) => {
@@ -72,22 +78,22 @@ window.PDFEngine = {
       sections: [{ properties: {}, children: paragraphs }]
     });
 
-    if (onProgress) onProgress(90, "Impacchettamento Word...");
+    if (onProgress) onProgress(90, tp('packaging'));
     const docxBlob = await docx.Packer.toBlob(doc);
-    if (onProgress) onProgress(100, "Conversione Word completata!");
+    if (onProgress) onProgress(100, tp('completed'));
     return docxBlob;
   },
 
   // 2. Word to PDF (.pdf)
   wordToPDF: async function(file, onProgress) {
-    if (onProgress) onProgress(10, "Lettura documento Word (.docx)...");
+    if (onProgress) onProgress(10, tp('reading'));
     const arrayBuffer = await file.arrayBuffer();
     
-    if (onProgress) onProgress(30, "Conversione HTML da Word...");
+    if (onProgress) onProgress(30, tp('working'));
     const result = await mammoth.convertToHtml({ arrayBuffer });
     const htmlText = result.value || "<p>Documento vuoto</p>";
 
-    if (onProgress) onProgress(60, "Generazione PDF...");
+    if (onProgress) onProgress(60, tp('generating'));
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ unit: 'pt', format: 'a4' });
 
@@ -110,16 +116,16 @@ window.PDFEngine = {
       windowWidth: 600
     });
 
-    if (onProgress) onProgress(100, "PDF da Word generato!");
+    if (onProgress) onProgress(100, tp('completed'));
     return doc.output('blob');
   },
 
   // 3. PDF to Excel (.xlsx)
   pdfToExcel: async function(file, onProgress) {
-    if (onProgress) onProgress(10, "Estrazione tabelle dal PDF...");
+    if (onProgress) onProgress(10, tp('reading'));
     const { pagesText } = await this.extractPdfPagesText(file, onProgress);
     
-    if (onProgress) onProgress(60, "Generazione foglio di calcolo Excel...");
+    if (onProgress) onProgress(60, tp('generating'));
     const wb = XLSX.utils.book_new();
 
     pagesText.forEach((pageText, idx) => {
@@ -139,17 +145,17 @@ window.PDFEngine = {
     });
 
     const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-    if (onProgress) onProgress(100, "Excel generato con successo!");
+    if (onProgress) onProgress(100, tp('completed'));
     return new Blob([wbout], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
   },
 
   // 4. Excel to PDF (.pdf)
   excelToPDF: async function(file, onProgress) {
-    if (onProgress) onProgress(10, "Lettura file Excel (.xlsx)...");
+    if (onProgress) onProgress(10, tp('reading'));
     const arrayBuffer = await file.arrayBuffer();
     const wb = XLSX.read(arrayBuffer, { type: 'array' });
 
-    if (onProgress) onProgress(50, "Rendering fogli in PDF...");
+    if (onProgress) onProgress(50, tp('working'));
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ unit: 'pt', format: 'a4' });
 
@@ -172,13 +178,13 @@ window.PDFEngine = {
       });
     });
 
-    if (onProgress) onProgress(100, "PDF da Excel generato!");
+    if (onProgress) onProgress(100, tp('completed'));
     return doc.output('blob');
   },
 
   // 5. PDF to PowerPoint (.pptx)
   pdfToPPTX: async function(file, onProgress) {
-    if (onProgress) onProgress(10, "Rendering diapositive PDF...");
+    if (onProgress) onProgress(10, tp('working'));
     const arrayBuffer = await file.arrayBuffer();
     const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
     
@@ -187,7 +193,7 @@ window.PDFEngine = {
 
     for (let i = 1; i <= pdf.numPages; i++) {
       const pct = Math.round(10 + (i / pdf.numPages) * 80);
-      if (onProgress) onProgress(pct, `Generazione slide ${i} di ${pdf.numPages}...`);
+      if (onProgress) onProgress(pct, tp('pageOf', { i: i, n: pdf.numPages }));
 
       const page = await pdf.getPage(i);
       const canvas = await this.renderPageToCanvas(page, 2.0);
@@ -197,15 +203,15 @@ window.PDFEngine = {
       slide.addImage({ data: imgData, x: 0, y: 0, w: '100%', h: '100%' });
     }
 
-    if (onProgress) onProgress(95, "Creazione file PowerPoint...");
+    if (onProgress) onProgress(95, tp('packaging'));
     const pptxBlob = await pptx.write({ outputType: 'blob' });
-    if (onProgress) onProgress(100, "PowerPoint generato!");
+    if (onProgress) onProgress(100, tp('completed'));
     return pptxBlob;
   },
 
   // 6. PowerPoint to PDF (.pdf)
   pptxToPDF: async function(file, onProgress) {
-    if (onProgress) onProgress(20, "Lettura file PowerPoint...");
+    if (onProgress) onProgress(20, tp('reading'));
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ orientation: 'landscape', unit: 'pt', format: 'a4' });
 
@@ -216,13 +222,13 @@ window.PDFEngine = {
     doc.setFontSize(14);
     doc.text("Convertito 100% in locale nel browser da PDFAxiom.", 40, 90);
 
-    if (onProgress) onProgress(100, "PDF da PowerPoint generato!");
+    if (onProgress) onProgress(100, tp('completed'));
     return doc.output('blob');
   },
 
   // 7. PDF to Markdown (.md)
   pdfToMD: async function(file, onProgress) {
-    if (onProgress) onProgress(10, "Estrazione testo strutturato per Markdown...");
+    if (onProgress) onProgress(10, tp('reading'));
     const { pagesText } = await this.extractPdfPagesText(file, onProgress);
     
     let mdContent = `# ${file.name.replace('.pdf', '')}\n\n`;
@@ -231,16 +237,16 @@ window.PDFEngine = {
       mdContent += `${text}\n\n`;
     });
 
-    if (onProgress) onProgress(100, "Markdown generato!");
+    if (onProgress) onProgress(100, tp('completed'));
     return new Blob([mdContent], { type: 'text/markdown;charset=utf-8' });
   },
 
   // 8. Markdown to PDF (.pdf)
   mdToPDF: async function(file, onProgress) {
-    if (onProgress) onProgress(10, "Lettura file Markdown...");
+    if (onProgress) onProgress(10, tp('reading'));
     const mdText = await file.text();
     
-    if (onProgress) onProgress(40, "Parsing HTML da Markdown...");
+    if (onProgress) onProgress(40, tp('working'));
     const htmlContent = marked.parse ? marked.parse(mdText) : marked(mdText);
 
     const { jsPDF } = window.jspdf;
@@ -261,13 +267,13 @@ window.PDFEngine = {
       callback: () => document.body.removeChild(tempDiv)
     });
 
-    if (onProgress) onProgress(100, "PDF da Markdown generato!");
+    if (onProgress) onProgress(100, tp('completed'));
     return doc.output('blob');
   },
 
   // 9. PDF to HTML (.html)
   pdfToHTML: async function(file, onProgress) {
-    if (onProgress) onProgress(10, "Estrazione pagine PDF per HTML...");
+    if (onProgress) onProgress(10, tp('reading'));
     const { pagesText } = await this.extractPdfPagesText(file, onProgress);
 
     let htmlDoc = `<!DOCTYPE html>\n<html>\n<head>\n<meta charset="utf-8">\n<title>${file.name}</title>\n`;
@@ -280,13 +286,13 @@ window.PDFEngine = {
 
     htmlDoc += `</body>\n</html>`;
 
-    if (onProgress) onProgress(100, "HTML generato con successo!");
+    if (onProgress) onProgress(100, tp('completed'));
     return new Blob([htmlDoc], { type: 'text/html;charset=utf-8' });
   },
 
   // 10. HTML to PDF (.pdf)
   htmlToPDF: async function(file, onProgress) {
-    if (onProgress) onProgress(10, "Lettura file HTML...");
+    if (onProgress) onProgress(10, tp('reading'));
     const htmlText = await file.text();
 
     const { jsPDF } = window.jspdf;
@@ -306,30 +312,30 @@ window.PDFEngine = {
       callback: () => document.body.removeChild(tempDiv)
     });
 
-    if (onProgress) onProgress(100, "PDF da HTML generato!");
+    if (onProgress) onProgress(100, tp('completed'));
     return doc.output('blob');
   },
 
   // 11. Compress PDF (.pdf)
   compressPDF: async function(file, onProgress) {
-    if (onProgress) onProgress(20, "Compressione PDF nel browser...");
+    if (onProgress) onProgress(20, tp('working'));
     const arrayBuffer = await file.arrayBuffer();
     const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
 
-    if (onProgress) onProgress(70, "Ottimizzazione e salvataggio stream...");
+    if (onProgress) onProgress(70, tp('working'));
     const pdfBytes = await pdfDoc.save({ useObjectStreams: true });
 
-    if (onProgress) onProgress(100, "Compressione completata!");
+    if (onProgress) onProgress(100, tp('completed'));
     return new Blob([pdfBytes], { type: 'application/pdf' });
   },
 
   // 12. Protect PDF (.pdf)
   protectPDF: async function(file, password, onProgress) {
-    if (onProgress) onProgress(30, "Applicazione protezione e cifratura...");
+    if (onProgress) onProgress(30, tp('working'));
     const arrayBuffer = await file.arrayBuffer();
     const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
 
-    if (onProgress) onProgress(70, "Impostazione password...");
+    if (onProgress) onProgress(70, tp('working'));
     const pdfBytes = await pdfDoc.save({
       userPassword: password || '1234',
       ownerPassword: password || '1234',
@@ -344,31 +350,31 @@ window.PDFEngine = {
       }
     });
 
-    if (onProgress) onProgress(100, "Protezione password applicata!");
+    if (onProgress) onProgress(100, tp('completed'));
     return new Blob([pdfBytes], { type: 'application/pdf' });
   },
 
   // 13. Unlock PDF (.pdf)
   unlockPDF: async function(file, onProgress) {
-    if (onProgress) onProgress(30, "Rimozione restrizioni password...");
+    if (onProgress) onProgress(30, tp('working'));
     const arrayBuffer = await file.arrayBuffer();
     const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
 
     const pdfBytes = await pdfDoc.save({ useObjectStreams: true });
-    if (onProgress) onProgress(100, "PDF sbloccato con successo!");
+    if (onProgress) onProgress(100, tp('completed'));
     return new Blob([pdfBytes], { type: 'application/pdf' });
   },
 
   // 14. Grayscale PDF (.pdf)
   grayscalePDF: async function(file, onProgress) {
-    if (onProgress) onProgress(10, "Rendering PDF in scala di grigi nel browser...");
+    if (onProgress) onProgress(10, tp('working'));
     const arrayBuffer = await file.arrayBuffer();
     const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
     const newPdfDoc = await PDFLib.PDFDocument.create();
 
     for (let i = 1; i <= pdf.numPages; i++) {
       const pct = Math.round(10 + (i / pdf.numPages) * 80);
-      if (onProgress) onProgress(pct, `Conversione in scala di grigi pagina ${i}/${pdf.numPages}...`);
+      if (onProgress) onProgress(pct, tp('pageOf', { i: i, n: pdf.numPages }));
 
       const page = await pdf.getPage(i);
       const canvas = await this.renderPageToCanvas(page, 2.0);
@@ -391,19 +397,19 @@ window.PDFEngine = {
     }
 
     const pdfBytes = await newPdfDoc.save();
-    if (onProgress) onProgress(100, "Scala di grigi completata!");
+    if (onProgress) onProgress(100, tp('completed'));
     return new Blob([pdfBytes], { type: 'application/pdf' });
   },
 
   // 15. Merge PDF
   mergePDFs: async function(files, onProgress) {
-    if (onProgress) onProgress(10, "Unione PDF in corso nel browser...");
+    if (onProgress) onProgress(10, tp('working'));
     const mergedPdf = await PDFLib.PDFDocument.create();
 
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
       const pct = Math.round(10 + ((i + 1) / files.length) * 80);
-      if (onProgress) onProgress(pct, `Unione file ${i + 1} di ${files.length}...`);
+      if (onProgress) onProgress(pct, tp('fileOf', { i: i + 1, n: files.length }));
 
       const arrayBuffer = await file.arrayBuffer();
       const pdf = await PDFLib.PDFDocument.load(arrayBuffer);
@@ -412,13 +418,13 @@ window.PDFEngine = {
     }
 
     const mergedBytes = await mergedPdf.save();
-    if (onProgress) onProgress(100, "Unione completata!");
+    if (onProgress) onProgress(100, tp('completed'));
     return new Blob([mergedBytes], { type: 'application/pdf' });
   },
 
   // 16. Split PDF
   splitPDF: async function(file, pageRangeStr, onProgress) {
-    if (onProgress) onProgress(20, "Divisione pagine PDF...");
+    if (onProgress) onProgress(20, tp('working'));
     const arrayBuffer = await file.arrayBuffer();
     const srcPdf = await PDFLib.PDFDocument.load(arrayBuffer);
     const newPdf = await PDFLib.PDFDocument.create();
@@ -446,13 +452,13 @@ window.PDFEngine = {
     copiedPages.forEach(p => newPdf.addPage(p));
 
     const pdfBytes = await newPdf.save();
-    if (onProgress) onProgress(100, "Divisione completata!");
+    if (onProgress) onProgress(100, tp('completed'));
     return new Blob([pdfBytes], { type: 'application/pdf' });
   },
 
   // 17. Delete Pages
   deletePagesPDF: async function(file, pagesToDeleteStr, onProgress) {
-    if (onProgress) onProgress(30, "Eliminazione pagine PDF...");
+    if (onProgress) onProgress(30, tp('working'));
     const arrayBuffer = await file.arrayBuffer();
     const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
     
@@ -464,26 +470,26 @@ window.PDFEngine = {
     });
 
     const pdfBytes = await pdfDoc.save();
-    if (onProgress) onProgress(100, "Pagine eliminate!");
+    if (onProgress) onProgress(100, tp('completed'));
     return new Blob([pdfBytes], { type: 'application/pdf' });
   },
 
   // 18. Rotate PDF
   rotatePDF: async function(file, degrees = 90, onProgress) {
-    if (onProgress) onProgress(30, "Rotazione pagine PDF...");
+    if (onProgress) onProgress(30, tp('working'));
     const arrayBuffer = await file.arrayBuffer();
     const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
     const pages = pdfDoc.getPages();
     pages.forEach(p => p.setRotation(PDFLib.degrees(degrees)));
 
     const pdfBytes = await pdfDoc.save();
-    if (onProgress) onProgress(100, "Rotazione completata!");
+    if (onProgress) onProgress(100, tp('completed'));
     return new Blob([pdfBytes], { type: 'application/pdf' });
   },
 
   // 19. Page Numbers
   pageNumbersPDF: async function(file, onProgress) {
-    if (onProgress) onProgress(30, "Aggiunta numeri di pagina...");
+    if (onProgress) onProgress(30, tp('working'));
     const arrayBuffer = await file.arrayBuffer();
     const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
     const font = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
@@ -501,19 +507,19 @@ window.PDFEngine = {
     });
 
     const pdfBytes = await pdfDoc.save();
-    if (onProgress) onProgress(100, "Numeri di pagina aggiunti!");
+    if (onProgress) onProgress(100, tp('completed'));
     return new Blob([pdfBytes], { type: 'application/pdf' });
   },
 
   // 20. Images to PDF
   imagesToPDF: async function(imageFiles, onProgress) {
-    if (onProgress) onProgress(10, "Creazione PDF da immagini...");
+    if (onProgress) onProgress(10, tp('working'));
     const pdfDoc = await PDFLib.PDFDocument.create();
 
     for (let i = 0; i < imageFiles.length; i++) {
       const file = imageFiles[i];
       const pct = Math.round(10 + ((i + 1) / imageFiles.length) * 80);
-      if (onProgress) onProgress(pct, `Aggiunta immagine ${i + 1} di ${imageFiles.length}...`);
+      if (onProgress) onProgress(pct, tp('fileOf', { i: i + 1, n: imageFiles.length }));
 
       const imgBytes = await file.arrayBuffer();
       let image;
@@ -528,13 +534,13 @@ window.PDFEngine = {
     }
 
     const pdfBytes = await pdfDoc.save();
-    if (onProgress) onProgress(100, "PDF creato con successo!");
+    if (onProgress) onProgress(100, tp('completed'));
     return new Blob([pdfBytes], { type: 'application/pdf' });
   },
 
   // 21. Watermark PDF
   watermarkPDF: async function(file, watermarkText = 'CONFIDENTIAL', onProgress) {
-    if (onProgress) onProgress(30, "Applicazione filigrana...");
+    if (onProgress) onProgress(30, tp('working'));
     const arrayBuffer = await file.arrayBuffer();
     const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
     const font = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
@@ -553,20 +559,20 @@ window.PDFEngine = {
     });
 
     const pdfBytes = await pdfDoc.save();
-    if (onProgress) onProgress(100, "Filigrana applicata!");
+    if (onProgress) onProgress(100, tp('completed'));
     return new Blob([pdfBytes], { type: 'application/pdf' });
   },
 
   // 22. PDF to Images (ZIP)
   pdfToImages: async function(file, format = 'png', onProgress) {
-    if (onProgress) onProgress(10, "Rendering pagine in immagini nel browser...");
+    if (onProgress) onProgress(10, tp('working'));
     const arrayBuffer = await file.arrayBuffer();
     const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
     const zip = new JSZip();
 
     for (let i = 1; i <= pdf.numPages; i++) {
       const pct = Math.round(10 + (i / pdf.numPages) * 80);
-      if (onProgress) onProgress(pct, `Rendering pagina ${i} di ${pdf.numPages}...`);
+      if (onProgress) onProgress(pct, tp('pageOf', { i: i, n: pdf.numPages }));
 
       const page = await pdf.getPage(i);
       const canvas = await this.renderPageToCanvas(page, 2.0);
@@ -575,19 +581,19 @@ window.PDFEngine = {
       zip.file(`pagina_${i}.${format}`, imgBuffer);
     }
 
-    if (onProgress) onProgress(95, "Creazione pacchetto ZIP...");
+    if (onProgress) onProgress(95, tp('packaging'));
     const zipBlob = await zip.generateAsync({ type: 'blob' });
-    if (onProgress) onProgress(100, "Estrazione completata!");
+    if (onProgress) onProgress(100, tp('completed'));
     return zipBlob;
   },
 
   // 23. Extract Text
   pdfToText: async function(file, onProgress) {
-    if (onProgress) onProgress(20, "Estrazione testo dal PDF...");
+    if (onProgress) onProgress(20, tp('reading'));
     const { pagesText } = await this.extractPdfPagesText(file, onProgress);
     const fullText = pagesText.join('\n\n');
 
-    if (onProgress) onProgress(100, "Estrazione testo completata!");
+    if (onProgress) onProgress(100, tp('completed'));
     return new Blob([fullText], { type: 'text/plain;charset=utf-8' });
   },
 

@@ -37,6 +37,13 @@ const PDFAxiomAPI = (() => {
     'pdf-to-pptx': 3, 'pdf-to-html': 2
   };
 
+  /** Traduce nella lingua scelta dall'utente, con ripiego sull'inglese. */
+  function t(chiave, valori) {
+    return window.PDFAxiomI18n
+      ? window.PDFAxiomI18n.t(chiave, valori)
+      : chiave;
+  }
+
   function humanSize(bytes) {
     return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
   }
@@ -55,9 +62,7 @@ const PDFAxiomAPI = (() => {
     if (!slug) return Promise.reject(new Error(`Tool non gestito dal server: ${toolId}`));
 
     if (file.size > MAX_BYTES) {
-      return Promise.reject(new Error(
-        `File troppo grande (${humanSize(file.size)}). Il limite è 100 MB.`
-      ));
+      return Promise.reject(new Error(t('errTooBig', { size: humanSize(file.size) })));
     }
 
     const form = new FormData();
@@ -78,7 +83,7 @@ const PDFAxiomAPI = (() => {
       xhr.upload.onprogress = (e) => {
         if (!updateProgress || !e.lengthComputable) return;
         // L'upload occupa il primo 30% della barra, l'elaborazione il resto.
-        updateProgress(Math.round((e.loaded / e.total) * 30), 'Caricamento file...');
+        updateProgress(Math.round((e.loaded / e.total) * 30), t('uploading'));
       };
 
       // Il server non può comunicare il proprio avanzamento, quindi la barra
@@ -92,22 +97,22 @@ const PDFAxiomAPI = (() => {
           const elapsed = (Date.now() - started) / 1000;
           // Asintotico: si avvicina al 95% senza mai raggiungerlo.
           const pct = 30 + Math.round(65 * (1 - Math.exp(-elapsed / estimate)));
-          updateProgress(pct, `Conversione in corso... ${Math.round(elapsed)}s`);
+          updateProgress(pct, t('processing', { s: Math.round(elapsed) }));
         }, 500);
       };
 
       xhr.onload = async () => {
         stopTicker();
         if (xhr.status >= 200 && xhr.status < 300) {
-          if (updateProgress) updateProgress(100, 'Completato');
+          if (updateProgress) updateProgress(100, t('done'));
           resolve(xhr.response);
           return;
         }
         reject(new Error(await readError(xhr)));
       };
 
-      xhr.onerror = () => { stopTicker(); reject(new Error('Impossibile contattare il server di conversione.')); };
-      xhr.ontimeout = () => { stopTicker(); reject(new Error('Il server ha impiegato troppo tempo. Riprova con un file più piccolo.')); };
+      xhr.onerror = () => { stopTicker(); reject(new Error(t('errNetwork'))); };
+      xhr.ontimeout = () => { stopTicker(); reject(new Error(t('errTimeout'))); };
 
       xhr.send(form);
     });
@@ -116,13 +121,13 @@ const PDFAxiomAPI = (() => {
   /** Il backend risponde con {"error": "..."} anche sugli errori: lo estraiamo. */
   async function readError(xhr) {
     const fallback = {
-      413: 'File troppo grande. Il limite è 100 MB.',
-      415: 'Il contenuto del file non corrisponde al formato atteso.',
-      422: 'Conversione non riuscita: il file potrebbe essere danneggiato o protetto.',
-      429: 'Troppe richieste. Attendi un minuto e riprova.',
-      502: 'Servizio di conversione temporaneamente non disponibile.',
-      504: 'Il server ha impiegato troppo tempo.'
-    }[xhr.status] || `Errore del server (${xhr.status}).`;
+      413: t('errTooBig', { size: '' }),
+      415: t('errFormat'),
+      422: t('errFailed'),
+      429: t('errRate'),
+      502: t('errUnavailable'),
+      504: t('errTimeout')
+    }[xhr.status] || t('errServer', { code: xhr.status });
 
     try {
       const text = await xhr.response.text();

@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'merge': { title: 'Merge PDF Files', desc: 'Combine multiple PDF documents into one single PDF file.', multiple: true, accept: '.pdf', btnText: 'Merge PDFs', outputExt: '.pdf' },
     'pdf-to-img': { title: 'PDF to JPG / PNG', desc: 'Convert every PDF page into high-res images (ZIP).', multiple: false, accept: '.pdf', btnText: 'Convert to Images', outputExt: '_images.zip' },
     'img-to-pdf': { title: 'Images to PDF', desc: 'Convert photos or scans into a clean PDF document.', multiple: true, accept: 'image/*', btnText: 'Create PDF', outputExt: '_from_images.pdf' },
-    'compress': { title: 'Compress PDF', desc: 'Shrink PDF file size while preserving quality.', multiple: false, accept: '.pdf', btnText: 'Compress PDF', outputExt: '_compressed.pdf', settingsHTML: `<div class="form-group"><label>Compression Level:</label><div class="compress-levels"><label class="compress-option"><input type="radio" name="compressLevel" value="leggera"><span><strong>Light</strong> — smaller file, images untouched</span></label><label class="compress-option"><input type="radio" name="compressLevel" value="media" checked><span><strong>Balanced</strong> — recommended, good for print</span></label><label class="compress-option"><input type="radio" name="compressLevel" value="massima"><span><strong>Maximum</strong> — smallest file, screen &amp; email only</span></label></div></div>` },
+    'compress': { title: 'Compress PDF', desc: 'Shrink PDF file size while preserving quality.', multiple: false, accept: '.pdf', btnText: 'Compress PDF', outputExt: '_compressed.pdf', settingsHTML: `<div class="form-group"><label>Compression Level</label><div class="compress-levels"><label class="compress-option" data-level="1"><input type="radio" name="compressLevel" value="leggera"><span class="compress-bars"><i></i><i></i><i></i></span><span class="compress-name">Light</span><span class="compress-note">Keeps print quality</span></label><label class="compress-option" data-level="2"><input type="radio" name="compressLevel" value="media" checked><span class="compress-tag">Recommended</span><span class="compress-bars"><i></i><i></i><i></i></span><span class="compress-name">Balanced</span><span class="compress-note">Great for print &amp; sharing</span></label><label class="compress-option" data-level="3"><input type="radio" name="compressLevel" value="massima"><span class="compress-bars"><i></i><i></i><i></i></span><span class="compress-name">Maximum</span><span class="compress-note">Smallest file, screen &amp; email</span></label></div></div>` },
     'split': { title: 'Split PDF Document', desc: 'Extract specific pages or page ranges from a PDF.', multiple: false, accept: '.pdf', btnText: 'Split PDF', outputExt: '.pdf', settingsHTML: `<div class="form-group"><label for="splitPages">Pages to Extract (e.g. 1-3, 5):</label><input type="text" id="splitPages" class="form-control" placeholder="e.g. 1-3, 5"></div>` },
     'pdf-to-excel': { title: 'PDF to Excel Converter', desc: 'Extract PDF tables into editable Excel (.xlsx).', multiple: false, accept: '.pdf', btnText: 'Convert to Excel', outputExt: '.xlsx' },
     'excel-to-pdf': { title: 'Excel to PDF Converter', desc: 'Convert Excel spreadsheets (.xlsx) into clean PDF.', multiple: false, accept: '.xlsx, .xls, .csv', btnText: 'Convert Excel to PDF', outputExt: '.pdf' },
@@ -383,6 +383,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /** Traduce nella lingua scelta dall'utente, con ripiego sull'inglese. */
+  const tr = (chiave, valori) =>
+    window.PDFAxiomI18n ? window.PDFAxiomI18n.t(chiave, valori) : chiave;
+
   // Execute single file conversion action
   async function runSingleToolAction(toolId, file, updateProgress) {
     // I 14 strumenti pesanti sono elaborati dal backend (vedi js/api-client.js).
@@ -391,7 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const extra = {};
       if (toolId === 'protect' || toolId === 'unlock') {
         const pass = document.getElementById('pdfPassword')?.value;
-        if (!pass) throw new Error("Please enter a password.");
+        if (!pass) throw new Error(tr('errPassword'));
         extra.password = pass;
       }
       if (toolId === 'compress') {
@@ -428,7 +432,7 @@ document.addEventListener('DOMContentLoaded', () => {
     progressContainer.style.display = 'block';
     downloadBox.style.display = 'none';
     progressBarFill.style.width = '0%';
-    progressText.textContent = 'Processing files client-side...';
+    progressText.textContent = tr('processingFiles');
 
     const config = toolsConfig[state.activeTool];
 
@@ -436,14 +440,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (state.activeTool === 'merge') {
         const updateProgress = (pct) => {
           progressBarFill.style.width = `${pct}%`;
-          progressText.textContent = `Merging PDF files... ${pct}%`;
+          progressText.textContent = tr('merging', { s: pct });
         };
         state.processedBlob = await PDFEngine.mergePDFs(state.files, updateProgress);
         state.processedFilename = `merged_document.pdf`;
       } else if (state.activeTool === 'img-to-pdf') {
         const updateProgress = (pct) => {
           progressBarFill.style.width = `${pct}%`;
-          progressText.textContent = `Creating PDF from images... ${pct}%`;
+          progressText.textContent = tr('fromImages', { s: pct });
         };
         state.processedBlob = await PDFEngine.imagesToPDF(state.files, updateProgress);
         state.processedFilename = `converted_from_images.pdf`;
@@ -451,7 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const file = state.files[0];
         const updateProgress = (pct, msg) => {
           progressBarFill.style.width = `${pct}%`;
-          progressText.textContent = msg ? `${msg} ${pct}%` : `Elaborazione file... ${pct}%`;
+          progressText.textContent = msg || tr('processingFiles');
         };
         const baseName = file.name.replace(/\.[^/.]+$/, "");
         state.processedFilename = `${baseName}${config.outputExt}`;
@@ -465,7 +469,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const file = state.files[i];
           const pct = Math.round(((i + 1) / totalFiles) * 100);
           progressBarFill.style.width = `${pct}%`;
-          progressText.textContent = `Conversione file ${i + 1} di ${totalFiles}: ${file.name}...`;
+          progressText.textContent = tr('batch', { i: i + 1, n: totalFiles, name: file.name });
 
           const fileBlob = await runSingleToolAction(state.activeTool, file, null);
           const baseName = file.name.replace(/\.[^/.]+$/, "");
@@ -474,13 +478,13 @@ document.addEventListener('DOMContentLoaded', () => {
           zip.file(outName, arrayBuffer);
         }
 
-        progressText.textContent = 'Creazione pacchetto ZIP...';
+        progressText.textContent = tr('zipping');
         state.processedBlob = await zip.generateAsync({ type: 'blob' });
         state.processedFilename = `PDFAxiom_Batch_Converted_${state.files.length}_Files.zip`;
       }
 
       progressBarFill.style.width = '100%';
-      progressText.textContent = 'Conversione completata con successo!';
+      progressText.textContent = tr('success');
 
       setTimeout(() => {
         progressContainer.style.display = 'none';
