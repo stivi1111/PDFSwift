@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'merge': { title: 'Merge PDF Files', desc: 'Combine multiple PDF documents into one single PDF file.', multiple: true, accept: '.pdf', btnText: 'Merge PDFs', outputExt: '.pdf' },
     'pdf-to-img': { title: 'PDF to JPG / PNG', desc: 'Convert every PDF page into high-res images (ZIP).', multiple: false, accept: '.pdf', btnText: 'Convert to Images', outputExt: '_images.zip' },
     'img-to-pdf': { title: 'Images to PDF', desc: 'Convert photos or scans into a clean PDF document.', multiple: true, accept: 'image/*', btnText: 'Create PDF', outputExt: '_from_images.pdf' },
-    'compress': { title: 'Compress PDF', desc: 'Shrink PDF file size while preserving quality.', multiple: false, accept: '.pdf', btnText: 'Compress PDF', outputExt: '_compressed.pdf' },
+    'compress': { title: 'Compress PDF', desc: 'Shrink PDF file size while preserving quality.', multiple: false, accept: '.pdf', btnText: 'Compress PDF', outputExt: '_compressed.pdf', settingsHTML: `<div class="form-group"><label>Compression Level:</label><div class="compress-levels"><label class="compress-option"><input type="radio" name="compressLevel" value="leggera"><span><strong>Light</strong> — smaller file, images untouched</span></label><label class="compress-option"><input type="radio" name="compressLevel" value="media" checked><span><strong>Balanced</strong> — recommended, good for print</span></label><label class="compress-option"><input type="radio" name="compressLevel" value="massima"><span><strong>Maximum</strong> — smallest file, screen &amp; email only</span></label></div></div>` },
     'split': { title: 'Split PDF Document', desc: 'Extract specific pages or page ranges from a PDF.', multiple: false, accept: '.pdf', btnText: 'Split PDF', outputExt: '.pdf', settingsHTML: `<div class="form-group"><label for="splitPages">Pages to Extract (e.g. 1-3, 5):</label><input type="text" id="splitPages" class="form-control" placeholder="e.g. 1-3, 5"></div>` },
     'pdf-to-excel': { title: 'PDF to Excel Converter', desc: 'Extract PDF tables into editable Excel (.xlsx).', multiple: false, accept: '.pdf', btnText: 'Convert to Excel', outputExt: '.xlsx' },
     'excel-to-pdf': { title: 'Excel to PDF Converter', desc: 'Convert Excel spreadsheets (.xlsx) into clean PDF.', multiple: false, accept: '.xlsx, .xls, .csv', btnText: 'Convert Excel to PDF', outputExt: '.pdf' },
@@ -394,10 +394,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!pass) throw new Error("Please enter a password.");
         extra.password = pass;
       }
+      if (toolId === 'compress') {
+        extra.livello = document.querySelector('input[name="compressLevel"]:checked')?.value || 'media';
+      }
       return await PDFAxiomAPI.convert(toolId, file, updateProgress, extra);
     }
 
     switch (toolId) {
+      case 'pdf-to-md': return await PDFEngine.pdfToMD(file, updateProgress);
       case 'page-numbers': return await PDFEngine.pageNumbersPDF(file, updateProgress);
       case 'rotate': return await PDFEngine.rotatePDF(file, 90, updateProgress);
       case 'delete-pages':

@@ -14,7 +14,8 @@ const PDFAxiomAPI = (() => {
     'pdf-to-word': 'pdf-to-word',
     'pdf-to-excel': 'pdf-to-excel',
     'pdf-to-pptx': 'pdf-to-powerpoint',
-    'pdf-to-md': 'pdf-to-markdown',
+    // 'pdf-to-md' resta client-side: il motore Docling occupava 2,8 GB di RAM
+    // per questo solo strumento, ed era anche il più lento dei quattordici.
     'pdf-to-html': 'pdf-to-html',
     'word-to-pdf': 'word-to-pdf',
     'excel-to-pdf': 'excel-to-pdf',

@@ -765,6 +765,51 @@ a {
   border-color: var(--text-primary);
 }
 
+/* Compression level selector */
+.compress-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.compress-option {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.7rem 1rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.compress-option:hover {
+  border-color: var(--text-secondary);
+}
+
+.compress-option:has(input:checked) {
+  border-color: var(--text-primary);
+  background: var(--bg-secondary);
+}
+
+.compress-option input {
+  accent-color: var(--text-primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.compress-option span {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.compress-option strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
 /* Process & Result Section */
 .process-actions {
   margin-top: 1.5rem;
