@@ -1,41 +1,51 @@
 <!DOCTYPE html>
+<!-- Pagina generata da build/genera.js.
+     Non modificarla a mano: le modifiche vanno in build/modello.html
+     (struttura) o in build/contenuti/*.js (testi), poi si rilancia
+     "node build/genera.js". -->
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PDFAXIOM</title>
   <meta name="description" content="Convert PDF to Word, Word to PDF, Excel, PowerPoint, Merge, Split, Compress and edit PDF files. Free, no signup, files deleted right after conversion.">
-  <link rel="icon" id="dynamicFavicon" type="image/png" href="assets/favicon-light-mode.png">
-  
-  <!-- Performance CDN Preconnect & DNS Prefetch -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="preconnect" href="https://unpkg.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  
-  <!-- Google Fonts Inter -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
-  
-  <!-- CSS Styles -->
-  <link rel="stylesheet" href="css/styles.css?v=9.3">
-  
-  <!-- Core PDF Libraries (Client-Side) -->
-  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
-  
-  <!-- Word (.docx) & Office Conversion Libraries -->
-  <script src="https://unpkg.com/docx@7.8.2/build/index.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  <link rel="canonical" href="https://pdfaxiom.com/">
+  <link rel="alternate" hreflang="en" href="https://pdfaxiom.com/">
+  <link rel="alternate" hreflang="it" href="https://pdfaxiom.com/it/">
+  <link rel="alternate" hreflang="es" href="https://pdfaxiom.com/es/">
+  <link rel="alternate" hreflang="de" href="https://pdfaxiom.com/de/">
+  <link rel="alternate" hreflang="zh" href="https://pdfaxiom.com/zh/">
+  <link rel="alternate" hreflang="ro" href="https://pdfaxiom.com/ro/">
+  <link rel="alternate" hreflang="hi" href="https://pdfaxiom.com/hi/">
+  <link rel="alternate" hreflang="ru" href="https://pdfaxiom.com/ru/">
+  <link rel="alternate" hreflang="x-default" href="https://pdfaxiom.com/">
 
-  <!-- Excel (.xlsx) & PowerPoint (.pptx) CDN Libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/dist/pptxgen.bundle.js" defer></script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PDFAxiom">
+  <meta property="og:title" content="PDFAXIOM">
+  <meta property="og:url" content="https://pdfaxiom.com/">
+  <meta property="og:locale" content="en">
+  <meta property="og:image" content="https://pdfaxiom.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PDFAXIOM">
+  <meta name="twitter:image" content="https://pdfaxiom.com/assets/og-image.png">
 
-  <!-- Markdown (.md) Parsing CDN Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.1.1/marked.min.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PDFAxiom","url":"https://pdfaxiom.com/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","description":"All 24 PDF tools","inLanguage":"en","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
+  <link rel="icon" id="dynamicFavicon" type="image/png" href="/assets/favicon-light-mode.png">
+  
+  <!-- Il font ora e' nostro: niente collegamento a fonts.googleapis.com, che
+       bloccava il disegno della pagina e faceva passare da Google il browser
+       di chi ci visita. -->
+  <link rel="preload" href="/assets/font/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/font.css?v=10.0">
+  <link rel="stylesheet" href="/css/styles.css?v=10.0">
+  
+  <!-- Le librerie PDF non si caricano piu' qui: erano 949 KB a ogni visita,
+       di cui 649 KB per strumenti che oggi girano sul server e non le usano
+       mai. Ora le prende js/librerie.js quando l'utente avvia una conversione
+       che ne ha davvero bisogno. -->
 
   <!-- Analytics self-hosted: nessun cookie, nessun dato personale raccolto -->
   <script defer src="https://api.pdfaxiom.com/s.js"
@@ -49,8 +59,8 @@
       
       <!-- Left: Brand Logo -->
       <div class="logo-wrapper">
-        <a href="#" class="logo">
-          <img src="assets/logo-dark-mode.png" alt="PDFAXIOM Logo" class="brand-logo-img">
+        <a href="/" class="logo">
+          <img src="/assets/logo-dark-mode.png" alt="PDFAXIOM Logo" class="brand-logo-img">
         </a>
       </div>
 
@@ -67,19 +77,19 @@
             <div class="mini-dropdown-grid">
               <div class="mini-col">
                 <div class="mega-title">CONVERT FROM PDF</div>
-                <a href="#" class="mega-item" data-tool="pdf-to-word">PDF to Word</a>
-                <a href="#" class="mega-item" data-tool="pdf-to-excel">PDF to Excel</a>
-                <a href="#" class="mega-item" data-tool="pdf-to-pptx">PDF to PowerPoint</a>
-                <a href="#" class="mega-item" data-tool="pdf-to-md">PDF to Markdown</a>
-                <a href="#" class="mega-item" data-tool="pdf-to-html">PDF to HTML</a>
+                <a href="/pdf-to-word/" class="mega-item" data-tool="pdf-to-word">PDF to Word</a>
+                <a href="/pdf-to-excel/" class="mega-item" data-tool="pdf-to-excel">PDF to Excel</a>
+                <a href="/pdf-to-powerpoint/" class="mega-item" data-tool="pdf-to-pptx">PDF to PowerPoint</a>
+                <a href="/pdf-to-markdown/" class="mega-item" data-tool="pdf-to-md">PDF to Markdown</a>
+                <a href="/pdf-to-html/" class="mega-item" data-tool="pdf-to-html">PDF to HTML</a>
               </div>
               <div class="mini-col">
                 <div class="mega-title">CONVERT TO PDF</div>
-                <a href="#" class="mega-item" data-tool="word-to-pdf">Word to PDF</a>
-                <a href="#" class="mega-item" data-tool="excel-to-pdf">Excel to PDF</a>
-                <a href="#" class="mega-item" data-tool="pptx-to-pdf">PowerPoint to PDF</a>
-                <a href="#" class="mega-item" data-tool="md-to-pdf">Markdown to PDF</a>
-                <a href="#" class="mega-item" data-tool="html-to-pdf">HTML to PDF</a>
+                <a href="/word-to-pdf/" class="mega-item" data-tool="word-to-pdf">Word to PDF</a>
+                <a href="/excel-to-pdf/" class="mega-item" data-tool="excel-to-pdf">Excel to PDF</a>
+                <a href="/powerpoint-to-pdf/" class="mega-item" data-tool="pptx-to-pdf">PowerPoint to PDF</a>
+                <a href="/markdown-to-pdf/" class="mega-item" data-tool="md-to-pdf">Markdown to PDF</a>
+                <a href="/html-to-pdf/" class="mega-item" data-tool="html-to-pdf">HTML to PDF</a>
               </div>
             </div>
           </div>
@@ -93,11 +103,11 @@
           </button>
           <div class="mega-dropdown dropdown-single">
             <div class="mini-col">
-              <a href="#" class="mega-item" data-tool="merge">Merge PDF</a>
-              <a href="#" class="mega-item" data-tool="split">Split PDF</a>
-              <a href="#" class="mega-item" data-tool="delete-pages">Delete Pages</a>
-              <a href="#" class="mega-item" data-tool="page-numbers">Page Numbers</a>
-              <a href="#" class="mega-item" data-tool="rotate">Rotate PDF</a>
+              <a href="/merge-pdf/" class="mega-item" data-tool="merge">Merge PDF</a>
+              <a href="/split-pdf/" class="mega-item" data-tool="split">Split PDF</a>
+              <a href="/delete-pdf-pages/" class="mega-item" data-tool="delete-pages">Delete Pages</a>
+              <a href="/add-page-numbers/" class="mega-item" data-tool="page-numbers">Page Numbers</a>
+              <a href="/rotate-pdf/" class="mega-item" data-tool="rotate">Rotate PDF</a>
             </div>
           </div>
         </div>
@@ -110,9 +120,9 @@
           </button>
           <div class="mega-dropdown dropdown-single">
             <div class="mini-col">
-              <a href="#" class="mega-item" data-tool="img-to-pdf">Images to PDF</a>
-              <a href="#" class="mega-item" data-tool="pdf-to-img">PDF to JPG / PNG</a>
-              <a href="#" class="mega-item" data-tool="extract-images">Extract Images</a>
+              <a href="/jpg-to-pdf/" class="mega-item" data-tool="img-to-pdf">Images to PDF</a>
+              <a href="/pdf-to-jpg/" class="mega-item" data-tool="pdf-to-img">PDF to JPG / PNG</a>
+              <a href="/extract-images-from-pdf/" class="mega-item" data-tool="extract-images">Extract Images</a>
             </div>
           </div>
         </div>
@@ -125,12 +135,12 @@
           </button>
           <div class="mega-dropdown dropdown-single">
             <div class="mini-col">
-              <a href="#" class="mega-item" data-tool="compress">Compress PDF</a>
-              <a href="#" class="mega-item" data-tool="protect">Protect PDF</a>
-              <a href="#" class="mega-item" data-tool="unlock">Unlock PDF</a>
-              <a href="#" class="mega-item" data-tool="watermark">Watermark PDF</a>
-              <a href="#" class="mega-item" data-tool="grayscale">Grayscale PDF</a>
-              <a href="#" class="mega-item" data-tool="pdf-to-text">Extract Text</a>
+              <a href="/compress-pdf/" class="mega-item" data-tool="compress">Compress PDF</a>
+              <a href="/protect-pdf/" class="mega-item" data-tool="protect">Protect PDF</a>
+              <a href="/unlock-pdf/" class="mega-item" data-tool="unlock">Unlock PDF</a>
+              <a href="/watermark-pdf/" class="mega-item" data-tool="watermark">Watermark PDF</a>
+              <a href="/grayscale-pdf/" class="mega-item" data-tool="grayscale">Grayscale PDF</a>
+              <a href="/pdf-to-text/" class="mega-item" data-tool="pdf-to-text">Extract Text</a>
             </div>
           </div>
         </div>
@@ -577,11 +587,46 @@
 
   </main>
 
+  <!-- PDFAXIOM:GENERATO -->
+  <section class="seo-blocco">
+    <nav class="seo-indice">
+      <h2>All 24 PDF tools</h2>
+      <ul>
+        <li><a href="/pdf-to-word/">Convert PDF to Word</a></li>
+        <li><a href="/word-to-pdf/">Convert Word to PDF</a></li>
+        <li><a href="/pdf-to-excel/">Convert PDF to Excel</a></li>
+        <li><a href="/excel-to-pdf/">Convert Excel to PDF</a></li>
+        <li><a href="/pdf-to-powerpoint/">Convert PDF to PowerPoint</a></li>
+        <li><a href="/powerpoint-to-pdf/">Convert PowerPoint to PDF</a></li>
+        <li><a href="/pdf-to-html/">Convert PDF to HTML</a></li>
+        <li><a href="/html-to-pdf/">Convert HTML to PDF</a></li>
+        <li><a href="/markdown-to-pdf/">Convert Markdown to PDF</a></li>
+        <li><a href="/compress-pdf/">Compress PDF</a></li>
+        <li><a href="/protect-pdf/">Password Protect a PDF</a></li>
+        <li><a href="/unlock-pdf/">Unlock a PDF</a></li>
+        <li><a href="/grayscale-pdf/">Convert a PDF to Greyscale</a></li>
+        <li><a href="/pdf-to-markdown/">Convert PDF to Markdown</a></li>
+        <li><a href="/merge-pdf/">Merge PDF Files</a></li>
+        <li><a href="/split-pdf/">Split a PDF</a></li>
+        <li><a href="/pdf-to-jpg/">Convert PDF to JPG</a></li>
+        <li><a href="/jpg-to-pdf/">Convert Images to PDF</a></li>
+        <li><a href="/rotate-pdf/">Rotate PDF Pages</a></li>
+        <li><a href="/delete-pdf-pages/">Delete Pages from a PDF</a></li>
+        <li><a href="/add-page-numbers/">Add Page Numbers to a PDF</a></li>
+        <li><a href="/watermark-pdf/">Add a Watermark to a PDF</a></li>
+        <li><a href="/extract-images-from-pdf/">Extract Images from a PDF</a></li>
+        <li><a href="/pdf-to-text/">Extract Text from a PDF</a></li>
+      </ul>
+    </nav>
+  </section>
+  <!-- /PDFAXIOM:GENERATO -->
+
+
   <!-- Clean Footer -->
   <footer class="app-footer">
     <div class="footer-container">
       <div class="logo">
-        <img src="assets/logo-dark-mode.png" alt="PDFAXIOM Logo" class="brand-logo-img">
+        <img src="/assets/logo-dark-mode.png" alt="PDFAXIOM Logo" class="brand-logo-img">
       </div>
       <div class="footer-row">
         <p class="copyright">© 2026 PDFAXIOM. Free • No signup required.</p>
@@ -618,10 +663,13 @@
   </div>
 
   <!-- App Scripts (v8.0 100% Browser Engine) -->
-  <script src="js/i18n.js?v=9.3"></script>
-  <script src="js/ad-manager.js?v=9.0"></script>
-  <script src="js/pdf-engine.js?v=9.3"></script>
-  <script src="js/api-client.js?v=9.3"></script>
-  <script src="js/app.js?v=9.3"></script>
+  <script>window.PDFAXIOM_LANG="en";</script>
+  <script src="/js/rotte.js?v=10.0"></script>
+  <script src="/js/i18n.js?v=10.0"></script>
+  <script src="/js/ad-manager.js?v=10.0"></script>
+  <script src="/js/librerie.js?v=10.0"></script>
+  <script src="/js/pdf-engine.js?v=10.0"></script>
+  <script src="/js/api-client.js?v=10.0"></script>
+  <script src="/js/app.js?v=10.0"></script>
 </body>
 </html>

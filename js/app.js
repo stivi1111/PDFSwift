@@ -30,10 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const downloadBox = document.getElementById('downloadBox');
   const downloadBtn = document.getElementById('downloadBtn');
 
-  // Configure PDF.js Worker
-  if (window.pdfjsLib) {
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-  }
+  // pdf.js non c'e' piu' al caricamento della pagina: viene preso da
+  // js/librerie.js quando serve, ed e' li' che gli si dice dov'e' il worker.
 
   // Light / Dark Theme Controller
   const themeToggleBtn = document.getElementById('themeToggleBtn');
@@ -236,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Open Workspace View
-  function openToolWorkspace(toolId) {
+  function openToolWorkspace(toolId, silenzioso) {
     const config = toolsConfig[toolId];
     if (!config) return;
 
@@ -262,26 +260,61 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.category-tabs').style.display = 'none';
     toolsGrid.style.display = 'none';
     workspace.style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Ogni strumento ha il suo indirizzo: aggiornarlo rende la pagina
+    // condivisibile, apre il tasto "indietro" del browser e permette a Google
+    // di indicizzare i 24 strumenti separatamente invece che come una pagina
+    // sola. Su "scrivi" saltiamo lo scorrimento: la pagina e' gia' in cima.
+    if (!silenzioso) {
+      const indirizzo = window.PDFAxiomRotte && window.PDFAxiomRotte.indirizzo(toolId);
+      if (indirizzo && location.pathname !== indirizzo) {
+        history.pushState({ tool: toolId }, '', indirizzo);
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 
   // Back Button Event & Logo Click to return Home
-  const returnHome = () => {
+  const returnHome = (silenzioso) => {
     state.activeTool = null;
     state.files = [];
     workspace.style.display = 'none';
     heroSection.style.display = 'block';
     document.querySelector('.category-tabs').style.display = 'flex';
     toolsGrid.style.display = 'grid';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (!silenzioso) {
+      const casa = window.PDFAxiomRotte ? window.PDFAxiomRotte.casa() : '/';
+      if (location.pathname !== casa) history.pushState({ tool: null }, '', casa);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
-  backBtn.addEventListener('click', returnHome);
+  backBtn.addEventListener('click', () => returnHome());
   document.querySelectorAll('.logo').forEach(logoEl => {
     logoEl.addEventListener('click', (e) => {
       e.preventDefault();
       returnHome();
     });
+  });
+
+  // ---- Indirizzo della pagina e strumento aperto -------------------------
+  // Ogni pagina generata dichiara quale strumento rappresenta; da li' si apre
+  // subito quello giusto, senza toccare la cronologia (l'indirizzo e' gia'
+  // corretto: l'utente ci e' arrivato direttamente).
+  if (window.PDFAXIOM_TOOL && toolsConfig[window.PDFAXIOM_TOOL]) {
+    openToolWorkspace(window.PDFAXIOM_TOOL, true);
+  }
+
+  // Tasto indietro e avanti del browser.
+  window.addEventListener('popstate', () => {
+    const atteso = window.PDFAxiomRotte
+      ? window.PDFAxiomRotte.strumentoDaIndirizzo(location.pathname)
+      : null;
+    if (atteso && toolsConfig[atteso]) {
+      openToolWorkspace(atteso, true);
+    } else {
+      returnHome(true);
+    }
   });
 
   // Global Drag & Drop Handling across the ENTIRE Window / Page
@@ -437,6 +470,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const config = toolsConfig[state.activeTool];
 
     try {
+      // Gli strumenti che lavorano nel browser hanno bisogno di una libreria
+      // che la pagina non scarica piu' all'apertura: si prende adesso, che e'
+      // il momento in cui l'utente ha davvero deciso di usarla.
+      await PDFLibrerie.perStrumento(state.activeTool);
+
       if (state.activeTool === 'merge') {
         const updateProgress = (pct) => {
           progressBarFill.style.width = `${pct}%`;

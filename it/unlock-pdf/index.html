@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<!-- Pagina generata da build/genera.js.
+     Non modificarla a mano: le modifiche vanno in build/modello.html
+     (struttura) o in build/contenuti/*.js (testi), poi si rilancia
+     "node build/genera.js". -->
+<html lang="it" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sbloccare PDF — Togli password e restrizioni | PDFAxiom</title>
+  <meta name="description" content="Rimuovi la password da un PDF tuo per poterlo stampare, copiare e modificare. Gratis, senza registrazione.">
+  <link rel="canonical" href="https://pdfaxiom.com/it/unlock-pdf/">
+  <link rel="alternate" hreflang="en" href="https://pdfaxiom.com/unlock-pdf/">
+  <link rel="alternate" hreflang="it" href="https://pdfaxiom.com/it/unlock-pdf/">
+  <link rel="alternate" hreflang="es" href="https://pdfaxiom.com/es/unlock-pdf/">
+  <link rel="alternate" hreflang="de" href="https://pdfaxiom.com/de/unlock-pdf/">
+  <link rel="alternate" hreflang="zh" href="https://pdfaxiom.com/zh/unlock-pdf/">
+  <link rel="alternate" hreflang="ro" href="https://pdfaxiom.com/ro/unlock-pdf/">
+  <link rel="alternate" hreflang="hi" href="https://pdfaxiom.com/hi/unlock-pdf/">
+  <link rel="alternate" hreflang="ru" href="https://pdfaxiom.com/ru/unlock-pdf/">
+  <link rel="alternate" hreflang="x-default" href="https://pdfaxiom.com/unlock-pdf/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PDFAxiom">
+  <meta property="og:title" content="Sbloccare PDF — Togli password e restrizioni | PDFAxiom">
+  <meta property="og:description" content="Rimuovi la password da un PDF tuo per poterlo stampare, copiare e modificare. Gratis, senza registrazione.">
+  <meta property="og:url" content="https://pdfaxiom.com/it/unlock-pdf/">
+  <meta property="og:locale" content="it">
+  <meta property="og:image" content="https://pdfaxiom.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sbloccare PDF — Togli password e restrizioni | PDFAxiom">
+  <meta name="twitter:description" content="Rimuovi la password da un PDF tuo per poterlo stampare, copiare e modificare. Gratis, senza registrazione.">
+  <meta name="twitter:image" content="https://pdfaxiom.com/assets/og-image.png">
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Sbloccare un PDF","url":"https://pdfaxiom.com/it/unlock-pdf/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","description":"Rimuovi la password da un PDF tuo per poterlo stampare, copiare e modificare. Gratis, senza registrazione.","inLanguage":"it","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Apre un PDF di cui non conosco la password?","acceptedAnswer":{"@type":"Answer","text":"No, e non è pensato per questo. Toglie la protezione da documenti che hai già il diritto di aprire."}},{"@type":"Question","name":"Toglie anche i limiti di stampa e copia?","acceptedAnswer":{"@type":"Answer","text":"Sì. Una volta rimossa la cifratura se ne vanno anche i contrassegni sui permessi."}},{"@type":"Question","name":"Il contenuto cambia?","acceptedAnswer":{"@type":"Answer","text":"No. Viene rimossa solo la protezione: pagine, testo e immagini restano intatti."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"Sbloccare un PDF","step":[{"@type":"HowToStep","position":1,"text":"Carica il PDF protetto."},{"@type":"HowToStep","position":2,"text":"Inserisci la password attuale."},{"@type":"HowToStep","position":3,"text":"Scarica il file sbloccato."}]}</script>
+  <link rel="icon" id="dynamicFavicon" type="image/png" href="/assets/favicon-light-mode.png">
+  
+  <!-- Il font ora e' nostro: niente collegamento a fonts.googleapis.com, che
+       bloccava il disegno della pagina e faceva passare da Google il browser
+       di chi ci visita. -->
+  <link rel="preload" href="/assets/font/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/font.css?v=10.0">
+  <link rel="stylesheet" href="/css/styles.css?v=10.0">
+  
+  <!-- Le librerie PDF non si caricano piu' qui: erano 949 KB a ogni visita,
+       di cui 649 KB per strumenti che oggi girano sul server e non le usano
+       mai. Ora le prende js/librerie.js quando l'utente avvia una conversione
+       che ne ha davvero bisogno. -->
+
+  <!-- Analytics self-hosted: nessun cookie, nessun dato personale raccolto -->
+  <script defer src="https://api.pdfaxiom.com/s.js"
+          data-website-id="f41ebfb5-4efb-4211-9bf9-2641dd21986a"></script>
+</head>
+<body>
+
+  <!-- Header / Navigation -->
+  <header class="app-header">
+    <div class="header-container">
+      
+      <!-- Left: Brand Logo -->
+      <div class="logo-wrapper">
+        <a href="/it/" class="logo">
+          <img src="/assets/logo-dark-mode.png" alt="PDFAXIOM Logo" class="brand-logo-img">
+        </a>
+      </div>
+
+      <!-- Center: 100% Perfectly Centered Navbar Category Buttons -->
+      <nav class="header-nav">
+        
+        <!-- 1. Convert PDF Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="nav-btn">
+            <span>Convert PDF</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown dropdown-sm">
+            <div class="mini-dropdown-grid">
+              <div class="mini-col">
+                <div class="mega-title">CONVERT FROM PDF</div>
+                <a href="/it/pdf-to-word/" class="mega-item" data-tool="pdf-to-word">PDF to Word</a>
+                <a href="/it/pdf-to-excel/" class="mega-item" data-tool="pdf-to-excel">PDF to Excel</a>
+                <a href="/it/pdf-to-powerpoint/" class="mega-item" data-tool="pdf-to-pptx">PDF to PowerPoint</a>
+                <a href="/it/pdf-to-markdown/" class="mega-item" data-tool="pdf-to-md">PDF to Markdown</a>
+                <a href="/it/pdf-to-html/" class="mega-item" data-tool="pdf-to-html">PDF to HTML</a>
+              </div>
+              <div class="mini-col">
+                <div class="mega-title">CONVERT TO PDF</div>
+                <a href="/it/word-to-pdf/" class="mega-item" data-tool="word-to-pdf">Word to PDF</a>
+                <a href="/it/excel-to-pdf/" class="mega-item" data-tool="excel-to-pdf">Excel to PDF</a>
+                <a href="/it/powerpoint-to-pdf/" class="mega-item" data-tool="pptx-to-pdf">PowerPoint to PDF</a>
+                <a href="/it/markdown-to-pdf/" class="mega-item" data-tool="md-to-pdf">Markdown to PDF</a>
+                <a href="/it/html-to-pdf/" class="mega-item" data-tool="html-to-pdf">HTML to PDF</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Merge & Split Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="nav-btn">
+            <span>Merge & Split</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown dropdown-single">
+            <div class="mini-col">
+              <a href="/it/merge-pdf/" class="mega-item" data-tool="merge">Merge PDF</a>
+              <a href="/it/split-pdf/" class="mega-item" data-tool="split">Split PDF</a>
+              <a href="/it/delete-pdf-pages/" class="mega-item" data-tool="delete-pages">Delete Pages</a>
+              <a href="/it/add-page-numbers/" class="mega-item" data-tool="page-numbers">Page Numbers</a>
+              <a href="/it/rotate-pdf/" class="mega-item" data-tool="rotate">Rotate PDF</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Image Tools Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="nav-btn">
+            <span>Image Tools</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown dropdown-single">
+            <div class="mini-col">
+              <a href="/it/jpg-to-pdf/" class="mega-item" data-tool="img-to-pdf">Images to PDF</a>
+              <a href="/it/pdf-to-jpg/" class="mega-item" data-tool="pdf-to-img">PDF to JPG / PNG</a>
+              <a href="/it/extract-images-from-pdf/" class="mega-item" data-tool="extract-images">Extract Images</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Edit & Security Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="nav-btn">
+            <span>Edit & Security</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown dropdown-single">
+            <div class="mini-col">
+              <a href="/it/compress-pdf/" class="mega-item" data-tool="compress">Compress PDF</a>
+              <a href="/it/protect-pdf/" class="mega-item" data-tool="protect">Protect PDF</a>
+              <a href="/it/unlock-pdf/" class="mega-item" data-tool="unlock">Unlock PDF</a>
+              <a href="/it/watermark-pdf/" class="mega-item" data-tool="watermark">Watermark PDF</a>
+              <a href="/it/grayscale-pdf/" class="mega-item" data-tool="grayscale">Grayscale PDF</a>
+              <a href="/it/pdf-to-text/" class="mega-item" data-tool="pdf-to-text">Extract Text</a>
+            </div>
+          </div>
+        </div>
+
+      </nav>
+
+      <!-- Right: International Language Selector & Mobile Menu Trigger -->
+      <div class="header-actions">
+        <button class="nav-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation Menu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <span>Tools</span>
+        </button>
+
+        <div class="dropdown-wrapper lang-dropdown-wrapper">
+          <button class="nav-btn lang-btn" id="langBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span id="currentLangText">EN</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown dropdown-single lang-dropdown-menu">
+            <div class="mini-col">
+              <a href="#" class="mega-item lang-option active" data-lang="en">English (EN)</a>
+              <a href="#" class="mega-item lang-option" data-lang="it">Italiano (IT)</a>
+              <a href="#" class="mega-item lang-option" data-lang="es">Español (ES)</a>
+              <a href="#" class="mega-item lang-option" data-lang="de">Deutsch (DE)</a>
+              <a href="#" class="mega-item lang-option" data-lang="zh">中文 (ZH)</a>
+              <a href="#" class="mega-item lang-option" data-lang="ro">Română (RO)</a>
+              <a href="#" class="mega-item lang-option" data-lang="hi">हिन्दी (HI)</a>
+              <a href="#" class="mega-item lang-option" data-lang="ru">Русский (RU)</a>
+            </div>
+          </div>
+        </div>
+
+        <button class="nav-btn theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Light and Dark Mode" title="Toggle Theme">
+          <svg class="sun-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M22 12h2"/><path d="m4.93 19.07 1.41-1.41"/><path d="m17.66 6.34 1.41-1.41"/></svg>
+          <svg class="moon-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="heroSection" class="hero">
+    <p class="hero-titolo">PDFAXIOM All in One</p>
+    <p>Convert PDF to Word, Word to PDF, Excel, PowerPoint, Merge, Split, Compress & Edit</p>
+    <p class="hero-subtext">Free to use, no signup required.</p>
+  </section>
+
+  <!-- Main Content & Massive Tools Grid -->
+  <main class="main-content">
+    
+    <!-- Category Filter Tabs -->
+    <div class="category-tabs">
+      <button class="tab-btn active" data-category="all">All Tools</button>
+      <button class="tab-btn" data-category="convert">Convert & Office</button>
+      <button class="tab-btn" data-category="organize">Merge & Organize</button>
+      <button class="tab-btn" data-category="security">Security & Edit</button>
+    </div>
+
+    <!-- Main Tools Grid -->
+    <div id="toolsGrid" class="tools-grid">
+
+      <!-- PAIR 1: PDF to Word & Word to PDF (Tier 1 ~4M & 2.5M) -->
+      <div class="tool-card" data-tool="pdf-to-word" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF to Word</h3>
+            <span class="tool-badge hot">POPULAR</span>
+          </div>
+          <p>Convert PDF into editable Microsoft Word (.docx).</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="word-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Word to PDF</h3>
+            <span class="tool-badge hot">POPULAR</span>
+          </div>
+          <p>Convert Word (.docx) documents into clean PDF.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 2: Compress PDF (3rd) & Merge PDF (4th) -->
+      <div class="tool-card" data-tool="compress" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Compress PDF</h3>
+            <span class="tool-badge hot">POPULAR</span>
+          </div>
+          <p>Shrink PDF file size for easy email sharing.</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="merge" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h10a2 2 0 0 1 2 2v10"/><path d="M4 10h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Merge PDF</h3>
+            <span class="tool-badge hot">POPULAR</span>
+          </div>
+          <p>Combine multiple PDF files into one document.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 3: Images to PDF & PDF to JPG/PNG -->
+      <div class="tool-card" data-tool="img-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Images to PDF</h3>
+            <span class="tool-badge">IMAGES</span>
+          </div>
+          <p>Convert JPG, PNG, or WebP photos into a PDF.</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="pdf-to-img" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF to JPG / PNG</h3>
+            <span class="tool-badge">IMAGES</span>
+          </div>
+          <p>Extract PDF pages into JPG or PNG images.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 4: PDF to Excel & Excel to PDF (Tier 2) -->
+      <div class="tool-card" data-tool="pdf-to-excel" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 12h8"/><path d="M8 16h8"/><path d="M12 10v8"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF to Excel</h3>
+            <span class="tool-badge office">OFFICE</span>
+          </div>
+          <p>Extract PDF tables into Excel (.xlsx / .csv).</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="excel-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 12h8"/><path d="M8 16h8"/><path d="M12 10v8"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Excel to PDF</h3>
+            <span class="tool-badge office">OFFICE</span>
+          </div>
+          <p>Convert Excel spreadsheets (.xlsx) to PDF.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 5: PDF to PowerPoint & PowerPoint to PDF (Tier 2) -->
+      <div class="tool-card" data-tool="pdf-to-pptx" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF to PowerPoint</h3>
+            <span class="tool-badge slides">SLIDES</span>
+          </div>
+          <p>Turn PDF pages into PowerPoint slides (.pptx).</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="pptx-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PowerPoint to PDF</h3>
+            <span class="tool-badge slides">SLIDES</span>
+          </div>
+          <p>Convert PowerPoint (.pptx) into PDF file.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 6: Split PDF & Delete Pages (Tier 2 & 3 - Edit & Organize) -->
+      <div class="tool-card" data-tool="split" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Split PDF</h3>
+          </div>
+          <p>Separate PDF pages or extract custom page ranges.</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="delete-pages" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Delete Pages</h3>
+          </div>
+          <p>Remove unwanted pages from a PDF document.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 7: Unlock PDF & Protect PDF (Tier 3 - Security Pair) -->
+      <div class="tool-card" data-tool="unlock" data-category="security">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4.5" y="11" width="15" height="11" rx="2"/><path d="M7.5 11V6.5a4.5 4.5 0 0 1 9 0v-1"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Unlock PDF</h3>
+          </div>
+          <p>Remove security passwords & restrictions from PDF.</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="protect" data-category="security">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4.5" y="11" width="15" height="11" rx="2"/><path d="M7.5 11V6.5a4.5 4.5 0 0 1 9 0V11"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Protect PDF</h3>
+          </div>
+          <p>Encrypt PDF with custom user password.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 8: Rotate PDF & Page Numbers (Tier 3 - Page Adjustments) -->
+      <div class="tool-card" data-tool="rotate" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><polyline points="21 3 21 8 16 8"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Rotate PDF</h3>
+          </div>
+          <p>Rotate PDF pages 90°, 180°, or 270° degrees.</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="page-numbers" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M10.5 14l2-2v7"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Page Numbers</h3>
+          </div>
+          <p>Add page numbers into your PDF document header/footer.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 9: Watermark PDF & Grayscale PDF (Tier 3 & 4 - Document Formatting) -->
+      <div class="tool-card" data-tool="watermark" data-category="security">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 11c0 0-3 2.8-3 4.2a3 3 0 0 0 6 0c0-1.4-3-4.2-3-4.2z"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Watermark PDF</h3>
+          </div>
+          <p>Add custom text watermark across PDF pages.</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="grayscale" data-category="security">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Grayscale PDF</h3>
+          </div>
+          <p>Convert colored PDF documents into Black & White.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 10: PDF to HTML & HTML to PDF (Tier 4 - Web Converters) -->
+      <div class="tool-card" data-tool="pdf-to-html" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF to HTML</h3>
+          </div>
+          <p>Convert PDF documents into web-ready HTML code.</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="html-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>HTML to PDF</h3>
+          </div>
+          <p>Convert web HTML text code into a PDF file.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 11: PDF to Markdown & Markdown to PDF (Tier 5 - Emerging AI & RAG Pair) -->
+      <div class="tool-card" data-tool="pdf-to-md" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF to Markdown</h3>
+            <span class="tool-badge">AI READY</span>
+          </div>
+          <p>Convert PDF into clean Markdown (.md) for LLMs & Notion.</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="md-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Markdown to PDF</h3>
+            <span class="tool-badge">AI READY</span>
+          </div>
+          <p>Convert Markdown (.md) files into styled PDF documents.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 12: Extract Text & Extract Images (Tier 4 - Extractor Tools) -->
+      <div class="tool-card" data-tool="pdf-to-text" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Extract Text</h3>
+          </div>
+          <p>Extract all readable plain text into a .txt file.</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="extract-images" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Extract Images</h3>
+          </div>
+          <p>Extract embedded images inside PDF into a ZIP archive.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Active Tool Workspace View (Hidden by default) -->
+    <div id="toolWorkspace" class="tool-workspace">
+      <div class="workspace-header">
+        <button id="backBtn" class="back-btn back-btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span>Back to All Tools</span>
+        </button>
+
+        <div class="workspace-title-box">
+          <h2 id="workspaceTitle">Tool Title</h2>
+          <p id="workspaceDesc">Tool description goes here.</p>
+        </div>
+      </div>
+
+      <!-- Dropzone -->
+      <div id="dropzone" class="dropzone">
+        <div class="dropzone-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </div>
+        <div class="dropzone-text">
+          <h3>Drag & Drop files here</h3>
+          <p>Multiple files • Up to 100 MB each</p>
+        </div>
+        <input type="file" id="fileInput" style="display:none;">
+      </div>
+
+      <!-- File Previews Grid -->
+      <div id="filePreviewList" class="file-list-preview"></div>
+
+      <!-- Dynamic Settings Form -->
+      <div id="toolSettings" class="tool-settings" style="display:none;"></div>
+
+      <!-- Action Button & Progress -->
+      <div class="process-actions">
+        <button id="processBtn" class="btn-primary" disabled>
+          <span id="processBtnText">Process PDF</span>
+        </button>
+      </div>
+
+      <div id="progressContainer" class="progress-container">
+        <p id="progressText">Processing document client-side...</p>
+        <div class="progress-bar-bg">
+          <div id="progressBarFill" class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <!-- Download Box -->
+      <div id="downloadBox" class="download-box">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div>
+          <h3>File is ready!</h3>
+          <p>Your file is ready to download.</p>
+        </div>
+        <div class="download-buttons-group">
+          <button id="downloadBtn" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download File
+          </button>
+          <button id="resetToolBtn" class="btn-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
+            Convert Another File
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- PDFAXIOM:GENERATO -->
+  <section class="seo-blocco">
+    <h1>Sbloccare un PDF</h1>
+    <p class="seo-dove"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></svg> Elaborato sui nostri server e cancellato subito dopo</p>
+    <p>Toglie la password e le restrizioni su stampa, copia e modifica da un PDF, restituendo un file normale che puoi usare liberamente. Devi conoscere la password attuale.</p>
+
+    <h2>Come si fa</h2>
+    <ol class="seo-passi">
+        <li>Carica il PDF protetto.</li>
+        <li>Inserisci la password attuale.</li>
+        <li>Scarica il file sbloccato.</li>
+    </ol>
+
+    <h2>Domande frequenti</h2>
+    <div class="seo-faq">
+        <details>
+          <summary>Apre un PDF di cui non conosco la password?</summary>
+          <p>No, e non è pensato per questo. Toglie la protezione da documenti che hai già il diritto di aprire.</p>
+        </details>
+        <details>
+          <summary>Toglie anche i limiti di stampa e copia?</summary>
+          <p>Sì. Una volta rimossa la cifratura se ne vanno anche i contrassegni sui permessi.</p>
+        </details>
+        <details>
+          <summary>Il contenuto cambia?</summary>
+          <p>No. Viene rimossa solo la protezione: pagine, testo e immagini restano intatti.</p>
+        </details>
+    </div>
+
+    <nav class="seo-indice">
+      <h2>Tutti i 24 strumenti PDF</h2>
+      <ul>
+        <li><a href="/it/pdf-to-word/">Convertire PDF in Word</a></li>
+        <li><a href="/it/word-to-pdf/">Convertire Word in PDF</a></li>
+        <li><a href="/it/pdf-to-excel/">Convertire PDF in Excel</a></li>
+        <li><a href="/it/excel-to-pdf/">Convertire Excel in PDF</a></li>
+        <li><a href="/it/pdf-to-powerpoint/">Convertire PDF in PowerPoint</a></li>
+        <li><a href="/it/powerpoint-to-pdf/">Convertire PowerPoint in PDF</a></li>
+        <li><a href="/it/pdf-to-html/">Convertire PDF in HTML</a></li>
+        <li><a href="/it/html-to-pdf/">Convertire HTML in PDF</a></li>
+        <li><a href="/it/markdown-to-pdf/">Convertire Markdown in PDF</a></li>
+        <li><a href="/it/compress-pdf/">Comprimere un PDF</a></li>
+        <li><a href="/it/protect-pdf/">Proteggere un PDF con password</a></li>
+        <li><a href="/it/unlock-pdf/" aria-current="page">Sbloccare un PDF</a></li>
+        <li><a href="/it/grayscale-pdf/">Convertire un PDF in scala di grigi</a></li>
+        <li><a href="/it/pdf-to-markdown/">Convertire PDF in Markdown</a></li>
+        <li><a href="/it/merge-pdf/">Unire più file PDF</a></li>
+        <li><a href="/it/split-pdf/">Dividere un PDF</a></li>
+        <li><a href="/it/pdf-to-jpg/">Convertire PDF in JPG</a></li>
+        <li><a href="/it/jpg-to-pdf/">Convertire immagini in PDF</a></li>
+        <li><a href="/it/rotate-pdf/">Ruotare le pagine di un PDF</a></li>
+        <li><a href="/it/delete-pdf-pages/">Eliminare pagine da un PDF</a></li>
+        <li><a href="/it/add-page-numbers/">Aggiungere i numeri di pagina a un PDF</a></li>
+        <li><a href="/it/watermark-pdf/">Aggiungere una filigrana a un PDF</a></li>
+        <li><a href="/it/extract-images-from-pdf/">Estrarre le immagini da un PDF</a></li>
+        <li><a href="/it/pdf-to-text/">Estrarre il testo da un PDF</a></li>
+      </ul>
+    </nav>
+  </section>
+  <!-- /PDFAXIOM:GENERATO -->
+
+
+  <!-- Clean Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="logo">
+        <img src="/assets/logo-dark-mode.png" alt="PDFAXIOM Logo" class="brand-logo-img">
+      </div>
+      <div class="footer-row">
+        <p class="copyright">© 2026 PDFAXIOM. Free • No signup required.</p>
+        <a href="#" id="aboutUsLink" class="footer-about-right">Chi Siamo</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- About Us Floating Modal Overlay -->
+  <div class="modal-overlay" id="aboutModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="modal-close" id="modalCloseBtn" aria-label="Close Modal">&times;</button>
+      <div class="modal-header">
+        <div class="modal-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        </div>
+        <h3 id="modalTitle">Chi Siamo - PDFAXIOM</h3>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section">
+          <h4 id="modalMissionTitle">La Nostra Missione</h4>
+          <p id="modalMissionText">PDFAXIOM nasce per offrire una suite di strumenti PDF gratuita, accessibile da qualsiasi dispositivo e senza registrazione.</p>
+        </div>
+        <div class="modal-section">
+          <h4 id="modalPrivacyTitle">Come trattiamo i tuoi file</h4>
+          <p id="modalPrivacyText">Gran parte degli strumenti elabora i documenti direttamente nel tuo browser: quei file non lasciano mai il tuo dispositivo. Le conversioni più complesse (Word, Excel, PowerPoint, HTML, compressione, protezione) vengono eseguite sui nostri server: il file viene elaborato e cancellato subito dopo, senza essere conservato né condiviso.</p>
+        </div>
+        <div class="modal-section">
+          <h4 id="modalContactTitle">Contatti e Supporto</h4>
+          <p id="modalContactText">Hai domande, suggerimenti o richieste? Scrivici a <a href="mailto:support@pdfaxiom.com" class="modal-link">support@pdfaxiom.com</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- App Scripts (v8.0 100% Browser Engine) -->
+  <script>window.PDFAXIOM_LANG="it";window.PDFAXIOM_TOOL="unlock";</script>
+  <script src="/js/rotte.js?v=10.0"></script>
+  <script src="/js/i18n.js?v=10.0"></script>
+  <script src="/js/ad-manager.js?v=10.0"></script>
+  <script src="/js/librerie.js?v=10.0"></script>
+  <script src="/js/pdf-engine.js?v=10.0"></script>
+  <script src="/js/api-client.js?v=10.0"></script>
+  <script src="/js/app.js?v=10.0"></script>
+</body>
+</html>

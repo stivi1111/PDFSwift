@@ -617,7 +617,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const toolsT = toolTranslations[lang] || toolTranslations.en;
 
     // Update Text Elements
-    const heroH1 = document.querySelector('.hero h1');
+    // Sulle pagine dei singoli strumenti il titolo dell'intestazione non e'
+    // un h1: l'unico h1 della pagina deve essere il nome dello strumento.
+    const heroH1 = document.querySelector('.hero h1, .hero .hero-titolo');
     if (heroH1) heroH1.textContent = t.heroTitle;
 
     const heroP = document.querySelector('.hero p');

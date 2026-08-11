@@ -1420,3 +1420,160 @@ button, .tool-card, .tab-btn, .mega-item, .nav-btn {
 body {
   -webkit-overflow-scrolling: touch;
 }
+
+/* ==========================================================================
+   Contenuto delle pagine per strumento
+
+   Ogni strumento ha il suo indirizzo e la sua pagina. Questo blocco e' cio'
+   che un motore di ricerca legge: resta visibile anche quando lo spazio di
+   lavoro e' aperto, perche' e' contenuto vero, non un riempitivo nascosto.
+   ========================================================================== */
+.seo-blocco {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 1rem;
+}
+
+.seo-blocco h1 {
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 0.9rem;
+}
+
+.seo-blocco h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 2.2rem 0 0.9rem;
+  letter-spacing: -0.01em;
+}
+
+.seo-blocco p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  font-size: 0.97rem;
+}
+
+.seo-blocco strong { color: var(--text-primary); font-weight: 600; }
+
+.seo-dove {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.7rem;
+  margin-bottom: 1.4rem;
+}
+
+.seo-dove svg { flex-shrink: 0; }
+
+/* I passi sono una sequenza: la numerazione dice qualcosa di vero. */
+.seo-passi { list-style: none; counter-reset: passo; display: grid; gap: 0.8rem; }
+
+.seo-passi li {
+  counter-increment: passo;
+  display: grid;
+  grid-template-columns: 1.6rem 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.seo-passi li::before {
+  content: counter(passo);
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 1.6rem;
+  height: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.seo-faq { display: grid; gap: 0.6rem; }
+
+.seo-faq details {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 1rem;
+}
+
+.seo-faq summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.93rem;
+  color: var(--text-primary);
+  list-style: none;
+}
+
+.seo-faq summary::-webkit-details-marker { display: none; }
+.seo-faq summary::after { content: " +"; color: var(--text-muted); float: right; }
+.seo-faq details[open] summary::after { content: " −"; }
+
+.seo-faq details p {
+  margin: 0.7rem 0 0;
+  font-size: 0.92rem;
+}
+
+/* Elenco di collegamenti veri a tutti gli strumenti: e' la strada che un
+   motore di ricerca percorre per trovare le altre 23 pagine. Le schede in
+   alto sono div con un gestore di click, e un motore non le segue. */
+.seo-indice {
+  border-top: 1px solid var(--border-color);
+  margin-top: 2.5rem;
+  padding-top: 1.6rem;
+}
+
+.seo-indice ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 0.3rem 1rem;
+}
+
+.seo-indice a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.87rem;
+  padding: 0.28rem 0;
+  display: block;
+  border-bottom: 1px solid transparent;
+}
+
+.seo-indice a:hover {
+  color: var(--text-primary);
+  border-bottom-color: var(--border-color);
+}
+
+.seo-indice a[aria-current="page"] { color: var(--text-primary); font-weight: 600; }
+
+@media (max-width: 640px) {
+  .seo-blocco { padding-top: 2rem; }
+}
+
+/* Sulle pagine dei singoli strumenti il titolo dell'intestazione non e' un h1
+   (l'h1 e' il nome dello strumento), ma deve vedersi identico. */
+.hero .hero-titolo {
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: var(--text-primary);
+}
