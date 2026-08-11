@@ -67,7 +67,9 @@ const PDFAxiomAPI = (() => {
       const xhr = new XMLHttpRequest();
       xhr.open('POST', `${API_BASE}/v1/convert/${slug}`);
       xhr.responseType = 'blob';
-      xhr.timeout = 180000;
+      // Allineato al timeout del gateway (300s): se il browser mollasse prima,
+      // il server continuerebbe a convertire per nulla, sottraendo CPU agli altri.
+      xhr.timeout = 300000;
 
       let ticker = null;
       const stopTicker = () => { if (ticker) { clearInterval(ticker); ticker = null; } };
