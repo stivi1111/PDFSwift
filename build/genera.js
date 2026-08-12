@@ -20,6 +20,7 @@ const SITO = 'https://pdfaxiom.com';
 const VERSIONE = '10.0';
 
 const strumenti = require('./strumenti');
+const brevi = require('./contenuti/brevi');
 
 // L'inglese vive nella radice del sito, le altre lingue in una cartella.
 // LINGUE=en,it limita la generazione: comodo per provare una modifica al
@@ -87,20 +88,37 @@ const ICONA_SERVER =
   'stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/>' +
   '<rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></svg>';
 
-/** L'elenco di collegamenti veri verso tutti gli strumenti. */
+/** L'elenco di collegamenti veri verso tutti gli strumenti, in quattro colonne.
+ *
+ * Non e' decorazione: e' la strada che un motore di ricerca percorre per
+ * arrivare alle altre 23 pagine, perche' le schede in cima sono div con un
+ * gestore di click e nessun crawler le segue. Raggruppato per famiglia perche'
+ * ventiquattro righe di fila che cominciano tutte con "Convert" non si leggono.
+ */
 function indiceStrumenti(lingua, slugCorrente) {
   const c = contenuti[lingua];
-  const voci = strumenti.map((s) => {
-    const testo = esc(c.strumenti[s.slug].h1);
-    const corrente = s.slug === slugCorrente ? ' aria-current="page"' : '';
-    return `        <li><a href="${indirizzo(lingua, s.slug)}"${corrente}>${testo}</a></li>`;
+  const b = brevi[lingua];
+
+  const colonne = strumenti.GRUPPI.map((gruppo) => {
+    const voci = strumenti.filter((s) => s.gruppo === gruppo).map((s) => {
+      const testo = esc(b.nomi[s.slug]);
+      const corrente = s.slug === slugCorrente ? ' aria-current="page"' : '';
+      return `          <li><a href="${indirizzo(lingua, s.slug)}"${corrente}>${testo}</a></li>`;
+    }).join('\n');
+
+    return `        <div class="seo-colonna">
+          <h3>${esc(b.gruppi[gruppo])}</h3>
+          <ul>
+${voci}
+          </ul>
+        </div>`;
   }).join('\n');
 
   return `    <nav class="seo-indice">
       <h2>${esc(c.etichette.altri)}</h2>
-      <ul>
-${voci}
-      </ul>
+      <div class="seo-colonne">
+${colonne}
+      </div>
     </nav>`;
 }
 

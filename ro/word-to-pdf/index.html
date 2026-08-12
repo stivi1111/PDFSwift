@@ -43,8 +43,8 @@
        bloccava il disegno della pagina e faceva passare da Google il browser
        di chi ci visita. -->
   <link rel="preload" href="/assets/font/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/css/font.css?v=10.0">
-  <link rel="stylesheet" href="/css/styles.css?v=10.0">
+  <link rel="stylesheet" href="/css/font.css?v=10.1">
+  <link rel="stylesheet" href="/css/styles.css?v=10.1">
   
   <!-- Le librerie PDF non si caricano piu' qui: erano 949 KB a ogni visita,
        di cui 649 KB per strumenti che oggi girano sul server e non le usano
@@ -622,32 +622,52 @@
 
     <nav class="seo-indice">
       <h2>Toate cele 24 de instrumente PDF</h2>
-      <ul>
-        <li><a href="/ro/pdf-to-word/">Convertește PDF în Word</a></li>
-        <li><a href="/ro/word-to-pdf/" aria-current="page">Convertește Word în PDF</a></li>
-        <li><a href="/ro/pdf-to-excel/">Convertește PDF în Excel</a></li>
-        <li><a href="/ro/excel-to-pdf/">Convertește Excel în PDF</a></li>
-        <li><a href="/ro/pdf-to-powerpoint/">Convertește PDF în PowerPoint</a></li>
-        <li><a href="/ro/powerpoint-to-pdf/">Convertește PowerPoint în PDF</a></li>
-        <li><a href="/ro/pdf-to-html/">Convertește PDF în HTML</a></li>
-        <li><a href="/ro/html-to-pdf/">Convertește HTML în PDF</a></li>
-        <li><a href="/ro/markdown-to-pdf/">Convertește Markdown în PDF</a></li>
-        <li><a href="/ro/compress-pdf/">Comprimă un PDF</a></li>
-        <li><a href="/ro/protect-pdf/">Protejează un PDF cu parolă</a></li>
-        <li><a href="/ro/unlock-pdf/">Deblochează un PDF</a></li>
-        <li><a href="/ro/grayscale-pdf/">Convertește un PDF în tonuri de gri</a></li>
-        <li><a href="/ro/pdf-to-markdown/">Convertește PDF în Markdown</a></li>
-        <li><a href="/ro/merge-pdf/">Unește fișiere PDF</a></li>
-        <li><a href="/ro/split-pdf/">Împarte un PDF</a></li>
-        <li><a href="/ro/pdf-to-jpg/">Convertește PDF în JPG</a></li>
-        <li><a href="/ro/jpg-to-pdf/">Convertește imagini în PDF</a></li>
-        <li><a href="/ro/rotate-pdf/">Rotește paginile unui PDF</a></li>
-        <li><a href="/ro/delete-pdf-pages/">Șterge pagini dintr-un PDF</a></li>
-        <li><a href="/ro/add-page-numbers/">Adaugă numere de pagină unui PDF</a></li>
-        <li><a href="/ro/watermark-pdf/">Adaugă un filigran unui PDF</a></li>
-        <li><a href="/ro/extract-images-from-pdf/">Extrage imaginile dintr-un PDF</a></li>
-        <li><a href="/ro/pdf-to-text/">Extrage textul dintr-un PDF</a></li>
-      </ul>
+      <div class="seo-colonne">
+        <div class="seo-colonna">
+          <h3>Conversie din PDF</h3>
+          <ul>
+          <li><a href="/ro/pdf-to-word/">PDF → Word</a></li>
+          <li><a href="/ro/pdf-to-excel/">PDF → Excel</a></li>
+          <li><a href="/ro/pdf-to-powerpoint/">PDF → PowerPoint</a></li>
+          <li><a href="/ro/pdf-to-markdown/">PDF → Markdown</a></li>
+          <li><a href="/ro/pdf-to-html/">PDF → HTML</a></li>
+          <li><a href="/ro/pdf-to-jpg/">PDF → JPG</a></li>
+          <li><a href="/ro/pdf-to-text/">PDF → Text</a></li>
+          </ul>
+        </div>
+        <div class="seo-colonna">
+          <h3>Conversie în PDF</h3>
+          <ul>
+          <li><a href="/ro/word-to-pdf/" aria-current="page">Word → PDF</a></li>
+          <li><a href="/ro/excel-to-pdf/">Excel → PDF</a></li>
+          <li><a href="/ro/powerpoint-to-pdf/">PowerPoint → PDF</a></li>
+          <li><a href="/ro/markdown-to-pdf/">Markdown → PDF</a></li>
+          <li><a href="/ro/html-to-pdf/">HTML → PDF</a></li>
+          <li><a href="/ro/jpg-to-pdf/">Imagini → PDF</a></li>
+          </ul>
+        </div>
+        <div class="seo-colonna">
+          <h3>Organizare</h3>
+          <ul>
+          <li><a href="/ro/merge-pdf/">Unire</a></li>
+          <li><a href="/ro/split-pdf/">Împărțire</a></li>
+          <li><a href="/ro/delete-pdf-pages/">Ștergere pagini</a></li>
+          <li><a href="/ro/rotate-pdf/">Rotire</a></li>
+          <li><a href="/ro/add-page-numbers/">Numere de pagină</a></li>
+          <li><a href="/ro/extract-images-from-pdf/">Extragere imagini</a></li>
+          </ul>
+        </div>
+        <div class="seo-colonna">
+          <h3>Editare și protecție</h3>
+          <ul>
+          <li><a href="/ro/compress-pdf/">Comprimare</a></li>
+          <li><a href="/ro/protect-pdf/">Parolă</a></li>
+          <li><a href="/ro/unlock-pdf/">Deblocare</a></li>
+          <li><a href="/ro/watermark-pdf/">Filigran</a></li>
+          <li><a href="/ro/grayscale-pdf/">Tonuri de gri</a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
   </section>
   <!-- /PDFAXIOM:GENERATO -->
@@ -695,12 +715,12 @@
 
   <!-- App Scripts (v8.0 100% Browser Engine) -->
   <script>window.PDFAXIOM_LANG="ro";window.PDFAXIOM_TOOL="word-to-pdf";</script>
-  <script src="/js/rotte.js?v=10.0"></script>
-  <script src="/js/i18n.js?v=10.0"></script>
-  <script src="/js/ad-manager.js?v=10.0"></script>
-  <script src="/js/librerie.js?v=10.0"></script>
-  <script src="/js/pdf-engine.js?v=10.0"></script>
-  <script src="/js/api-client.js?v=10.0"></script>
-  <script src="/js/app.js?v=10.0"></script>
+  <script src="/js/rotte.js?v=10.1"></script>
+  <script src="/js/i18n.js?v=10.1"></script>
+  <script src="/js/ad-manager.js?v=10.1"></script>
+  <script src="/js/librerie.js?v=10.1"></script>
+  <script src="/js/pdf-engine.js?v=10.1"></script>
+  <script src="/js/api-client.js?v=10.1"></script>
+  <script src="/js/app.js?v=10.1"></script>
 </body>
 </html>

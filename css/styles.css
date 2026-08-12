@@ -1541,28 +1541,64 @@ body {
   padding-top: 1.6rem;
 }
 
+.seo-colonne {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.6rem 1.4rem;
+}
+
+.seo-colonna h3 {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 0.7rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
 .seo-indice ul {
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
-  gap: 0.3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  margin: 0;
+  padding: 0;
 }
 
 .seo-indice a {
   color: var(--text-secondary);
   text-decoration: none;
-  font-size: 0.87rem;
-  padding: 0.28rem 0;
+  font-size: 0.86rem;
+  line-height: 1.35;
+  padding: 0.32rem 0.5rem;
+  margin-left: -0.5rem;
+  border-radius: 4px;
   display: block;
-  border-bottom: 1px solid transparent;
+  transition: var(--transition);
 }
 
 .seo-indice a:hover {
   color: var(--text-primary);
-  border-bottom-color: var(--border-color);
+  background: var(--bg-card-hover);
 }
 
-.seo-indice a[aria-current="page"] { color: var(--text-primary); font-weight: 600; }
+/* Lo strumento della pagina che si sta guardando: non e' un collegamento
+   utile come gli altri, ed e' bene che si veda dove ci si trova. */
+.seo-indice a[aria-current="page"] {
+  color: var(--text-primary);
+  font-weight: 700;
+  background: var(--bg-input);
+}
+
+@media (max-width: 760px) {
+  .seo-colonne { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 400px) {
+  .seo-colonne { grid-template-columns: 1fr; gap: 1.3rem; }
+}
 
 @media (max-width: 640px) {
   .seo-blocco { padding-top: 2rem; }

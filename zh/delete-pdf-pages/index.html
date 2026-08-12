@@ -43,8 +43,8 @@
        bloccava il disegno della pagina e faceva passare da Google il browser
        di chi ci visita. -->
   <link rel="preload" href="/assets/font/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/css/font.css?v=10.0">
-  <link rel="stylesheet" href="/css/styles.css?v=10.0">
+  <link rel="stylesheet" href="/css/font.css?v=10.1">
+  <link rel="stylesheet" href="/css/styles.css?v=10.1">
   
   <!-- Le librerie PDF non si caricano piu' qui: erano 949 KB a ogni visita,
        di cui 649 KB per strumenti che oggi girano sul server e non le usano
@@ -622,32 +622,52 @@
 
     <nav class="seo-indice">
       <h2>全部 24 个 PDF 工具</h2>
-      <ul>
-        <li><a href="/zh/pdf-to-word/">PDF 转换为 Word</a></li>
-        <li><a href="/zh/word-to-pdf/">Word 转换为 PDF</a></li>
-        <li><a href="/zh/pdf-to-excel/">PDF 转换为 Excel</a></li>
-        <li><a href="/zh/excel-to-pdf/">Excel 转换为 PDF</a></li>
-        <li><a href="/zh/pdf-to-powerpoint/">PDF 转换为 PowerPoint</a></li>
-        <li><a href="/zh/powerpoint-to-pdf/">PowerPoint 转换为 PDF</a></li>
-        <li><a href="/zh/pdf-to-html/">PDF 转换为 HTML</a></li>
-        <li><a href="/zh/html-to-pdf/">HTML 转换为 PDF</a></li>
-        <li><a href="/zh/markdown-to-pdf/">Markdown 转换为 PDF</a></li>
-        <li><a href="/zh/compress-pdf/">压缩 PDF</a></li>
-        <li><a href="/zh/protect-pdf/">为 PDF 设置密码保护</a></li>
-        <li><a href="/zh/unlock-pdf/">解锁 PDF</a></li>
-        <li><a href="/zh/grayscale-pdf/">把 PDF 转换为灰度</a></li>
-        <li><a href="/zh/pdf-to-markdown/">PDF 转换为 Markdown</a></li>
-        <li><a href="/zh/merge-pdf/">合并 PDF 文件</a></li>
-        <li><a href="/zh/split-pdf/">拆分 PDF</a></li>
-        <li><a href="/zh/pdf-to-jpg/">PDF 转换为 JPG</a></li>
-        <li><a href="/zh/jpg-to-pdf/">图片转换为 PDF</a></li>
-        <li><a href="/zh/rotate-pdf/">旋转 PDF 页面</a></li>
-        <li><a href="/zh/delete-pdf-pages/" aria-current="page">从 PDF 中删除页面</a></li>
-        <li><a href="/zh/add-page-numbers/">为 PDF 添加页码</a></li>
-        <li><a href="/zh/watermark-pdf/">为 PDF 添加水印</a></li>
-        <li><a href="/zh/extract-images-from-pdf/">从 PDF 中提取图片</a></li>
-        <li><a href="/zh/pdf-to-text/">从 PDF 中提取文字</a></li>
-      </ul>
+      <div class="seo-colonne">
+        <div class="seo-colonna">
+          <h3>从 PDF 转换</h3>
+          <ul>
+          <li><a href="/zh/pdf-to-word/">PDF → Word</a></li>
+          <li><a href="/zh/pdf-to-excel/">PDF → Excel</a></li>
+          <li><a href="/zh/pdf-to-powerpoint/">PDF → PowerPoint</a></li>
+          <li><a href="/zh/pdf-to-markdown/">PDF → Markdown</a></li>
+          <li><a href="/zh/pdf-to-html/">PDF → HTML</a></li>
+          <li><a href="/zh/pdf-to-jpg/">PDF → JPG</a></li>
+          <li><a href="/zh/pdf-to-text/">PDF → 文本</a></li>
+          </ul>
+        </div>
+        <div class="seo-colonna">
+          <h3>转换为 PDF</h3>
+          <ul>
+          <li><a href="/zh/word-to-pdf/">Word → PDF</a></li>
+          <li><a href="/zh/excel-to-pdf/">Excel → PDF</a></li>
+          <li><a href="/zh/powerpoint-to-pdf/">PowerPoint → PDF</a></li>
+          <li><a href="/zh/markdown-to-pdf/">Markdown → PDF</a></li>
+          <li><a href="/zh/html-to-pdf/">HTML → PDF</a></li>
+          <li><a href="/zh/jpg-to-pdf/">图片 → PDF</a></li>
+          </ul>
+        </div>
+        <div class="seo-colonna">
+          <h3>整理</h3>
+          <ul>
+          <li><a href="/zh/merge-pdf/">合并</a></li>
+          <li><a href="/zh/split-pdf/">拆分</a></li>
+          <li><a href="/zh/delete-pdf-pages/" aria-current="page">删除页面</a></li>
+          <li><a href="/zh/rotate-pdf/">旋转</a></li>
+          <li><a href="/zh/add-page-numbers/">添加页码</a></li>
+          <li><a href="/zh/extract-images-from-pdf/">提取图片</a></li>
+          </ul>
+        </div>
+        <div class="seo-colonna">
+          <h3>编辑与保护</h3>
+          <ul>
+          <li><a href="/zh/compress-pdf/">压缩</a></li>
+          <li><a href="/zh/protect-pdf/">加密码</a></li>
+          <li><a href="/zh/unlock-pdf/">解锁</a></li>
+          <li><a href="/zh/watermark-pdf/">加水印</a></li>
+          <li><a href="/zh/grayscale-pdf/">转灰度</a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
   </section>
   <!-- /PDFAXIOM:GENERATO -->
@@ -695,12 +715,12 @@
 
   <!-- App Scripts (v8.0 100% Browser Engine) -->
   <script>window.PDFAXIOM_LANG="zh";window.PDFAXIOM_TOOL="delete-pages";</script>
-  <script src="/js/rotte.js?v=10.0"></script>
-  <script src="/js/i18n.js?v=10.0"></script>
-  <script src="/js/ad-manager.js?v=10.0"></script>
-  <script src="/js/librerie.js?v=10.0"></script>
-  <script src="/js/pdf-engine.js?v=10.0"></script>
-  <script src="/js/api-client.js?v=10.0"></script>
-  <script src="/js/app.js?v=10.0"></script>
+  <script src="/js/rotte.js?v=10.1"></script>
+  <script src="/js/i18n.js?v=10.1"></script>
+  <script src="/js/ad-manager.js?v=10.1"></script>
+  <script src="/js/librerie.js?v=10.1"></script>
+  <script src="/js/pdf-engine.js?v=10.1"></script>
+  <script src="/js/api-client.js?v=10.1"></script>
+  <script src="/js/app.js?v=10.1"></script>
 </body>
 </html>
