@@ -605,7 +605,11 @@ const uiMessages = {
 /** Interfaccia usata dagli altri script per tradurre i messaggi a runtime. */
 window.PDFAxiomI18n = {
   get lang() {
-    return localStorage.getItem('pdfaxiom_lang') || 'en';
+    // Comanda la pagina, non la preferenza memorizzata: il testo di questa
+    // pagina e' scritto dentro il file ed e' in una lingua sola. Se il
+    // browser ricordasse "italiano" mentre siamo su /pdf-to-word/, i
+    // messaggi di avanzamento uscirebbero in italiano sopra un testo inglese.
+    return window.PDFAXIOM_LANG || localStorage.getItem('pdfaxiom_lang') || 'en';
   },
   t(chiave, valori) {
     const set = uiMessages[this.lang] || uiMessages.en;
@@ -623,19 +627,31 @@ document.addEventListener('DOMContentLoaded', () => {
   const currentLangText = document.getElementById('currentLangText');
   const langOptions = document.querySelectorAll('.lang-option');
 
-  // Load saved language preference or default to 'en'
-  let currentLang = localStorage.getItem('pdfaxiom_lang') || 'en';
+  // La lingua e' quella della pagina su cui ci si trova, non quella
+  // memorizzata: il testo scritto nel file non si puo' cambiare a posteriori,
+  // e mescolare le due darebbe un'interfaccia italiana su contenuti inglesi.
+  let currentLang = window.PDFAXIOM_LANG || localStorage.getItem('pdfaxiom_lang') || 'en';
   setLanguage(currentLang);
 
   langOptions.forEach(opt => {
     opt.addEventListener('click', (e) => {
       e.preventDefault();
       const selectedLang = opt.getAttribute('data-lang');
-      if (selectedLang && translations[selectedLang]) {
-        setLanguage(selectedLang);
-        const wrapper = opt.closest('.dropdown-wrapper');
-        if (wrapper) wrapper.classList.remove('active');
+      if (!selectedLang || !translations[selectedLang]) return;
+
+      // Ogni lingua ha pagine proprie, con il proprio testo scritto dentro.
+      // Cambiare lingua vuol dire andarci: da /pdf-to-word/ a
+      // /it/pdf-to-word/. Prima si riscrivevano solo le voci gestite dal
+      // codice e il testo della pagina restava nella lingua di partenza.
+      localStorage.setItem('pdfaxiom_lang', selectedLang);
+      if (window.PDFAxiomRotte) {
+        const dove = window.PDFAxiomRotte.stessaPaginaIn(selectedLang);
+        if (dove !== location.pathname) { location.href = dove; return; }
       }
+
+      setLanguage(selectedLang);
+      const wrapper = opt.closest('.dropdown-wrapper');
+      if (wrapper) wrapper.classList.remove('active');
     });
   });
 

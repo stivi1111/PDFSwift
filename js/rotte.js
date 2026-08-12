@@ -66,5 +66,34 @@ window.PDFAxiomRotte = (() => {
     return pezzi.length ? (PER_SLUG[pezzi[0]] || null) : null;
   }
 
-  return { indirizzo, casa, strumentoDaIndirizzo, prefisso, PER_STRUMENTO, PER_SLUG, LINGUE };
+  // Le pagine che esistono in una lingua sola (privacy e condizioni sono
+  // scritte in inglese e italiano; le altre lingue rimandano all'inglese).
+  const SOLO_DUE_LINGUE = ['privacy', 'terms'];
+
+  /**
+   * Lo stesso documento nell'altra lingua.
+   *
+   * Ogni lingua ha pagine proprie con il proprio testo, quindi cambiare
+   * lingua vuol dire spostarsi: da /pdf-to-word/ a /it/pdf-to-word/. Prima si
+   * limitava a riscrivere le voci gestite dal codice, e il testo della pagina
+   * restava quello di partenza.
+   */
+  function stessaPaginaIn(lingua) {
+    const pezzi = location.pathname.split('/').filter(Boolean);
+    if (pezzi.length && LINGUE.includes(pezzi[0])) pezzi.shift();
+    const coda = pezzi[0] || '';
+
+    // Un indirizzo che non riconosciamo: si va alla pagina iniziale della
+    // lingua scelta, che e' meglio di un 404.
+    if (coda && !PER_SLUG[coda] && !SOLO_DUE_LINGUE.includes(coda)) {
+      return lingua === 'en' ? '/' : `/${lingua}/`;
+    }
+    const effettiva = SOLO_DUE_LINGUE.includes(coda) && !['en', 'it'].includes(lingua)
+      ? 'en' : lingua;
+    const testa = effettiva === 'en' ? '' : `/${effettiva}`;
+    return coda ? `${testa}/${coda}/` : `${testa}/`;
+  }
+
+  return { indirizzo, casa, strumentoDaIndirizzo, stessaPaginaIn, prefisso,
+           PER_STRUMENTO, PER_SLUG, LINGUE };
 })();
