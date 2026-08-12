@@ -118,7 +118,28 @@ const PDFAxiomAPI = (() => {
     });
   }
 
-  /** Il backend risponde con {"error": "..."} anche sugli errori: lo estraiamo. */
+  // Il backend risponde in italiano, perche' e' scritto in italiano. Ma il
+  // sito parla otto lingue: a un tedesco non serve la frase italiana, serve
+  // sapere QUALE errore e'. Per questo ogni risposta porta anche un codice,
+  // e qui lo si traduce. Prima si mostrava il testo del server cosi' com'era,
+  // e un russo leggeva "Nessuna tabella rilevata nel PDF".
+  const PER_CODICE = {
+    troppo_grande:       'errTooBig',
+    file_vuoto:          'errFileVuoto',
+    formato_errato:      'errFormat',
+    password_mancante:   'errPassword',
+    password_errata:     'errPasswordErrata',
+    troppo_lento:        'errTimeout',
+    non_raggiungibile:   'errUnavailable',
+    troppe_pagine:       'errTroppePagine',
+    pdf_illeggibile:     'errPdfIlleggibile',
+    nessuna_tabella:     'errNessunaTabella',
+    conversione_fallita: 'errFailed',
+    strumento_ignoto:    'errFailed',
+    livello_ignoto:      'errFailed',
+  };
+
+  /** Il messaggio da mostrare per una risposta di errore, nella lingua giusta. */
   async function readError(xhr) {
     const fallback = {
       413: t('errTooBig', { size: '' }),
@@ -130,9 +151,12 @@ const PDFAxiomAPI = (() => {
     }[xhr.status] || t('errServer', { code: xhr.status });
 
     try {
-      const text = await xhr.response.text();
-      const parsed = JSON.parse(text);
-      return parsed.error || fallback;
+      const parsed = JSON.parse(await xhr.response.text());
+      const chiave = PER_CODICE[parsed.codice];
+      if (chiave) return t(chiave);
+      // Nessun codice riconosciuto: meglio una frase generica nella lingua
+      // dell'utente che una precisa in una lingua che non legge.
+      return fallback;
     } catch (e) {
       return fallback;
     }

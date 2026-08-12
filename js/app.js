@@ -355,7 +355,16 @@ document.addEventListener('DOMContentLoaded', () => {
     processBtn.disabled = state.files.length === 0;
   }
 
+  // Ogni anteprima di immagine crea un riferimento temporaneo al file, e il
+  // browser tiene in memoria l'immagine finche' quel riferimento esiste.
+  // Ridisegnando l'elenco (a ogni file aggiunto o tolto) se ne creavano di
+  // nuovi senza mai liberare i vecchi: venti foto aggiunte una alla volta
+  // lasciavano in memoria duecentodieci copie.
+  let anteprime = [];
+
   function renderFilePreviews() {
+    anteprime.forEach(URL.revokeObjectURL);
+    anteprime = [];
     filePreviewList.innerHTML = '';
     state.files.forEach((file, index) => {
       const card = document.createElement('div');
@@ -377,7 +386,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (file.type.startsWith('image/')) {
         const img = document.createElement('img');
-        img.src = URL.createObjectURL(file);
+        const riferimento = URL.createObjectURL(file);
+        anteprime.push(riferimento);
+        img.src = riferimento;
         card.appendChild(img);
       } else {
         const iconDiv = document.createElement('div');
@@ -392,6 +403,10 @@ document.addEventListener('DOMContentLoaded', () => {
       filePreviewList.appendChild(card);
     });
   }
+
+  // Questi due prendono piu' file ma ne producono uno solo: non passano dal
+  // percorso che impacchetta i risultati in un archivio.
+  const ESCLUSI_DA_ZIP = ['merge', 'img-to-pdf'];
 
   /** Traduce nella lingua scelta dall'utente, con ripiego sull'inglese. */
   const tr = (chiave, valori) =>
@@ -451,6 +466,14 @@ document.addEventListener('DOMContentLoaded', () => {
       // che la pagina non scarica piu' all'apertura: si prende adesso, che e'
       // il momento in cui l'utente ha davvero deciso di usarla.
       await PDFLibrerie.perStrumento(state.activeTool);
+
+      // Piu' file diventano un archivio ZIP, e questo vale anche per gli
+      // strumenti che lavorano sul server, che di per se' non hanno bisogno di
+      // nessuna libreria. Senza questa riga, trascinare tre PDF su "PDF in
+      // Word" moriva con "JSZip is not defined".
+      if (state.files.length > 1 && !ESCLUSI_DA_ZIP.includes(state.activeTool)) {
+        await PDFLibrerie.carica('jszip');
+      }
 
       if (state.activeTool === 'merge') {
         const updateProgress = (pct) => {
