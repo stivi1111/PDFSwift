@@ -216,20 +216,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Mega Menu & Navbar Link Click Events
+  // Ogni strumento ha una pagina propria, con il proprio testo, titolo e
+  // descrizione. Aprirlo cambiando solo l'indirizzo lasciava sotto il testo
+  // della pagina di partenza: chi passava da "PDF in Word" a "PDF in JPG" si
+  // ritrovava a leggere del Word. Qui i collegamenti tornano collegamenti.
   document.querySelectorAll('.mega-item, .nav-link-btn').forEach(item => {
-    item.addEventListener('click', (e) => {
-      e.preventDefault();
-      const toolId = item.getAttribute('data-tool');
-      if (toolId) openToolWorkspace(toolId);
+    if (!item.getAttribute('data-tool')) return;
+    item.addEventListener('click', () => {
+      // Il menu si chiude comunque: la pagina sta per cambiare.
+      document.querySelectorAll('.dropdown-wrapper.active')
+        .forEach(d => d.classList.remove('active'));
     });
   });
 
-  // Tool Card Click Events
+  // Le schede della griglia sono div, non collegamenti: il salto lo fa il
+  // codice. (I collegamenti veri per i motori di ricerca stanno in fondo.)
   document.querySelectorAll('.tool-card').forEach(card => {
     card.addEventListener('click', () => {
       const toolId = card.getAttribute('data-tool');
-      openToolWorkspace(toolId);
+      const dove = window.PDFAxiomRotte && window.PDFAxiomRotte.indirizzo(toolId);
+      if (dove) location.href = dove;
+      else openToolWorkspace(toolId);
     });
   });
 
@@ -261,35 +268,17 @@ document.addEventListener('DOMContentLoaded', () => {
     toolsGrid.style.display = 'none';
     workspace.style.display = 'block';
 
-    // Ogni strumento ha il suo indirizzo: aggiornarlo rende la pagina
-    // condivisibile, apre il tasto "indietro" del browser e permette a Google
-    // di indicizzare i 24 strumenti separatamente invece che come una pagina
-    // sola. Su "scrivi" saltiamo lo scorrimento: la pagina e' gia' in cima.
-    if (!silenzioso) {
-      const indirizzo = window.PDFAxiomRotte && window.PDFAxiomRotte.indirizzo(toolId);
-      if (indirizzo && location.pathname !== indirizzo) {
-        history.pushState({ tool: toolId }, '', indirizzo);
-      }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    // Su "silenzioso" non si scorre: la pagina si e' appena aperta ed e' gia'
+    // in cima. Non si tocca nemmeno l'indirizzo, perche' e' gia' quello giusto.
+    if (!silenzioso) window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Back Button Event & Logo Click to return Home
-  const returnHome = (silenzioso) => {
-    state.activeTool = null;
-    state.files = [];
-    workspace.style.display = 'none';
-    heroSection.style.display = 'block';
-    document.querySelector('.category-tabs').style.display = 'flex';
-    toolsGrid.style.display = 'grid';
-    if (!silenzioso) {
-      const casa = window.PDFAxiomRotte ? window.PDFAxiomRotte.casa() : '/';
-      if (location.pathname !== casa) history.pushState({ tool: null }, '', casa);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+  // Torna alla pagina iniziale della lingua in cui ci si trova.
+  const returnHome = () => {
+    location.href = window.PDFAxiomRotte ? window.PDFAxiomRotte.casa() : '/';
   };
 
-  backBtn.addEventListener('click', () => returnHome());
+  backBtn.addEventListener('click', returnHome);
   document.querySelectorAll('.logo').forEach(logoEl => {
     logoEl.addEventListener('click', (e) => {
       e.preventDefault();
@@ -297,25 +286,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ---- Indirizzo della pagina e strumento aperto -------------------------
-  // Ogni pagina generata dichiara quale strumento rappresenta; da li' si apre
-  // subito quello giusto, senza toccare la cronologia (l'indirizzo e' gia'
-  // corretto: l'utente ci e' arrivato direttamente).
+  // Ogni pagina generata dichiara quale strumento rappresenta: si apre subito
+  // quello, senza scorrimento e senza toccare la cronologia. Il tasto
+  // "indietro" del browser funziona da solo, perche' ogni strumento e' una
+  // pagina vera e non una finta navigazione.
   if (window.PDFAXIOM_TOOL && toolsConfig[window.PDFAXIOM_TOOL]) {
     openToolWorkspace(window.PDFAXIOM_TOOL, true);
   }
-
-  // Tasto indietro e avanti del browser.
-  window.addEventListener('popstate', () => {
-    const atteso = window.PDFAxiomRotte
-      ? window.PDFAxiomRotte.strumentoDaIndirizzo(location.pathname)
-      : null;
-    if (atteso && toolsConfig[atteso]) {
-      openToolWorkspace(atteso, true);
-    } else {
-      returnHome(true);
-    }
-  });
 
   // Global Drag & Drop Handling across the ENTIRE Window / Page
   dropzone.addEventListener('click', () => fileInput.click());
