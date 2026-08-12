@@ -39,7 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateFavicon(theme) {
     const favicon = document.getElementById('dynamicFavicon') || document.querySelector('link[rel="icon"]');
     if (favicon) {
-      favicon.href = theme === 'light' ? 'assets/favicon-light-mode.png' : 'assets/favicon-dark-mode.png';
+      // Percorso assoluto: da /pdf-to-word/ un "assets/..." relativo veniva
+      // cercato in /pdf-to-word/assets/, che non esiste, e l'icona della
+      // scheda spariva. Trovato nei 404 registrati da Netlify.
+      favicon.href = theme === 'light'
+        ? '/assets/favicon-light-mode.png'
+        : '/assets/favicon-dark-mode.png';
     }
   }
 
