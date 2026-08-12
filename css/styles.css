@@ -1628,3 +1628,51 @@ body {
   line-height: 1.1;
   color: var(--text-primary);
 }
+
+/* ==========================================================================
+   Pagine legali (privacy, condizioni d'uso)
+
+   Riusano lo stesso guscio del sito ma non hanno niente da convertire:
+   l'apertura, le schede e lo spazio di lavoro qui sarebbero solo rumore.
+   ========================================================================== */
+body.solo-testo .hero,
+body.solo-testo .category-tabs,
+body.solo-testo #toolsGrid,
+body.solo-testo .tool-workspace {
+  display: none !important;
+}
+
+body.solo-testo .main-content { padding-bottom: 0; }
+
+.pagina-legale { padding-top: 2.5rem; }
+
+.pagina-legale h2 {
+  font-size: 1.05rem;
+  margin-top: 2rem;
+}
+
+.legale-data {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 1.8rem;
+}
+
+/* Privacy e condizioni stanno accanto a "Chi siamo", non sopra di esso. */
+.footer-legale {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+}
+
+.footer-legale a {
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  text-decoration: none;
+}
+
+.footer-legale a:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

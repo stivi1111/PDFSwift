@@ -21,6 +21,12 @@ const VERSIONE = '10.0';
 
 const strumenti = require('./strumenti');
 const brevi = require('./contenuti/brevi');
+const legali = require('./contenuti/legali');
+
+// Le pagine legali esistono in inglese e in italiano. Le altre lingue
+// rimandano all'inglese: un'informativa tradotta male e' peggio di una in una
+// lingua che il lettore capisce.
+const LINGUE_LEGALI = ['en', 'it'];
 
 // L'inglese vive nella radice del sito, le altre lingue in una cartella.
 // LINGUE=en,it limita la generazione: comodo per provare una modifica al
@@ -170,10 +176,26 @@ ${indiceStrumenti(lingua, null)}
   ${CHIUDI}`;
 }
 
+/** Il testo di una pagina legale. */
+function bloccoLegale(lingua, doc) {
+  const sezioni = doc.sezioni.map((s) => `    <h2>${esc(s.t)}</h2>
+${s.p.map((p) => `    <p>${p}</p>`).join('\n')}`).join('\n\n');
+
+  return `${APRI}
+  <section class="seo-blocco pagina-legale">
+    <h1>${esc(doc.titolo)}</h1>
+    <p class="legale-data">${esc(doc.aggiornato)}</p>
+
+${sezioni}
+  </section>
+${indiceStrumenti(lingua, null)}
+  ${CHIUDI}`;
+}
+
 // -------------------------------------------------------------- intestazione
 
-function hreflang(slug) {
-  const righe = LINGUE.map((l) =>
+function hreflang(slug, lingue) {
+  const righe = (lingue || LINGUE).map((l) =>
     `  <link rel="alternate" hreflang="${l}" href="${assoluto(l, slug)}">`);
   righe.push(`  <link rel="alternate" hreflang="x-default" href="${assoluto('en', slug)}">`);
   return righe.join('\n');
@@ -226,18 +248,19 @@ function datiStrutturati(lingua, voce) {
     .join('\n');
 }
 
-function intestazione(lingua, voce) {
+function intestazione(lingua, voce, legale) {
   const c = contenuti[lingua];
   const t = voce ? c.strumenti[voce.slug] : null;
-  const slug = voce ? voce.slug : '';
+  const slug = legale ? legale.slug : (voce ? voce.slug : '');
   const url = assoluto(lingua, slug);
 
-  const titolo = t ? `${t.titolo} | PDFAxiom` : 'PDFAXIOM';
-  const descrizione = t ? t.descrizione : null;
+  const titolo = legale ? `${legale.titolo} | PDFAxiom`
+    : (t ? `${t.titolo} | PDFAxiom` : 'PDFAXIOM');
+  const descrizione = legale ? legale.descrizione : (t ? t.descrizione : null);
 
   const pezzi = [];
   pezzi.push(`  <link rel="canonical" href="${url}">`);
-  pezzi.push(hreflang(slug));
+  pezzi.push(hreflang(slug, legale ? LINGUE_LEGALI : LINGUE));
   pezzi.push('');
   pezzi.push(`  <meta property="og:type" content="website">`);
   pezzi.push(`  <meta property="og:site_name" content="PDFAxiom">`);
@@ -257,14 +280,16 @@ function intestazione(lingua, voce) {
   }
   pezzi.push(`  <meta name="twitter:image" content="${SITO}/assets/og-image.png">`);
   pezzi.push('');
-  pezzi.push(datiStrutturati(lingua, voce));
+  // Una pagina legale non e' l'applicazione e non risponde a domande: non ha
+  // dati strutturati da dichiarare.
+  if (!legale) pezzi.push(datiStrutturati(lingua, voce));
 
   return pezzi.join('\n');
 }
 
 // ------------------------------------------------------------------ pagina
 
-function componi(lingua, voce) {
+function componi(lingua, voce, legale) {
   const c = contenuti[lingua];
   const t = voce ? c.strumenti[voce.slug] : null;
   let html = modello;
@@ -277,22 +302,27 @@ function componi(lingua, voce) {
 
   html = html.replace('<html lang="en"', `<html lang="${lingua}"`);
 
-  if (t) {
+  const testa = legale || t;
+  if (testa) {
     html = html.replace(/<title>[\s\S]*?<\/title>/,
-      `<title>${esc(t.titolo)} | PDFAxiom</title>`);
+      `<title>${esc(testa.titolo)} | PDFAxiom</title>`);
     html = html.replace(/<meta name="description" content="[^"]*">/,
-      `<meta name="description" content="${esc(t.descrizione)}">`);
+      `<meta name="description" content="${esc(testa.descrizione)}">`);
 
-    // Una pagina deve avere un solo h1, e su una pagina di strumento quell'h1
-    // e' il nome dello strumento. Il titolo dell'intestazione scende di grado
-    // (resta identico a vedersi: e' la stessa classe che lo compone).
+    // Una pagina deve avere un solo h1, e qui quell'h1 e' il titolo della
+    // pagina. Il titolo dell'intestazione scende di grado (resta identico a
+    // vedersi: e' la stessa classe che lo compone).
     html = html.replace(/<h1>([\s\S]*?)<\/h1>/,
       '<p class="hero-titolo">$1</p>');
   }
 
+  // Sulle pagine legali non c'e' niente da convertire: via l'apertura, le
+  // schede e lo spazio di lavoro, che qui sarebbero solo rumore.
+  if (legale) html = html.replace('<body>', '<body class="solo-testo">');
+
   // L'intestazione va subito dopo la description, prima dei fogli di stile.
   html = html.replace(/(<meta name="description" content="[^"]*">)/,
-    `$1\n${intestazione(lingua, voce)}`);
+    `$1\n${intestazione(lingua, voce, legale)}`);
 
   // I collegamenti del menu diventano indirizzi veri: app.js continua a
   // intercettare il click, ma un motore di ricerca ora ha una strada da
@@ -309,6 +339,20 @@ function componi(lingua, voce) {
   html = html.replace('<a href="#" class="logo">',
     `<a href="${indirizzo(lingua, '')}" class="logo">`);
 
+  // Privacy e condizioni esistono in inglese e italiano: chi legge in tedesco
+  // o in russo viene mandato alla versione inglese, che e' l'unica che
+  // possiamo garantire fedele.
+  const linguaLegale = LINGUE_LEGALI.includes(lingua) ? lingua : 'en';
+  ['privacy', 'terms'].forEach((quale) => {
+    const doc = legali[linguaLegale][quale];
+    html = html.replace(`href="/${quale}/"`,
+      `href="${indirizzo(linguaLegale, doc.slug)}"`);
+  });
+  if (LINGUE_LEGALI.includes(lingua) && lingua !== 'en') {
+    html = html.replace('>Privacy</a>', `>${esc(legali[lingua].privacy.titolo)}</a>`)
+               .replace('>Terms</a>', `>${esc(legali[lingua].terms.titolo)}</a>`);
+  }
+
   // Quale strumento apre questa pagina, e in che lingua e' scritta.
   const dichiarazione = `  <script>window.PDFAXIOM_LANG=${JSON.stringify(lingua)};` +
     (voce ? `window.PDFAXIOM_TOOL=${JSON.stringify(voce.tool)};` : '') + `</script>\n`;
@@ -316,7 +360,8 @@ function componi(lingua, voce) {
 
   // Il contenuto leggibile va dopo lo spazio di lavoro, dove resta visibile
   // anche a strumento aperto.
-  const blocco = voce ? bloccoStrumento(lingua, voce) : bloccoCasa(lingua);
+  const blocco = legale ? bloccoLegale(lingua, legale)
+    : (voce ? bloccoStrumento(lingua, voce) : bloccoCasa(lingua));
   html = html.replace('</main>', `</main>\n\n  ${blocco}`);
 
   return html;
@@ -340,6 +385,18 @@ LINGUE.forEach((lingua) => {
     fs.mkdirSync(path.dirname(dove), { recursive: true });
     fs.writeFileSync(dove, componi(lingua, voce), 'utf8');
     indirizzi.push({ url: assoluto(lingua, voce.slug), priorita: lingua === 'en' ? '0.9' : '0.7' });
+    scritte++;
+  });
+});
+
+// Informativa sulla privacy e condizioni d'uso, in inglese e in italiano.
+LINGUE_LEGALI.forEach((lingua) => {
+  ['privacy', 'terms'].forEach((quale) => {
+    const doc = legali[lingua][quale];
+    const dove = percorsoFile(lingua, doc.slug);
+    fs.mkdirSync(path.dirname(dove), { recursive: true });
+    fs.writeFileSync(dove, componi(lingua, null, doc), 'utf8');
+    indirizzi.push({ url: assoluto(lingua, doc.slug), priorita: '0.3' });
     scritte++;
   });
 });
