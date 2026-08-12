@@ -114,12 +114,17 @@ ${voci}
         </div>`;
   }).join('\n');
 
-  return `    <nav class="seo-indice">
+  // Sta fuori dal blocco di lettura: quello e' largo 52rem perche' un
+  // paragrafo piu' lungo non si legge, ma quattro colonne di collegamenti
+  // hanno bisogno di respiro e in 52rem restano strizzate.
+  return `  <nav class="seo-indice">
+    <div class="seo-indice-dentro">
       <h2>${esc(c.etichette.altri)}</h2>
       <div class="seo-colonne">
 ${colonne}
       </div>
-    </nav>`;
+    </div>
+  </nav>`;
 }
 
 /** Il blocco di contenuto della pagina di uno strumento. */
@@ -152,18 +157,16 @@ ${passi}
     <div class="seo-faq">
 ${faq}
     </div>
+  </section>
 
 ${indiceStrumenti(lingua, voce.slug)}
-  </section>
   ${CHIUDI}`;
 }
 
 /** Sulla pagina iniziale basta l'elenco: il testo di apertura c'e' gia'. */
 function bloccoCasa(lingua) {
   return `${APRI}
-  <section class="seo-blocco">
 ${indiceStrumenti(lingua, null)}
-  </section>
   ${CHIUDI}`;
 }
 

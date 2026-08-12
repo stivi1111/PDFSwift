@@ -1535,16 +1535,32 @@ body {
 /* Elenco di collegamenti veri a tutti gli strumenti: e' la strada che un
    motore di ricerca percorre per trovare le altre 23 pagine. Le schede in
    alto sono div con un gestore di click, e un motore non le segue. */
+/* Sta fuori dal blocco di lettura e ha una larghezza propria: la colonna del
+   testo e' stretta apposta perche' una riga troppo lunga non si legge, ma
+   quattro colonne di collegamenti li' dentro restano strizzate. */
 .seo-indice {
   border-top: 1px solid var(--border-color);
-  margin-top: 2.5rem;
-  padding-top: 1.6rem;
+  margin-top: 1.6rem;
+  padding: 1.5rem 1.25rem 2.5rem;
+}
+
+.seo-indice-dentro {
+  max-width: 76rem;
+  margin: 0 auto;
+}
+
+.seo-indice h2 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 1.1rem;
+  letter-spacing: -0.005em;
 }
 
 .seo-colonne {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.6rem 1.4rem;
+  gap: 1.5rem 2.5rem;
 }
 
 .seo-colonna h3 {
@@ -1553,8 +1569,8 @@ body {
   letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin: 0 0 0.7rem;
-  padding-bottom: 0.45rem;
+  margin: 0 0 0.6rem;
+  padding-bottom: 0.4rem;
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -1592,12 +1608,12 @@ body {
   background: var(--bg-input);
 }
 
-@media (max-width: 760px) {
-  .seo-colonne { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 900px) {
+  .seo-colonne { grid-template-columns: repeat(2, 1fr); gap: 1.4rem 2rem; }
 }
 
-@media (max-width: 400px) {
-  .seo-colonne { grid-template-columns: 1fr; gap: 1.3rem; }
+@media (max-width: 420px) {
+  .seo-colonne { grid-template-columns: 1fr; gap: 1.2rem; }
 }
 
 @media (max-width: 640px) {
