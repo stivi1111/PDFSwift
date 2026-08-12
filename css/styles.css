@@ -1539,9 +1539,8 @@ body {
    testo e' stretta apposta perche' una riga troppo lunga non si legge, ma
    quattro colonne di collegamenti li' dentro restano strizzate. */
 .seo-indice {
-  border-top: 1px solid var(--border-color);
-  margin-top: 1.6rem;
-  padding: 1.5rem 1.25rem 2.5rem;
+  margin-top: 0.6rem;
+  padding: 0.6rem 1.25rem 2.5rem;
 }
 
 .seo-indice-dentro {
