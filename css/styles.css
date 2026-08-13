@@ -1715,3 +1715,82 @@ body.solo-testo .main-content { padding-bottom: 0; }
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* ==========================================================================
+   Invito a installare l'estensione per Chrome (nel piede)
+   ========================================================================== */
+.estensione-invito {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  max-width: 520px;
+  padding: 0.85rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.estensione-invito:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-color-hover);
+}
+
+.estensione-icona {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+}
+
+.estensione-testo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.estensione-testo strong {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+/* Su schermo stretto la frase va a capo invece di essere troncata: e' la
+   riga che spiega a cosa serve, tagliarla la rende inutile. */
+#estensioneSotto {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: var(--text-secondary);
+}
+
+.estensione-azione {
+  flex-shrink: 0;
+  padding: 0.5rem 0.9rem;
+  background: var(--accent-white);
+  color: #000000;
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .estensione-invito {
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+  .estensione-azione {
+    width: 100%;
+    text-align: center;
+  }
+}

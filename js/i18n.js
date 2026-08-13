@@ -28,7 +28,10 @@ const translations = {
     readySub: "Your file is ready to download.",
     downloadBtn: "Download File",
     resetBtn: "Convert Another File",
-    footerCopy: "© 2026 PDFAxiom. Free • No signup required."
+    footerCopy: "© 2026 PDFAxiom. Free • No signup required.",
+    extTitle: "PDFAxiom for Chrome",
+    extSub: "Your tools one click away, in every tab.",
+    extBtn: "Add to Chrome"
   },
   it: {
     heroTitle: "PDFAXIOM Tutto in Uno",
@@ -53,7 +56,10 @@ const translations = {
     readySub: "Il tuo file è pronto per il download.",
     downloadBtn: "Scarica File",
     resetBtn: "Converti un Altro File",
-    footerCopy: "© 2026 PDFAxiom. Gratuito • Nessuna registrazione."
+    footerCopy: "© 2026 PDFAxiom. Gratuito • Nessuna registrazione.",
+    extTitle: "PDFAxiom per Chrome",
+    extSub: "I tuoi strumenti a un clic, in ogni scheda.",
+    extBtn: "Aggiungi a Chrome"
   },
   es: {
     heroTitle: "PDFAXIOM Todo en Uno",
@@ -78,7 +84,10 @@ const translations = {
     readySub: "Tu archivo está listo para descargar.",
     downloadBtn: "Descargar Archivo",
     resetBtn: "Convertir Otro Archivo",
-    footerCopy: "© 2026 PDFAxiom. Gratis • Sin registro."
+    footerCopy: "© 2026 PDFAxiom. Gratis • Sin registro.",
+    extTitle: "PDFAxiom para Chrome",
+    extSub: "Tus herramientas a un clic, en cada pestaña.",
+    extBtn: "Añadir a Chrome"
   },
   de: {
     heroTitle: "PDFAXIOM Alles in Einem",
@@ -103,7 +112,10 @@ const translations = {
     readySub: "Ihre Datei steht zum Download bereit.",
     downloadBtn: "Datei Herunterladen",
     resetBtn: "Weitere Datei Konvertieren",
-    footerCopy: "© 2026 PDFAxiom. Kostenlos • Ohne Anmeldung."
+    footerCopy: "© 2026 PDFAxiom. Kostenlos • Ohne Anmeldung.",
+    extTitle: "PDFAxiom für Chrome",
+    extSub: "Deine Werkzeuge nur einen Klick entfernt, in jedem Tab.",
+    extBtn: "Zu Chrome hinzufügen"
   },
   zh: {
     heroTitle: "PDFAXIOM 全功能",
@@ -128,7 +140,10 @@ const translations = {
     readySub: "您的文件已可下载。",
     downloadBtn: "下载文件",
     resetBtn: "转换其他文件",
-    footerCopy: "© 2026 PDFAxiom. 免费 • 无需注册。"
+    footerCopy: "© 2026 PDFAxiom. 免费 • 无需注册。",
+    extTitle: "PDFAxiom Chrome 扩展程序",
+    extSub: "每个标签页,工具一键即达。",
+    extBtn: "添加到 Chrome"
   },
   ro: {
     heroTitle: "PDFAXIOM Totul în Unul",
@@ -153,7 +168,10 @@ const translations = {
     readySub: "Fișierul tău este gata de descărcare.",
     downloadBtn: "Descarcă Fișierul",
     resetBtn: "Convertește alt fișier",
-    footerCopy: "© 2026 PDFAxiom. Gratuit • Fără înregistrare."
+    footerCopy: "© 2026 PDFAxiom. Gratuit • Fără înregistrare.",
+    extTitle: "PDFAxiom pentru Chrome",
+    extSub: "Instrumentele tale la un clic, în orice filă.",
+    extBtn: "Adaugă în Chrome"
   },
   hi: {
     heroTitle: "PDFAXIOM ऑल इन वन",
@@ -178,7 +196,10 @@ const translations = {
     readySub: "आपकी फ़ाइल डाउनलोड के लिए तैयार है।",
     downloadBtn: "फ़ाइल डाउनलोड करें",
     resetBtn: "दूसरी फ़ाइल बदलें",
-    footerCopy: "© 2026 PDFAxiom. मुफ़्त • बिना पंजीकरण।"
+    footerCopy: "© 2026 PDFAxiom. मुफ़्त • बिना पंजीकरण।",
+    extTitle: "Chrome के लिए PDFAxiom",
+    extSub: "हर टैब में, आपके टूल एक क्लिक दूर।",
+    extBtn: "Chrome में जोड़ें"
   },
   ru: {
     heroTitle: "PDFAXIOM Все в Одном",
@@ -203,7 +224,10 @@ const translations = {
     readySub: "Ваш файл готов к загрузке.",
     downloadBtn: "Скачать Файл",
     resetBtn: "Конвертировать Другой Файл",
-    footerCopy: "© 2026 PDFAxiom. Бесплатно • Без регистрации."
+    footerCopy: "© 2026 PDFAxiom. Бесплатно • Без регистрации.",
+    extTitle: "PDFAxiom для Chrome",
+    extSub: "Инструменты в одном клике, в любой вкладке.",
+    extBtn: "Добавить в Chrome"
   }
 };
 
@@ -743,6 +767,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const footerCopy = document.querySelector('.copyright');
     if (footerCopy) footerCopy.textContent = t.footerCopy;
+
+    const extTitle = document.getElementById('estensioneTitolo');
+    if (extTitle) extTitle.textContent = t.extTitle;
+    const extSub = document.getElementById('estensioneSotto');
+    if (extSub) extSub.textContent = t.extSub;
+    const extBtn = document.getElementById('estensioneAzione');
+    if (extBtn) extBtn.textContent = t.extBtn;
 
     // Modal & Footer Links Translations
     const aboutUsLink = document.getElementById('aboutUsLink');
