@@ -1773,11 +1773,15 @@ body.solo-testo .main-content { padding-bottom: 0; }
   color: var(--text-secondary);
 }
 
+/* Le stesse due variabili di .btn-primary, e per lo stesso motivo: si
+   scambiano da sole fra i due temi, quindi il contrasto resta garantito.
+   --accent-white qui non va: in tema chiaro vale #0f172a, cioe' blu notte,
+   e un testo nero sopra diventa illeggibile. */
 .estensione-azione {
   flex-shrink: 0;
   padding: 0.5rem 0.9rem;
-  background: var(--accent-white);
-  color: #000000;
+  background: var(--text-primary);
+  color: var(--bg-primary);
   border-radius: var(--radius-md);
   font-size: 0.8rem;
   font-weight: 700;
