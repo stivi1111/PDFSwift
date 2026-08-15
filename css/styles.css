@@ -1832,28 +1832,23 @@ body.solo-testo .main-content { padding-bottom: 0; }
   font-weight: 600;
 }
 
-.ad-banner-top {
-  margin: 1.25rem auto 1.5rem auto;
-  max-width: 900px;
-}
-
-body.pagina-home .ad-banner-top,
-body:not(.pagina-strumento) .ad-banner-top {
+/* Il banner sotto-griglia appartiene SOLO alla home page */
+.ad-banner-below-grid {
   display: none !important;
 }
 
-body.pagina-strumento .ad-banner-top {
-  display: flex;
-}
-
-.ad-banner-below-grid {
+body.pagina-home .ad-banner-below-grid {
+  display: flex !important;
   margin: 2.5rem auto 1.5rem auto;
   max-width: 970px;
 }
 
 .ad-banner-workspace {
-  margin: 1.5rem 0;
-  min-height: 120px;
+  margin: 1.25rem 0 1.5rem 0;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .ad-banner-download {
@@ -1879,12 +1874,6 @@ body.pagina-strumento .ad-banner-top {
   padding: 0.4rem 0;
   box-sizing: border-box;
   z-index: 50;
-}
-
-/* Nascondi il banner della home page (sotto-griglia) quando si è dentro la pagina di uno strumento */
-body.pagina-strumento .ad-banner-below-grid,
-body:has(#toolWorkspace[style*="display: block"]) .ad-banner-below-grid {
-  display: none !important;
 }
 
 /* Spaziatura superiore scura nelle pagine dei tool (stacco netto dalla barra di navigazione) */
