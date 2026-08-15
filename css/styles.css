@@ -1896,11 +1896,12 @@ body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper {
   }
 }
 
-/* 2. HOMEPAGE: BANNER SOTTILI DA 120px AGLI ESTREMI */
+/* 2. HOMEPAGE: BANNER SOTTILI DA 120px AGLI ESTREMI (Allineati perfettamente all'altezza dei Tool) */
 body.pagina-home .ad-skyscraper,
 body:not(.pagina-strumento) .ad-skyscraper {
+  top: 250px; /* Inizia esattamente in linea con la prima fila di tool (PDF to Word) */
   width: 120px;
-  height: 600px;
+  height: 520px; /* Altezza allineata da PDF to Word fino alla fila di Markdown to PDF */
 }
 
 @media (min-width: 1400px) {
