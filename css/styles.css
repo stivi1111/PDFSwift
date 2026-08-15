@@ -1833,7 +1833,7 @@ body.solo-testo .main-content { padding-bottom: 0; }
   font-weight: 600;
 }
 
-/* Banner compatto tra il sottotitolo della Hero e la griglia dei tool (Solo Home Page) */
+/* Banner compatto e sottile tra il sottotitolo della Hero e la griglia dei tool (Solo Home Page) */
 .ad-banner-hero {
   display: none;
 }
@@ -1842,15 +1842,20 @@ body.pagina-home .ad-banner-hero {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0.5rem auto 1.5rem auto;
+  margin: 0.5rem auto 1.25rem auto;
   max-width: 728px;
-  min-height: 70px;
-  max-height: 90px;
+  min-height: 50px;
+  max-height: 65px;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  padding: 0.35rem 0.75rem;
+  padding: 0.2rem 0.5rem;
   box-sizing: border-box;
+}
+
+body.pagina-home .ad-banner-hero .ad-label {
+  font-size: 0.55rem;
+  margin-bottom: 2px;
 }
 
 /* Il banner sotto-griglia appartiene SOLO alla home page */
