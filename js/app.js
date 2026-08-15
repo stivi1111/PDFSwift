@@ -269,6 +269,8 @@ document.addEventListener('DOMContentLoaded', () => {
     processBtn.disabled = true;
 
     heroSection.style.display = 'none';
+    const heroAd = document.querySelector('.ad-banner-hero');
+    if (heroAd) heroAd.style.display = 'none';
     const catTabs = document.querySelector('.category-tabs');
     if (catTabs) catTabs.style.display = 'none';
     toolsGrid.style.display = 'none';

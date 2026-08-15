@@ -1833,6 +1833,26 @@ body.solo-testo .main-content { padding-bottom: 0; }
   font-weight: 600;
 }
 
+/* Banner compatto tra il sottotitolo della Hero e la griglia dei tool (Solo Home Page) */
+.ad-banner-hero {
+  display: none;
+}
+
+body.pagina-home .ad-banner-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.5rem auto 1.5rem auto;
+  max-width: 728px;
+  min-height: 70px;
+  max-height: 90px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.35rem 0.75rem;
+  box-sizing: border-box;
+}
+
 /* Il banner sotto-griglia appartiene SOLO alla home page */
 .ad-banner-below-grid {
   display: none !important;
@@ -1921,31 +1941,6 @@ body:has(#toolWorkspace[style*="display: block"]) > .ad-skyscraper {
     /* Centrato perfettamente nello spazio a destra */
     left: calc(100% + max(15px, (100vw - 900px - 360px) / 4));
     right: auto;
-  }
-}
-
-/* 2. HOMEPAGE: BANNER SOTTILI DA 120px AGLI ESTREMI (Allineati al millimetro con le schede dei Tool) */
-body.pagina-home .ad-skyscraper,
-body:not(.pagina-strumento) .ad-skyscraper {
-  top: 275px; /* Inizia ESATTAMENTE sul bordo superiore della prima scheda (PDF to Word) */
-  width: 120px;
-  height: 465px; /* Termina ESATTAMENTE sul bordo inferiore dell'ultima scheda (PDF to Markdown / Extract Images) */
-}
-
-@media (min-width: 1400px) {
-  body.pagina-home .ad-skyscraper,
-  body:not(.pagina-strumento) .ad-skyscraper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  body.pagina-home .ad-skyscraper-left,
-  body:not(.pagina-strumento) .ad-skyscraper-left {
-    left: 10px;
-  }
-  body.pagina-home .ad-skyscraper-right,
-  body:not(.pagina-strumento) .ad-skyscraper-right {
-    right: 10px;
   }
 }
 
