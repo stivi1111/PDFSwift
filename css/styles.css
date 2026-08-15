@@ -1877,6 +1877,12 @@ body.pagina-home .ad-banner-below-grid {
   z-index: 50;
 }
 
+/* Spaziatura superiore scura generosa nelle pagine dei tool (stacco netto e arioso dal menu in alto) */
+body.pagina-strumento .main-content,
+body:has(#toolWorkspace[style*="display: block"]) .main-content {
+  padding-top: 3.5rem !important;
+}
+
 /* Nascondi i banner skyscraper a livello body quando si è nelle pagine dei tool */
 body.pagina-strumento > .ad-skyscraper,
 body:has(#toolWorkspace[style*="display: block"]) > .ad-skyscraper {
