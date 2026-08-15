@@ -1853,11 +1853,11 @@ body.solo-testo .main-content { padding-bottom: 0; }
   min-height: 100px;
 }
 
-/* Slim Side Skyscrapers at Extreme Viewport Edges (120px wide) */
+/* Slim Side Skyscrapers at Extreme Viewport Edges (120px wide) - Natural Scroll */
 .ad-skyscraper {
   display: none;
-  position: fixed;
-  top: 90px;
+  position: absolute; /* Rimane in alto e scorre via con la pagina senza seguire lo schermo */
+  top: 140px;
   width: 120px;
   height: 600px;
   background: var(--bg-card);
