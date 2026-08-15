@@ -544,6 +544,7 @@ a {
 /* Tool Workspace Modal Interface */
 .tool-workspace {
   display: none;
+  position: relative;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
@@ -1877,36 +1878,44 @@ body.pagina-home .ad-banner-below-grid {
   z-index: 50;
 }
 
-/* Spaziatura superiore scura nelle pagine dei tool (stacco netto dalla barra di navigazione) */
-body.pagina-strumento .main-content,
-body:has(#toolWorkspace[style*="display: block"]) .main-content {
-  padding-top: 3.5rem;
+/* Nascondi i banner skyscraper a livello body quando si è nelle pagine dei tool */
+body.pagina-strumento > .ad-skyscraper,
+body:has(#toolWorkspace[style*="display: block"]) > .ad-skyscraper {
+  display: none !important;
 }
 
-/* 1. PAGINE DEI SINGOLI STRUMENTI: BANNER PIÙ LARGHI (180px) ALLINEATI IN CIMA E IN FONDO AL BOX CENTRALE */
-body.pagina-strumento .ad-skyscraper,
-body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper {
-  top: 141px; /* Allineato al MILLIMETRO col filo superiore della scheda centrale */
-  width: 180px; /* Formato più largo da 180px per occupare bene lo spazio blu laterale */
-  height: 640px; /* Allineato ESATTAMENTE col filo inferiore della scheda centrale */
+/* 1. PAGINE DEI SINGOLI STRUMENTI: BANNER 100% ALLINEATI AL MILLIMETRO SUL BORDO SUPERIORE E INFERIORE */
+.ad-skyscraper-tool {
+  position: absolute;
+  top: 0 !important;
+  bottom: 0 !important;
+  height: 100% !important; /* Copre al 100% l'altezza del riquadro centrale */
+  width: 180px;
+  display: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  text-align: center;
+  padding: 0.4rem 0;
+  box-sizing: border-box;
+  z-index: 50;
 }
 
 @media (min-width: 1280px) {
-  body.pagina-strumento .ad-skyscraper,
-  body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper {
+  .ad-skyscraper-tool {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  body.pagina-strumento .ad-skyscraper-left,
-  body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper-left {
-    /* Centrato simmetricamente nello spazio laterale */
-    left: max(15px, calc((50vw - 450px - 180px) / 2));
+  .ad-skyscraper-tool-left {
+    /* Centrato perfettamente nello spazio a sinistra */
+    right: calc(100% + max(15px, (100vw - 900px - 360px) / 4));
+    left: auto;
   }
-  body.pagina-strumento .ad-skyscraper-right,
-  body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper-right {
-    /* Centrato simmetricamente nello spazio laterale */
-    right: max(15px, calc((50vw - 450px - 180px) / 2));
+  .ad-skyscraper-tool-right {
+    /* Centrato perfettamente nello spazio a destra */
+    left: calc(100% + max(15px, (100vw - 900px - 360px) / 4));
+    right: auto;
   }
 }
 
