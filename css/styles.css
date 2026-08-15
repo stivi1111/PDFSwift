@@ -1833,8 +1833,17 @@ body.solo-testo .main-content { padding-bottom: 0; }
 }
 
 .ad-banner-top {
-  margin: 0.75rem auto 1.5rem auto;
-  max-width: 970px;
+  margin: 1.25rem auto 1.5rem auto;
+  max-width: 900px;
+}
+
+body.pagina-home .ad-banner-top,
+body:not(.pagina-strumento) .ad-banner-top {
+  display: none !important;
+}
+
+body.pagina-strumento .ad-banner-top {
+  display: flex;
 }
 
 .ad-banner-below-grid {
@@ -1881,7 +1890,7 @@ body:has(#toolWorkspace[style*="display: block"]) .ad-banner-below-grid {
 /* 1. PAGINE DEI SINGOLI STRUMENTI: BANNER GRANDI (160px) CENTRATI PERFETTAMENTE NELLO SPAZIO LATERALE */
 body.pagina-strumento .ad-skyscraper,
 body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper {
-  top: 80px; /* Allineato in alto esattamente sul bordo superiore del box dello strumento */
+  top: 110px; /* Allineato elegantemente in alto all'altezza del banner superiore dello strumento */
   width: 160px; /* Formato GRANDE e pieno da 160px per occupare bene lo spazio */
   height: 600px;
 }
