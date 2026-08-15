@@ -269,8 +269,11 @@ document.addEventListener('DOMContentLoaded', () => {
     processBtn.disabled = true;
 
     heroSection.style.display = 'none';
-    document.querySelector('.category-tabs').style.display = 'none';
+    const catTabs = document.querySelector('.category-tabs');
+    if (catTabs) catTabs.style.display = 'none';
     toolsGrid.style.display = 'none';
+    const belowGridAd = document.querySelector('.ad-banner-below-grid');
+    if (belowGridAd) belowGridAd.style.display = 'none';
     workspace.style.display = 'block';
 
     // Su "silenzioso" non si scorre: la pagina si e' appena aperta ed e' gia'

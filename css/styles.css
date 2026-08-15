@@ -1872,10 +1872,16 @@ body.solo-testo .main-content { padding-bottom: 0; }
   z-index: 50;
 }
 
+/* Nascondi il banner della home page (sotto-griglia) quando si è dentro la pagina di uno strumento */
+body.pagina-strumento .ad-banner-below-grid,
+body:has(#toolWorkspace[style*="display: block"]) .ad-banner-below-grid {
+  display: none !important;
+}
+
 /* 1. PAGINE DEI SINGOLI STRUMENTI (Es. /pdf-to-word/, /compress-pdf/, ecc.): BANNER PERFETTAMENTE CENTRATI NELLO SPAZIO LATERALE */
 body.pagina-strumento .ad-skyscraper,
 body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper {
-  top: 96px; /* Allineato in alto col riquadro principale dello strumento */
+  top: 80px; /* Allineato in alto esattamente sul bordo superiore del box dello strumento */
   width: 120px;
   height: 600px;
 }
@@ -1889,12 +1895,12 @@ body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper {
   }
   body.pagina-strumento .ad-skyscraper-left,
   body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper-left {
-    /* Centrato esattamente nello spazio tra il bordo dello schermo e il box del tool */
+    /* Centrato matematicamente nello spazio tra il bordo dello schermo e il box del tool */
     left: max(10px, calc((50vw - 450px - 120px) / 2));
   }
   body.pagina-strumento .ad-skyscraper-right,
   body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper-right {
-    /* Centrato esattamente nello spazio tra il bordo dello schermo e il box del tool */
+    /* Centrato matematicamente nello spazio tra il bordo dello schermo e il box del tool */
     right: max(10px, calc((50vw - 450px - 120px) / 2));
   }
 }
