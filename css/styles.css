@@ -1885,7 +1885,7 @@ body:has(#toolWorkspace[style*="display: block"]) .main-content {
 /* 1. PAGINE DEI SINGOLI STRUMENTI: BANNER PIÙ LARGHI (180px) ALLINEATI IN CIMA AL BOX E CENTRATI NELLO SPAZIO LATERALE */
 body.pagina-strumento .ad-skyscraper,
 body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper {
-  top: 120px; /* Allineato ESATTAMENTE al filo superiore del riquadro centrale */
+  top: 141px; /* Allineato al MILLIMETRO col filo superiore della scheda centrale */
   width: 180px; /* Formato più largo da 180px per occupare bene lo spazio blu laterale */
   height: 600px;
 }
