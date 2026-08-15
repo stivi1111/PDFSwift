@@ -1887,15 +1887,21 @@ body:has(#toolWorkspace[style*="display: block"]) .ad-banner-below-grid {
   display: none !important;
 }
 
-/* 1. PAGINE DEI SINGOLI STRUMENTI: BANNER GRANDI (160px) CENTRATI PERFETTAMENTE NELLO SPAZIO LATERALE */
+/* Spaziatura superiore scura nelle pagine dei tool (stacco netto dalla barra di navigazione) */
+body.pagina-strumento .main-content,
+body:has(#toolWorkspace[style*="display: block"]) .main-content {
+  padding-top: 3.5rem;
+}
+
+/* 1. PAGINE DEI SINGOLI STRUMENTI: BANNER PIÙ LARGHI (180px) ALLINEATI IN CIMA AL BOX E CENTRATI NELLO SPAZIO LATERALE */
 body.pagina-strumento .ad-skyscraper,
 body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper {
-  top: 110px; /* Allineato elegantemente in alto all'altezza del banner superiore dello strumento */
-  width: 160px; /* Formato GRANDE e pieno da 160px per occupare bene lo spazio */
+  top: 120px; /* Allineato ESATTAMENTE al filo superiore del riquadro centrale */
+  width: 180px; /* Formato più largo da 180px per occupare bene lo spazio blu laterale */
   height: 600px;
 }
 
-@media (min-width: 1240px) {
+@media (min-width: 1280px) {
   body.pagina-strumento .ad-skyscraper,
   body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper {
     display: flex;
@@ -1904,13 +1910,13 @@ body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper {
   }
   body.pagina-strumento .ad-skyscraper-left,
   body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper-left {
-    /* Centrato esattamente nello spazio tra il bordo dello schermo e il box del tool */
-    left: max(15px, calc((50vw - 450px - 160px) / 2));
+    /* Centrato simmetricamente nello spazio laterale */
+    left: max(15px, calc((50vw - 450px - 180px) / 2));
   }
   body.pagina-strumento .ad-skyscraper-right,
   body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper-right {
-    /* Centrato esattamente nello spazio tra il bordo dello schermo e il box del tool */
-    right: max(15px, calc((50vw - 450px - 160px) / 2));
+    /* Centrato simmetricamente nello spazio laterale */
+    right: max(15px, calc((50vw - 450px - 180px) / 2));
   }
 }
 
