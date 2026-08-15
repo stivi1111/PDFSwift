@@ -1878,15 +1878,15 @@ body:has(#toolWorkspace[style*="display: block"]) .ad-banner-below-grid {
   display: none !important;
 }
 
-/* 1. PAGINE DEI SINGOLI STRUMENTI (Es. /pdf-to-word/, /compress-pdf/, ecc.): BANNER PERFETTAMENTE CENTRATI NELLO SPAZIO LATERALE */
+/* 1. PAGINE DEI SINGOLI STRUMENTI: BANNER GRANDI (160px) CENTRATI PERFETTAMENTE NELLO SPAZIO LATERALE */
 body.pagina-strumento .ad-skyscraper,
 body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper {
   top: 80px; /* Allineato in alto esattamente sul bordo superiore del box dello strumento */
-  width: 120px;
+  width: 160px; /* Formato GRANDE e pieno da 160px per occupare bene lo spazio */
   height: 600px;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1240px) {
   body.pagina-strumento .ad-skyscraper,
   body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper {
     display: flex;
@@ -1895,13 +1895,13 @@ body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper {
   }
   body.pagina-strumento .ad-skyscraper-left,
   body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper-left {
-    /* Centrato matematicamente nello spazio tra il bordo dello schermo e il box del tool */
-    left: max(10px, calc((50vw - 450px - 120px) / 2));
+    /* Centrato esattamente nello spazio tra il bordo dello schermo e il box del tool */
+    left: max(15px, calc((50vw - 450px - 160px) / 2));
   }
   body.pagina-strumento .ad-skyscraper-right,
   body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper-right {
-    /* Centrato matematicamente nello spazio tra il bordo dello schermo e il box del tool */
-    right: max(10px, calc((50vw - 450px - 120px) / 2));
+    /* Centrato esattamente nello spazio tra il bordo dello schermo e il box del tool */
+    right: max(15px, calc((50vw - 450px - 160px) / 2));
   }
 }
 
