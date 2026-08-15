@@ -1853,13 +1853,11 @@ body.solo-testo .main-content { padding-bottom: 0; }
   min-height: 100px;
 }
 
-/* Slim Side Skyscrapers at Extreme Viewport Edges (120px wide) - Natural Scroll */
+/* Side Skyscrapers (Natural Scroll, never fixed) */
 .ad-skyscraper {
   display: none;
-  position: absolute; /* Rimane in alto e scorre via con la pagina senza seguire lo schermo */
+  position: absolute;
   top: 140px;
-  width: 120px;
-  height: 600px;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
@@ -1869,16 +1867,50 @@ body.solo-testo .main-content { padding-bottom: 0; }
   z-index: 50;
 }
 
-@media (min-width: 1400px) {
-  .ad-skyscraper {
+/* 1. PAGINE DEI SINGOLI STRUMENTI (Es. /pdf-to-word/, /compress-pdf/, ecc.): BANNER GRANDI DA 160px */
+body.pagina-strumento .ad-skyscraper,
+body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper {
+  width: 160px;
+  height: 600px;
+}
+
+@media (min-width: 1240px) {
+  body.pagina-strumento .ad-skyscraper,
+  body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .ad-skyscraper-left {
+  body.pagina-strumento .ad-skyscraper-left,
+  body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper-left {
+    left: max(12px, calc(50% - 630px));
+  }
+  body.pagina-strumento .ad-skyscraper-right,
+  body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper-right {
+    right: max(12px, calc(50% - 630px));
+  }
+}
+
+/* 2. HOMEPAGE: BANNER SOTTILI DA 120px AGLI ESTREMI */
+body.pagina-home .ad-skyscraper,
+body:not(.pagina-strumento) .ad-skyscraper {
+  width: 120px;
+  height: 600px;
+}
+
+@media (min-width: 1400px) {
+  body.pagina-home .ad-skyscraper,
+  body:not(.pagina-strumento) .ad-skyscraper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  body.pagina-home .ad-skyscraper-left,
+  body:not(.pagina-strumento) .ad-skyscraper-left {
     left: 10px;
   }
-  .ad-skyscraper-right {
+  body.pagina-home .ad-skyscraper-right,
+  body:not(.pagina-strumento) .ad-skyscraper-right {
     right: 10px;
   }
 }

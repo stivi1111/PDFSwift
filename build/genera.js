@@ -328,7 +328,13 @@ function componi(lingua, voce, legale) {
 
   // Sulle pagine legali non c'e' niente da convertire: via l'apertura, le
   // schede e lo spazio di lavoro, che qui sarebbero solo rumore.
-  if (legale) html = html.replace('<body>', '<body class="solo-testo">');
+  if (legale) {
+    html = html.replace('<body>', '<body class="solo-testo">');
+  } else if (voce) {
+    html = html.replace('<body>', '<body class="pagina-strumento">');
+  } else {
+    html = html.replace('<body>', '<body class="pagina-home">');
+  }
 
   // L'intestazione va subito dopo la description, prima dei fogli di stile.
   html = html.replace(/(<meta name="description" content="[^"]*">)/,
