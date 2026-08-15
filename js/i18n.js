@@ -7,8 +7,8 @@
 const translations = {
   en: {
     heroTitle: "PDFAXIOM All in One",
-    heroDesc: "Convert PDF to Word, Word to PDF, Excel, PowerPoint, Merge, Split, Compress & Edit",
-    heroSubtext: "Free to use, no signup required.",
+    heroDesc: "Convert, edit, compress and secure your PDF files in seconds, no signup needed.",
+    heroSubtext: "",
     navConvert: "Convert PDF",
     navMergeSplit: "Merge & Split",
     navEdit: "Edit & Security",
@@ -35,8 +35,8 @@ const translations = {
   },
   it: {
     heroTitle: "PDFAXIOM Tutto in Uno",
-    heroDesc: "Converti PDF in Word, Word in PDF, Excel, PowerPoint, Unisci, Dividi, Comprimi e Modifica",
-    heroSubtext: "Gratuito, nessuna registrazione richiesta.",
+    heroDesc: "Converti, modifica, comprimi e proteggi i tuoi file PDF in pochi secondi, senza registrazione.",
+    heroSubtext: "",
     navConvert: "Converti PDF",
     navMergeSplit: "Unisci e Dividi",
     navEdit: "Modifica & Sicurezza",
@@ -63,8 +63,8 @@ const translations = {
   },
   es: {
     heroTitle: "PDFAXIOM Todo en Uno",
-    heroDesc: "Convierte PDF a Word, Word a PDF, Excel, PowerPoint, Une, Divide, Comprime y Edita",
-    heroSubtext: "Gratis, sin registro.",
+    heroDesc: "Convierte, edita, comprime y protege tus archivos PDF en segundos, sin registro.",
+    heroSubtext: "",
     navConvert: "Convertir PDF",
     navMergeSplit: "Unir y Dividir",
     navEdit: "Edición y Seguridad",
@@ -91,8 +91,8 @@ const translations = {
   },
   de: {
     heroTitle: "PDFAXIOM Alles in Einem",
-    heroDesc: "Konvertieren Sie PDF in Word, Word in PDF, Excel, PowerPoint, Zusammenfügen & Komprimieren",
-    heroSubtext: "Kostenlos, keine Registrierung erforderlich.",
+    heroDesc: "Konvertieren, bearbeiten, komprimieren und schützen Sie Ihre PDFs in Sekundenschnelle, ohne Registrierung.",
+    heroSubtext: "",
     navConvert: "PDF Konvertieren",
     navMergeSplit: "Zusammenfügen & Teilen",
     navEdit: "Bearbeiten & Sicherheit",
@@ -119,8 +119,8 @@ const translations = {
   },
   zh: {
     heroTitle: "PDFAXIOM 全功能",
-    heroDesc: "转换 PDF 至 Word、Word 转 PDF、Excel、PowerPoint、合并、拆分与压缩",
-    heroSubtext: "免费使用，无需注册。",
+    heroDesc: "秒级转换、编辑、压缩和保护您的 PDF 文件，无需注册。",
+    heroSubtext: "",
     navConvert: "转换 PDF",
     navMergeSplit: "合并与拆分",
     navEdit: "编辑与安全",
@@ -147,8 +147,8 @@ const translations = {
   },
   ro: {
     heroTitle: "PDFAXIOM Totul în Unul",
-    heroDesc: "Convertește PDF în Word, Word în PDF, Excel, PowerPoint, Unește, Divide, Comprimă și Editează",
-    heroSubtext: "Gratuit, fără înregistrare.",
+    heroDesc: "Convertește, editează, comprimă și securizează fișierele PDF în câteva secunde, fără înregistrare.",
+    heroSubtext: "",
     navConvert: "Convertește PDF",
     navMergeSplit: "Unește & Divide",
     navEdit: "Editare & Securitate",
@@ -175,8 +175,8 @@ const translations = {
   },
   hi: {
     heroTitle: "PDFAXIOM ऑल इन वन",
-    heroDesc: "पीडीएफ को वर्ड, वर्ड को पीडीएफ, एक्सेल, पावरपॉइंट में बदलें, मर्ज, स्प्लिट और कंप्रेस करें",
-    heroSubtext: "मुफ़्त उपयोग, कोई साइनअप आवश्यक नहीं।",
+    heroDesc: "सेकंडों में अपनी पीडीएफ फाइलों को कनवर्ट, एडिट, कंप्रेस और सुरक्षित करें, बिना साइनअप के।",
+    heroSubtext: "",
     navConvert: "पीडीएफ कन्वर्ट करें",
     navMergeSplit: "मर्ज और स्प्लिट",
     navEdit: "संपादन और सुरक्षा",
@@ -203,8 +203,8 @@ const translations = {
   },
   ru: {
     heroTitle: "PDFAXIOM Все в Одном",
-    heroDesc: "Конвертируйте PDF в Word, Word в PDF, Excel, PowerPoint, Объединяйте, Разделяйте и Сжимайте",
-    heroSubtext: "Бесплатно, без регистрации.",
+    heroDesc: "Конвертируйте, редактируйте, сжимайте и защищайте PDF за секунды, без регистрации.",
+    heroSubtext: "",
     navConvert: "Конвертировать PDF",
     navMergeSplit: "Объединить и Разделить",
     navEdit: "Редактирование и Защита",
@@ -706,7 +706,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroP) heroP.textContent = t.heroDesc;
 
     const heroSub = document.querySelector('.hero-subtext');
-    if (heroSub) heroSub.textContent = t.heroSubtext;
+    if (heroSub) {
+      if (t.heroSubtext) {
+        heroSub.textContent = t.heroSubtext;
+        heroSub.style.display = 'block';
+      } else {
+        heroSub.style.display = 'none';
+      }
+    }
 
     // Update Mobile Menu Button Text (Tools / Close)
     const mobileMenuBtnSpan = document.querySelector('#mobileMenuBtn span');
