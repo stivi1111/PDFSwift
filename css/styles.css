@@ -1799,7 +1799,8 @@ body.solo-testo .main-content { padding-bottom: 0; }
     text-align: center;
   }
 }
-=======
+
+/* ==========================================================================
    Google AdSense & Advertisement Layout Containers
    ========================================================================== */
 .ad-banner-wrapper {
@@ -1852,20 +1853,20 @@ body.solo-testo .main-content { padding-bottom: 0; }
   min-height: 100px;
 }
 
-/* Side Floating Skyscrapers (Wide Desktop Screens > 1400px) */
+/* Slim Side Skyscrapers at Extreme Viewport Edges (120px wide) */
 .ad-skyscraper {
   display: none;
   position: fixed;
-  top: 100px;
-  width: 160px;
+  top: 90px;
+  width: 120px;
   height: 600px;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   text-align: center;
-  padding: 0.5rem 0;
+  padding: 0.4rem 0;
   box-sizing: border-box;
-  z-index: 90;
+  z-index: 50;
 }
 
 @media (min-width: 1400px) {
@@ -1875,10 +1876,10 @@ body.solo-testo .main-content { padding-bottom: 0; }
     align-items: center;
   }
   .ad-skyscraper-left {
-    left: max(10px, calc(50% - 660px));
+    left: 10px;
   }
   .ad-skyscraper-right {
-    right: max(10px, calc(50% - 660px));
+    right: 10px;
   }
 }
 
@@ -1948,4 +1949,3 @@ body.solo-testo .main-content { padding-bottom: 0; }
   transform: scale(1.08);
 }
 
->>>>>>> ace384b (Add Google AdSense integration with full-coverage responsive ad slots (ca-pub-2272593869740076))
