@@ -19,37 +19,14 @@
     }
   }
 
-  function setupStickyAd() {
-    const stickyBar = document.getElementById('stickyAdBar');
-    const closeBtn = document.getElementById('closeStickyAdBtn');
-    if (!stickyBar || !closeBtn) return;
-
-    closeBtn.addEventListener('click', () => {
-      stickyBar.style.display = 'none';
-      try {
-        sessionStorage.setItem('pdfaxiom_sticky_ad_closed', '1');
-      } catch (e) {}
-    });
-
-    try {
-      if (sessionStorage.getItem('pdfaxiom_sticky_ad_closed') === '1') {
-        stickyBar.style.display = 'none';
-      }
-    } catch (e) {}
-  }
-
   // Expose global refresh function when tool workspace or download screen changes
   window.refreshToolAds = function() {
     setTimeout(initAds, 300);
   };
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      initAds();
-      setupStickyAd();
-    });
+    document.addEventListener('DOMContentLoaded', initAds);
   } else {
     initAds();
-    setupStickyAd();
   }
 })();

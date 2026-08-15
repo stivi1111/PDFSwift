@@ -1896,12 +1896,12 @@ body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper {
   }
 }
 
-/* 2. HOMEPAGE: BANNER SOTTILI DA 120px AGLI ESTREMI (Allineati perfettamente all'altezza dei Tool) */
+/* 2. HOMEPAGE: BANNER SOTTILI DA 120px AGLI ESTREMI (Allineati al millimetro con le schede dei Tool) */
 body.pagina-home .ad-skyscraper,
 body:not(.pagina-strumento) .ad-skyscraper {
-  top: 250px; /* Inizia esattamente in linea con la prima fila di tool (PDF to Word) */
+  top: 275px; /* Inizia ESATTAMENTE sul bordo superiore della prima scheda (PDF to Word) */
   width: 120px;
-  height: 520px; /* Altezza allineata da PDF to Word fino alla fila di Markdown to PDF */
+  height: 465px; /* Termina ESATTAMENTE sul bordo inferiore dell'ultima scheda (PDF to Markdown / Extract Images) */
 }
 
 @media (min-width: 1400px) {
@@ -1921,69 +1921,4 @@ body:not(.pagina-strumento) .ad-skyscraper {
   }
 }
 
-/* Sticky Bottom Ad Bar (Mobile & Desktop) */
-.sticky-ad-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--bg-card);
-  border-top: 1px solid var(--border-color);
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.12);
-  padding: 0.4rem 1rem;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 50px;
-  animation: slideUpAd 0.3s ease-out;
-}
-
-@keyframes slideUpAd {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-
-.sticky-ad-inner {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 728px;
-}
-
-.ad-label-sticky {
-  font-size: 0.58rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  line-height: 1;
-  margin-bottom: 2px;
-}
-
-.sticky-ad-close {
-  position: absolute;
-  top: 4px;
-  right: 12px;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--bg-input);
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
-  font-size: 1.1rem;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10000;
-  transition: all 0.2s ease;
-}
-
-.sticky-ad-close:hover {
-  background: var(--btn-secondary-hover);
-  transform: scale(1.08);
-}
 
