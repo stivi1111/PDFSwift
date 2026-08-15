@@ -1872,14 +1872,15 @@ body.solo-testo .main-content { padding-bottom: 0; }
   z-index: 50;
 }
 
-/* 1. PAGINE DEI SINGOLI STRUMENTI (Es. /pdf-to-word/, /compress-pdf/, ecc.): BANNER GRANDI DA 160px */
+/* 1. PAGINE DEI SINGOLI STRUMENTI (Es. /pdf-to-word/, /compress-pdf/, ecc.): BANNER PERFETTAMENTE CENTRATI NELLO SPAZIO LATERALE */
 body.pagina-strumento .ad-skyscraper,
 body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper {
-  width: 160px;
+  top: 96px; /* Allineato in alto col riquadro principale dello strumento */
+  width: 120px;
   height: 600px;
 }
 
-@media (min-width: 1240px) {
+@media (min-width: 1200px) {
   body.pagina-strumento .ad-skyscraper,
   body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper {
     display: flex;
@@ -1888,11 +1889,13 @@ body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper {
   }
   body.pagina-strumento .ad-skyscraper-left,
   body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper-left {
-    left: max(12px, calc(50% - 630px));
+    /* Centrato esattamente nello spazio tra il bordo dello schermo e il box del tool */
+    left: max(10px, calc((50vw - 450px - 120px) / 2));
   }
   body.pagina-strumento .ad-skyscraper-right,
   body:has(#toolWorkspace[style*="display: block"]) .ad-skyscraper-right {
-    right: max(12px, calc(50% - 630px));
+    /* Centrato esattamente nello spazio tra il bordo dello schermo e il box del tool */
+    right: max(10px, calc((50vw - 450px - 120px) / 2));
   }
 }
 
