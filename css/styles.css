@@ -1717,6 +1717,7 @@ body.solo-testo .main-content { padding-bottom: 0; }
 }
 
 /* ==========================================================================
+<<<<<<< HEAD
    Invito a installare l'estensione per Chrome (nel piede)
    ========================================================================== */
 .estensione-invito {
@@ -1798,3 +1799,153 @@ body.solo-testo .main-content { padding-bottom: 0; }
     text-align: center;
   }
 }
+=======
+   Google AdSense & Advertisement Layout Containers
+   ========================================================================== */
+.ad-banner-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem auto;
+  padding: 0.5rem 0;
+  width: 100%;
+  max-width: 970px;
+  min-height: 90px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+}
+
+.ad-label {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+.ad-banner-top {
+  margin: 0.75rem auto 1.5rem auto;
+  max-width: 970px;
+}
+
+.ad-banner-workspace {
+  margin: 1.5rem 0;
+  min-height: 120px;
+}
+
+.ad-banner-download {
+  margin: 1.25rem 0;
+  min-height: 120px;
+  background: var(--bg-input);
+}
+
+.ad-banner-in-content {
+  margin: 2.5rem 0;
+  min-height: 100px;
+}
+
+/* Side Floating Skyscrapers (Wide Desktop Screens > 1400px) */
+.ad-skyscraper {
+  display: none;
+  position: fixed;
+  top: 100px;
+  width: 160px;
+  height: 600px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  text-align: center;
+  padding: 0.5rem 0;
+  box-sizing: border-box;
+  z-index: 90;
+}
+
+@media (min-width: 1400px) {
+  .ad-skyscraper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .ad-skyscraper-left {
+    left: max(10px, calc(50% - 660px));
+  }
+  .ad-skyscraper-right {
+    right: max(10px, calc(50% - 660px));
+  }
+}
+
+/* Sticky Bottom Ad Bar (Mobile & Desktop) */
+.sticky-ad-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-color);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.12);
+  padding: 0.4rem 1rem;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  animation: slideUpAd 0.3s ease-out;
+}
+
+@keyframes slideUpAd {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.sticky-ad-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 728px;
+}
+
+.ad-label-sticky {
+  font-size: 0.58rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.sticky-ad-close {
+  position: absolute;
+  top: 4px;
+  right: 12px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10000;
+  transition: all 0.2s ease;
+}
+
+.sticky-ad-close:hover {
+  background: var(--btn-secondary-hover);
+  transform: scale(1.08);
+}
+
+>>>>>>> ace384b (Add Google AdSense integration with full-coverage responsive ad slots (ca-pub-2272593869740076))

@@ -159,6 +159,16 @@ function bloccoStrumento(lingua, voce) {
 ${passi}
     </ol>
 
+    <div class="ad-banner-wrapper ad-banner-in-content" aria-label="Advertisement">
+      <span class="ad-label">ADVERTISEMENT</span>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2272593869740076"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
     <h2>${esc(c.etichette.faq)}</h2>
     <div class="seo-faq">
 ${faq}
