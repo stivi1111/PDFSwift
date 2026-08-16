@@ -806,7 +806,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const modalContactText = document.getElementById('modalContactText');
     if (modalContactText) {
-      const emailLink = '<a href="mailto:support@pdfaxiom.com" class="modal-link">support@pdfaxiom.com</a>';
+      const emailLink = '<a href="mailto:pdfaxiom@gmail.com" class="modal-link">pdfaxiom@gmail.com</a>';
       modalContactText.innerHTML = (lang === 'it') ? `Hai domande, suggerimenti o richieste? Scrivici a ${emailLink}.` : `Have questions, suggestions, or requests? Write to us at ${emailLink}.`;
     }
 

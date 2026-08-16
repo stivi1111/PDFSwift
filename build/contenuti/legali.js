@@ -68,7 +68,7 @@ module.exports = {
           t: 'Your rights',
           p: [
             'Because we hold no account, no email address and no stored files, there is in practice no personal data of yours for us to hand over, correct or delete — which is the strongest form of the guarantee the GDPR is meant to give you.',
-            'If you believe we hold something about you regardless, write to <strong>support@pdfaxiom.com</strong> and we will answer.',
+            'If you believe we hold something about you regardless, write to <strong>pdfaxiom@gmail.com</strong> and we will answer.',
           ],
         },
         {
@@ -123,7 +123,7 @@ module.exports = {
         },
         {
           t: 'Contact',
-          p: ['Questions, faults and complaints: <strong>support@pdfaxiom.com</strong>'],
+          p: ['Questions, faults and complaints: <strong>pdfaxiom@gmail.com</strong>'],
         },
       ],
     },
@@ -185,7 +185,7 @@ module.exports = {
           t: 'I tuoi diritti',
           p: [
             'Poiché non conserviamo account, indirizzi di posta né file, in pratica non esiste un dato personale tuo che possiamo consegnarti, correggere o cancellare — che è la forma più forte della garanzia che il GDPR vuole darti.',
-            'Se ritieni comunque che abbiamo qualcosa che ti riguarda, scrivi a <strong>support@pdfaxiom.com</strong> e ti risponderemo.',
+            'Se ritieni comunque che abbiamo qualcosa che ti riguarda, scrivi a <strong>pdfaxiom@gmail.com</strong> e ti risponderemo.',
           ],
         },
         {
@@ -240,7 +240,7 @@ module.exports = {
         },
         {
           t: 'Contatti',
-          p: ['Domande, guasti e segnalazioni: <strong>support@pdfaxiom.com</strong>'],
+          p: ['Domande, guasti e segnalazioni: <strong>pdfaxiom@gmail.com</strong>'],
         },
       ],
     },
