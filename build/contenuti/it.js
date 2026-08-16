@@ -1,6 +1,12 @@
 /** Testi in italiano delle 24 pagine. Vedi en.js per il criterio. */
 module.exports = {
   lingua: 'Italiano',
+
+  casa: {
+    titolo: 'Strumenti PDF gratuiti per convertire e comprimere',
+    descrizione: 'Converti PDF in Word, Word in PDF, Excel, PowerPoint, unisci, dividi, comprimi e modifica i tuoi PDF. Gratis, senza registrazione, file cancellati subito dopo la conversione.',
+  },
+
   etichette: {
     passi: 'Come si fa',
     faq: 'Domande frequenti',

@@ -1,6 +1,12 @@
 /** 24 个页面的中文文案。判断标准见 en.js。 */
 module.exports = {
   lingua: '中文',
+
+  casa: {
+    titolo: '免费 PDF 工具在线转换、压缩和编辑',
+    descrizione: '免费将 PDF 转换为 Word，Word 转 PDF，以及 Excel、PowerPoint，还可合并、拆分、压缩和编辑 PDF 文件。无需注册，文件转换后立即删除。',
+  },
+
   etichette: {
     passi: '操作步骤',
     faq: '常见问题',

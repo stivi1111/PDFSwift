@@ -1,6 +1,12 @@
 /** Textos en español de las 24 páginas. Ver en.js para el criterio. */
 module.exports = {
   lingua: 'Español',
+
+  casa: {
+    titolo: 'Herramientas PDF gratis para convertir y comprimir',
+    descrizione: 'Convierte PDF a Word, Word a PDF, Excel y PowerPoint, une, divide, comprime y edita tus archivos PDF. Gratis, sin registro, los archivos se borran justo después.',
+  },
+
   etichette: {
     passi: 'Cómo se hace',
     faq: 'Preguntas frecuentes',

@@ -1,6 +1,12 @@
 /** Deutsche Texte der 24 Seiten. Kriterium siehe en.js. */
 module.exports = {
   lingua: 'Deutsch',
+
+  casa: {
+    titolo: 'Kostenlose PDF Tools zum Umwandeln und Komprimieren',
+    descrizione: 'PDF in Word, Word in PDF, Excel und PowerPoint umwandeln, zusammenfügen, teilen, komprimieren und bearbeiten. Kostenlos, ohne Anmeldung, Dateien werden sofort danach gelöscht.',
+  },
+
   etichette: {
     passi: 'So geht es',
     faq: 'Häufige Fragen',

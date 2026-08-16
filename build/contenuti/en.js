@@ -8,6 +8,14 @@
  */
 module.exports = {
   lingua: 'English',
+
+  // Testa della home. Il nome del sito da solo non lo cerca nessuno: qui
+  // vanno le parole che la gente digita davvero.
+  casa: {
+    titolo: 'Free PDF Tools to Convert, Compress and Edit Online',
+    descrizione: 'Convert PDF to Word, Word to PDF, Excel, PowerPoint, merge, split, compress and edit PDF files. Free, no signup, files deleted right after conversion.',
+  },
+
   etichette: {
     passi: 'How to do it',
     faq: 'Common questions',

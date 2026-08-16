@@ -1,6 +1,12 @@
 /** Textele în română ale celor 24 de pagini. Vezi en.js pentru criteriu. */
 module.exports = {
   lingua: 'Română',
+
+  casa: {
+    titolo: 'Instrumente PDF gratuite pentru conversie și comprimare',
+    descrizione: 'Convertește PDF în Word, Word în PDF, Excel și PowerPoint, unește, împarte, comprimă și editează fișiere PDF. Gratuit, fără cont, fișierele se șterg imediat după.',
+  },
+
   etichette: {
     passi: 'Cum se face',
     faq: 'Întrebări frecvente',

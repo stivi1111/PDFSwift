@@ -264,9 +264,12 @@ function intestazione(lingua, voce, legale) {
   const slug = legale ? legale.slug : (voce ? voce.slug : '');
   const url = assoluto(lingua, slug);
 
-  const titolo = legale ? `${legale.titolo} | PDFAxiom`
-    : (t ? `${t.titolo} | PDFAxiom` : 'PDFAXIOM');
-  const descrizione = legale ? legale.descrizione : (t ? t.descrizione : null);
+  // La home non ha ne' voce ne' documento legale: i suoi testi stanno in
+  // "casa" dentro contenuti/<lingua>.js. Prima non c'erano e finiva per
+  // ereditare titolo e descrizione inglesi del modello in tutte le lingue.
+  const testa = legale || t || c.casa;
+  const titolo = `${testa.titolo} | PDFAxiom`;
+  const descrizione = testa.descrizione;
 
   const pezzi = [];
   pezzi.push(`  <link rel="canonical" href="${url}">`);
@@ -312,16 +315,20 @@ function componi(lingua, voce, legale) {
 
   html = html.replace('<html lang="en"', `<html lang="${lingua}"`);
 
-  const testa = legale || t;
-  if (testa) {
-    html = html.replace(/<title>[\s\S]*?<\/title>/,
-      `<title>${esc(testa.titolo)} | PDFAxiom</title>`);
-    html = html.replace(/<meta name="description" content="[^"]*">/,
-      `<meta name="description" content="${esc(testa.descrizione)}">`);
+  // Anche la home ha i suoi testi (in "casa"), quindi titolo e descrizione si
+  // sostituiscono sempre: il modello non deve piu' sopravvivere da nessuna
+  // parte.
+  const testa = legale || t || c.casa;
+  html = html.replace(/<title>[\s\S]*?<\/title>/,
+    `<title>${esc(testa.titolo)} | PDFAxiom</title>`);
+  html = html.replace(/<meta name="description" content="[^"]*">/,
+    `<meta name="description" content="${esc(testa.descrizione)}">`);
 
+  if (legale || t) {
     // Una pagina deve avere un solo h1, e qui quell'h1 e' il titolo della
     // pagina. Il titolo dell'intestazione scende di grado (resta identico a
-    // vedersi: e' la stessa classe che lo compone).
+    // vedersi: e' la stessa classe che lo compone). Sulla home invece l'h1
+    // resta al suo posto: e' gia' il titolo della pagina.
     html = html.replace(/<h1>([\s\S]*?)<\/h1>/,
       '<p class="hero-titolo">$1</p>');
   }
