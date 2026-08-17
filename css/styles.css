@@ -2037,8 +2037,13 @@ body:has(#toolWorkspace[style*="display: block"]) > .ad-skyscraper {
 .ad-skyscraper-tool {
   position: absolute;
   top: 0 !important;
-  bottom: 0 !important;
-  height: 100% !important; /* Copre al 100% l'altezza del riquadro centrale */
+  /* Altezza fissa, non piu' legata al riquadro centrale.
+     Prima era height 100% con top e bottom a zero: il banner seguiva il
+     riquadro, e quando si caricava un file o compariva il box di download il
+     riquadro cresceva e il banner si allungava sotto gli occhi di chi guarda.
+     600 e' anche la misura vera del formato skyscraper (160x600): uno spazio
+     di altezza variabile non corrisponde a nessun formato standard. */
+  height: 600px;
   width: 180px;
   display: none;
   background: var(--bg-card);

@@ -175,6 +175,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /** Etichetta tradotta, per i pannelli costruiti a mano qui sotto. */
+  const et = (chiave) =>
+    window.PDFAxiomI18n ? window.PDFAxiomI18n.t(chiave) : chiave;
+
   // Tool Definitions Configuration (24 Tools)
   const toolsConfig = {
     'pdf-to-word': { title: 'PDF to Word Converter', desc: 'Convert PDF into editable Microsoft Word (.docx) format.', multiple: false, accept: '.pdf', btnText: 'Convert PDF to Word', outputExt: '.docx' },
@@ -190,8 +194,32 @@ document.addEventListener('DOMContentLoaded', () => {
     'excel-to-pdf': { title: 'Excel to PDF Converter', desc: 'Convert Excel spreadsheets (.xlsx) into clean PDF.', multiple: false, accept: '.xlsx, .xls, .csv', btnText: 'Convert Excel to PDF', outputExt: '.pdf' },
     'pdf-to-pptx': { title: 'PDF to PowerPoint', desc: 'Turn PDF pages into PowerPoint slides (.pptx).', multiple: false, accept: '.pdf', btnText: 'Convert to PowerPoint', outputExt: '.pptx' },
     'pptx-to-pdf': { title: 'PowerPoint to PDF', desc: 'Convert PowerPoint (.pptx) into PDF format.', multiple: false, accept: '.pptx, .ppt', btnText: 'Convert PPTX to PDF', outputExt: '.pdf' },
-    'page-numbers': { title: 'Add Page Numbers', desc: 'Add page numbers into PDF header or footer.', multiple: false, accept: '.pdf', btnText: 'Add Page Numbers', outputExt: '_numbered.pdf', settingsHTML: `<div class="form-group"><label>Number Format</label><div class="opzioni quattro"><label class="opzione"><input type="radio" name="pageNumFormat" value="solo"><span class="opzione-segno"><span class="opzione-campione">1</span></span><span class="opzione-nome">Number only</span><span class="opzione-nota">1, 2, 3&hellip;</span></label><label class="opzione"><input type="radio" name="pageNumFormat" value="su-totale" checked><span class="opzione-segno"><span class="opzione-campione">1 / 14</span></span><span class="opzione-nome">With total</span><span class="opzione-nota">Shows how many</span></label><label class="opzione"><input type="radio" name="pageNumFormat" value="trattini"><span class="opzione-segno"><span class="opzione-campione">&ndash; 1 &ndash;</span></span><span class="opzione-nome">Dashes</span><span class="opzione-nota">Classic book style</span></label><label class="opzione"><input type="radio" name="pageNumFormat" value="esteso"><span class="opzione-segno"><span class="opzione-campione">Page 1 of 14</span></span><span class="opzione-nome">Spelled out</span><span class="opzione-nota">In English</span></label></div></div>` },
-    'rotate': { title: 'Rotate PDF Pages', desc: 'Rotate PDF pages by 90°, 180°, or 270°.', multiple: false, accept: '.pdf', btnText: 'Rotate PDF', outputExt: '_rotated.pdf', settingsHTML: `<div class="form-group"><label>Rotation</label><div class="opzioni"><label class="opzione"><input type="radio" name="rotateAngle" value="90" checked><span class="opzione-segno"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 8h9a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2z"/><path d="M4 11a8 8 0 0 1 8-8h3"/><path d="m12 .5 3 2.5-3 2.5"/></svg></span><span class="opzione-nome">90&deg; right</span><span class="opzione-nota">Quarter turn clockwise</span></label><label class="opzione"><input type="radio" name="rotateAngle" value="180"><span class="opzione-segno"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8h10a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2z"/><path d="M4 10a8 8 0 0 1 16 0"/><path d="m1.5 7 2.5 3 2.5-3"/></svg></span><span class="opzione-nome">180&deg;</span><span class="opzione-nota">Upside down</span></label><label class="opzione"><input type="radio" name="rotateAngle" value="270"><span class="opzione-segno"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 8H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2z"/><path d="M20 11a8 8 0 0 0-8-8H9"/><path d="m12 .5-3 2.5 3 2.5"/></svg></span><span class="opzione-nome">90&deg; left</span><span class="opzione-nota">Quarter turn anticlockwise</span></label></div></div>` },
+    // I due pannelli qui sotto sono funzioni, non stringhe: si costruiscono
+    // quando lo strumento viene aperto, cosi' le etichette escono nella lingua
+    // della pagina. Gli altri restano stringhe fisse, com'erano.
+    'page-numbers': { title: 'Add Page Numbers', desc: 'Add page numbers into PDF header or footer.', multiple: false, accept: '.pdf', btnText: 'Add Page Numbers', outputExt: '_numbered.pdf',
+      settingsHTML: () => `<div class="form-group"><label>${et('numLabel')}</label><div class="opzioni quattro">${[
+        ['solo', '1', 'numSolo', 'numSoloNota', ''],
+        ['su-totale', '1 / 14', 'numTotale', 'numTotaleNota', ' checked'],
+        ['trattini', '&ndash; 1 &ndash;', 'numTrattini', 'numTrattiniNota', ''],
+        ['esteso', 'Page 1 of 14', 'numEsteso', 'numEstesoNota', '']
+      ].map(([v, campione, nome, nota, sel]) =>
+        `<label class="opzione"><input type="radio" name="pageNumFormat" value="${v}"${sel}><span class="opzione-segno"><span class="opzione-campione">${campione}</span></span><span class="opzione-nome">${et(nome)}</span><span class="opzione-nota">${et(nota)}</span></label>`
+      ).join('')}</div></div>` },
+
+    // Le frecce sono quelle sole: niente foglio disegnato attorno, che a
+    // questa dimensione confondeva invece di aiutare.
+    'rotate': { title: 'Rotate PDF Pages', desc: 'Rotate PDF pages by 90°, 180°, or 270°.', multiple: false, accept: '.pdf', btnText: 'Rotate PDF', outputExt: '_rotated.pdf',
+      settingsHTML: () => `<div class="form-group"><label>${et('rotLabel')}</label><div class="opzioni">${[
+        ['90', 'rot90r', 'rot90rNota', ' checked',
+         '<path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/>'],
+        ['180', 'rot180', 'rot180Nota', '',
+         '<path d="M21 12a9 9 0 0 1-15.36 6.36"/><path d="M3 12a9 9 0 0 1 15.36-6.36"/><path d="M21 3v6h-6"/><path d="M3 21v-6h6"/>'],
+        ['270', 'rot90l', 'rot90lNota', '',
+         '<path d="M3 12a9 9 0 1 0 2.64-6.36"/><path d="M3 3v6h6"/>']
+      ].map(([v, nome, nota, sel, disegno]) =>
+        `<label class="opzione"><input type="radio" name="rotateAngle" value="${v}"${sel}><span class="opzione-segno"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${disegno}</svg></span><span class="opzione-nome">${et(nome)}</span><span class="opzione-nota">${et(nota)}</span></label>`
+      ).join('')}</div></div>` },
     'unlock': { title: 'Unlock PDF Restrictions', desc: 'Remove passwords and permissions from PDF.', multiple: false, accept: '.pdf', btnText: 'Unlock PDF', outputExt: '_unlocked.pdf', settingsHTML: `<div class="form-group"><label for="pdfPassword">Current PDF Password:</label><input type="password" id="pdfPassword" class="form-control" placeholder="Enter current password"></div>` },
     'delete-pages': { title: 'Delete PDF Pages', desc: 'Remove specific unwanted pages from PDF.', multiple: false, accept: '.pdf', btnText: 'Delete Pages', outputExt: '_edited.pdf', settingsHTML: `<div class="form-group"><label for="delPages">Pages to Delete (e.g. 1, 3):</label><input type="text" id="delPages" class="form-control" placeholder="e.g. 1, 3"></div>` },
     'pdf-to-html': { title: 'PDF to HTML', desc: 'Convert PDF into clean web HTML code.', multiple: false, accept: '.pdf', btnText: 'Convert to HTML', outputExt: '.html' },
@@ -260,8 +288,13 @@ document.addEventListener('DOMContentLoaded', () => {
     fileInput.multiple = config.multiple;
     fileInput.accept = config.accept;
 
-    toolSettings.innerHTML = config.settingsHTML || '';
-    toolSettings.style.display = config.settingsHTML ? 'block' : 'none';
+    // Il pannello puo' essere una stringa fissa o una funzione: chi ha
+    // etichette da tradurre lo costruisce ora, che e' quando la lingua della
+    // pagina e' nota.
+    const pannello = typeof config.settingsHTML === 'function'
+      ? config.settingsHTML() : (config.settingsHTML || '');
+    toolSettings.innerHTML = pannello;
+    toolSettings.style.display = pannello ? 'block' : 'none';
 
     filePreviewList.innerHTML = '';
     downloadBox.style.display = 'none';
