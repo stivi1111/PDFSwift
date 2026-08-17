@@ -881,12 +881,121 @@ a {
 /* Senza :has() la carta non saprebbe mostrare quale livello e' scelto:
    in quel caso torniamo al radio visibile. */
 @supports not selector(:has(*)) {
-  .compress-option input {
+  .compress-option input,
+  .opzione input {
     position: static;
     width: auto;
     height: auto;
     opacity: 1;
     accent-color: var(--text-primary);
+  }
+}
+
+/* Scelte a carta per gli strumenti che chiedono di decidere una cosa sola:
+   l'angolo di rotazione, il formato del numero di pagina. E' la stessa carta
+   dei livelli di compressione, perche' quello e' gia' il modo in cui il sito
+   chiede di scegliere e non ha senso averne due. Al posto delle tacche c'e'
+   l'anteprima di cio' che si ottiene. */
+.opzioni {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+
+.opzioni.quattro {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.opzione {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  padding: 0.85rem 0.9rem 0.8rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.opzione:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-color-hover);
+  transform: translateY(-2px);
+}
+
+.opzione input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.opzione:has(input:checked) {
+  background: var(--bg-card-hover);
+  border-color: var(--text-primary);
+  box-shadow: inset 0 0 0 1px var(--text-primary);
+}
+
+.opzione:has(input:focus-visible) {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+
+/* L'anteprima: un disegno per la rotazione, il numero vero e proprio per le
+   numerazioni. Altezza fissa cosi' le carte restano allineate fra loro. */
+.opzione-segno {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 26px;
+  margin-bottom: 0.3rem;
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+.opzione:has(input:checked) .opzione-segno {
+  color: var(--text-primary);
+}
+
+.opzione-segno svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Il campione di numerazione va in tondo a spaziatura fissa: si legge come
+   un'anteprima e non come un'etichetta. */
+.opzione-campione {
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.opzione-nome {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+/* Come per .compress-note: .form-group label mette weight 600 su tutte le
+   label, qui va annullato. */
+.opzione-nota {
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.3;
+}
+
+@media (max-width: 560px) {
+  .opzioni,
+  .opzioni.quattro {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

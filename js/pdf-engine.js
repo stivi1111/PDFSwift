@@ -480,7 +480,14 @@ window.PDFEngine = {
     const arrayBuffer = await file.arrayBuffer();
     const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
     const pages = pdfDoc.getPages();
-    pages.forEach(p => p.setRotation(PDFLib.degrees(degrees)));
+    // La rotazione si SOMMA a quella che la pagina ha gia'. Prima veniva
+    // imposta: una pagina gia' girata di 90, ruotata di 90, restava a 90
+    // invece di arrivare a 180. Chi ruota si aspetta che l'immagine giri,
+    // non che venga riportata a un valore assoluto.
+    pages.forEach(p => {
+      const attuale = p.getRotation().angle || 0;
+      p.setRotation(PDFLib.degrees(((attuale + degrees) % 360 + 360) % 360));
+    });
 
     const pdfBytes = await pdfDoc.save();
     if (onProgress) onProgress(100, tp('completed'));
@@ -488,19 +495,35 @@ window.PDFEngine = {
   },
 
   // 19. Page Numbers
-  pageNumbersPDF: async function(file, onProgress) {
+  // I formati corrispondono alle carte del pannello: solo il numero, numero e
+  // totale, numero fra trattini, oppure la dicitura estesa in inglese.
+  FORMATI_NUMERO: {
+    'solo': (n) => `${n}`,
+    'su-totale': (n, tot) => `${n} / ${tot}`,
+    'trattini': (n) => `– ${n} –`,
+    'esteso': (n, tot) => `Page ${n} of ${tot}`
+  },
+
+  pageNumbersPDF: async function(file, formato = 'su-totale', onProgress) {
     if (onProgress) onProgress(30, tp('working'));
     const arrayBuffer = await file.arrayBuffer();
     const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
     const font = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
     const pages = pdfDoc.getPages();
+    const componi = this.FORMATI_NUMERO[formato] || this.FORMATI_NUMERO['su-totale'];
+    const CORPO = 10;
+    const MARGINE = 40;
 
     pages.forEach((page, idx) => {
       const { width } = page.getSize();
-      page.drawText(`${idx + 1} / ${pages.length}`, {
-        x: width - 60,
-        y: 20,
-        size: 10,
+      const testo = componi(idx + 1, pages.length);
+      // La x si calcola dalla larghezza del testo: prima era fissa a -60 e i
+      // formati piu' lunghi finivano oltre il bordo destro.
+      const largo = font.widthOfTextAtSize(testo, CORPO);
+      page.drawText(testo, {
+        x: width - MARGINE - largo,
+        y: 24,
+        size: CORPO,
         font: font,
         color: PDFLib.rgb(0.3, 0.3, 0.3)
       });
