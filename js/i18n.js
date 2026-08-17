@@ -449,6 +449,37 @@ const toolTranslations = {
  */
 const uiMessages = {
   en: {
+    chiSiamo: "About Us",
+    missioneTitolo: "Our Mission",
+    missioneTesto: "PDFAxiom offers a free PDF suite, accessible from any device without registration.",
+    privacyTitolo: "How we handle your files",
+    privacyTesto: "Most tools process your documents directly in your browser: those files never leave your device. The heavier conversions (Word, Excel, PowerPoint, HTML, compression, protection) run on our servers: the file is processed and deleted immediately afterwards, never stored or shared.",
+    contattiTitolo: "Contact &amp; Support",
+    contattiTesto: "Have questions, suggestions, or requests? Write to us at {email}.",
+    badgePopolare: "POPULAR",
+    badgeOffice: "OFFICE",
+    badgeSlides: "SLIDES",
+    badgeAi: "AI READY",
+    badgeImmagini: "IMAGES",
+    pubblicita: "ADVERTISEMENT",
+    pubblicitaBreve: "AD",
+    piedeGratis: "Free • No signup required.",
+    piedePrivacy: "Privacy",
+    piedeTermini: "Terms",
+    impCompressione: "Compression level",
+    impLeggera: "Light",
+    impLeggeraNota: "Keeps print quality",
+    impMedia: "Balanced",
+    impMediaNota: "Great for print &amp; sharing",
+    impMassima: "Maximum",
+    impMassimaNota: "Smallest file, screen &amp; email",
+    impConsigliata: "Recommended",
+    impPagineEstrai: "Pages to extract (e.g. 1-3, 5)",
+    impPagineElimina: "Pages to delete (e.g. 1, 3)",
+    impPasswordNuova: "Set PDF password",
+    impPasswordAttuale: "Current PDF password",
+    impPasswordSegno: "Enter password",
+    impFiligrana: "Watermark text",
     rotLabel: "Rotation",
     rot90r: "90&deg; right",
     rot90rNota: "Quarter turn clockwise",
@@ -487,6 +518,37 @@ const uiMessages = {
     completed: "Completed!", pageOf: "Page {i} of {n}...", fileOf: "File {i} of {n}..."
   },
   it: {
+    chiSiamo: "Chi siamo",
+    missioneTitolo: "La nostra missione",
+    missioneTesto: "PDFAxiom nasce per offrire una suite di strumenti PDF gratuita, accessibile da qualsiasi dispositivo e senza registrazione.",
+    privacyTitolo: "Come trattiamo i tuoi file",
+    privacyTesto: "Gran parte degli strumenti elabora i documenti direttamente nel tuo browser: quei file non lasciano mai il tuo dispositivo. Le conversioni più complesse (Word, Excel, PowerPoint, HTML, compressione, protezione) vengono eseguite sui nostri server: il file viene elaborato e cancellato subito dopo, senza essere conservato né condiviso.",
+    contattiTitolo: "Contatti e supporto",
+    contattiTesto: "Hai domande, suggerimenti o richieste? Scrivici a {email}.",
+    badgePopolare: "POPOLARE",
+    badgeOffice: "OFFICE",
+    badgeSlides: "DIAPOSITIVE",
+    badgeAi: "PRONTO PER L’IA",
+    badgeImmagini: "IMMAGINI",
+    pubblicita: "PUBBLICITÀ",
+    pubblicitaBreve: "ANN.",
+    piedeGratis: "Gratis • Senza registrazione.",
+    piedePrivacy: "Privacy",
+    piedeTermini: "Condizioni",
+    impCompressione: "Livello di compressione",
+    impLeggera: "Leggera",
+    impLeggeraNota: "Mantiene la qualità di stampa",
+    impMedia: "Equilibrata",
+    impMediaNota: "Buona per stampa e invio",
+    impMassima: "Massima",
+    impMassimaNota: "File più piccolo, schermo ed email",
+    impConsigliata: "Consigliata",
+    impPagineEstrai: "Pagine da estrarre (es. 1-3, 5)",
+    impPagineElimina: "Pagine da eliminare (es. 1, 3)",
+    impPasswordNuova: "Imposta la password del PDF",
+    impPasswordAttuale: "Password attuale del PDF",
+    impPasswordSegno: "Inserisci la password",
+    impFiligrana: "Testo della filigrana",
     rotLabel: "Rotazione",
     rot90r: "90&deg; a destra",
     rot90rNota: "Un quarto di giro orario",
@@ -525,6 +587,37 @@ const uiMessages = {
     completed: "Completato!", pageOf: "Pagina {i} di {n}...", fileOf: "File {i} di {n}..."
   },
   es: {
+    chiSiamo: "Sobre nosotros",
+    missioneTitolo: "Nuestra misión",
+    missioneTesto: "PDFAxiom ofrece un conjunto de herramientas PDF gratuito, accesible desde cualquier dispositivo y sin registro.",
+    privacyTitolo: "Cómo tratamos tus archivos",
+    privacyTesto: "La mayoría de las herramientas procesa los documentos directamente en tu navegador: esos archivos nunca salen de tu dispositivo. Las conversiones más pesadas (Word, Excel, PowerPoint, HTML, compresión, protección) se ejecutan en nuestros servidores: el archivo se procesa y se elimina justo después, sin guardarse ni compartirse.",
+    contattiTitolo: "Contacto y soporte",
+    contattiTesto: "¿Tienes preguntas, sugerencias o peticiones? Escríbenos a {email}.",
+    badgePopolare: "POPULAR",
+    badgeOffice: "OFFICE",
+    badgeSlides: "DIAPOSITIVAS",
+    badgeAi: "LISTO PARA IA",
+    badgeImmagini: "IMÁGENES",
+    pubblicita: "PUBLICIDAD",
+    pubblicitaBreve: "ANUN.",
+    piedeGratis: "Gratis • Sin registro.",
+    piedePrivacy: "Privacidad",
+    piedeTermini: "Términos",
+    impCompressione: "Nivel de compresión",
+    impLeggera: "Ligera",
+    impLeggeraNota: "Mantiene la calidad de impresión",
+    impMedia: "Equilibrada",
+    impMediaNota: "Buena para imprimir y compartir",
+    impMassima: "Máxima",
+    impMassimaNota: "Archivo más pequeño, pantalla y correo",
+    impConsigliata: "Recomendada",
+    impPagineEstrai: "Páginas a extraer (ej. 1-3, 5)",
+    impPagineElimina: "Páginas a eliminar (ej. 1, 3)",
+    impPasswordNuova: "Establece la contraseña del PDF",
+    impPasswordAttuale: "Contraseña actual del PDF",
+    impPasswordSegno: "Introduce la contraseña",
+    impFiligrana: "Texto de la marca de agua",
     rotLabel: "Rotación",
     rot90r: "90&deg; a la derecha",
     rot90rNota: "Un cuarto de vuelta",
@@ -563,6 +656,37 @@ const uiMessages = {
     completed: "¡Completado!", pageOf: "Página {i} de {n}...", fileOf: "Archivo {i} de {n}..."
   },
   de: {
+    chiSiamo: "Über uns",
+    missioneTitolo: "Unsere Mission",
+    missioneTesto: "PDFAxiom bietet eine kostenlose PDF-Sammlung, von jedem Gerät aus und ohne Anmeldung nutzbar.",
+    privacyTitolo: "Wie wir mit Ihren Dateien umgehen",
+    privacyTesto: "Die meisten Werkzeuge verarbeiten Ihre Dokumente direkt im Browser: Diese Dateien verlassen Ihr Gerät nie. Die aufwendigeren Umwandlungen (Word, Excel, PowerPoint, HTML, Komprimierung, Schutz) laufen auf unseren Servern: Die Datei wird verarbeitet und unmittelbar danach gelöscht, niemals gespeichert oder weitergegeben.",
+    contattiTitolo: "Kontakt und Support",
+    contattiTesto: "Fragen, Vorschläge oder Wünsche? Schreiben Sie uns an {email}.",
+    badgePopolare: "BELIEBT",
+    badgeOffice: "OFFICE",
+    badgeSlides: "FOLIEN",
+    badgeAi: "KI-BEREIT",
+    badgeImmagini: "BILDER",
+    pubblicita: "WERBUNG",
+    pubblicitaBreve: "ANZ.",
+    piedeGratis: "Kostenlos • Keine Anmeldung nötig.",
+    piedePrivacy: "Datenschutz",
+    piedeTermini: "Bedingungen",
+    impCompressione: "Komprimierungsgrad",
+    impLeggera: "Leicht",
+    impLeggeraNota: "Behält die Druckqualität",
+    impMedia: "Ausgewogen",
+    impMediaNota: "Gut zum Drucken und Teilen",
+    impMassima: "Maximal",
+    impMassimaNota: "Kleinste Datei, Bildschirm und E-Mail",
+    impConsigliata: "Empfohlen",
+    impPagineEstrai: "Zu extrahierende Seiten (z. B. 1-3, 5)",
+    impPagineElimina: "Zu löschende Seiten (z. B. 1, 3)",
+    impPasswordNuova: "PDF-Passwort festlegen",
+    impPasswordAttuale: "Aktuelles PDF-Passwort",
+    impPasswordSegno: "Passwort eingeben",
+    impFiligrana: "Text des Wasserzeichens",
     rotLabel: "Drehung",
     rot90r: "90&deg; rechts",
     rot90rNota: "Vierteldrehung im Uhrzeigersinn",
@@ -601,6 +725,37 @@ const uiMessages = {
     completed: "Fertig!", pageOf: "Seite {i} von {n}...", fileOf: "Datei {i} von {n}..."
   },
   zh: {
+    chiSiamo: "关于我们",
+    missioneTitolo: "我们的使命",
+    missioneTesto: "PDFAxiom 提供免费的 PDF 工具集，任何设备都能使用，无需注册。",
+    privacyTitolo: "我们如何处理您的文件",
+    privacyTesto: "大多数工具直接在您的浏览器中处理文档：这些文件从不离开您的设备。较重的转换（Word、Excel、PowerPoint、HTML、压缩、加密）在我们的服务器上进行：文件处理后立即删除，不保存也不共享。",
+    contattiTitolo: "联系与支持",
+    contattiTesto: "有问题、建议或需求？请发信至 {email}。",
+    badgePopolare: "热门",
+    badgeOffice: "OFFICE",
+    badgeSlides: "幻灯片",
+    badgeAi: "AI 就绪",
+    badgeImmagini: "图片",
+    pubblicita: "广告",
+    pubblicitaBreve: "广告",
+    piedeGratis: "免费 • 无需注册。",
+    piedePrivacy: "隐私",
+    piedeTermini: "条款",
+    impCompressione: "压缩级别",
+    impLeggera: "轻度",
+    impLeggeraNota: "保持打印质量",
+    impMedia: "均衡",
+    impMediaNota: "适合打印与分享",
+    impMassima: "最大",
+    impMassimaNota: "文件最小，适合屏幕和邮件",
+    impConsigliata: "推荐",
+    impPagineEstrai: "要提取的页（如 1-3, 5）",
+    impPagineElimina: "要删除的页（如 1, 3）",
+    impPasswordNuova: "设置 PDF 密码",
+    impPasswordAttuale: "当前 PDF 密码",
+    impPasswordSegno: "输入密码",
+    impFiligrana: "水印文字",
     rotLabel: "旋转",
     rot90r: "向右 90&deg;",
     rot90rNota: "顺时针四分之一圈",
@@ -639,6 +794,37 @@ const uiMessages = {
     completed: "已完成！", pageOf: "第 {i} 页，共 {n} 页...", fileOf: "第 {i} 个文件，共 {n} 个..."
   },
   ro: {
+    chiSiamo: "Despre noi",
+    missioneTitolo: "Misiunea noastră",
+    missioneTesto: "PDFAxiom oferă o suită gratuită de instrumente PDF, accesibilă de pe orice dispozitiv și fără înregistrare.",
+    privacyTitolo: "Cum tratam fișierele tale",
+    privacyTesto: "Majoritatea instrumentelor procesează documentele direct în browserul tău: acele fișiere nu îți părăsesc niciodată dispozitivul. Conversiile mai grele (Word, Excel, PowerPoint, HTML, comprimare, protecție) rulează pe serverele noastre: fișierul este procesat și șters imediat după aceea, fără a fi păstrat sau partajat.",
+    contattiTitolo: "Contact și asistență",
+    contattiTesto: "Ai întrebări, sugestii sau solicitări? Scrie-ne la {email}.",
+    badgePopolare: "POPULAR",
+    badgeOffice: "OFFICE",
+    badgeSlides: "DIAPOZITIVE",
+    badgeAi: "PREGĂTIT PENTRU IA",
+    badgeImmagini: "IMAGINI",
+    pubblicita: "PUBLICITATE",
+    pubblicitaBreve: "REC.",
+    piedeGratis: "Gratuit • Fără înregistrare.",
+    piedePrivacy: "Confidențialitate",
+    piedeTermini: "Termeni",
+    impCompressione: "Nivel de comprimare",
+    impLeggera: "Ușoară",
+    impLeggeraNota: "Păstrează calitatea la tipărire",
+    impMedia: "Echilibrată",
+    impMediaNota: "Bună pentru tipărit și trimis",
+    impMassima: "Maximă",
+    impMassimaNota: "Fișier cât mai mic, ecran și e-mail",
+    impConsigliata: "Recomandată",
+    impPagineEstrai: "Pagini de extras (ex. 1-3, 5)",
+    impPagineElimina: "Pagini de șters (ex. 1, 3)",
+    impPasswordNuova: "Setează parola PDF",
+    impPasswordAttuale: "Parola actuală a PDF-ului",
+    impPasswordSegno: "Introdu parola",
+    impFiligrana: "Textul filigranului",
     rotLabel: "Rotire",
     rot90r: "90&deg; la dreapta",
     rot90rNota: "Un sfert de tură în sensul acelor",
@@ -677,6 +863,37 @@ const uiMessages = {
     completed: "Finalizat!", pageOf: "Pagina {i} din {n}...", fileOf: "Fișierul {i} din {n}..."
   },
   hi: {
+    chiSiamo: "हमारे बारे में",
+    missioneTitolo: "हमारा उद्देश्य",
+    missioneTesto: "PDFAxiom एक मुफ़्त PDF टूल सूट है, जो किसी भी डिवाइस से और बिना पंजीकरण के उपलब्ध है।",
+    privacyTitolo: "हम आपकी फ़ाइलों को कैसे संभालते हैं",
+    privacyTesto: "ज़्यादातर टूल आपके ब्राउज़र में ही दस्तावेज़ प्रोसेस करते हैं: वे फ़ाइलें आपका डिवाइस कभी नहीं छोड़तीं। भारी रूपांतरण (Word, Excel, PowerPoint, HTML, कंप्रेशन, सुरक्षा) हमारे सर्वर पर चलते हैं: फ़ाइल प्रोसेस होने के तुरंत बाद हटा दी जाती है, न रखी जाती है न साझा की जाती है।",
+    contattiTitolo: "संपर्क और सहायता",
+    contattiTesto: "सवाल, सुझाव या अनुरोध? हमें {email} पर लिखें।",
+    badgePopolare: "लोकप्रिय",
+    badgeOffice: "OFFICE",
+    badgeSlides: "स्लाइड",
+    badgeAi: "AI के लिए",
+    badgeImmagini: "छवियाँ",
+    pubblicita: "विज्ञापन",
+    pubblicitaBreve: "विज्ञ.",
+    piedeGratis: "मुफ़्त • पंजीकरण की ज़रूरत नहीं।",
+    piedePrivacy: "गोपनीयता",
+    piedeTermini: "शर्तें",
+    impCompressione: "कंप्रेशन स्तर",
+    impLeggera: "हल्का",
+    impLeggeraNota: "प्रिंट गुणवत्ता बनी रहती है",
+    impMedia: "संतुलित",
+    impMediaNota: "प्रिंट और साझा करने के लिए",
+    impMassima: "अधिकतम",
+    impMassimaNota: "सबसे छोटी फ़ाइल, स्क्रीन और ईमेल",
+    impConsigliata: "अनुशंसित",
+    impPagineEstrai: "निकालने वाले पेज (जैसे 1-3, 5)",
+    impPagineElimina: "हटाने वाले पेज (जैसे 1, 3)",
+    impPasswordNuova: "PDF पासवर्ड सेट करें",
+    impPasswordAttuale: "मौजूदा PDF पासवर्ड",
+    impPasswordSegno: "पासवर्ड दर्ज करें",
+    impFiligrana: "वॉटरमार्क का पाठ",
     rotLabel: "घुमाव",
     rot90r: "90&deg; दाएँ",
     rot90rNota: "घड़ी की दिशा में चौथाई मोड़",
@@ -715,6 +932,37 @@ const uiMessages = {
     completed: "पूर्ण!", pageOf: "पृष्ठ {i} / {n}...", fileOf: "फ़ाइल {i} / {n}..."
   },
   ru: {
+    chiSiamo: "О нас",
+    missioneTitolo: "Наша задача",
+    missioneTesto: "PDFAxiom — бесплатный набор инструментов для PDF, доступный с любого устройства и без регистрации.",
+    privacyTitolo: "Как мы обращаемся с вашими файлами",
+    privacyTesto: "Большинство инструментов обрабатывает документы прямо в браузере: эти файлы никогда не покидают ваше устройство. Более тяжёлые преобразования (Word, Excel, PowerPoint, HTML, сжатие, защита) выполняются на наших серверах: файл обрабатывается и сразу же удаляется, не сохраняясь и не передаваясь.",
+    contattiTitolo: "Контакты и поддержка",
+    contattiTesto: "Есть вопросы, идеи или пожелания? Напишите нам на {email}.",
+    badgePopolare: "ПОПУЛЯРНОЕ",
+    badgeOffice: "OFFICE",
+    badgeSlides: "СЛАЙДЫ",
+    badgeAi: "ГОТОВО ДЛЯ ИИ",
+    badgeImmagini: "ИЗОБРАЖЕНИЯ",
+    pubblicita: "РЕКЛАМА",
+    pubblicitaBreve: "РЕК.",
+    piedeGratis: "Бесплатно • Без регистрации.",
+    piedePrivacy: "Конфиденциальность",
+    piedeTermini: "Условия",
+    impCompressione: "Уровень сжатия",
+    impLeggera: "Лёгкое",
+    impLeggeraNota: "Сохраняет качество печати",
+    impMedia: "Сбалансированное",
+    impMediaNota: "Для печати и отправки",
+    impMassima: "Максимальное",
+    impMassimaNota: "Самый маленький файл, экран и почта",
+    impConsigliata: "Рекомендуется",
+    impPagineEstrai: "Страницы для извлечения (напр. 1-3, 5)",
+    impPagineElimina: "Страницы для удаления (напр. 1, 3)",
+    impPasswordNuova: "Задайте пароль PDF",
+    impPasswordAttuale: "Текущий пароль PDF",
+    impPasswordSegno: "Введите пароль",
+    impFiligrana: "Текст водяного знака",
     rotLabel: "Поворот",
     rot90r: "90&deg; вправо",
     rot90rNota: "Четверть оборота по часовой",
@@ -910,33 +1158,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const extBtn = document.getElementById('estensioneAzione');
     if (extBtn) extBtn.textContent = t.extBtn;
 
-    // Modal & Footer Links Translations
-    const aboutUsLink = document.getElementById('aboutUsLink');
-    if (aboutUsLink) aboutUsLink.textContent = (lang === 'it') ? "Chi Siamo" : ((lang === 'es') ? "Sobre Nosotros" : ((lang === 'de') ? "Über Uns" : ((lang === 'fr') ? "À Propos" : "About Us")));
+    // Finestra "Chi siamo" e voci del piede.
+    // Erano scritte con ternari lang === 'it', quindi esistevano in due lingue
+    // e le altre sei leggevano inglese in mezzo a una pagina tradotta. Ora
+    // passano dallo stesso dizionario di tutto il resto.
+    const m = uiMessages[lang] || uiMessages.en;
+    const testo = (id, chiave) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = m[chiave] || uiMessages.en[chiave];
+    };
 
+    testo('aboutUsLink', 'chiSiamo');
     const modalTitle = document.getElementById('modalTitle');
-    if (modalTitle) modalTitle.textContent = ((lang === 'it') ? "Chi Siamo" : "About Us") + " - PDFAxiom";
-
-    const modalMissionTitle = document.getElementById('modalMissionTitle');
-    if (modalMissionTitle) modalMissionTitle.textContent = (lang === 'it') ? "La Nostra Missione" : "Our Mission";
-
-    const modalMissionText = document.getElementById('modalMissionText');
-    if (modalMissionText) modalMissionText.textContent = (lang === 'it') ? "PDFAxiom nasce per offrire una suite di strumenti PDF gratuita, accessibile da qualsiasi dispositivo e senza registrazione." : "PDFAxiom offers a free PDF suite, accessible from any device without registration.";
-
-    const modalPrivacyTitle = document.getElementById('modalPrivacyTitle');
-    if (modalPrivacyTitle) modalPrivacyTitle.textContent = (lang === 'it') ? "Come trattiamo i tuoi file" : "How we handle your files";
-
-    const modalPrivacyText = document.getElementById('modalPrivacyText');
-    if (modalPrivacyText) modalPrivacyText.textContent = (lang === 'it') ? "Gran parte degli strumenti elabora i documenti direttamente nel tuo browser: quei file non lasciano mai il tuo dispositivo. Le conversioni più complesse (Word, Excel, PowerPoint, HTML, compressione, protezione) vengono eseguite sui nostri server: il file viene elaborato e cancellato subito dopo, senza essere conservato né condiviso." : "Most tools process your documents directly in your browser: those files never leave your device. The heavier conversions (Word, Excel, PowerPoint, HTML, compression, protection) run on our servers: the file is processed and deleted immediately afterwards, never stored or shared.";
-
-    const modalContactTitle = document.getElementById('modalContactTitle');
-    if (modalContactTitle) modalContactTitle.textContent = (lang === 'it') ? "Contatti e Supporto" : "Contact & Support";
+    if (modalTitle) modalTitle.textContent = (m.chiSiamo || uiMessages.en.chiSiamo) + ' - PDFAxiom';
+    testo('modalMissionTitle', 'missioneTitolo');
+    testo('modalMissionText', 'missioneTesto');
+    testo('modalPrivacyTitle', 'privacyTitolo');
+    testo('modalPrivacyText', 'privacyTesto');
+    testo('modalContactTitle', 'contattiTitolo');
 
     const modalContactText = document.getElementById('modalContactText');
     if (modalContactText) {
       const emailLink = '<a href="mailto:pdfaxiom@gmail.com" class="modal-link">pdfaxiom@gmail.com</a>';
-      modalContactText.innerHTML = (lang === 'it') ? `Hai domande, suggerimenti o richieste? Scrivici a ${emailLink}.` : `Have questions, suggestions, or requests? Write to us at ${emailLink}.`;
+      modalContactText.innerHTML = (m.contattiTesto || uiMessages.en.contattiTesto)
+        .replace('{email}', emailLink);
     }
+
+    // Etichette che restavano in inglese su qualsiasi pagina: i cartellini
+    // delle schede, la dicitura sopra i riquadri pubblicitari, il piede.
+    //
+    // La chiave sta in un attributo e non si deduce dal testo: dedurla dal
+    // testo funziona una volta sola, perche' al secondo cambio di lingua il
+    // testo e' gia' tradotto e non corrisponde piu'.
+    document.querySelectorAll('[data-badge], [data-piede]').forEach((e) => {
+      const chiave = e.getAttribute('data-badge') || e.getAttribute('data-piede');
+      const testo = m[chiave] || uiMessages.en[chiave];
+      if (testo) e.textContent = testo;
+    });
 
     // UPDATE ALL 24 TOOL CARDS DYNAMICALLY!
     const toolCards = document.querySelectorAll('.tool-card');
