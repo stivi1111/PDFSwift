@@ -186,6 +186,28 @@ ${indiceStrumenti(lingua, null)}
   ${CHIUDI}`;
 }
 
+/** Toglie dal modello i blocchi che vanno da apertura a chiusura.
+ *
+ * Serve alle pagine legali, dove la pubblicita non deve comparire: sei
+ * riquadri sopra uninformativa sulla privacy sono la prima cosa che un
+ * revisore di AdSense segna, e nemmeno rendono, perche chi apre quella
+ * pagina cerca una risposta precisa e non un annuncio.
+ *
+ * Niente espressioni regolari: i blocchi non contengono altri tag dello
+ * stesso tipo annidati, quindi la prima chiusura utile e sempre la loro.
+ */
+function togliBlocchi(html, apertura, chiusura) {
+  let fuori = html;
+  for (;;) {
+    const i = fuori.indexOf(apertura);
+    if (i < 0) break;
+    const j = fuori.indexOf(chiusura, i);
+    if (j < 0) break;
+    fuori = fuori.slice(0, i).replace(/[ 	]+$/, "") + fuori.slice(j + chiusura.length);
+  }
+  return fuori;
+}
+
 /** Il testo di una pagina legale. */
 function bloccoLegale(lingua, doc) {
   const sezioni = doc.sezioni.map((s) => `    <h2>${esc(s.t)}</h2>
@@ -337,6 +359,12 @@ function componi(lingua, voce, legale) {
   // schede e lo spazio di lavoro, che qui sarebbero solo rumore.
   if (legale) {
     html = html.replace('<body>', '<body class="solo-testo">');
+
+    // Sulle pagine legali non entra nulla di pubblicitario: ne i riquadri,
+    // ne lo script che li riempie.
+    html = togliBlocchi(html, '<div class="ad-banner-wrapper', '</div>');
+    html = togliBlocchi(html, '<aside class="ad-skyscraper', '</aside>');
+    html = togliBlocchi(html, '<!-- Google AdSense', '</script>');
   } else if (voce) {
     html = html.replace('<body>', '<body class="pagina-strumento">');
   } else {
@@ -366,7 +394,7 @@ function componi(lingua, voce, legale) {
   // o in russo viene mandato alla versione inglese, che e' l'unica che
   // possiamo garantire fedele.
   const linguaLegale = LINGUE_LEGALI.includes(lingua) ? lingua : 'en';
-  ['privacy', 'terms'].forEach((quale) => {
+  ['about', 'privacy', 'terms'].forEach((quale) => {
     const doc = legali[linguaLegale][quale];
     html = html.replace(`href="/${quale}/"`,
       `href="${indirizzo(linguaLegale, doc.slug)}"`);
@@ -414,7 +442,7 @@ LINGUE.forEach((lingua) => {
 
 // Informativa sulla privacy e condizioni d'uso, in inglese e in italiano.
 LINGUE_LEGALI.forEach((lingua) => {
-  ['privacy', 'terms'].forEach((quale) => {
+  ['about', 'privacy', 'terms'].forEach((quale) => {
     const doc = legali[lingua][quale];
     const dove = percorsoFile(lingua, doc.slug);
     fs.mkdirSync(path.dirname(dove), { recursive: true });

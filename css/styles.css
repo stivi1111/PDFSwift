@@ -1996,8 +1996,12 @@ body.pagina-home .ad-banner-below-grid {
   align-items: center;
 }
 
+/* Il riquadro sta sotto i pulsanti e ben staccato. Prima era sopra il
+   pulsante Download, a venti pixel: un annuncio nel percorso del dito
+   verso il pulsante che si sta cercando e la definizione di click
+   accidentale, ed e una delle violazioni che AdSense punisce prima. */
 .ad-banner-download {
-  margin: 1.25rem 0;
+  margin: 3rem 0 0.5rem;
   min-height: 120px;
   background: var(--bg-input);
 }

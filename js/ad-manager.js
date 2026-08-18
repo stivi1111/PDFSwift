@@ -11,6 +11,12 @@
       ads.forEach((ad) => {
         // Push only if not already loaded or processed
         if (!ad.getAttribute('data-adsbygoogle-status')) {
+          // Un riquadro nascosto non va riempito: le regole di AdSense
+          // vietano di caricare annunci in contenitori invisibili, e i due
+          // laterali stanno a display:none sotto i 1280 pixel. Prima si
+          // spingeva un annuncio in ognuno, visibile o no.
+          const riquadro = ad.getBoundingClientRect();
+          if (!ad.offsetParent || riquadro.width < 1 || riquadro.height < 1) return;
           (window.adsbygoogle = window.adsbygoogle || []).push({});
         }
       });

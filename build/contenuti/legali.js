@@ -13,6 +13,49 @@
  */
 module.exports = {
   en: {
+    about: {
+      slug: 'about',
+      titolo: 'About PDFAxiom',
+      descrizione: 'Who makes PDFAxiom, why every tool is free, and how a conversion actually works.',
+      aggiornato: 'Last updated: 18 August 2026',
+      sezioni: [
+        {
+          t: 'What this is',
+          p: [
+            'PDFAxiom is a set of twenty-four tools for working with PDF files: converting them to Word, Excel, PowerPoint, HTML, Markdown, images or plain text, turning those formats back into PDF, and the everyday jobs of merging, splitting, rotating, numbering, compressing, protecting and unlocking.',
+            'There is no account, no email address to hand over and no daily limit. You open the tool you need, drop the file in, and take the result.',
+          ],
+        },
+        {
+          t: 'Where the work happens',
+          p: [
+            'Eleven of the twenty-four tools run entirely inside your browser. Nothing is uploaded: the file is read, changed and saved again on your own machine, and it would keep working with the network unplugged.',
+            'The other thirteen need software that a browser cannot run, so they work on a server we rent and administer ourselves rather than a conversion service we resell. Those files are deleted the moment the conversion returns.',
+            'Every tool page says which of the two it is, before you choose a file.',
+          ],
+        },
+        {
+          t: 'Why it is free',
+          p: [
+            'The site is paid for by advertising. That is the whole model: no paid tier, no upsell, no watermark on the result to make you buy the removal.',
+            'It also means the running cost has to stay low, which is why the tools that can work in your browser do so instead of passing through a server that we would have to pay for.',
+          ],
+        },
+        {
+          t: 'What it deliberately does not do',
+          p: [
+            'There is no text recognition. A scanned PDF is a photograph of a page, and PDFAxiom will not turn it into editable text. We would rather say so here than let you find out after uploading.',
+            'Files are limited to 100 MB and 400 pages.',
+          ],
+        },
+        {
+          t: 'Who to write to',
+          p: [
+            'PDFAxiom is run by one person, not a company. Questions, faults and complaints all go to the same address: <strong>pdfaxiom@gmail.com</strong>, and they are read.',
+          ],
+        },
+      ],
+    },
     privacy: {
       slug: 'privacy',
       titolo: 'Privacy Policy',
@@ -48,13 +91,24 @@ module.exports = {
           p: [
             'We count visits using <strong>Umami</strong>, an analytics program we run on our own server rather than a service that sells data. It sets <strong>no cookies</strong> and stores <strong>no IP addresses</strong>.',
             'What is recorded for each visit: the page viewed, the site you came from, the country, the browser, the operating system, the screen size and the language. Nothing in that list identifies a person, and none of it is linked to the files you convert.',
-            'We do not use Google Analytics, advertising trackers, or social network buttons.',
+            'We do not use Google Analytics or social network buttons. Advertising is a separate matter, described in the next section.',
+          ],
+        },
+        {
+          t: 'Advertising',
+          p: [
+            'The site is paid for by advertising, served by <strong>Google AdSense</strong>. It is what keeps every tool free and without an account.',
+            'Google and the partners it works with use cookies to decide which ads to show you, based on your earlier visits to this and other sites.',
+            'You can switch personalised ads off in <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ads Settings</a>, or refuse third-party advertising cookies at <a href="https://www.aboutads.info" target="_blank" rel="noopener">aboutads.info</a>. The ads do not disappear: they simply stop being chosen for you.',
+            'How Google uses data from sites that use its services is explained on <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">its own page</a>.',
+            'The ads never see your documents. They are drawn in the page next to the tool, and the file you convert is not passed to them in any way.',
           ],
         },
         {
           t: 'Cookies',
           p: [
-            'The site sets no cookies at all.',
+            'We set no cookies of our own, and neither does our analytics.',
+            'The advertising described above does set them. Those cookies come from Google and its partners, not from us: they choose which ads you see and stop the same one repeating.',
             'It does use your browser\'s local storage to remember two preferences — the language you chose and whether you prefer the light or dark appearance. That information stays on your device, is never sent to us, and disappears when you clear your browser data.',
           ],
         },
@@ -130,6 +184,49 @@ module.exports = {
   },
 
   it: {
+    about: {
+      slug: 'chi-siamo',
+      titolo: 'Chi siamo',
+      descrizione: 'Chi fa PDFAxiom, perche ogni strumento e gratuito, e come funziona davvero una conversione.',
+      aggiornato: 'Ultimo aggiornamento: 18 agosto 2026',
+      sezioni: [
+        {
+          t: 'Che cos’e questo sito',
+          p: [
+            'PDFAxiom è un insieme di ventiquattro strumenti per lavorare sui file PDF: convertirli in Word, Excel, PowerPoint, HTML, Markdown, immagini o testo, riportare quei formati dentro un PDF, e i lavori di tutti i giorni come unire, dividere, ruotare, numerare, comprimere, proteggere e sbloccare.',
+            'Non c’è registrazione, non serve lasciare un indirizzo email e non ci sono limiti giornalieri. Apri lo strumento che ti serve, ci lasci cadere il file e prendi il risultato.',
+          ],
+        },
+        {
+          t: 'Dove avviene il lavoro',
+          p: [
+            'Undici dei ventiquattro strumenti girano interamente dentro il tuo browser. Non viene caricato niente: il file viene letto, modificato e salvato sulla tua macchina, e continuerebbero a funzionare anche staccando la rete.',
+            'Gli altri tredici hanno bisogno di programmi che un browser non può far girare, quindi lavorano su un server che affittiamo e amministriamo noi, non su un servizio di conversione che rivendiamo. Quei file vengono cancellati nel momento in cui la conversione finisce.',
+            'Ogni pagina dice quale dei due casi è, prima che tu scelga il file.',
+          ],
+        },
+        {
+          t: 'Perché è gratis',
+          p: [
+            'Il sito è pagato dalla pubblicità. Il modello è tutto qui: nessuna versione a pagamento, nessuna offerta da comprare, nessuna filigrana sul risultato per spingerti a togliere la filigrana.',
+            'Vuol dire anche che i costi devono restare bassi, ed è il motivo per cui gli strumenti che possono lavorare nel tuo browser lo fanno, invece di passare da un server che dovremmo pagare.',
+          ],
+        },
+        {
+          t: 'Cosa non fa, di proposito',
+          p: [
+            'Non c’è il riconoscimento del testo. Un PDF scansionato è la fotografia di una pagina, e PDFAxiom non la trasforma in testo modificabile. Preferiamo dirlo qui piuttosto che fartelo scoprire dopo aver caricato.',
+            'I file sono limitati a 100 MB e 400 pagine.',
+          ],
+        },
+        {
+          t: 'A chi scrivere',
+          p: [
+            'PDFAxiom è fatto da una persona, non da un’azienda. Domande, guasti e segnalazioni vanno tutti allo stesso indirizzo: <strong>pdfaxiom@gmail.com</strong>, e vengono letti.',
+          ],
+        },
+      ],
+    },
     privacy: {
       slug: 'privacy',
       titolo: 'Informativa sulla privacy',
@@ -165,13 +262,24 @@ module.exports = {
           p: [
             'Contiamo le visite con <strong>Umami</strong>, un programma di statistiche che facciamo girare su un server nostro invece di affidarci a un servizio che rivende i dati. Non usa <strong>nessun cookie</strong> e non conserva <strong>nessun indirizzo IP</strong>.',
             'Di ogni visita viene registrato: la pagina vista, il sito da cui si arriva, il paese, il browser, il sistema operativo, la dimensione dello schermo e la lingua. Niente in questo elenco identifica una persona, e niente di tutto ciò è collegato ai file che converti.',
-            'Non usiamo Google Analytics, né tracciatori pubblicitari, né pulsanti dei social network.',
+            'Non usiamo Google Analytics né pulsanti dei social network. La pubblicità è un discorso a parte, descritto nella sezione successiva.',
+          ],
+        },
+        {
+          t: 'Pubblicità',
+          p: [
+            'Il sito è pagato dalla pubblicità, servita da <strong>Google AdSense</strong>. È quello che tiene ogni strumento gratuito e senza registrazione.',
+            'Google e i partner con cui lavora usano dei cookie per decidere quali annunci mostrarti, in base alle visite che hai fatto prima su questo e su altri siti.',
+            'Puoi disattivare gli annunci personalizzati nelle <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">impostazioni degli annunci Google</a>, oppure rifiutare i cookie pubblicitari di terze parti su <a href="https://www.aboutads.info" target="_blank" rel="noopener">aboutads.info</a>. Gli annunci non spariscono: smettono soltanto di essere scelti su misura per te.',
+            'Come Google usa i dati dei siti che si servono dei suoi strumenti è spiegato su <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">una sua pagina</a>.',
+            'La pubblicità non vede i tuoi documenti. Viene disegnata nella pagina accanto allo strumento, e il file che converti non le viene passato in nessun modo.',
           ],
         },
         {
           t: 'Cookie',
           p: [
-            'Il sito non usa alcun cookie.',
+            'Noi non usiamo alcun cookie, e nemmeno le nostre statistiche.',
+            'La pubblicità descritta sopra invece sì. Quei cookie arrivano da Google e dai suoi partner, non da noi: servono a scegliere quali annunci vedi e a non ripeterti sempre lo stesso.',
             'Usa invece la memoria locale del tuo browser per ricordare due preferenze: la lingua che hai scelto e se preferisci l\'aspetto chiaro o scuro. Quell\'informazione resta sul tuo dispositivo, non ci viene mai inviata, e sparisce quando cancelli i dati di navigazione.',
           ],
         },
