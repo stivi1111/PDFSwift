@@ -1106,34 +1106,37 @@ a {
   font-size: 0.8rem;
   color: var(--text-muted);
   text-align: center;
+  margin: 0;
 }
 
-.footer-about-right {
+/* Privacy, Condizioni e Chi siamo vanno all'estremita' destra della riga,
+   alla stessa altezza della scritta di copyright.
+
+   Sono staccati dal flusso apposta: se restassero due elementi flex
+   affiancati, il centro della riga cadrebbe fra i due e la scritta
+   risulterebbe spostata a sinistra di meta' della larghezza dei link.
+   Fuori dal flusso, invece, la scritta ha tutta la riga per centrarsi. */
+.footer-row .footer-legale {
   position: absolute;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 0.82rem;
-  font-weight: 500;
   white-space: nowrap;
-  transition: var(--transition);
 }
 
-.footer-about-right:hover {
-  color: var(--text-primary);
-  text-decoration: underline;
-}
 
 @media (max-width: 600px) {
   .footer-row {
     flex-direction: column;
     gap: 0.5rem;
   }
-  .footer-about-right {
+
+  /* Sullo schermo stretto non ci sta niente a destra: tornano sotto,
+     incolonnati e centrati come prima. */
+  .footer-row .footer-legale {
     position: static;
     transform: none;
+    justify-content: center;
   }
 }
 
@@ -2011,44 +2014,6 @@ body.pagina-home .ad-banner-below-grid {
   min-height: 100px;
 }
 
-
-/* Un riquadro che AdSense non riempie resta una cornice grigia alta 90 pixel
-   col cartellino ADVERTISEMENT dentro e niente altro. Succede sempre finche
-   l'account e in revisione, e succede comunque ogni volta che non c'e un
-   annuncio da mostrare. Non e un errore, ma fa sembrare la pagina incompiuta
-   proprio a chi la sta valutando.
-
-   Il codice degli annunci resta dove sta, perche senza quello non si viene
-   approvati: cambia solo che la cornice e il cartellino compaiono quando
-   l'annuncio c'e davvero. AdSense scrive da se data-ad-status sul tag ins. */
-.ad-banner-wrapper,
-.ad-skyscraper {
-  min-height: 0;
-  background: none;
-  border-color: transparent;
-}
-
-.ad-banner-wrapper .ad-label,
-.ad-skyscraper .ad-label {
-  display: none;
-}
-
-.ad-banner-wrapper:has(ins[data-ad-status="filled"]) {
-  min-height: 90px;
-  background: var(--bg-card);
-  border-color: var(--border-color);
-}
-
-.ad-skyscraper:has(ins[data-ad-status="filled"]) {
-  background: var(--bg-card);
-  border-color: var(--border-color);
-}
-
-.ad-banner-wrapper:has(ins[data-ad-status="filled"]) .ad-label,
-.ad-skyscraper:has(ins[data-ad-status="filled"]) .ad-label {
-  display: block;
-}
-
 /* Side Skyscrapers (Natural Scroll, never fixed) */
 .ad-skyscraper {
   display: none;
@@ -2115,4 +2080,65 @@ body:has(#toolWorkspace[style*="display: block"]) > .ad-skyscraper {
   }
 }
 
+/* ==========================================================================
+   Riquadri pubblicitari non riempiti
 
+   Un riquadro che AdSense non riempie resta una cornice grigia col
+   cartellino ADVERTISEMENT dentro e niente altro. Succede sempre finche
+   laccount e in revisione, e continua a succedere ogni volta che non ce un
+   annuncio da mostrare. Non e un errore, ma fa sembrare la pagina
+   incompiuta proprio a chi la sta valutando.
+
+   Il codice degli annunci resta dove sta, perche senza quello non si viene
+   approvati: cambia solo che cornice, altezza e cartellino compaiono quando
+   lannuncio ce davvero. AdSense scrive da se data-ad-status sul tag ins.
+
+   Questo blocco sta in fondo al foglio di proposito. Al primo tentativo lo
+   avevo messo in mezzo alla sezione, e .ad-skyscraper-tool, che viene dopo
+   e impone altezza, sfondo e bordo, continuava a vincere: i due riquadri
+   laterali restavano visibili e vuoti.
+
+   Il tutto sta dentro @supports: su un browser senza :has() non si
+   applicherebbe la regola che rimette cornice e altezza, e i riquadri
+   resterebbero schiacciati per sempre. Meglio lasciargli il vecchio
+   aspetto.
+   ========================================================================== */
+@supports selector(:has(*)) {
+  .ad-banner-wrapper,
+  .ad-skyscraper,
+  .ad-skyscraper-tool {
+    min-height: 0;
+    background: none;
+    border-color: transparent;
+  }
+
+  .ad-skyscraper-tool {
+    height: auto;
+  }
+
+  .ad-banner-wrapper .ad-label,
+  .ad-skyscraper .ad-label {
+    display: none;
+  }
+
+  .ad-banner-wrapper:has(ins[data-ad-status="filled"]) {
+    min-height: 90px;
+    background: var(--bg-card);
+    border-color: var(--border-color);
+  }
+
+  .ad-skyscraper:has(ins[data-ad-status="filled"]),
+  .ad-skyscraper-tool:has(ins[data-ad-status="filled"]) {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+  }
+
+  .ad-skyscraper-tool:has(ins[data-ad-status="filled"]) {
+    height: 600px;
+  }
+
+  .ad-banner-wrapper:has(ins[data-ad-status="filled"]) .ad-label,
+  .ad-skyscraper:has(ins[data-ad-status="filled"]) .ad-label {
+    display: block;
+  }
+}
