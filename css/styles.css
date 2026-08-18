@@ -2104,10 +2104,19 @@ body:has(#toolWorkspace[style*="display: block"]) > .ad-skyscraper {
    sempre in riga, che e lunico posto da cui si vince.
    ========================================================================== */
 
-/* Stato di partenza: lo spazio ce, la cornice non si vede. */
+/* Stato di partenza: lo spazio ce, la cornice non si vede.
+
+   body.pagina-home .ad-banner-hero sta nellelenco anche se sembra di
+   troppo. Quella regola, piu in alto, si ridipinge sfondo e bordo per conto
+   suo, e pesa piu di .ad-banner-wrapper: senza nominarla qui il banner
+   grande della pagina iniziale restava una cornice grigia larga tutta la
+   pagina, che compariva al caricamento e spariva qualche secondo dopo
+   quando arrivava il verdetto. Gli altri riquadri non hanno questo
+   problema: le loro regole pesano quanto questa, e questa viene dopo. */
 .ad-banner-wrapper,
 .ad-skyscraper,
-.ad-skyscraper-tool {
+.ad-skyscraper-tool,
+body.pagina-home .ad-banner-hero {
   background: none;
   border-color: transparent;
 }
@@ -2126,9 +2135,12 @@ body:has(#toolWorkspace[style*="display: block"]) > .ad-skyscraper {
   width: 100%;
 }
 
-/* Annuncio arrivato: cornice e cartellino tornano al loro posto. */
+/* Annuncio arrivato: cornice e cartellino tornano al loro posto. Il banner
+   della pagina iniziale va nominato una seconda volta per lo stesso motivo
+   di sopra, altrimenti resterebbe senza cornice anche da pieno. */
 .ad-banner-wrapper.annuncio-pieno,
-.ad-skyscraper.annuncio-pieno {
+.ad-skyscraper.annuncio-pieno,
+body.pagina-home .ad-banner-hero.annuncio-pieno {
   background: var(--bg-card);
   border-color: var(--border-color);
 }
