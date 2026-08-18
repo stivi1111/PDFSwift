@@ -320,6 +320,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (belowGridAd) belowGridAd.style.display = 'none';
     workspace.style.display = 'block';
 
+    // Adesso i riquadri pubblicitari del pannello sono in pagina e hanno una
+    // misura. Prima no: ad-manager.js parte al caricamento, che e prima di
+    // questa riga, e salta i riquadri ancora nascosti perche le regole di
+    // AdSense vietano di chiedere annunci per contenitori invisibili.
+    // Senza questa chiamata nessun riquadro di nessuna pagina strumento
+    // avrebbe mai chiesto un annuncio.
+    if (window.refreshToolAds) window.refreshToolAds();
+
     // Su "silenzioso" non si scorre: la pagina si e' appena aperta ed e' gia'
     // in cima. Non si tocca nemmeno l'indirizzo, perche' e' gia' quello giusto.
     if (!silenzioso) window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -585,6 +593,10 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         progressContainer.style.display = 'none';
         downloadBox.style.display = 'flex';
+
+        // Stessa storia del pannello: questo riquadro nasce nascosto e
+        // compare solo a lavoro finito.
+        if (window.refreshToolAds) window.refreshToolAds();
         // Auto-trigger automatic browser file download
         if (downloadBtn) downloadBtn.click();
       }, 500);

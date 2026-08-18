@@ -160,7 +160,7 @@ ${passi}
     </ol>
 
     <div class="ad-banner-wrapper ad-banner-in-content" aria-label="Advertisement">
-      <span class="ad-label">ADVERTISEMENT</span>
+      <span class="ad-label" data-badge="pubblicita">ADVERTISEMENT</span>
       <ins class="adsbygoogle"
            style="display:block"
            data-ad-client="ca-pub-2272593869740076"

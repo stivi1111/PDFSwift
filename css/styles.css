@@ -2081,64 +2081,59 @@ body:has(#toolWorkspace[style*="display: block"]) > .ad-skyscraper {
 }
 
 /* ==========================================================================
-   Riquadri pubblicitari non riempiti
+   Riquadri pubblicitari
 
    Un riquadro che AdSense non riempie resta una cornice grigia col
-   cartellino ADVERTISEMENT dentro e niente altro. Succede sempre finche
-   laccount e in revisione, e continua a succedere ogni volta che non ce un
-   annuncio da mostrare. Non e un errore, ma fa sembrare la pagina
-   incompiuta proprio a chi la sta valutando.
+   cartellino ADVERTISEMENT dentro e niente altro. Succede finche laccount
+   e in revisione, e continua a succedere ogni volta che non ce un annuncio
+   da mostrare.
 
-   Il codice degli annunci resta dove sta, perche senza quello non si viene
-   approvati: cambia solo che cornice, altezza e cartellino compaiono quando
-   lannuncio ce davvero. AdSense scrive da se data-ad-status sul tag ins.
+   La tentazione e schiacciare subito il riquadro e riaprirlo solo quando
+   larriva lannuncio. Non funziona: AdSense misura il riquadro per decidere
+   cosa mandarci, e un riquadro largo o alto zero non viene riempito mai,
+   nemmeno dopo lapprovazione.
 
-   Questo blocco sta in fondo al foglio di proposito. Al primo tentativo lo
-   avevo messo in mezzo alla sezione, e .ad-skyscraper-tool, che viene dopo
-   e impone altezza, sfondo e bordo, continuava a vincere: i due riquadri
-   laterali restavano visibili e vuoti.
+   Quindi lo spazio resta, ma resta invisibile: niente sfondo, niente bordo,
+   niente cartellino finche non arriva qualcosa. Il verdetto lo da
+   ad-manager.js leggendo data-ad-status, e mette .annuncio-pieno sulla
+   cornice quando lannuncio ce.
 
-   Il tutto sta dentro @supports: su un browser senza :has() non si
-   applicherebbe la regola che rimette cornice e altezza, e i riquadri
-   resterebbero schiacciati per sempre. Meglio lasciargli il vecchio
-   aspetto.
+   Togliere lo spazio ai riquadri vuoti, invece, da qui non si puo: lo
+   script di AdSense scrive height: auto !important direttamente nel tag,
+   e una regola scritta qui non lo batte in nessun modo. Lo fa ad-manager.js
+   sempre in riga, che e lunico posto da cui si vince.
    ========================================================================== */
-@supports selector(:has(*)) {
-  .ad-banner-wrapper,
-  .ad-skyscraper,
-  .ad-skyscraper-tool {
-    min-height: 0;
-    background: none;
-    border-color: transparent;
-  }
 
-  .ad-skyscraper-tool {
-    height: auto;
-  }
+/* Stato di partenza: lo spazio ce, la cornice non si vede. */
+.ad-banner-wrapper,
+.ad-skyscraper,
+.ad-skyscraper-tool {
+  background: none;
+  border-color: transparent;
+}
 
-  .ad-banner-wrapper .ad-label,
-  .ad-skyscraper .ad-label {
-    display: none;
-  }
+.ad-banner-wrapper .ad-label,
+.ad-skyscraper .ad-label {
+  display: none;
+}
 
-  .ad-banner-wrapper:has(ins[data-ad-status="filled"]) {
-    min-height: 90px;
-    background: var(--bg-card);
-    border-color: var(--border-color);
-  }
+/* Le fasce orizzontali sono contenitori flex incolonnati, e un figlio flex
+   si stringe sul proprio contenuto: il tag <ins>, vuoto, finiva largo zero.
+   Erano cosi dal 15 agosto, quindi nessuna di loro avrebbe mai potuto
+   ricevere un annuncio. */
+.ad-banner-wrapper ins.adsbygoogle {
+  display: block;
+  width: 100%;
+}
 
-  .ad-skyscraper:has(ins[data-ad-status="filled"]),
-  .ad-skyscraper-tool:has(ins[data-ad-status="filled"]) {
-    background: var(--bg-card);
-    border-color: var(--border-color);
-  }
+/* Annuncio arrivato: cornice e cartellino tornano al loro posto. */
+.ad-banner-wrapper.annuncio-pieno,
+.ad-skyscraper.annuncio-pieno {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+}
 
-  .ad-skyscraper-tool:has(ins[data-ad-status="filled"]) {
-    height: 600px;
-  }
-
-  .ad-banner-wrapper:has(ins[data-ad-status="filled"]) .ad-label,
-  .ad-skyscraper:has(ins[data-ad-status="filled"]) .ad-label {
-    display: block;
-  }
+.ad-banner-wrapper.annuncio-pieno .ad-label,
+.ad-skyscraper.annuncio-pieno .ad-label {
+  display: block;
 }
