@@ -671,7 +671,17 @@ function componi(lingua, voce, legale) {
   // Quale strumento apre questa pagina, e in che lingua e' scritta.
   const dichiarazione = `  <script>window.PDFAXIOM_LANG=${JSON.stringify(lingua)};` +
     (voce ? `window.PDFAXIOM_TOOL=${JSON.stringify(voce.tool)};` : '') + `</script>\n`;
-  html = html.replace('  <script src="/js/rotte.js', dichiarazione + '  <script src="/js/rotte.js');
+  // L'aggancio prende solo l'indirizzo, non il tag intero: quando agli
+  // script e' stato aggiunto "defer" questa riga ha smesso di combaciare e
+  // la dichiarazione non veniva piu' inserita, senza che nessuno se ne
+  // accorgesse. Senza quella riga app.js non sa quale strumento aprire, e
+  // tutte e ventiquattro le pagine degli strumenti smettevano di accettare
+  // i file. Il controllo in fondo a componi esiste perche' non si ripeta.
+  const aggancio = '<script defer src="/js/rotte.js';
+  if (!html.includes(aggancio)) {
+    throw new Error('modello cambiato: non trovo dove mettere la dichiarazione');
+  }
+  html = html.replace(aggancio, dichiarazione + '  ' + aggancio);
 
   // Il contenuto leggibile va dopo lo spazio di lavoro, dove resta visibile
   // anche a strumento aperto.
@@ -692,10 +702,27 @@ function componi(lingua, voce, legale) {
      capisce di cosa parla la pagina. Questo controllo ferma la generazione
      invece di lasciar uscire 206 pagine sbagliate, che era quello che era
      appena successo. */
+  const dove = legale ? legale.slug : (voce ? voce.slug : 'pagina iniziale');
+
   const quantiH1 = (html.match(/<h1\b/g) || []).length;
   if (quantiH1 !== 1) {
-    const dove = legale ? legale.slug : (voce ? voce.slug : 'pagina iniziale');
     throw new Error(`${lingua}/${dove}: ${quantiH1} titoli h1, ne serve esattamente 1`);
+  }
+
+  /* La pagina deve dire a JavaScript in che lingua e' scritta e, se e' la
+     pagina di uno strumento, quale strumento apre. Senza, app.js non apre
+     niente e i file non vengono accettati: il sito sembra funzionare finche'
+     non ci si prova davvero. */
+  if (html.indexOf('window.PDFAXIOM_LANG=') < 0) {
+    throw new Error(`${lingua}/${dove}: manca la dichiarazione della lingua`);
+  }
+  if (voce && html.indexOf('window.PDFAXIOM_TOOL=') < 0) {
+    throw new Error(`${lingua}/${dove}: manca la dichiarazione dello strumento`);
+  }
+
+  /* E deve caricare il dizionario della sua lingua, non quello generale. */
+  if (html.indexOf(`/js/i18n.${lingua}.js`) < 0) {
+    throw new Error(`${lingua}/${dove}: non carica il proprio dizionario`);
   }
 
   return html;
