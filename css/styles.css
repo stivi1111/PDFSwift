@@ -2011,6 +2011,44 @@ body.pagina-home .ad-banner-below-grid {
   min-height: 100px;
 }
 
+
+/* Un riquadro che AdSense non riempie resta una cornice grigia alta 90 pixel
+   col cartellino ADVERTISEMENT dentro e niente altro. Succede sempre finche
+   l'account e in revisione, e succede comunque ogni volta che non c'e un
+   annuncio da mostrare. Non e un errore, ma fa sembrare la pagina incompiuta
+   proprio a chi la sta valutando.
+
+   Il codice degli annunci resta dove sta, perche senza quello non si viene
+   approvati: cambia solo che la cornice e il cartellino compaiono quando
+   l'annuncio c'e davvero. AdSense scrive da se data-ad-status sul tag ins. */
+.ad-banner-wrapper,
+.ad-skyscraper {
+  min-height: 0;
+  background: none;
+  border-color: transparent;
+}
+
+.ad-banner-wrapper .ad-label,
+.ad-skyscraper .ad-label {
+  display: none;
+}
+
+.ad-banner-wrapper:has(ins[data-ad-status="filled"]) {
+  min-height: 90px;
+  background: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+.ad-skyscraper:has(ins[data-ad-status="filled"]) {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+.ad-banner-wrapper:has(ins[data-ad-status="filled"]) .ad-label,
+.ad-skyscraper:has(ins[data-ad-status="filled"]) .ad-label {
+  display: block;
+}
+
 /* Side Skyscrapers (Natural Scroll, never fixed) */
 .ad-skyscraper {
   display: none;

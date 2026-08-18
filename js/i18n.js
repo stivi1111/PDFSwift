@@ -1169,21 +1169,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     testo('aboutUsLink', 'chiSiamo');
-    const modalTitle = document.getElementById('modalTitle');
-    if (modalTitle) modalTitle.textContent = (m.chiSiamo || uiMessages.en.chiSiamo) + ' - PDFAxiom';
-    testo('modalMissionTitle', 'missioneTitolo');
-    testo('modalMissionText', 'missioneTesto');
-    testo('modalPrivacyTitle', 'privacyTitolo');
-    testo('modalPrivacyText', 'privacyTesto');
-    testo('modalContactTitle', 'contattiTitolo');
 
-    const modalContactText = document.getElementById('modalContactText');
-    if (modalContactText) {
-      const emailLink = '<a href="mailto:pdfaxiom@gmail.com" class="modal-link">pdfaxiom@gmail.com</a>';
-      modalContactText.innerHTML = (m.contattiTesto || uiMessages.en.contattiTesto)
-        .replace('{email}', emailLink);
-    }
-
+    // I testi della finestra "Chi siamo" stavano qui. La finestra non esiste
+    // piu: quel contenuto e ora una pagina vera, /about/ e /it/chi-siamo/,
+    // scritta a tempo di compilazione da build/contenuti/legali.js.
     // Etichette che restavano in inglese su qualsiasi pagina: i cartellini
     // delle schede, la dicitura sopra i riquadri pubblicitari, il piede.
     //

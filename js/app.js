@@ -615,39 +615,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // About Us Modal Handler
-  const aboutUsLink = document.getElementById('aboutUsLink');
-  const aboutModal = document.getElementById('aboutModal');
-  const modalCloseBtn = document.getElementById('modalCloseBtn');
-
-  function openAboutModal() {
-    if (aboutModal) aboutModal.classList.add('active');
-  }
-
-  function closeAboutModal() {
-    if (aboutModal) aboutModal.classList.remove('active');
-  }
-
-  if (aboutUsLink) {
-    aboutUsLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      openAboutModal();
-    });
-  }
-
-  if (modalCloseBtn) {
-    modalCloseBtn.addEventListener('click', closeAboutModal);
-  }
-
-  if (aboutModal) {
-    aboutModal.addEventListener('click', (e) => {
-      if (e.target === aboutModal) closeAboutModal();
-    });
-  }
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && aboutModal && aboutModal.classList.contains('active')) {
-      closeAboutModal();
-    }
-  });
+  // La pagina "Chi siamo" e una pagina vera, /about/ o /it/chi-siamo/.
+  // Prima questo collegamento apriva una finestra e chiamava preventDefault:
+  // il contenuto non era indicizzabile, non aveva un indirizzo proprio e per
+  // un revisore non contava come pagina. Ora il collegamento porta dove dice.
 });
