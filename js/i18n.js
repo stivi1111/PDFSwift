@@ -678,6 +678,7 @@ const toolButtons = {
  */
 const uiMessages = {
   en: {
+    errGenerico: 'Something went wrong. Please try again.',
     menuDaPdf: 'CONVERT FROM PDF',
     menuAPdf: 'CONVERT TO PDF',
     chiSiamo: "About Us",
@@ -749,6 +750,7 @@ const uiMessages = {
     completed: "Completed!", pageOf: "Page {i} of {n}...", fileOf: "File {i} of {n}..."
   },
   it: {
+    errGenerico: 'Qualcosa è andato storto. Riprova.',
     menuDaPdf: 'CONVERTI DA PDF',
     menuAPdf: 'CONVERTI IN PDF',
     chiSiamo: "Chi siamo",
@@ -820,6 +822,7 @@ const uiMessages = {
     completed: "Completato!", pageOf: "Pagina {i} di {n}...", fileOf: "File {i} di {n}..."
   },
   es: {
+    errGenerico: 'Algo ha salido mal. Inténtalo de nuevo.',
     menuDaPdf: 'CONVERTIR DESDE PDF',
     menuAPdf: 'CONVERTIR A PDF',
     chiSiamo: "Sobre nosotros",
@@ -891,6 +894,7 @@ const uiMessages = {
     completed: "¡Completado!", pageOf: "Página {i} de {n}...", fileOf: "Archivo {i} de {n}..."
   },
   de: {
+    errGenerico: 'Etwas ist schiefgelaufen. Bitte erneut versuchen.',
     menuDaPdf: 'AUS PDF UMWANDELN',
     menuAPdf: 'IN PDF UMWANDELN',
     chiSiamo: "Über uns",
@@ -962,6 +966,7 @@ const uiMessages = {
     completed: "Fertig!", pageOf: "Seite {i} von {n}...", fileOf: "Datei {i} von {n}..."
   },
   zh: {
+    errGenerico: '出了点问题，请重试。',
     menuDaPdf: '从 PDF 转换',
     menuAPdf: '转换为 PDF',
     chiSiamo: "关于我们",
@@ -1033,6 +1038,7 @@ const uiMessages = {
     completed: "已完成！", pageOf: "第 {i} 页，共 {n} 页...", fileOf: "第 {i} 个文件，共 {n} 个..."
   },
   ro: {
+    errGenerico: 'Ceva nu a mers bine. Încearcă din nou.',
     menuDaPdf: 'CONVERTEȘTE DIN PDF',
     menuAPdf: 'CONVERTEȘTE ÎN PDF',
     chiSiamo: "Despre noi",
@@ -1104,6 +1110,7 @@ const uiMessages = {
     completed: "Finalizat!", pageOf: "Pagina {i} din {n}...", fileOf: "Fișierul {i} din {n}..."
   },
   hi: {
+    errGenerico: 'कुछ गड़बड़ हो गई। दोबारा कोशिश करें।',
     menuDaPdf: 'PDF से बदलें',
     menuAPdf: 'PDF में बदलें',
     chiSiamo: "हमारे बारे में",
@@ -1175,6 +1182,7 @@ const uiMessages = {
     completed: "पूर्ण!", pageOf: "पृष्ठ {i} / {n}...", fileOf: "फ़ाइल {i} / {n}..."
   },
   ru: {
+    errGenerico: 'Что-то пошло не так. Попробуйте ещё раз.',
     menuDaPdf: 'ПРЕОБРАЗОВАТЬ ИЗ PDF',
     menuAPdf: 'ПРЕОБРАЗОВАТЬ В PDF',
     chiSiamo: "О нас",

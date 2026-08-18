@@ -176,6 +176,42 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /** Etichetta tradotta, per i pannelli costruiti a mano qui sotto. */
+  /* Segna un fatto sulle statistiche.
+
+     Finora si contavano solo le pagine viste, quindi di ventiquattro
+     strumenti non si sapeva niente: quali venissero usati, quali no, e
+     soprattutto quali fallissero. Un errore che nessuno riferisce e' un
+     errore che resta li' per mesi.
+
+     Umami e' nostro e non mette cookie, quindi qui non c'e' niente da
+     chiedere a nessuno e l'informativa resta vera com'e' scritta.
+
+     Tutto sta dentro un try che ingoia: chi ha un blocco pubblicita'
+     installato non carica lo script delle statistiche, e in quel caso questa
+     funzione non deve far fallire la conversione. Contare e' meno importante
+     che funzionare. */
+  function segna(evento, dati) {
+    try {
+      if (window.umami && typeof window.umami.track === 'function') {
+        window.umami.track(evento, dati || {});
+      }
+    } catch (e) { /* le statistiche non sono mai un buon motivo per rompersi */ }
+  }
+
+  // Dove gira questo strumento: sul server o qui nel browser. Serve a leggere
+  // i tempi con la testa giusta, perche' i due casi non sono paragonabili.
+  function dove(idStrumento) {
+    try {
+      return PDFAxiomAPI.isServerTool(idStrumento) ? 'server' : 'browser';
+    } catch (e) { return '?'; }
+  }
+
+  const pesoKb = (elenco) => {
+    try {
+      return Math.round(elenco.reduce((somma, f) => somma + (f.size || 0), 0) / 1024);
+    } catch (e) { return 0; }
+  };
+
   const et = (chiave) =>
     window.PDFAxiomI18n ? window.PDFAxiomI18n.t(chiave) : chiave;
 
@@ -413,6 +449,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderFilePreviews();
     processBtn.disabled = state.files.length === 0;
+
+    // Primo gradino dell'imbuto: quanti scelgono un file. Confrontato con le
+    // conversioni riuscite dice quanti si fermano prima di premere il tasto.
+    segna('file-scelto', {
+      strumento: state.activeTool,
+      dove: dove(state.activeTool),
+      quanti: state.files.length,
+      kb: pesoKb(state.files)
+    });
   }
 
   // Ogni anteprima di immagine crea un riferimento temporaneo al file, e il
@@ -519,6 +564,11 @@ document.addEventListener('DOMContentLoaded', () => {
   processBtn.addEventListener('click', async () => {
     if (state.files.length === 0) return;
 
+    const partenza = Date.now();
+    const strumentoUsato = state.activeTool;
+    const kbUsati = pesoKb(state.files);
+    const quantiFile = state.files.length;
+
     processBtn.disabled = true;
     progressContainer.style.display = 'block';
     downloadBox.style.display = 'none';
@@ -590,6 +640,14 @@ document.addEventListener('DOMContentLoaded', () => {
       progressBarFill.style.width = '100%';
       progressText.textContent = tr('success');
 
+      segna('conversione', {
+        strumento: strumentoUsato,
+        dove: dove(strumentoUsato),
+        quanti: quantiFile,
+        kb: kbUsati,
+        secondi: Math.round((Date.now() - partenza) / 1000)
+      });
+
       setTimeout(() => {
         progressContainer.style.display = 'none';
         downloadBox.style.display = 'flex';
@@ -602,7 +660,22 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 500);
 
     } catch (err) {
-      alert(`Error: ${err.message || 'Failed to process files.'}`);
+      // Il motivo va troncato: in un campo delle statistiche serve una
+      // frase riconoscibile, non l'intero racconto dell'errore.
+      segna('errore', {
+        strumento: strumentoUsato,
+        dove: dove(strumentoUsato),
+        kb: kbUsati,
+        secondi: Math.round((Date.now() - partenza) / 1000),
+        motivo: String((err && err.message) || err || 'sconosciuto').slice(0, 90)
+      });
+
+      // Il messaggio arriva gia' nella lingua della pagina: api-client e
+      // pdf-engine lo pescano dal dizionario. Quello che non era tradotto
+      // era la cornice: si scriveva "Error:" davanti e si ripiegava su
+      // "Failed to process files." in inglese. Su una pagina italiana
+      // usciva "Error: Errore del server (500)", meta' e meta'.
+      alert(err.message || et('errGenerico'));
       progressContainer.style.display = 'none';
       processBtn.disabled = false;
     }
