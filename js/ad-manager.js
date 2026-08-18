@@ -32,7 +32,13 @@
       // dello scaricamento, per dire, compare a conversione finita: se lo
       // si desse per vuoto adesso resterebbe nascosto per sempre e non
       // riceverebbe mai un annuncio.
-      if (!ins.getAttribute("data-adsbygoogle-status")) return;
+      //
+      // Il segno se lo mette questo file, invece di guardare
+      // data-adsbygoogle-status che scrive AdSense: se il loro script non
+      // parte affatto, cosa che succede con un blocco annunci installato,
+      // quellattributo non arriva mai e il riquadro resterebbe li a tenere
+      // spazio vuoto per sempre.
+      if (!ins.dataset.chiesto) return;
 
       const stato = ins.getAttribute("data-ad-status");
       if (stato === "filled") {
@@ -64,6 +70,7 @@
         if (ad.getBoundingClientRect().width < 1) return;
 
         (window.adsbygoogle = window.adsbygoogle || []).push({});
+        ad.dataset.chiesto = "1";
 
         // data-ad-status arriva quando arriva: si sta a guardare mentre
         // cambia. Un osservatore per riquadro, e solo la prima volta.
