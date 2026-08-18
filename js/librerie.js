@@ -12,14 +12,35 @@
  * memoria per il resto della visita.
  */
 window.PDFLibrerie = (() => {
+  /* Le librerie stanno in casa nostra, non su cdnjs e unpkg.
+
+     Tre motivi, in ordine di peso.
+
+     Il primo e' che il worker di pdf.js deve stare sulla nostra stessa
+     origine. Un browser non permette di far partire un worker da un altro
+     dominio: pdf.js se ne accorge e ripiega sul "fake worker", cioe' esegue
+     tutto sul filo principale della pagina. Funziona, ma mentre legge un PDF
+     la pagina resta ferma. Da qui invece parte un worker vero, su un thread
+     suo.
+
+     Il secondo e' che una rete che blocca cdnjs o unpkg - succede spesso in
+     ufficio - lasciava senza undici strumenti su ventiquattro, e senza un
+     messaggio che spiegasse il perche'.
+
+     Il terzo e' che il sito promette che il file non lascia il dispositivo.
+     E' vero, il file non parte davvero; ma il browser contattava lo stesso
+     due terzi estranei per andarlo a lavorare. Adesso no.
+
+     Il numero di versione sta nel nome del file: cambiando versione cambia
+     l'indirizzo, e la cache di un anno dichiarata in _headers resta
+     corretta. */
   const FONTI = {
-    'pdf-lib': 'https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js',
-    'pdf.js':  'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
-    'jszip':   'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js',
+    'pdf-lib': '/js/lib/pdf-lib-1.17.1.min.js',
+    'pdf.js':  '/js/lib/pdf-3.11.174.min.js',
+    'jszip':   '/js/lib/jszip-3.10.1.min.js',
   };
 
-  const WORKER_PDFJS =
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  const WORKER_PDFJS = '/js/lib/pdf.worker-3.11.174.min.js';
 
   // Di quali librerie ha bisogno ciascuno strumento che gira nel browser.
   // Gli strumenti assenti da questa mappa sono quelli elaborati dal server:
