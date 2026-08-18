@@ -84,7 +84,7 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   min-height: 100vh;
@@ -2133,6 +2133,39 @@ body.pagina-home .ad-banner-hero {
 .ad-banner-wrapper ins.adsbygoogle {
   display: block;
   width: 100%;
+}
+
+/* Finche lannuncio non ce, la fascia non occupa nessuna altezza.
+
+   Prima laltezza la riservava: 90 pixel di suo, poi lo script di AdSense la
+   portava a 280 per far posto allannuncio, e alla fine, scoperto che
+   annuncio non ce nera, spariva tutto. La pagina saliva e scendeva due
+   volte. Misurato: lindice dei salti era passato da 0,005 a 0,244, e il
+   salto piu grosso arrivava dopo quasi cinque secondi, quando uno sta gia
+   leggendo. E la cosa che fa sembrare un sito rotto.
+
+   La larghezza invece resta piena, ed e lunica misura che serve: queste
+   fasce sono annunci a misura variabile, AdSense ricava laltezza dalla
+   larghezza. Toglierle laltezza non le impedisce di riempirsi.
+
+   Quando lannuncio arriva la classe annuncio-pieno smette di far combaciare
+   questa regola, e margini e altezze tornano quelle scritte piu in alto,
+   ognuna la sua. I due riquadri della pagina iniziale vanno nominati a
+   parte perche le loro regole pesano di piu di .ad-banner-wrapper.
+
+   I due laterali non stanno in questo elenco: sono posizionati in modo
+   assoluto, non spingono niente, e la loro altezza serve davvero perche
+   sono annunci a misura fissa. */
+.ad-banner-wrapper:not(.annuncio-pieno),
+body.pagina-home .ad-banner-hero:not(.annuncio-pieno),
+body.pagina-home .ad-banner-below-grid:not(.annuncio-pieno) {
+  max-height: 0;
+  min-height: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;
 }
 
 /* Annuncio arrivato: cornice e cartellino tornano al loro posto. Il banner

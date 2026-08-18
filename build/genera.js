@@ -324,6 +324,169 @@ function intestazione(lingua, voce, legale) {
 
 // ------------------------------------------------------------------ pagina
 
+
+/* ---------------------------------------------------------------------
+   Traduzione a tempo di compilazione
+
+   Le pagine uscivano tutte con il testo inglese del modello, e i18n.js lo
+   riscriveva nella lingua giusta a pagina gia' disegnata. Tre guai in uno:
+
+   - chi apriva /it/ leggeva per quasi un secondo "Convert PDF", "All in
+     One", ventiquattro schede in inglese, e poi vedeva tutto cambiare
+     sotto gli occhi;
+   - quel rifacimento cambiava la larghezza dei testi e faceva assestare
+     la pagina di scatto (misurato: 0,0868 di indice dei salti);
+   - Google riceveva un <h1> inglese su un indirizzo italiano.
+
+   Adesso il testo giusto e' gia' nel file. i18n.js continua a fare il suo
+   lavoro per chi cambia lingua dal menu, ma alla prima apertura non trova
+   piu' niente da correggere.
+
+   I dizionari si leggono da js/i18n.js, che resta l'unico posto dove le
+   traduzioni stanno scritte. E' un file per il browser, non un modulo, e
+   in fondo ha del codice che cerca "document": lo si esegue in una scatola
+   con giusto quel tanto di finto browser da non farlo inciampare. */
+const dizionari = (() => {
+  const vm = require('vm');
+  const finto = {
+    addEventListener: () => {},
+    getElementById: () => null,
+    querySelector: () => null,
+    querySelectorAll: () => [],
+    documentElement: { setAttribute: () => {} },
+    body: { dataset: {}, classList: { add: () => {}, remove: () => {} } }
+  };
+  const scatola = {
+    document: finto,
+    localStorage: { getItem: () => null, setItem: () => {} },
+    navigator: { language: 'en' },
+    console
+  };
+  scatola.window = scatola;
+  vm.createContext(scatola);
+  const sorgente = fs.readFileSync(path.join(RADICE, 'js', 'i18n.js'), 'utf8') +
+    ';globalThis.__dizionari = { translations, toolTranslations, toolButtons, uiMessages };';
+  vm.runInContext(sorgente, scatola, { filename: 'i18n.js' });
+  const d = scatola.__dizionari;
+  if (!d || !d.translations || !d.toolTranslations || !d.toolButtons || !d.uiMessages) {
+    throw new Error('js/i18n.js non ha restituito i dizionari');
+  }
+  return d;
+})();
+
+/* Sostituisce il testo di un elemento marcato, lasciando stare l'apertura
+   del tag: cosi' classi, identificativi e attributi restano dove sono.
+   Gli elementi marcati contengono solo testo, mai altri tag. */
+function riempiMarcati(html, attributo, dizionario) {
+  let fuori = html;
+  let da = 0;
+  for (;;) {
+    const i = fuori.indexOf(attributo + '="', da);
+    if (i < 0) break;
+    const chiaveDa = i + attributo.length + 2;
+    const chiaveA = fuori.indexOf('"', chiaveDa);
+    if (chiaveA < 0) break;
+    const chiave = fuori.slice(chiaveDa, chiaveA);
+    const apre = fuori.indexOf('>', chiaveA);
+    const chiude = fuori.indexOf('</', apre);
+    if (apre < 0 || chiude < 0) { da = chiaveA; continue; }
+    const testo = dizionario[chiave];
+    if (testo === undefined || testo === null || testo === '') { da = chiaveA; continue; }
+    const nuovo = esc(testo);
+    fuori = fuori.slice(0, apre + 1) + nuovo + fuori.slice(chiude);
+    da = apre + 1 + nuovo.length;
+  }
+  return fuori;
+}
+
+/* Il nome e la descrizione delle ventiquattro schede, e il nome negli
+   elenchi a tendina del menu. */
+function riempiStrumenti(html, lingua) {
+  const nomi = dizionari.toolTranslations[lingua] || dizionari.toolTranslations.en;
+  const nome = (id) => nomi[id] || dizionari.toolTranslations.en[id];
+  let fuori = html;
+
+  // schede della griglia
+  const marca = 'class="tool-card" data-tool="';
+  let da = 0;
+  for (;;) {
+    const i = fuori.indexOf(marca, da);
+    if (i < 0) break;
+    const idDa = i + marca.length;
+    const idA = fuori.indexOf('"', idDa);
+    const voce = nome(fuori.slice(idDa, idA));
+    da = idA;
+    if (!voce) continue;
+
+    const h3 = fuori.indexOf('<h3>', idA);
+    const h3fine = fuori.indexOf('</h3>', h3);
+    if (h3 < 0 || h3fine < 0) continue;
+    fuori = fuori.slice(0, h3 + 4) + esc(voce.title) + fuori.slice(h3fine);
+
+    const p = fuori.indexOf('<p>', fuori.indexOf('</h3>', h3));
+    const pfine = fuori.indexOf('</p>', p);
+    if (p < 0 || pfine < 0) { da = h3; continue; }
+    fuori = fuori.slice(0, p + 3) + esc(voce.desc) + fuori.slice(pfine);
+    da = p;
+  }
+
+  // voci degli elenchi a tendina
+  da = 0;
+  for (;;) {
+    const i = fuori.indexOf('class="mega-item" data-tool="', da);
+    if (i < 0) break;
+    const idDa = i + 'class="mega-item" data-tool="'.length;
+    const idA = fuori.indexOf('"', idDa);
+    const voce = nome(fuori.slice(idDa, idA));
+    const apre = fuori.indexOf('>', idA);
+    const chiude = fuori.indexOf('</a>', apre);
+    da = idA;
+    if (!voce || apre < 0 || chiude < 0) continue;
+    fuori = fuori.slice(0, apre + 1) + esc(voce.title) + fuori.slice(chiude);
+    da = apre;
+  }
+
+  return fuori;
+}
+
+/* Sostituisce il contenuto dell'elemento con quell'identificativo. */
+function riempiPerId(html, id, testo) {
+  const i = html.indexOf('id="' + id + '"');
+  if (i < 0) return html;
+  const apre = html.indexOf('>', i);
+  const chiude = html.indexOf('</', apre);
+  if (apre < 0 || chiude < 0) return html;
+  return html.slice(0, apre + 1) + esc(testo) + html.slice(chiude);
+}
+
+function traduciStatico(html, lingua, voce) {
+  const t = dizionari.translations[lingua] || dizionari.translations.en;
+  const m = dizionari.uiMessages[lingua] || dizionari.uiMessages.en;
+  let fuori = riempiMarcati(html, 'data-i18n', t);
+  fuori = riempiMarcati(fuori, 'data-badge', m);
+  fuori = riempiMarcati(fuori, 'data-piede', m);
+  fuori = riempiStrumenti(fuori, lingua);
+
+  /* Sulla pagina di uno strumento, il pannello nasce gia' intestato a lui.
+     Questi tre pezzi li scriveva app.js dopo il disegno, e sono le scritte
+     piu' grandi della pagina: cambiarle a cose fatte si vedeva eccome.
+     Va dopo i marcati, altrimenti data-i18n="processBtn" rimetterebbe
+     l'etichetta generica sopra quella dello strumento. */
+  if (voce) {
+    const nomi = dizionari.toolTranslations[lingua] || dizionari.toolTranslations.en;
+    const pulsanti = dizionari.toolButtons[lingua] || dizionari.toolButtons.en;
+    const suo = nomi[voce.tool] || dizionari.toolTranslations.en[voce.tool];
+    const etichetta = pulsanti[voce.tool] || dizionari.toolButtons.en[voce.tool];
+    if (suo) {
+      fuori = riempiPerId(fuori, 'workspaceTitle', suo.title);
+      fuori = riempiPerId(fuori, 'workspaceDesc', suo.desc);
+    }
+    if (etichetta) fuori = riempiPerId(fuori, 'processBtnText', etichetta);
+  }
+
+  return fuori;
+}
+
 function componi(lingua, voce, legale) {
   const c = contenuti[lingua];
   const t = voce ? c.strumenti[voce.slug] : null;
@@ -351,8 +514,15 @@ function componi(lingua, voce, legale) {
     // pagina. Il titolo dell'intestazione scende di grado (resta identico a
     // vedersi: e' la stessa classe che lo compone). Sulla home invece l'h1
     // resta al suo posto: e' gia' il titolo della pagina.
-    html = html.replace(/<h1>([\s\S]*?)<\/h1>/,
-      '<p class="hero-titolo">$1</p>');
+    //
+    // Gli attributi dell'h1 passano al p: dentro c'e' il data-i18n che dice
+    // a traduciStatico quale testo scriverci. Prima questa espressione
+    // pretendeva un <h1> nudo, e quando all'h1 e' stato aggiunto l'attributo
+    // ha smesso di combaciare senza dire niente: ogni pagina di strumento e
+    // ogni pagina legale si e' ritrovata con due h1, il primo dei quali era
+    // il motto del sito. Il controllo qui sotto esiste per questo.
+    html = html.replace(/<h1\b([^>]*)>([\s\S]*?)<\/h1>/,
+      '<p class="hero-titolo"$1>$2</p>');
   }
 
   // Sulle pagine legali non c'e' niente da convertire: via l'apertura, le
@@ -367,6 +537,34 @@ function componi(lingua, voce, legale) {
     html = togliBlocchi(html, '<!-- Google AdSense', '</script>');
   } else if (voce) {
     html = html.replace('<body>', '<body class="pagina-strumento">');
+
+    /* La pagina di uno strumento nasce gia' aperta su quello strumento.
+
+       Prima usciva identica alla pagina iniziale - apertura, schede,
+       ventiquattro riquadri - e app.js, a pagina gia' disegnata,
+       nascondeva tutto e apriva il pannello. Per quasi mezzo secondo chi
+       apriva /it/rotate-pdf/ si trovava davanti la pagina iniziale, e poi
+       la vedeva cambiare da sola. Ed era un salto vero, misurato: 0,09 di
+       indice, il solo rimasto dopo aver sistemato le traduzioni.
+
+       "display: block" va scritto per esteso: il foglio di stile ha una
+       regola che cerca proprio questa scritta dentro l'attributo per dare
+       aria al pannello, e app.js scrive la stessa cosa. Combaciando, al
+       caricamento non cambia piu' niente. */
+    const daChiudere = [
+      ['<section id="heroSection" class="hero">',
+       '<section id="heroSection" class="hero" style="display: none">'],
+      ['<div class="category-tabs">',
+       '<div class="category-tabs" style="display: none">'],
+      ['<div id="toolsGrid" class="tools-grid">',
+       '<div id="toolsGrid" class="tools-grid" style="display: none">'],
+      ['<div id="toolWorkspace" class="tool-workspace">',
+       '<div id="toolWorkspace" class="tool-workspace" style="display: block">']
+    ];
+    daChiudere.forEach(([da, a]) => {
+      if (!html.includes(da)) throw new Error('modello cambiato, non trovo: ' + da);
+      html = html.replace(da, a);
+    });
   } else {
     html = html.replace('<body>', '<body class="pagina-home">');
   }
@@ -414,6 +612,22 @@ function componi(lingua, voce, legale) {
   const blocco = legale ? bloccoLegale(lingua, legale)
     : (voce ? bloccoStrumento(lingua, voce) : bloccoCasa(lingua));
   html = html.replace('</main>', `</main>\n\n  ${blocco}`);
+
+  // Ultimo passaggio: i testi dell'interfaccia nella lingua della pagina.
+  // Va per ultimo, cosi' prende anche i pezzi aggiunti qui sopra.
+  html = traduciStatico(html, lingua, voce);
+
+  /* Un titolo principale per pagina, non due.
+
+     Non e' una regola di stile: e' il modo in cui un motore di ricerca
+     capisce di cosa parla la pagina. Questo controllo ferma la generazione
+     invece di lasciar uscire 206 pagine sbagliate, che era quello che era
+     appena successo. */
+  const quantiH1 = (html.match(/<h1\b/g) || []).length;
+  if (quantiH1 !== 1) {
+    const dove = legale ? legale.slug : (voce ? voce.slug : 'pagina iniziale');
+    throw new Error(`${lingua}/${dove}: ${quantiH1} titoli h1, ne serve esattamente 1`);
+  }
 
   return html;
 }

@@ -43,8 +43,8 @@
        bloccava il disegno della pagina e faceva passare da Google il browser
        di chi ci visita. -->
   <link rel="preload" href="/assets/font/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/css/font.css?v=11.1">
-  <link rel="stylesheet" href="/css/styles.css?v=34.0">
+  <link rel="stylesheet" href="/css/font.css?v=12.0">
+  <link rel="stylesheet" href="/css/styles.css?v=36.0">
   
   <!-- Le librerie PDF non si caricano piu' qui: erano 949 KB a ogni visita,
        di cui 649 KB per strumenti che oggi girano sul server e non le usano
@@ -78,26 +78,26 @@
         <!-- 1. Convert PDF Dropdown -->
         <div class="dropdown-wrapper">
           <button class="nav-btn">
-            <span>Convert PDF</span>
+            <span data-i18n="navConvert">转换 PDF</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
           </button>
           <div class="mega-dropdown dropdown-sm">
             <div class="mini-dropdown-grid">
               <div class="mini-col">
-                <div class="mega-title">CONVERT FROM PDF</div>
-                <a href="/zh/pdf-to-word/" class="mega-item" data-tool="pdf-to-word">PDF to Word</a>
-                <a href="/zh/pdf-to-excel/" class="mega-item" data-tool="pdf-to-excel">PDF to Excel</a>
-                <a href="/zh/pdf-to-powerpoint/" class="mega-item" data-tool="pdf-to-pptx">PDF to PowerPoint</a>
-                <a href="/zh/pdf-to-markdown/" class="mega-item" data-tool="pdf-to-md">PDF to Markdown</a>
-                <a href="/zh/pdf-to-html/" class="mega-item" data-tool="pdf-to-html">PDF to HTML</a>
+                <div class="mega-title" data-badge="menuDaPdf">从 PDF 转换</div>
+                <a href="/zh/pdf-to-word/" class="mega-item" data-tool="pdf-to-word">PDF 转 Word</a>
+                <a href="/zh/pdf-to-excel/" class="mega-item" data-tool="pdf-to-excel">PDF 转 Excel</a>
+                <a href="/zh/pdf-to-powerpoint/" class="mega-item" data-tool="pdf-to-pptx">PDF 转 PowerPoint</a>
+                <a href="/zh/pdf-to-markdown/" class="mega-item" data-tool="pdf-to-md">PDF 转 Markdown</a>
+                <a href="/zh/pdf-to-html/" class="mega-item" data-tool="pdf-to-html">PDF 转 HTML</a>
               </div>
               <div class="mini-col">
-                <div class="mega-title">CONVERT TO PDF</div>
-                <a href="/zh/word-to-pdf/" class="mega-item" data-tool="word-to-pdf">Word to PDF</a>
-                <a href="/zh/excel-to-pdf/" class="mega-item" data-tool="excel-to-pdf">Excel to PDF</a>
-                <a href="/zh/powerpoint-to-pdf/" class="mega-item" data-tool="pptx-to-pdf">PowerPoint to PDF</a>
-                <a href="/zh/markdown-to-pdf/" class="mega-item" data-tool="md-to-pdf">Markdown to PDF</a>
-                <a href="/zh/html-to-pdf/" class="mega-item" data-tool="html-to-pdf">HTML to PDF</a>
+                <div class="mega-title" data-badge="menuAPdf">转换为 PDF</div>
+                <a href="/zh/word-to-pdf/" class="mega-item" data-tool="word-to-pdf">Word 转 PDF</a>
+                <a href="/zh/excel-to-pdf/" class="mega-item" data-tool="excel-to-pdf">Excel 转 PDF</a>
+                <a href="/zh/powerpoint-to-pdf/" class="mega-item" data-tool="pptx-to-pdf">PowerPoint 转 PDF</a>
+                <a href="/zh/markdown-to-pdf/" class="mega-item" data-tool="md-to-pdf">Markdown 转 PDF</a>
+                <a href="/zh/html-to-pdf/" class="mega-item" data-tool="html-to-pdf">HTML 转 PDF</a>
               </div>
             </div>
           </div>
@@ -106,16 +106,16 @@
         <!-- 2. Merge & Split Dropdown -->
         <div class="dropdown-wrapper">
           <button class="nav-btn">
-            <span>Merge & Split</span>
+            <span data-i18n="navMergeSplit">合并与拆分</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
           </button>
           <div class="mega-dropdown dropdown-single">
             <div class="mini-col">
-              <a href="/zh/merge-pdf/" class="mega-item" data-tool="merge">Merge PDF</a>
-              <a href="/zh/split-pdf/" class="mega-item" data-tool="split">Split PDF</a>
-              <a href="/zh/delete-pdf-pages/" class="mega-item" data-tool="delete-pages">Delete Pages</a>
-              <a href="/zh/add-page-numbers/" class="mega-item" data-tool="page-numbers">Page Numbers</a>
-              <a href="/zh/rotate-pdf/" class="mega-item" data-tool="rotate">Rotate PDF</a>
+              <a href="/zh/merge-pdf/" class="mega-item" data-tool="merge">合并 PDF</a>
+              <a href="/zh/split-pdf/" class="mega-item" data-tool="split">拆分 PDF</a>
+              <a href="/zh/delete-pdf-pages/" class="mega-item" data-tool="delete-pages">删除页面</a>
+              <a href="/zh/add-page-numbers/" class="mega-item" data-tool="page-numbers">页码添加</a>
+              <a href="/zh/rotate-pdf/" class="mega-item" data-tool="rotate">旋转 PDF</a>
             </div>
           </div>
         </div>
@@ -123,14 +123,14 @@
         <!-- 3. Image Tools Dropdown -->
         <div class="dropdown-wrapper">
           <button class="nav-btn">
-            <span>Image Tools</span>
+            <span data-i18n="navImages">图片工具</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
           </button>
           <div class="mega-dropdown dropdown-single">
             <div class="mini-col">
-              <a href="/zh/jpg-to-pdf/" class="mega-item" data-tool="img-to-pdf">Images to PDF</a>
-              <a href="/zh/pdf-to-jpg/" class="mega-item" data-tool="pdf-to-img">PDF to JPG / PNG</a>
-              <a href="/zh/extract-images-from-pdf/" class="mega-item" data-tool="extract-images">Extract Images</a>
+              <a href="/zh/jpg-to-pdf/" class="mega-item" data-tool="img-to-pdf">图片转 PDF</a>
+              <a href="/zh/pdf-to-jpg/" class="mega-item" data-tool="pdf-to-img">PDF 转 JPG / PNG</a>
+              <a href="/zh/extract-images-from-pdf/" class="mega-item" data-tool="extract-images">提取图片</a>
             </div>
           </div>
         </div>
@@ -138,17 +138,17 @@
         <!-- 4. Edit & Security Dropdown -->
         <div class="dropdown-wrapper">
           <button class="nav-btn">
-            <span>Edit & Security</span>
+            <span data-i18n="navEdit">编辑与安全</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
           </button>
           <div class="mega-dropdown dropdown-single">
             <div class="mini-col">
-              <a href="/zh/compress-pdf/" class="mega-item" data-tool="compress">Compress PDF</a>
-              <a href="/zh/protect-pdf/" class="mega-item" data-tool="protect">Protect PDF</a>
-              <a href="/zh/unlock-pdf/" class="mega-item" data-tool="unlock">Unlock PDF</a>
-              <a href="/zh/watermark-pdf/" class="mega-item" data-tool="watermark">Watermark PDF</a>
-              <a href="/zh/grayscale-pdf/" class="mega-item" data-tool="grayscale">Grayscale PDF</a>
-              <a href="/zh/pdf-to-text/" class="mega-item" data-tool="pdf-to-text">Extract Text</a>
+              <a href="/zh/compress-pdf/" class="mega-item" data-tool="compress">压缩 PDF</a>
+              <a href="/zh/protect-pdf/" class="mega-item" data-tool="protect">PDF 加密</a>
+              <a href="/zh/unlock-pdf/" class="mega-item" data-tool="unlock">PDF 解密</a>
+              <a href="/zh/watermark-pdf/" class="mega-item" data-tool="watermark">PDF 水印</a>
+              <a href="/zh/grayscale-pdf/" class="mega-item" data-tool="grayscale">PDF 转黑白</a>
+              <a href="/zh/pdf-to-text/" class="mega-item" data-tool="pdf-to-text">提取文本</a>
             </div>
           </div>
         </div>
@@ -159,7 +159,7 @@
       <div class="header-actions">
         <button class="nav-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation Menu">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-          <span>Tools</span>
+          <span data-i18n="mobileMenu">工具</span>
         </button>
 
         <div class="dropdown-wrapper lang-dropdown-wrapper">
@@ -192,14 +192,14 @@
   </header>
 
   <!-- Hero Section -->
-  <section id="heroSection" class="hero">
-    <p class="hero-titolo">PDFAXIOM All in One</p>
-    <p>Convert, edit, compress and secure your PDF files in seconds, no signup needed.</p>
+  <section id="heroSection" class="hero" style="display: none">
+    <p class="hero-titolo" data-i18n="heroTitle">PDFAXIOM 全功能</p>
+    <p data-i18n="heroDesc">秒级转换、编辑、压缩和保护您的 PDF 文件，无需注册。</p>
   </section>
 
   <!-- Slim Discreet Banner between Hero Subtitle and Tools Grid (Home Page Only) -->
   <div class="ad-banner-wrapper ad-banner-hero" aria-label="Advertisement">
-    <span class="ad-label" data-badge="pubblicita">ADVERTISEMENT</span>
+    <span class="ad-label" data-badge="pubblicita">广告</span>
     <ins class="adsbygoogle"
          style="display:block"
          data-ad-client="ca-pub-2272593869740076"
@@ -212,15 +212,15 @@
   <main class="main-content">
     
     <!-- Category Filter Tabs -->
-    <div class="category-tabs">
-      <button class="tab-btn active" data-category="all">All Tools</button>
-      <button class="tab-btn" data-category="convert">Convert & Office</button>
-      <button class="tab-btn" data-category="organize">Merge & Organize</button>
-      <button class="tab-btn" data-category="security">Security & Edit</button>
+    <div class="category-tabs" style="display: none">
+      <button class="tab-btn active" data-category="all" data-i18n="tabAll">所有工具</button>
+      <button class="tab-btn" data-category="convert" data-i18n="tabConvert">转换与 Office</button>
+      <button class="tab-btn" data-category="organize" data-i18n="tabOrganize">合并与组织</button>
+      <button class="tab-btn" data-category="security" data-i18n="tabSecurity">安全与编辑</button>
     </div>
 
     <!-- Main Tools Grid -->
-    <div id="toolsGrid" class="tools-grid">
+    <div id="toolsGrid" class="tools-grid" style="display: none">
 
       <!-- PAIR 1: PDF to Word & Word to PDF (Tier 1 ~4M & 2.5M) -->
       <div class="tool-card" data-tool="pdf-to-word" data-category="convert">
@@ -229,10 +229,10 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>PDF to Word</h3>
-            <span class="tool-badge hot" data-badge="badgePopolare">POPULAR</span>
+            <h3>PDF 转 Word</h3>
+            <span class="tool-badge hot" data-badge="badgePopolare">热门</span>
           </div>
-          <p>Convert PDF into editable Microsoft Word (.docx).</p>
+          <p>将 PDF 文件转换为可编辑的 Word 文档 (.docx)。</p>
         </div>
       </div>
 
@@ -242,10 +242,10 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>Word to PDF</h3>
-            <span class="tool-badge hot" data-badge="badgePopolare">POPULAR</span>
+            <h3>Word 转 PDF</h3>
+            <span class="tool-badge hot" data-badge="badgePopolare">热门</span>
           </div>
-          <p>Convert Word (.docx) documents into clean PDF.</p>
+          <p>将 Word 文档 (.docx) 转换为 PDF 格式。</p>
         </div>
       </div>
 
@@ -256,10 +256,10 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>Compress PDF</h3>
-            <span class="tool-badge hot" data-badge="badgePopolare">POPULAR</span>
+            <h3>压缩 PDF</h3>
+            <span class="tool-badge hot" data-badge="badgePopolare">热门</span>
           </div>
-          <p>Shrink PDF file size for easy email sharing.</p>
+          <p>在保持清晰度的同时减小 PDF 文件体积。</p>
         </div>
       </div>
 
@@ -269,10 +269,10 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>Merge PDF</h3>
-            <span class="tool-badge hot" data-badge="badgePopolare">POPULAR</span>
+            <h3>合并 PDF</h3>
+            <span class="tool-badge hot" data-badge="badgePopolare">热门</span>
           </div>
-          <p>Combine multiple PDF files into one document.</p>
+          <p>将多个 PDF 文件合并为一个文档。</p>
         </div>
       </div>
 
@@ -283,10 +283,10 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>Images to PDF</h3>
-            <span class="tool-badge" data-badge="badgeImmagini">IMAGES</span>
+            <h3>图片转 PDF</h3>
+            <span class="tool-badge" data-badge="badgeImmagini">图片</span>
           </div>
-          <p>Convert JPG, PNG, or WebP photos into a PDF.</p>
+          <p>将 JPG、PNG、WEBP 图片转换为 PDF 文档。</p>
         </div>
       </div>
 
@@ -296,10 +296,10 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>PDF to JPG / PNG</h3>
-            <span class="tool-badge" data-badge="badgeImmagini">IMAGES</span>
+            <h3>PDF 转 JPG / PNG</h3>
+            <span class="tool-badge" data-badge="badgeImmagini">图片</span>
           </div>
-          <p>Extract PDF pages into JPG or PNG images.</p>
+          <p>将 PDF 页面提取为高分辨率图片。</p>
         </div>
       </div>
 
@@ -310,10 +310,10 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>PDF to Excel</h3>
+            <h3>PDF 转 Excel</h3>
             <span class="tool-badge office" data-badge="badgeOffice">OFFICE</span>
           </div>
-          <p>Extract PDF tables into Excel (.xlsx / .csv).</p>
+          <p>将 PDF 表格提取为 Excel (.xlsx / .csv)。</p>
         </div>
       </div>
 
@@ -323,10 +323,10 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>Excel to PDF</h3>
+            <h3>Excel 转 PDF</h3>
             <span class="tool-badge office" data-badge="badgeOffice">OFFICE</span>
           </div>
-          <p>Convert Excel spreadsheets (.xlsx) to PDF.</p>
+          <p>将 Excel 表格 (.xlsx) 转换为 PDF 文件。</p>
         </div>
       </div>
 
@@ -337,10 +337,10 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>PDF to PowerPoint</h3>
-            <span class="tool-badge slides" data-badge="badgeSlides">SLIDES</span>
+            <h3>PDF 转 PowerPoint</h3>
+            <span class="tool-badge slides" data-badge="badgeSlides">幻灯片</span>
           </div>
-          <p>Turn PDF pages into PowerPoint slides (.pptx).</p>
+          <p>将 PDF 页面转换为 PowerPoint 幻灯片 (.pptx)。</p>
         </div>
       </div>
 
@@ -350,10 +350,10 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>PowerPoint to PDF</h3>
-            <span class="tool-badge slides" data-badge="badgeSlides">SLIDES</span>
+            <h3>PowerPoint 转 PDF</h3>
+            <span class="tool-badge slides" data-badge="badgeSlides">幻灯片</span>
           </div>
-          <p>Convert PowerPoint (.pptx) into PDF file.</p>
+          <p>将 PowerPoint 演示文稿 (.pptx) 转换为 PDF。</p>
         </div>
       </div>
 
@@ -364,9 +364,9 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>Split PDF</h3>
+            <h3>拆分 PDF</h3>
           </div>
-          <p>Separate PDF pages or extract custom page ranges.</p>
+          <p>分离 PDF 页面或提取自定义页面范围。</p>
         </div>
       </div>
 
@@ -376,9 +376,9 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>Delete Pages</h3>
+            <h3>删除页面</h3>
           </div>
-          <p>Remove unwanted pages from a PDF document.</p>
+          <p>从 PDF 文档中删除不需要的页面。</p>
         </div>
       </div>
 
@@ -389,9 +389,9 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>Unlock PDF</h3>
+            <h3>PDF 解密</h3>
           </div>
-          <p>Remove security passwords & restrictions from PDF.</p>
+          <p>移除 PDF 的安全密码与限制。</p>
         </div>
       </div>
 
@@ -401,9 +401,9 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>Protect PDF</h3>
+            <h3>PDF 加密</h3>
           </div>
-          <p>Encrypt PDF with custom user password.</p>
+          <p>使用自定义密码加密您的 PDF 文件。</p>
         </div>
       </div>
 
@@ -414,9 +414,9 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>Rotate PDF</h3>
+            <h3>旋转 PDF</h3>
           </div>
-          <p>Rotate PDF pages 90°, 180°, or 270° degrees.</p>
+          <p>旋转 PDF 页面 90°、180° 或 270°。</p>
         </div>
       </div>
 
@@ -426,9 +426,9 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>Page Numbers</h3>
+            <h3>页码添加</h3>
           </div>
-          <p>Add page numbers into your PDF document header/footer.</p>
+          <p>在 PDF 页眉或页脚中添加页码。</p>
         </div>
       </div>
 
@@ -439,9 +439,9 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>Watermark PDF</h3>
+            <h3>PDF 水印</h3>
           </div>
-          <p>Add custom text watermark across PDF pages.</p>
+          <p>在 PDF 页面上添加自定义文本水印。</p>
         </div>
       </div>
 
@@ -451,9 +451,9 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>Grayscale PDF</h3>
+            <h3>PDF 转黑白</h3>
           </div>
-          <p>Convert colored PDF documents into Black & White.</p>
+          <p>将彩色 PDF 文档转换为黑白（灰度）格式。</p>
         </div>
       </div>
 
@@ -464,9 +464,9 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>PDF to HTML</h3>
+            <h3>PDF 转 HTML</h3>
           </div>
-          <p>Convert PDF documents into web-ready HTML code.</p>
+          <p>将 PDF 文档转换为 Web HTML 代码。</p>
         </div>
       </div>
 
@@ -476,9 +476,9 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>HTML to PDF</h3>
+            <h3>HTML 转 PDF</h3>
           </div>
-          <p>Convert web HTML text code into a PDF file.</p>
+          <p>将 HTML 文本代码转换为 PDF 文件。</p>
         </div>
       </div>
 
@@ -489,10 +489,10 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>PDF to Markdown</h3>
-            <span class="tool-badge" data-badge="badgeAi">AI READY</span>
+            <h3>PDF 转 Markdown</h3>
+            <span class="tool-badge" data-badge="badgeAi">AI 就绪</span>
           </div>
-          <p>Convert PDF into clean Markdown (.md) for LLMs & Notion.</p>
+          <p>将 PDF 转换为 Markdown (.md) 供 AI 与 Notion 使用。</p>
         </div>
       </div>
 
@@ -502,10 +502,10 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>Markdown to PDF</h3>
-            <span class="tool-badge" data-badge="badgeAi">AI READY</span>
+            <h3>Markdown 转 PDF</h3>
+            <span class="tool-badge" data-badge="badgeAi">AI 就绪</span>
           </div>
-          <p>Convert Markdown (.md) files into styled PDF documents.</p>
+          <p>将 Markdown (.md) 文件转换为排版精美的 PDF。</p>
         </div>
       </div>
 
@@ -516,9 +516,9 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>Extract Text</h3>
+            <h3>提取文本</h3>
           </div>
-          <p>Extract all readable plain text into a .txt file.</p>
+          <p>从 PDF 中提取纯文本 (.txt) 内容。</p>
         </div>
       </div>
 
@@ -528,9 +528,9 @@
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <h3>Extract Images</h3>
+            <h3>提取图片</h3>
           </div>
-          <p>Extract embedded images inside PDF into a ZIP archive.</p>
+          <p>提取 PDF 内部嵌入的所有图片资源。</p>
         </div>
       </div>
 
@@ -538,7 +538,7 @@
 
     <!-- Leaderboard Banner Below Tools Grid (Home Page) -->
     <div class="ad-banner-wrapper ad-banner-below-grid" aria-label="Advertisement">
-      <span class="ad-label" data-badge="pubblicita">ADVERTISEMENT</span>
+      <span class="ad-label" data-badge="pubblicita">广告</span>
       <ins class="adsbygoogle"
            style="display:block"
            data-ad-client="ca-pub-2272593869740076"
@@ -548,17 +548,17 @@
     </div>
 
     <!-- Active Tool Workspace View (Hidden by default) -->
-    <div id="toolWorkspace" class="tool-workspace">
+    <div id="toolWorkspace" class="tool-workspace" style="display: block">
       <!-- Side Skyscrapers anchored directly to Tool Workspace (100% aligned top & bottom) -->
       <aside class="ad-skyscraper ad-skyscraper-tool ad-skyscraper-tool-left" aria-label="Advertisement">
-        <span class="ad-label" data-badge="pubblicitaBreve">AD</span>
+        <span class="ad-label" data-badge="pubblicitaBreve">广告</span>
         <ins class="adsbygoogle"
              style="display:block;width:100%;height:100%"
              data-ad-client="ca-pub-2272593869740076"
              data-ad-slot="auto"></ins>
       </aside>
       <aside class="ad-skyscraper ad-skyscraper-tool ad-skyscraper-tool-right" aria-label="Advertisement">
-        <span class="ad-label" data-badge="pubblicitaBreve">AD</span>
+        <span class="ad-label" data-badge="pubblicitaBreve">广告</span>
         <ins class="adsbygoogle"
              style="display:block;width:100%;height:100%"
              data-ad-client="ca-pub-2272593869740076"
@@ -568,18 +568,18 @@
       <div class="workspace-header">
         <button id="backBtn" class="back-btn back-btn-lg">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-          <span>Back to All Tools</span>
+          <span data-i18n="backBtn">返回所有工具</span>
         </button>
 
         <div class="workspace-title-box">
-          <h2 id="workspaceTitle">Tool Title</h2>
-          <p id="workspaceDesc">Tool description goes here.</p>
+          <h2 id="workspaceTitle">PDF 加密</h2>
+          <p id="workspaceDesc">使用自定义密码加密您的 PDF 文件。</p>
         </div>
       </div>
 
       <!-- Workspace Mid Banner Ad Slot (Between Title and Dropzone) -->
       <div class="ad-banner-wrapper ad-banner-workspace" aria-label="Advertisement">
-        <span class="ad-label" data-badge="pubblicita">ADVERTISEMENT</span>
+        <span class="ad-label" data-badge="pubblicita">广告</span>
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-2272593869740076"
@@ -594,8 +594,8 @@
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
         </div>
         <div class="dropzone-text">
-          <h3>Drag & Drop files here</h3>
-          <p>Multiple files • Up to 100 MB each</p>
+          <h3 data-i18n="dragTitle">拖放文件至此处</h3>
+          <p data-i18n="dragSub">支持多个文件 • 每个最大 100 MB</p>
         </div>
         <input type="file" id="fileInput" style="display:none;">
       </div>
@@ -609,7 +609,7 @@
       <!-- Action Button & Progress -->
       <div class="process-actions">
         <button id="processBtn" class="btn-primary" disabled>
-          <span id="processBtnText">Process PDF</span>
+          <span id="processBtnText" data-i18n="processBtn">加密 PDF</span>
         </button>
       </div>
 
@@ -624,8 +624,8 @@
       <div id="downloadBox" class="download-box">
         <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         <div>
-          <h3>File is ready!</h3>
-          <p>Your file is ready to download.</p>
+          <h3 data-i18n="readyTitle">文件已就绪！</h3>
+          <p data-i18n="readySub">您的文件已可下载。</p>
         </div>
 
         <!-- Download Box High-CTR Ad Slot -->
@@ -643,7 +643,7 @@
       </div>
 
           <div class="ad-banner-wrapper ad-banner-download" aria-label="Advertisement">
-          <span class="ad-label" data-badge="pubblicita">ADVERTISEMENT</span>
+          <span class="ad-label" data-badge="pubblicita">广告</span>
           <ins class="adsbygoogle"
                style="display:block"
                data-ad-client="ca-pub-2272593869740076"
@@ -670,7 +670,7 @@
     </ol>
 
     <div class="ad-banner-wrapper ad-banner-in-content" aria-label="Advertisement">
-      <span class="ad-label" data-badge="pubblicita">ADVERTISEMENT</span>
+      <span class="ad-label" data-badge="pubblicita">广告</span>
       <ins class="adsbygoogle"
            style="display:block"
            data-ad-client="ca-pub-2272593869740076"
@@ -766,14 +766,14 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3a1 1 0 0 0 1-1V5a2 2 0 1 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 1 1 0 4h-1a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/></svg>
         </span>
         <span class="estensione-testo">
-          <strong id="estensioneTitolo">PDFAxiom for Chrome</strong>
-          <span id="estensioneSotto">Your tools one click away, in every tab.</span>
+          <strong id="estensioneTitolo" data-i18n="extTitle">PDFAxiom Chrome 扩展程序</strong>
+          <span id="estensioneSotto" data-i18n="extSub">每个标签页,工具一键即达。</span>
         </span>
-        <span class="estensione-azione" id="estensioneAzione">Add to Chrome</span>
+        <span class="estensione-azione" id="estensioneAzione" data-i18n="extBtn">添加到 Chrome</span>
       </a>
 
       <div class="footer-row">
-        <p class="copyright">© 2026 PDFAXIOM. <span data-piede="piedeGratis">Free • No signup required.</span></p>
+        <p class="copyright" data-i18n="footerCopy">© 2026 PDFAxiom. 免费 • 无需注册。</p>
         <nav class="footer-legale">
           <!-- Niente data-piede su questi due: genera.js li localizza gia' a
                tempo di compilazione, e solo dove la pagina legale esiste
@@ -793,8 +793,8 @@
   <!-- App Scripts (v8.0 100% Browser Engine) -->
   <script>window.PDFAXIOM_LANG="zh";window.PDFAXIOM_TOOL="protect";</script>
   <script src="/js/rotte.js?v=11.1"></script>
-  <script src="/js/i18n.js?v=16.0"></script>
-  <script src="/js/ad-manager.js?v=17.0"></script>
+  <script src="/js/i18n.js?v=17.0"></script>
+  <script src="/js/ad-manager.js?v=18.0"></script>
   <script src="/js/librerie.js?v=11.1"></script>
   <script src="/js/pdf-engine.js?v=12.0"></script>
   <script src="/js/api-client.js?v=11.1"></script>

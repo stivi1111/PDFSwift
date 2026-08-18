@@ -33,3 +33,30 @@
   src: url(/assets/font/inter-latin.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
+/* Il carattere di ripiego, con le misure di Inter addosso.
+
+   font-display: swap qui sopra dice al browser: disegna subito col carattere
+   che hai, poi sostituiscilo con Inter appena arriva. Giusto, perche il testo
+   si legge subito. Il guaio e che Arial e Inter non occupano lo stesso spazio:
+   al momento della sostituzione ogni riga cambiava larghezza e altezza, e la
+   pagina intera si assestava di scatto. Misurato: 0,0868 di indice dei salti
+   sulle pagine degli strumenti, tutto in quel singolo istante, e cera da
+   prima che toccassi la pubblicita.
+
+   Qui Arial viene ridisegnato con le proporzioni di Inter: alzata, discesa e
+   larghezza corrette in percentuale. Cosi le due scritture occupano lo stesso
+   spazio e la sostituzione non muove piu niente. Liberation Sans e Helvetica
+   stanno nellelenco perche hanno le stesse misure di Arial, e coprono Linux
+   e i Mac.
+
+   I numeri non sono inventati: sono il rapporto fra le metriche dichiarate
+   dai due file. Se un giorno si cambia carattere vanno rifatti. */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local("Arial"), local("Helvetica Neue"), local("Liberation Sans");
+  ascent-override: 90.20%;
+  descent-override: 22.48%;
+  line-gap-override: 0.00%;
+  size-adjust: 107.40%;
+}

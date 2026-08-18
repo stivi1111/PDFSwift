@@ -670,6 +670,8 @@ const toolButtons = {
  */
 const uiMessages = {
   en: {
+    menuDaPdf: 'CONVERT FROM PDF',
+    menuAPdf: 'CONVERT TO PDF',
     chiSiamo: "About Us",
     missioneTitolo: "Our Mission",
     missioneTesto: "PDFAxiom offers a free PDF suite, accessible from any device without registration.",
@@ -739,6 +741,8 @@ const uiMessages = {
     completed: "Completed!", pageOf: "Page {i} of {n}...", fileOf: "File {i} of {n}..."
   },
   it: {
+    menuDaPdf: 'CONVERTI DA PDF',
+    menuAPdf: 'CONVERTI IN PDF',
     chiSiamo: "Chi siamo",
     missioneTitolo: "La nostra missione",
     missioneTesto: "PDFAxiom nasce per offrire una suite di strumenti PDF gratuita, accessibile da qualsiasi dispositivo e senza registrazione.",
@@ -808,6 +812,8 @@ const uiMessages = {
     completed: "Completato!", pageOf: "Pagina {i} di {n}...", fileOf: "File {i} di {n}..."
   },
   es: {
+    menuDaPdf: 'CONVERTIR DESDE PDF',
+    menuAPdf: 'CONVERTIR A PDF',
     chiSiamo: "Sobre nosotros",
     missioneTitolo: "Nuestra misión",
     missioneTesto: "PDFAxiom ofrece un conjunto de herramientas PDF gratuito, accesible desde cualquier dispositivo y sin registro.",
@@ -877,6 +883,8 @@ const uiMessages = {
     completed: "¡Completado!", pageOf: "Página {i} de {n}...", fileOf: "Archivo {i} de {n}..."
   },
   de: {
+    menuDaPdf: 'AUS PDF UMWANDELN',
+    menuAPdf: 'IN PDF UMWANDELN',
     chiSiamo: "Über uns",
     missioneTitolo: "Unsere Mission",
     missioneTesto: "PDFAxiom bietet eine kostenlose PDF-Sammlung, von jedem Gerät aus und ohne Anmeldung nutzbar.",
@@ -946,6 +954,8 @@ const uiMessages = {
     completed: "Fertig!", pageOf: "Seite {i} von {n}...", fileOf: "Datei {i} von {n}..."
   },
   zh: {
+    menuDaPdf: '从 PDF 转换',
+    menuAPdf: '转换为 PDF',
     chiSiamo: "关于我们",
     missioneTitolo: "我们的使命",
     missioneTesto: "PDFAxiom 提供免费的 PDF 工具集，任何设备都能使用，无需注册。",
@@ -1015,6 +1025,8 @@ const uiMessages = {
     completed: "已完成！", pageOf: "第 {i} 页，共 {n} 页...", fileOf: "第 {i} 个文件，共 {n} 个..."
   },
   ro: {
+    menuDaPdf: 'CONVERTEȘTE DIN PDF',
+    menuAPdf: 'CONVERTEȘTE ÎN PDF',
     chiSiamo: "Despre noi",
     missioneTitolo: "Misiunea noastră",
     missioneTesto: "PDFAxiom oferă o suită gratuită de instrumente PDF, accesibilă de pe orice dispozitiv și fără înregistrare.",
@@ -1084,6 +1096,8 @@ const uiMessages = {
     completed: "Finalizat!", pageOf: "Pagina {i} din {n}...", fileOf: "Fișierul {i} din {n}..."
   },
   hi: {
+    menuDaPdf: 'PDF से बदलें',
+    menuAPdf: 'PDF में बदलें',
     chiSiamo: "हमारे बारे में",
     missioneTitolo: "हमारा उद्देश्य",
     missioneTesto: "PDFAxiom एक मुफ़्त PDF टूल सूट है, जो किसी भी डिवाइस से और बिना पंजीकरण के उपलब्ध है।",
@@ -1153,6 +1167,8 @@ const uiMessages = {
     completed: "पूर्ण!", pageOf: "पृष्ठ {i} / {n}...", fileOf: "फ़ाइल {i} / {n}..."
   },
   ru: {
+    menuDaPdf: 'ПРЕОБРАЗОВАТЬ ИЗ PDF',
+    menuAPdf: 'ПРЕОБРАЗОВАТЬ В PDF',
     chiSiamo: "О нас",
     missioneTitolo: "Наша задача",
     missioneTesto: "PDFAxiom — бесплатный набор инструментов для PDF, доступный с любого устройства и без регистрации.",
