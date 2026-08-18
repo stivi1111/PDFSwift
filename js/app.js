@@ -282,9 +282,18 @@ document.addEventListener('DOMContentLoaded', () => {
     state.files = [];
     state.processedBlob = null;
 
-    workspaceTitle.textContent = config.title;
-    workspaceDesc.textContent = config.desc;
-    processBtnText.textContent = config.btnText;
+    // I testi visibili vengono dal dizionario, non da toolsConfig: quello e'
+    // in inglese e basta, e finiva stampato tale e quale sopra pagine in
+    // italiano, spagnolo, tedesco e via dicendo.
+    const nome = window.PDFAxiomI18n && window.PDFAxiomI18n.strumento
+      ? window.PDFAxiomI18n.strumento(toolId) : null;
+    workspaceTitle.textContent = (nome && nome.title) || config.title;
+    workspaceDesc.textContent = (nome && nome.desc) || config.desc;
+    processBtnText.textContent = (nome && nome.btn) || config.btnText;
+
+    // Serve a i18n.js per ritradurre il pannello se la lingua cambia mentre
+    // e' aperto (succede sulla pagina iniziale, trascinando dentro un file).
+    document.body.dataset.strumentoAperto = toolId;
     fileInput.multiple = config.multiple;
     fileInput.accept = config.accept;
 

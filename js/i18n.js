@@ -442,6 +442,227 @@ const toolTranslations = {
   }
 };
 
+/* L'etichetta del pulsante che avvia la lavorazione, una per lingua.
+
+   Sta qui e non in toolsConfig perche' toolsConfig e' scritto in inglese e
+   basta. Prima di questo elenco chi apriva /it/rotate-pdf/ trovava tutto
+   tradotto tranne il titolo del pannello e il pulsante, che restavano
+   "Rotate PDF Pages" e "Rotate PDF" in mezzo al resto in italiano.
+
+   Titolo e descrizione c'erano gia' in toolTranslations qui sopra: quello
+   che mancava era il pulsante, e mancava soprattutto qualcuno che andasse a
+   leggerli. Ci pensa strumento() in fondo al file. */
+const toolButtons = {
+  en: {
+    'pdf-to-word': 'Convert PDF to Word',
+    'word-to-pdf': 'Convert Word to PDF',
+    'pdf-to-md': 'Convert PDF to Markdown',
+    'md-to-pdf': 'Convert Markdown to PDF',
+    'merge': 'Merge PDFs',
+    'pdf-to-img': 'Convert to Images',
+    'img-to-pdf': 'Create PDF',
+    'compress': 'Compress PDF',
+    'split': 'Split PDF',
+    'pdf-to-excel': 'Convert to Excel',
+    'excel-to-pdf': 'Convert Excel to PDF',
+    'pdf-to-pptx': 'Convert to PowerPoint',
+    'pptx-to-pdf': 'Convert PowerPoint to PDF',
+    'page-numbers': 'Add Page Numbers',
+    'rotate': 'Rotate PDF',
+    'unlock': 'Unlock PDF',
+    'delete-pages': 'Delete Pages',
+    'pdf-to-html': 'Convert to HTML',
+    'html-to-pdf': 'Convert HTML to PDF',
+    'grayscale': 'Convert to Grayscale',
+    'extract-images': 'Extract Images',
+    'pdf-to-text': 'Extract Text',
+    'protect': 'Protect PDF',
+    'watermark': 'Add Watermark'
+  },
+  it: {
+    'pdf-to-word': 'Converti PDF in Word',
+    'word-to-pdf': 'Converti Word in PDF',
+    'pdf-to-md': 'Converti PDF in Markdown',
+    'md-to-pdf': 'Converti Markdown in PDF',
+    'merge': 'Unisci i PDF',
+    'pdf-to-img': 'Converti in immagini',
+    'img-to-pdf': 'Crea il PDF',
+    'compress': 'Comprimi il PDF',
+    'split': 'Dividi il PDF',
+    'pdf-to-excel': 'Converti in Excel',
+    'excel-to-pdf': 'Converti Excel in PDF',
+    'pdf-to-pptx': 'Converti in PowerPoint',
+    'pptx-to-pdf': 'Converti PowerPoint in PDF',
+    'page-numbers': 'Aggiungi i numeri di pagina',
+    'rotate': 'Ruota il PDF',
+    'unlock': 'Sblocca il PDF',
+    'delete-pages': 'Elimina le pagine',
+    'pdf-to-html': 'Converti in HTML',
+    'html-to-pdf': 'Converti HTML in PDF',
+    'grayscale': 'Converti in bianco e nero',
+    'extract-images': 'Estrai le immagini',
+    'pdf-to-text': 'Estrai il testo',
+    'protect': 'Proteggi il PDF',
+    'watermark': 'Aggiungi la filigrana'
+  },
+  es: {
+    'pdf-to-word': 'Convertir PDF a Word',
+    'word-to-pdf': 'Convertir Word a PDF',
+    'pdf-to-md': 'Convertir PDF a Markdown',
+    'md-to-pdf': 'Convertir Markdown a PDF',
+    'merge': 'Unir los PDF',
+    'pdf-to-img': 'Convertir a imágenes',
+    'img-to-pdf': 'Crear el PDF',
+    'compress': 'Comprimir el PDF',
+    'split': 'Dividir el PDF',
+    'pdf-to-excel': 'Convertir a Excel',
+    'excel-to-pdf': 'Convertir Excel a PDF',
+    'pdf-to-pptx': 'Convertir a PowerPoint',
+    'pptx-to-pdf': 'Convertir PowerPoint a PDF',
+    'page-numbers': 'Añadir números de página',
+    'rotate': 'Girar el PDF',
+    'unlock': 'Desbloquear el PDF',
+    'delete-pages': 'Eliminar las páginas',
+    'pdf-to-html': 'Convertir a HTML',
+    'html-to-pdf': 'Convertir HTML a PDF',
+    'grayscale': 'Convertir a blanco y negro',
+    'extract-images': 'Extraer las imágenes',
+    'pdf-to-text': 'Extraer el texto',
+    'protect': 'Proteger el PDF',
+    'watermark': 'Añadir la marca de agua'
+  },
+  de: {
+    'pdf-to-word': 'PDF in Word umwandeln',
+    'word-to-pdf': 'Word in PDF umwandeln',
+    'pdf-to-md': 'PDF in Markdown umwandeln',
+    'md-to-pdf': 'Markdown in PDF umwandeln',
+    'merge': 'PDFs zusammenfügen',
+    'pdf-to-img': 'In Bilder umwandeln',
+    'img-to-pdf': 'PDF erstellen',
+    'compress': 'PDF verkleinern',
+    'split': 'PDF aufteilen',
+    'pdf-to-excel': 'In Excel umwandeln',
+    'excel-to-pdf': 'Excel in PDF umwandeln',
+    'pdf-to-pptx': 'In PowerPoint umwandeln',
+    'pptx-to-pdf': 'PowerPoint in PDF umwandeln',
+    'page-numbers': 'Seitenzahlen einfügen',
+    'rotate': 'PDF drehen',
+    'unlock': 'PDF entsperren',
+    'delete-pages': 'Seiten löschen',
+    'pdf-to-html': 'In HTML umwandeln',
+    'html-to-pdf': 'HTML in PDF umwandeln',
+    'grayscale': 'In Schwarzweiß umwandeln',
+    'extract-images': 'Bilder extrahieren',
+    'pdf-to-text': 'Text extrahieren',
+    'protect': 'PDF schützen',
+    'watermark': 'Wasserzeichen einfügen'
+  },
+  zh: {
+    'pdf-to-word': '转换为 Word',
+    'word-to-pdf': '转换为 PDF',
+    'pdf-to-md': '转换为 Markdown',
+    'md-to-pdf': '转换为 PDF',
+    'merge': '合并 PDF',
+    'pdf-to-img': '转换为图片',
+    'img-to-pdf': '生成 PDF',
+    'compress': '压缩 PDF',
+    'split': '拆分 PDF',
+    'pdf-to-excel': '转换为 Excel',
+    'excel-to-pdf': '转换为 PDF',
+    'pdf-to-pptx': '转换为 PowerPoint',
+    'pptx-to-pdf': '转换为 PDF',
+    'page-numbers': '添加页码',
+    'rotate': '旋转 PDF',
+    'unlock': '解锁 PDF',
+    'delete-pages': '删除页面',
+    'pdf-to-html': '转换为 HTML',
+    'html-to-pdf': '转换为 PDF',
+    'grayscale': '转换为黑白',
+    'extract-images': '提取图片',
+    'pdf-to-text': '提取文字',
+    'protect': '加密 PDF',
+    'watermark': '添加水印'
+  },
+  ro: {
+    'pdf-to-word': 'Convertește PDF în Word',
+    'word-to-pdf': 'Convertește Word în PDF',
+    'pdf-to-md': 'Convertește PDF în Markdown',
+    'md-to-pdf': 'Convertește Markdown în PDF',
+    'merge': 'Îmbină PDF-urile',
+    'pdf-to-img': 'Convertește în imagini',
+    'img-to-pdf': 'Creează PDF-ul',
+    'compress': 'Comprimă PDF-ul',
+    'split': 'Împarte PDF-ul',
+    'pdf-to-excel': 'Convertește în Excel',
+    'excel-to-pdf': 'Convertește Excel în PDF',
+    'pdf-to-pptx': 'Convertește în PowerPoint',
+    'pptx-to-pdf': 'Convertește PowerPoint în PDF',
+    'page-numbers': 'Adaugă numerele paginilor',
+    'rotate': 'Rotește PDF-ul',
+    'unlock': 'Deblochează PDF-ul',
+    'delete-pages': 'Șterge paginile',
+    'pdf-to-html': 'Convertește în HTML',
+    'html-to-pdf': 'Convertește HTML în PDF',
+    'grayscale': 'Convertește în alb-negru',
+    'extract-images': 'Extrage imaginile',
+    'pdf-to-text': 'Extrage textul',
+    'protect': 'Protejează PDF-ul',
+    'watermark': 'Adaugă filigranul'
+  },
+  hi: {
+    'pdf-to-word': 'PDF को Word में बदलें',
+    'word-to-pdf': 'Word को PDF में बदलें',
+    'pdf-to-md': 'PDF को Markdown में बदलें',
+    'md-to-pdf': 'Markdown को PDF में बदलें',
+    'merge': 'PDF जोड़ें',
+    'pdf-to-img': 'छवियों में बदलें',
+    'img-to-pdf': 'PDF बनाएँ',
+    'compress': 'PDF छोटा करें',
+    'split': 'PDF अलग करें',
+    'pdf-to-excel': 'Excel में बदलें',
+    'excel-to-pdf': 'Excel को PDF में बदलें',
+    'pdf-to-pptx': 'PowerPoint में बदलें',
+    'pptx-to-pdf': 'PowerPoint को PDF में बदलें',
+    'page-numbers': 'पेज नंबर जोड़ें',
+    'rotate': 'PDF घुमाएँ',
+    'unlock': 'PDF अनलॉक करें',
+    'delete-pages': 'पेज हटाएँ',
+    'pdf-to-html': 'HTML में बदलें',
+    'html-to-pdf': 'HTML को PDF में बदलें',
+    'grayscale': 'श्वेत-श्याम में बदलें',
+    'extract-images': 'छवियाँ निकालें',
+    'pdf-to-text': 'टेक्स्ट निकालें',
+    'protect': 'PDF सुरक्षित करें',
+    'watermark': 'वॉटरमार्क जोड़ें'
+  },
+  ru: {
+    'pdf-to-word': 'Преобразовать PDF в Word',
+    'word-to-pdf': 'Преобразовать Word в PDF',
+    'pdf-to-md': 'Преобразовать PDF в Markdown',
+    'md-to-pdf': 'Преобразовать Markdown в PDF',
+    'merge': 'Объединить PDF',
+    'pdf-to-img': 'Преобразовать в изображения',
+    'img-to-pdf': 'Создать PDF',
+    'compress': 'Сжать PDF',
+    'split': 'Разделить PDF',
+    'pdf-to-excel': 'Преобразовать в Excel',
+    'excel-to-pdf': 'Преобразовать Excel в PDF',
+    'pdf-to-pptx': 'Преобразовать в PowerPoint',
+    'pptx-to-pdf': 'Преобразовать PowerPoint в PDF',
+    'page-numbers': 'Добавить номера страниц',
+    'rotate': 'Повернуть PDF',
+    'unlock': 'Разблокировать PDF',
+    'delete-pages': 'Удалить страницы',
+    'pdf-to-html': 'Преобразовать в HTML',
+    'html-to-pdf': 'Преобразовать HTML в PDF',
+    'grayscale': 'Сделать чёрно-белым',
+    'extract-images': 'Извлечь изображения',
+    'pdf-to-text': 'Извлечь текст',
+    'protect': 'Защитить PDF',
+    'watermark': 'Добавить водяной знак'
+  }
+};
+
 /**
  * Messaggi mostrati durante l'elaborazione e in caso di errore.
  * Usati da app.js e api-client.js tramite PDFAxiomI18n.t().
@@ -1020,6 +1241,27 @@ window.PDFAxiomI18n = {
       });
     }
     return testo;
+  },
+
+  /* Nome, descrizione ed etichetta del pulsante di uno strumento, nella
+     lingua della pagina.
+
+     app.js li prendeva da toolsConfig, che pero' e' scritto in inglese e
+     basta: su /it/rotate-pdf/ il titolo restava "Rotate PDF Pages" e il
+     pulsante "Rotate PDF" mentre tutto il resto era in italiano. Le
+     traduzioni c'erano gia' qui dentro, mancava solo chi le leggesse.
+
+     Se una voce manca si torna all'inglese, che e' sempre completo. */
+  strumento(id) {
+    const nomi = toolTranslations[this.lang] || toolTranslations.en;
+    const pulsanti = toolButtons[this.lang] || toolButtons.en;
+    const voce = nomi[id] || toolTranslations.en[id];
+    if (!voce) return null;
+    return {
+      title: voce.title,
+      desc: voce.desc,
+      btn: pulsanti[id] || toolButtons.en[id]
+    };
   }
 };
 
@@ -1071,6 +1313,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const t = translations[lang] || translations.en;
     const toolsT = toolTranslations[lang] || toolTranslations.en;
+
+    // Sulle pagine dei singoli strumenti cambiare lingua porta a un altro
+    // indirizzo, quindi il pannello si ricostruisce da solo. Sulla pagina
+    // iniziale no: chi trascina un file dentro apre il pannello li' dov'e',
+    // e senza queste righe resterebbe nella lingua di prima.
+    const apertoOra = document.body.dataset.strumentoAperto;
+    if (apertoOra) {
+      const nomeAperto = toolsT[apertoOra] || toolTranslations.en[apertoOra];
+      const pulsantiOra = toolButtons[lang] || toolButtons.en;
+      const titoloEl = document.getElementById('workspaceTitle');
+      const sottoEl = document.getElementById('workspaceDesc');
+      const azioneEl = document.getElementById('processBtnText');
+      if (nomeAperto && titoloEl) titoloEl.textContent = nomeAperto.title;
+      if (nomeAperto && sottoEl) sottoEl.textContent = nomeAperto.desc;
+      if (azioneEl) {
+        azioneEl.textContent = pulsantiOra[apertoOra] || toolButtons.en[apertoOra];
+      }
+    }
 
     // Update Text Elements
     // Sulle pagine dei singoli strumenti il titolo dell'intestazione non e'
