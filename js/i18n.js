@@ -4,6 +4,14 @@
  * Translates UI headers, hero, tabs, actions, AND ALL 24 TOOL CARDS & DESCRIPTIONS!
  */
 
+/* Le lingue che il sito ha davvero, tutte quante.
+
+   Serve un elenco a parte perche' le pagine pubblicate non portano piu' i
+   dizionari di tutte e otto: ognuna riceve solo il proprio, piu' l'inglese
+   come ripiego. Il menu delle lingue pero' deve continuare a proporle tutte,
+   e prima si fidava di translations per sapere quali esistevano. */
+const LINGUE_PDFAXIOM = ['en', 'it', 'es', 'de', 'zh', 'ro', 'hi', 'ru'];
+
 const translations = {
   en: {
     heroTitle: "PDFAXIOM All in One",
@@ -1295,7 +1303,7 @@ document.addEventListener('DOMContentLoaded', () => {
     opt.addEventListener('click', (e) => {
       e.preventDefault();
       const selectedLang = opt.getAttribute('data-lang');
-      if (!selectedLang || !translations[selectedLang]) return;
+      if (!selectedLang || LINGUE_PDFAXIOM.indexOf(selectedLang) < 0) return;
 
       // Ogni lingua ha pagine proprie, con il proprio testo scritto dentro.
       // Cambiare lingua vuol dire andarci: da /pdf-to-word/ a

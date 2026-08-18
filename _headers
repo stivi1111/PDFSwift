@@ -1,2 +1,49 @@
-/*
+# Regole di cache per Cloudflare Pages.
+#
+# Prima qui c'era una riga sola, "/*  max-age=0, must-revalidate", che vale
+# quanto dire al browser: non tenerti niente, richiedimi tutto a ogni pagina.
+# Su un sito dove i file portano gia' il numero di versione nell'indirizzo
+# (styles.css?v=36.0) e' uno spreco puro: quel file, con quel numero, non
+# cambiera' mai piu'. Chi apriva due pagine di fila rifaceva ogni volta il giro
+# per foglio di stile, dizionari, caratteri e immagini.
+#
+# L'ordine conta: vince la prima regola che combacia.
+
+# --- le pagine restano sempre fresche -------------------------------------
+# Il contenuto cambia a ogni pubblicazione e l'indirizzo no, quindi qui il
+# controllo a ogni visita ci vuole davvero.
+/*.html
   Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# --- tutto il resto porta la versione nell'indirizzo ----------------------
+# "immutable" dice al browser di non chiedere nemmeno se e' cambiato: quando
+# cambiamo un file cambiamo il numero di versione, e per lui e' un indirizzo
+# nuovo. Un anno e' il massimo che le regole permettono di dichiarare.
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/font/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# --- la mappa del sito la rilegge chi indicizza ---------------------------
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+
+/robots.txt
+  Cache-Control: public, max-age=3600
+
+# --- qualche riparo, che non costa niente ---------------------------------
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN

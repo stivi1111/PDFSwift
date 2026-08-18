@@ -72,7 +72,8 @@ const modello = fs.readFileSync(MODELLO, 'utf8');
 const guasti = [
   ['</main>', 'manca la chiusura di <main>'],
   ['href="#" class="mega-item"', 'i collegamenti del menu sono gia\' stati sostituiti'],
-  ['<script src="/js/rotte.js', 'manca il richiamo a rotte.js'],
+  ['src="/js/rotte.js', 'manca il richiamo a rotte.js'],
+  ['<script defer src="/js/', 'gli script nostri devono essere differiti'],
 ];
 guasti.forEach(([atteso, problema]) => {
   if (!modello.includes(atteso)) {
@@ -374,6 +375,71 @@ const dizionari = (() => {
   return d;
 })();
 
+/* ---------------------------------------------------------------------
+   Un dizionario per lingua, invece di otto per tutti
+
+   js/i18n.js porta dentro le traduzioni di tutte e otto le lingue: 87 KB
+   che ogni visitatore scaricava, leggeva e compilava per usarne un ottavo.
+   Non e' solo peso in rete: 87 KB di codice da interpretare sono un blocco
+   del filo principale che ritarda il primo disegno.
+
+   Qui si scrive un file per lingua con dentro quella lingua e l'inglese,
+   che serve da ripiego quando una voce manca, piu' il codice tale e quale.
+   Ogni pagina carica il suo.
+
+   La fonte resta js/i18n.js: si tocca solo quello, e questi si rifanno da
+   se' a ogni generazione. */
+function scriviDizionari() {
+  const sorgente = fs.readFileSync(path.join(RADICE, 'js', 'i18n.js'), 'utf8');
+
+  // Il file e' in due parti: prima i quattro dizionari, poi il codice che li
+  // usa. Il taglio e' la riga in cui comincia il codice.
+  const taglio = sorgente.indexOf('window.PDFAxiomI18n = {');
+  if (taglio < 0) throw new Error('js/i18n.js: non trovo dove comincia il codice');
+  const codice = sorgente.slice(taglio);
+
+  ['translations', 'toolTranslations', 'toolButtons', 'uiMessages'].forEach((n) => {
+    if (sorgente.indexOf('const ' + n + ' = {') > taglio) {
+      throw new Error('js/i18n.js: ' + n + ' sta dopo il codice, il taglio non regge');
+    }
+  });
+
+  const quattro = {
+    translations: dizionari.translations,
+    toolTranslations: dizionari.toolTranslations,
+    toolButtons: dizionari.toolButtons,
+    uiMessages: dizionari.uiMessages
+  };
+
+  let scritti = 0;
+  let peso = 0;
+  LINGUE.forEach((lingua) => {
+    const righe = [
+      '/* Generato da build/genera.js: le traduzioni per "' + lingua + '".',
+      '   Non modificarlo a mano, le traduzioni stanno in js/i18n.js. */',
+      "const LINGUE_PDFAXIOM = " + JSON.stringify(LINGUE) + ";",
+      ''
+    ];
+
+    Object.keys(quattro).forEach((nome) => {
+      const ridotto = {};
+      // L'inglese entra sempre: il codice ci ricasca sopra quando una voce
+      // manca nella lingua della pagina.
+      if (quattro[nome].en) ridotto.en = quattro[nome].en;
+      if (quattro[nome][lingua]) ridotto[lingua] = quattro[nome][lingua];
+      righe.push('const ' + nome + ' = ' + JSON.stringify(ridotto) + ';');
+    });
+
+    righe.push('');
+    const testo = righe.join('\n') + '\n' + codice;
+    fs.writeFileSync(path.join(RADICE, 'js', 'i18n.' + lingua + '.js'), testo, 'utf8');
+    scritti++;
+    peso += testo.length;
+  });
+
+  return { scritti: scritti, medio: Math.round(peso / scritti / 1024) };
+}
+
 /* Sostituisce il testo di un elemento marcato, lasciando stare l'apertura
    del tag: cosi' classi, identificativi e attributi restano dove sono.
    Gli elementi marcati contengono solo testo, mai altri tag. */
@@ -615,6 +681,9 @@ function componi(lingua, voce, legale) {
 
   // Ultimo passaggio: i testi dell'interfaccia nella lingua della pagina.
   // Va per ultimo, cosi' prende anche i pezzi aggiunti qui sopra.
+  // Ogni pagina si porta il dizionario della sua lingua e basta.
+  html = html.replace('/js/i18n.js?v=', `/js/i18n.${lingua}.js?v=`);
+
   html = traduciStatico(html, lingua, voce);
 
   /* Un titolo principale per pagina, non due.
@@ -635,6 +704,8 @@ function componi(lingua, voce, legale) {
 // ------------------------------------------------------------------ scrive
 
 let scritte = 0;
+const dizionariScritti = scriviDizionari();
+
 const indirizzi = [];
 
 LINGUE.forEach((lingua) => {
