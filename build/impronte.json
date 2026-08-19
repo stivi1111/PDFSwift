@@ -1,0 +1,38 @@
+{
+  "/css/font.css": {
+    "versione": "12.0",
+    "impronta": "d977f08a034b"
+  },
+  "/css/styles.css": {
+    "versione": "37.0",
+    "impronta": "949d57096738"
+  },
+  "/js/rotte.js": {
+    "versione": "12.0",
+    "impronta": "b83dceeb58d2"
+  },
+  "/js/i18n.js": {
+    "versione": "19.0",
+    "impronta": "717116d3f192"
+  },
+  "/js/ad-manager.js": {
+    "versione": "20.0",
+    "impronta": "817225ac5edd"
+  },
+  "/js/librerie.js": {
+    "versione": "12.0",
+    "impronta": "84519224e027"
+  },
+  "/js/pdf-engine.js": {
+    "versione": "12.0",
+    "impronta": "3eab996d10a3"
+  },
+  "/js/api-client.js": {
+    "versione": "12.0",
+    "impronta": "78810fa075db"
+  },
+  "/js/app.js": {
+    "versione": "19.0",
+    "impronta": "459986f3a355"
+  }
+}

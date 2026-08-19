@@ -60,6 +60,42 @@ LINGUE.forEach((l) => { contenuti[l] = require(`./contenuti/${l}`); });
   });
 }
 
+/* Il numero dopo ?v= e' l'unica cosa che fa riscaricare uno script.
+   /js/* e' servito con `immutable` per un anno (vedi _headers): chi e' gia'
+   passato dal sito tiene la sua copia finche' l'indirizzo non cambia. Cambiare
+   il file senza toccare la versione significa che il sito funziona per chi
+   arriva nuovo e resta rotto per tutti gli altri, e da qui non si vede.
+   Percio' l'impronta di ogni file versionato viene ricordata: se cambia il
+   contenuto e non la versione, la generazione si ferma. */
+{
+  const crypto = require('crypto');
+  const schedario = path.join(__dirname, 'impronte.json');
+  const vecchie = fs.existsSync(schedario) ? JSON.parse(fs.readFileSync(schedario, 'utf8')) : {};
+  const nuove = {};
+  const modello = fs.readFileSync(path.join(__dirname, 'modello.html'), 'utf8');
+  const riferimenti = modello.match(/\/(?:js|css)\/[a-z0-9.-]+\.(?:js|css)\?v=[0-9.]+/g) || [];
+  const dimenticati = [];
+
+  riferimenti.forEach((rif) => {
+    const [file, versione] = rif.split('?v=');
+    // i18n.js diventa i18n.<lingua>.js: si controlla l'originale, che e' la
+    // fonte da cui gli altri sono scritti.
+    const suDisco = path.join(__dirname, '..', file);
+    if (!fs.existsSync(suDisco)) throw new Error(`${file} e' citato dal modello ma non esiste`);
+    const impronta = crypto.createHash('md5').update(fs.readFileSync(suDisco)).digest('hex').slice(0, 12);
+    nuove[file] = { versione, impronta };
+    const prima = vecchie[file];
+    if (prima && prima.impronta !== impronta && prima.versione === versione) {
+      dimenticati.push(`${file} e' cambiato ma sta ancora a ?v=${versione}`);
+    }
+  });
+
+  if (dimenticati.length) {
+    throw new Error('versione da alzare in build/modello.html:\n  - ' + dimenticati.join('\n  - '));
+  }
+  fs.writeFileSync(schedario, JSON.stringify(nuove, null, 2) + '\n');
+}
+
 const APRI = '<!-- PDFAXIOM:GENERATO -->';
 const CHIUDI = '<!-- /PDFAXIOM:GENERATO -->';
 
