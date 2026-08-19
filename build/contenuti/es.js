@@ -221,6 +221,23 @@ module.exports = {
       ],
     },
 
+    'ocr-pdf': {
+      titolo: "OCR PDF — Haz que un PDF escaneado se pueda buscar, gratis",
+      descrizione: "Convierte un PDF escaneado en uno donde puedes buscar, seleccionar y copiar. La página no cambia. Gratis, sin registro.",
+      h1: "Hacer que un PDF escaneado se pueda buscar",
+      intro: "Una página escaneada es una fotografía: tus ojos la leen, el ordenador solo ve píxeles. Esta herramienta lee la página y escribe el texto reconocido de forma invisible debajo de la imagen, así el documento se ve igual que antes pero se puede buscar, seleccionar y copiar. La imagen original conserva su resolución.",
+      passi: [
+        "Sube el PDF escaneado. Hasta 50 páginas.",
+        "Cada página se endereza, se lee y recibe una capa de texto invisible bajo la imagen original.",
+        "Descarga el PDF con texto. Normalmente pesa menos que el archivo que subiste.",
+      ],
+      faq: [
+        { d: "¿Cambia el aspecto de las páginas?", r: "No. La imagen mantiene su resolución y el texto reconocido va debajo, donde no se ve. Lo que cambia es que Ctrl+F ya encuentra." },
+        { d: "¿Lee la escritura a mano?", r: "Mal, y preferimos decirlo. En páginas impresas recupera unas ocho palabras de cada diez; en apuntes manuscritos produce sobre todo galimatías. Si tu archivo es la foto de un cuaderno, esta herramienta te decepcionará." },
+        { d: "¿Y las fórmulas con subíndices?", r: "Los subíndices son lo primero que se pierde. En un documento de matemáticas, M con subíndice cero y M con subíndice el salen ambos como una M simple: la prosa se recupera, las fórmulas no." },
+        { d: "Mi PDF ya tiene texto. ¿Qué pasa?", r: "Nada, a propósito. Pasar el reconocimiento sobre una capa de texto buena la sustituiría por una peor, así que las páginas que ya contienen texto se dejan intactas." },
+      ],
+    },
     'grayscale-pdf': {
       titolo: 'PDF a escala de grises — Blanco y negro gratis',
       descrizione: 'Convierte un PDF en color a escala de grises para ahorrar tinta. El texto sigue nítido. Gratis.',

@@ -25,6 +25,7 @@ const PDFAxiomAPI = (() => {
     'compress': 'compress-pdf',
     'protect': 'protect-pdf',
     'unlock': 'unlock-pdf',
+    'ocr': 'ocr-pdf',
     'grayscale': 'grayscale-pdf'
   };
 
@@ -34,7 +35,10 @@ const PDFAxiomAPI = (() => {
   // Servono solo a far avanzare la barra a un ritmo credibile.
   const SECONDS_PER_MB = {
     'pdf-to-word': 7, 'pdf-to-markdown': 6, 'pdf-to-excel': 3,
-    'pdf-to-pptx': 3, 'pdf-to-html': 2
+    'pdf-to-pptx': 3, 'pdf-to-html': 2,
+    // L'OCR va a pagine, non a megabyte: circa 1,5 s per pagina, e una
+    // pagina scansionata pesa in media mezzo megabyte. Da qui i 3 s/MB.
+    'ocr': 3
   };
 
   /** Traduce nella lingua scelta dall'utente, con ripiego sull'inglese. */
@@ -50,7 +54,10 @@ const PDFAxiomAPI = (() => {
 
   function estimateSeconds(toolId, bytes) {
     const perMb = SECONDS_PER_MB[toolId] || 1.5;
-    return Math.max(3, (bytes / (1024 * 1024)) * perMb);
+    // L'OCR ha un costo di avvio che non dipende dal peso del file: partire
+    // da 3 secondi porterebbe la barra al fondo per poi lasciarla ferma li'.
+    const minimo = toolId === 'ocr' ? 15 : 3;
+    return Math.max(minimo, (bytes / (1024 * 1024)) * perMb);
   }
 
   /**
@@ -73,9 +80,10 @@ const PDFAxiomAPI = (() => {
       const xhr = new XMLHttpRequest();
       xhr.open('POST', `${API_BASE}/v1/convert/${slug}`);
       xhr.responseType = 'blob';
-      // Allineato al timeout del gateway (300s): se il browser mollasse prima,
-      // il server continuerebbe a convertire per nulla, sottraendo CPU agli altri.
-      xhr.timeout = 300000;
+      // Allineato al timeout del gateway: se il browser mollasse prima, il
+      // server continuerebbe a convertire per nulla, sottraendo CPU agli altri.
+      // L'OCR ha il suo, piu' lungo, perche' lavora pagina per pagina.
+      xhr.timeout = toolId === 'ocr' ? 540000 : 300000;
 
       let ticker = null;
       const stopTicker = () => { if (ticker) { clearInterval(ticker); ticker = null; } };

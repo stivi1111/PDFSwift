@@ -221,6 +221,23 @@ module.exports = {
       ],
     },
 
+    'ocr-pdf': {
+      titolo: "OCR PDF — Rendi cercabile un PDF scansionato, gratis",
+      descrizione: "Trasforma un PDF scansionato in uno in cui puoi cercare, selezionare e copiare. La pagina resta identica. Gratis, senza registrazione.",
+      h1: "Rendere cercabile un PDF scansionato",
+      intro: "Una pagina scansionata è una fotografia: i tuoi occhi la leggono, il computer ci vede solo pixel. Questo strumento legge la pagina e scrive il testo riconosciuto in modo invisibile sotto l'immagine, così il documento resta identico a vedersi ma diventa cercabile, selezionabile e copiabile. L'immagine originale conserva la sua risoluzione.",
+      passi: [
+        "Carica il PDF scansionato. Fino a 50 pagine.",
+        "Ogni pagina viene raddrizzata, letta, e riceve un livello di testo invisibile sotto l'immagine originale.",
+        "Scarica il PDF cercabile. Di solito pesa meno del file che hai caricato.",
+      ],
+      faq: [
+        { d: "Cambia l'aspetto delle pagine?", r: "No. L'immagine resta alla sua risoluzione e il testo riconosciuto va sotto, dove non si vede. Quello che cambia è che Ctrl+F adesso trova." },
+        { d: "Legge la scrittura a mano?", r: "Male, e preferiamo dirlo. Su pagine stampate recupera circa otto parole su dieci; su appunti scritti a mano produce per lo più parole senza senso. Se il tuo file è la foto di un quaderno, questo strumento ti deluderà." },
+        { d: "E le formule con i pedici?", r: "I pedici sono la prima cosa che si perde. In un documento di matematica M con zero a pedice e M con \"el\" a pedice escono entrambi come una M semplice: il testo discorsivo si recupera, le formule no." },
+        { d: "Il mio PDF ha già il testo dentro. Cosa succede?", r: "Niente, di proposito. Passare il riconoscimento sopra un testo già buono lo sostituirebbe con uno peggiore, quindi le pagine che contengono già testo vengono lasciate stare." },
+      ],
+    },
     'grayscale-pdf': {
       titolo: 'PDF in scala di grigi — Bianco e nero gratis',
       descrizione: 'Converti un PDF a colori in scala di grigi per risparmiare inchiostro. Il testo resta nitido. Gratis.',

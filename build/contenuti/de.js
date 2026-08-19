@@ -221,6 +221,23 @@ module.exports = {
       ],
     },
 
+    'ocr-pdf': {
+      titolo: "OCR PDF — Gescanntes PDF durchsuchbar machen, kostenlos",
+      descrizione: "Machen Sie aus einem gescannten PDF eines, in dem Sie suchen, markieren und kopieren können. Die Seite bleibt gleich. Kostenlos, ohne Anmeldung.",
+      h1: "Ein gescanntes PDF durchsuchbar machen",
+      intro: "Eine gescannte Seite ist ein Foto: Ihre Augen lesen sie, der Rechner sieht nur Pixel. Dieses Werkzeug liest die Seite und schreibt den erkannten Text unsichtbar unter das Bild. Das Dokument sieht danach genauso aus wie vorher, lässt sich aber durchsuchen, markieren und kopieren. Das Originalbild behält seine Auflösung.",
+      passi: [
+        "Laden Sie das gescannte PDF hoch. Bis zu 50 Seiten.",
+        "Jede Seite wird gerade gerückt, gelesen und erhält eine unsichtbare Textebene unter dem Originalbild.",
+        "Laden Sie das durchsuchbare PDF herunter. Meist ist es kleiner als die hochgeladene Datei.",
+      ],
+      faq: [
+        { d: "Ändert sich das Aussehen der Seiten?", r: "Nein. Das Bild behält seine Auflösung, der erkannte Text liegt darunter und ist nicht zu sehen. Neu ist nur, dass Strg+F jetzt etwas findet." },
+        { d: "Liest es Handschrift?", r: "Schlecht, und das sagen wir lieber offen. Auf gedruckten Seiten holt es etwa acht von zehn Wörtern; bei handschriftlichen Notizen kommt überwiegend Unsinn heraus. Wenn Ihre Datei ein abfotografiertes Heft ist, wird dieses Werkzeug Sie enttäuschen." },
+        { d: "Und Formeln mit Indizes?", r: "Indizes gehen als Erstes verloren. In einem Mathematikdokument werden M mit Index null und M mit Index el beide zu einem schlichten M: der Fließtext wird wiederhergestellt, die Formeln nicht." },
+        { d: "Mein PDF enthält bereits Text. Was passiert?", r: "Nichts, mit Absicht. Eine Erkennung über eine gute Textebene würde diese durch eine schlechtere ersetzen, deshalb bleiben Seiten mit vorhandenem Text unberührt." },
+      ],
+    },
     'grayscale-pdf': {
       titolo: 'PDF in Graustufen — Schwarzweiß, kostenlos',
       descrizione: 'Wandeln Sie ein farbiges PDF in Graustufen um, um Tinte zu sparen. Der Text bleibt scharf.',

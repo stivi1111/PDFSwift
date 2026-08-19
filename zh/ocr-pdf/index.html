@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<!-- Pagina generata da build/genera.js.
+     Non modificarla a mano: le modifiche vanno in build/modello.html
+     (struttura) o in build/contenuti/*.js (testi), poi si rilancia
+     "node build/genera.js". -->
+<html lang="zh" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OCR PDF — 让扫描版 PDF 可搜索，免费 | PDFAxiom</title>
+  <meta name="description" content="把扫描的 PDF 变成可以搜索、选中和复制的文件。页面外观不变。免费，无需注册。">
+  <link rel="canonical" href="https://pdfaxiom.com/zh/ocr-pdf/">
+  <link rel="alternate" hreflang="en" href="https://pdfaxiom.com/ocr-pdf/">
+  <link rel="alternate" hreflang="it" href="https://pdfaxiom.com/it/ocr-pdf/">
+  <link rel="alternate" hreflang="es" href="https://pdfaxiom.com/es/ocr-pdf/">
+  <link rel="alternate" hreflang="de" href="https://pdfaxiom.com/de/ocr-pdf/">
+  <link rel="alternate" hreflang="zh" href="https://pdfaxiom.com/zh/ocr-pdf/">
+  <link rel="alternate" hreflang="ro" href="https://pdfaxiom.com/ro/ocr-pdf/">
+  <link rel="alternate" hreflang="hi" href="https://pdfaxiom.com/hi/ocr-pdf/">
+  <link rel="alternate" hreflang="ru" href="https://pdfaxiom.com/ru/ocr-pdf/">
+  <link rel="alternate" hreflang="x-default" href="https://pdfaxiom.com/ocr-pdf/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PDFAxiom">
+  <meta property="og:title" content="OCR PDF — 让扫描版 PDF 可搜索，免费 | PDFAxiom">
+  <meta property="og:description" content="把扫描的 PDF 变成可以搜索、选中和复制的文件。页面外观不变。免费，无需注册。">
+  <meta property="og:url" content="https://pdfaxiom.com/zh/ocr-pdf/">
+  <meta property="og:locale" content="zh">
+  <meta property="og:image" content="https://pdfaxiom.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="OCR PDF — 让扫描版 PDF 可搜索，免费 | PDFAxiom">
+  <meta name="twitter:description" content="把扫描的 PDF 变成可以搜索、选中和复制的文件。页面外观不变。免费，无需注册。">
+  <meta name="twitter:image" content="https://pdfaxiom.com/assets/og-image.png">
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"让扫描的 PDF 可以搜索","url":"https://pdfaxiom.com/zh/ocr-pdf/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","description":"把扫描的 PDF 变成可以搜索、选中和复制的文件。页面外观不变。免费，无需注册。","inLanguage":"zh","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"页面外观会改变吗？","acceptedAnswer":{"@type":"Answer","text":"不会。图像保持原分辨率，识别出的文字放在下方，看不见。唯一的变化是 Ctrl+F 现在能找到内容了。"}},{"@type":"Question","name":"能识别手写吗？","acceptedAnswer":{"@type":"Answer","text":"效果很差，我们宁愿直说。印刷页面大约能恢复十分之八的词；手写笔记则大多是乱码。如果你的文件是拍摄的笔记本，这个工具会让你失望。"}},{"@type":"Question","name":"带下标的公式呢？","acceptedAnswer":{"@type":"Answer","text":"下标是最先丢失的。在数学文档里，带下标零的 M 和带下标 el 的 M 都会变成普通的 M：叙述性文字能恢复，公式不能。"}},{"@type":"Question","name":"我的 PDF 里已经有文字了，会怎样？","acceptedAnswer":{"@type":"Answer","text":"什么都不做，这是有意的。在已有的良好文字层上再做识别，只会换成更差的一层，所以已含文字的页面会原样保留。"}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"让扫描的 PDF 可以搜索","step":[{"@type":"HowToStep","position":1,"text":"上传扫描的 PDF，最多 50 页。"},{"@type":"HowToStep","position":2,"text":"每一页会被摆正、识别，并在原图下方加上一层看不见的文字。"},{"@type":"HowToStep","position":3,"text":"下载可搜索的 PDF，通常比你上传的文件更小。"}]}</script>
+  <link rel="icon" id="dynamicFavicon" type="image/png" href="/assets/favicon-light-mode.png">
+  
+  <!-- Il font ora e' nostro: niente collegamento a fonts.googleapis.com, che
+       bloccava il disegno della pagina e faceva passare da Google il browser
+       di chi ci visita. -->
+  <link rel="preload" href="/assets/font/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/font.css?v=12.0">
+  <link rel="stylesheet" href="/css/styles.css?v=37.0">
+  
+  <!-- Le librerie PDF non si caricano piu' qui: erano 949 KB a ogni visita,
+       di cui 649 KB per strumenti che oggi girano sul server e non le usano
+       mai. Ora le prende js/librerie.js quando l'utente avvia una conversione
+       che ne ha davvero bisogno. -->
+
+  <!-- Analytics self-hosted: nessun cookie, nessun dato personale raccolto -->
+  <script defer src="https://api.pdfaxiom.com/s.js"
+          data-website-id="f41ebfb5-4efb-4211-9bf9-2641dd21986a"></script>
+
+  <!-- Google AdSense Official Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2272593869740076"
+          crossorigin="anonymous"></script>
+</head>
+<body class="pagina-strumento">
+
+  <!-- Header / Navigation -->
+  <header class="app-header">
+    <div class="header-container">
+      
+      <!-- Left: Brand Logo -->
+      <div class="logo-wrapper">
+        <a href="/zh/" class="logo">
+          <img src="/assets/logo-dark-mode.png" alt="PDFAXIOM Logo" class="brand-logo-img">
+        </a>
+      </div>
+
+      <!-- Center: 100% Perfectly Centered Navbar Category Buttons -->
+      <nav class="header-nav">
+        
+        <!-- 1. Convert PDF Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="nav-btn">
+            <span data-i18n="navConvert">转换 PDF</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown dropdown-sm">
+            <div class="mini-dropdown-grid">
+              <div class="mini-col">
+                <div class="mega-title" data-badge="menuDaPdf">从 PDF 转换</div>
+                <a href="/zh/pdf-to-word/" class="mega-item" data-tool="pdf-to-word">PDF 转 Word</a>
+                <a href="/zh/pdf-to-excel/" class="mega-item" data-tool="pdf-to-excel">PDF 转 Excel</a>
+                <a href="/zh/pdf-to-powerpoint/" class="mega-item" data-tool="pdf-to-pptx">PDF 转 PowerPoint</a>
+                <a href="/zh/pdf-to-markdown/" class="mega-item" data-tool="pdf-to-md">PDF 转 Markdown</a>
+                <a href="/zh/pdf-to-html/" class="mega-item" data-tool="pdf-to-html">PDF 转 HTML</a>
+              </div>
+              <div class="mini-col">
+                <div class="mega-title" data-badge="menuAPdf">转换为 PDF</div>
+                <a href="/zh/word-to-pdf/" class="mega-item" data-tool="word-to-pdf">Word 转 PDF</a>
+                <a href="/zh/excel-to-pdf/" class="mega-item" data-tool="excel-to-pdf">Excel 转 PDF</a>
+                <a href="/zh/powerpoint-to-pdf/" class="mega-item" data-tool="pptx-to-pdf">PowerPoint 转 PDF</a>
+                <a href="/zh/markdown-to-pdf/" class="mega-item" data-tool="md-to-pdf">Markdown 转 PDF</a>
+                <a href="/zh/html-to-pdf/" class="mega-item" data-tool="html-to-pdf">HTML 转 PDF</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Merge & Split Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="nav-btn">
+            <span data-i18n="navMergeSplit">合并与拆分</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown dropdown-single">
+            <div class="mini-col">
+              <a href="/zh/merge-pdf/" class="mega-item" data-tool="merge">合并 PDF</a>
+              <a href="/zh/split-pdf/" class="mega-item" data-tool="split">拆分 PDF</a>
+              <a href="/zh/delete-pdf-pages/" class="mega-item" data-tool="delete-pages">删除页面</a>
+              <a href="/zh/add-page-numbers/" class="mega-item" data-tool="page-numbers">页码添加</a>
+              <a href="/zh/rotate-pdf/" class="mega-item" data-tool="rotate">旋转 PDF</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Image Tools Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="nav-btn">
+            <span data-i18n="navImages">图片工具</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown dropdown-single">
+            <div class="mini-col">
+              <a href="/zh/jpg-to-pdf/" class="mega-item" data-tool="img-to-pdf">图片转 PDF</a>
+              <a href="/zh/pdf-to-jpg/" class="mega-item" data-tool="pdf-to-img">PDF 转 JPG / PNG</a>
+              <a href="/zh/extract-images-from-pdf/" class="mega-item" data-tool="extract-images">提取图片</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Edit & Security Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="nav-btn">
+            <span data-i18n="navEdit">编辑与安全</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown dropdown-single">
+            <div class="mini-col">
+              <a href="/zh/compress-pdf/" class="mega-item" data-tool="compress">压缩 PDF</a>
+              <a href="/zh/protect-pdf/" class="mega-item" data-tool="protect">PDF 加密</a>
+              <a href="/zh/unlock-pdf/" class="mega-item" data-tool="unlock">PDF 解密</a>
+              <a href="/zh/watermark-pdf/" class="mega-item" data-tool="watermark">PDF 水印</a>
+              <a href="/zh/ocr-pdf/" class="mega-item" data-tool="ocr">PDF 文字识别 (OCR)</a>
+              <a href="/zh/grayscale-pdf/" class="mega-item" data-tool="grayscale">PDF 转黑白</a>
+              <a href="/zh/pdf-to-text/" class="mega-item" data-tool="pdf-to-text">提取文本</a>
+            </div>
+          </div>
+        </div>
+
+      </nav>
+
+      <!-- Right: International Language Selector & Mobile Menu Trigger -->
+      <div class="header-actions">
+        <button class="nav-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation Menu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <span data-i18n="mobileMenu">工具</span>
+        </button>
+
+        <div class="dropdown-wrapper lang-dropdown-wrapper">
+          <button class="nav-btn lang-btn" id="langBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span id="currentLangText">EN</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown dropdown-single lang-dropdown-menu">
+            <div class="mini-col">
+              <a href="#" class="mega-item lang-option active" data-lang="en">English (EN)</a>
+              <a href="#" class="mega-item lang-option" data-lang="it">Italiano (IT)</a>
+              <a href="#" class="mega-item lang-option" data-lang="es">Español (ES)</a>
+              <a href="#" class="mega-item lang-option" data-lang="de">Deutsch (DE)</a>
+              <a href="#" class="mega-item lang-option" data-lang="zh">中文 (ZH)</a>
+              <a href="#" class="mega-item lang-option" data-lang="ro">Română (RO)</a>
+              <a href="#" class="mega-item lang-option" data-lang="hi">हिन्दी (HI)</a>
+              <a href="#" class="mega-item lang-option" data-lang="ru">Русский (RU)</a>
+            </div>
+          </div>
+        </div>
+
+        <button class="nav-btn theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Light and Dark Mode" title="Toggle Theme">
+          <svg class="sun-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M22 12h2"/><path d="m4.93 19.07 1.41-1.41"/><path d="m17.66 6.34 1.41-1.41"/></svg>
+          <svg class="moon-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="heroSection" class="hero" style="display: none">
+    <p class="hero-titolo" data-i18n="heroTitle">PDFAXIOM 全功能</p>
+    <p data-i18n="heroDesc">秒级转换、编辑、压缩和保护您的 PDF 文件，无需注册。</p>
+  </section>
+
+  <!-- Slim Discreet Banner between Hero Subtitle and Tools Grid (Home Page Only) -->
+  <div class="ad-banner-wrapper ad-banner-hero" aria-label="Advertisement">
+    <span class="ad-label" data-badge="pubblicita">广告</span>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-2272593869740076"
+         data-ad-slot="auto"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+  </div>
+
+  <!-- Main Content & Massive Tools Grid -->
+  <main class="main-content">
+    
+    <!-- Category Filter Tabs -->
+    <div class="category-tabs" style="display: none">
+      <button class="tab-btn active" data-category="all" data-i18n="tabAll">所有工具</button>
+      <button class="tab-btn" data-category="convert" data-i18n="tabConvert">转换与 Office</button>
+      <button class="tab-btn" data-category="organize" data-i18n="tabOrganize">合并与组织</button>
+      <button class="tab-btn" data-category="security" data-i18n="tabSecurity">安全与编辑</button>
+    </div>
+
+    <!-- Main Tools Grid -->
+    <div id="toolsGrid" class="tools-grid" style="display: none">
+
+      <!-- PAIR 1: PDF to Word & Word to PDF (Tier 1 ~4M & 2.5M) -->
+      <div class="tool-card" data-tool="pdf-to-word" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF 转 Word</h3>
+            <span class="tool-badge hot" data-badge="badgePopolare">热门</span>
+          </div>
+          <p>将 PDF 文件转换为可编辑的 Word 文档 (.docx)。</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="word-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Word 转 PDF</h3>
+            <span class="tool-badge hot" data-badge="badgePopolare">热门</span>
+          </div>
+          <p>将 Word 文档 (.docx) 转换为 PDF 格式。</p>
+        </div>
+      </div>
+
+      <!-- PAIR 2: Compress PDF (3rd) & Merge PDF (4th) -->
+      <div class="tool-card" data-tool="compress" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>压缩 PDF</h3>
+            <span class="tool-badge hot" data-badge="badgePopolare">热门</span>
+          </div>
+          <p>在保持清晰度的同时减小 PDF 文件体积。</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="merge" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h10a2 2 0 0 1 2 2v10"/><path d="M4 10h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>合并 PDF</h3>
+            <span class="tool-badge hot" data-badge="badgePopolare">热门</span>
+          </div>
+          <p>将多个 PDF 文件合并为一个文档。</p>
+        </div>
+      </div>
+
+      <!-- PAIR 3: Images to PDF & PDF to JPG/PNG -->
+      <div class="tool-card" data-tool="img-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>图片转 PDF</h3>
+            <span class="tool-badge" data-badge="badgeImmagini">图片</span>
+          </div>
+          <p>将 JPG、PNG、WEBP 图片转换为 PDF 文档。</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="pdf-to-img" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF 转 JPG / PNG</h3>
+            <span class="tool-badge" data-badge="badgeImmagini">图片</span>
+          </div>
+          <p>将 PDF 页面提取为高分辨率图片。</p>
+        </div>
+      </div>
+
+      <!-- PAIR 4: PDF to Excel & Excel to PDF (Tier 2) -->
+      <div class="tool-card" data-tool="pdf-to-excel" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 12h8"/><path d="M8 16h8"/><path d="M12 10v8"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF 转 Excel</h3>
+            <span class="tool-badge office" data-badge="badgeOffice">OFFICE</span>
+          </div>
+          <p>将 PDF 表格提取为 Excel (.xlsx / .csv)。</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="excel-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 12h8"/><path d="M8 16h8"/><path d="M12 10v8"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Excel 转 PDF</h3>
+            <span class="tool-badge office" data-badge="badgeOffice">OFFICE</span>
+          </div>
+          <p>将 Excel 表格 (.xlsx) 转换为 PDF 文件。</p>
+        </div>
+      </div>
+
+      <!-- PAIR 5: PDF to PowerPoint & PowerPoint to PDF (Tier 2) -->
+      <div class="tool-card" data-tool="pdf-to-pptx" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF 转 PowerPoint</h3>
+            <span class="tool-badge slides" data-badge="badgeSlides">幻灯片</span>
+          </div>
+          <p>将 PDF 页面转换为 PowerPoint 幻灯片 (.pptx)。</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="pptx-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PowerPoint 转 PDF</h3>
+            <span class="tool-badge slides" data-badge="badgeSlides">幻灯片</span>
+          </div>
+          <p>将 PowerPoint 演示文稿 (.pptx) 转换为 PDF。</p>
+        </div>
+      </div>
+
+      <!-- PAIR 6: Split PDF & Delete Pages (Tier 2 & 3 - Edit & Organize) -->
+      <div class="tool-card" data-tool="split" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>拆分 PDF</h3>
+          </div>
+          <p>分离 PDF 页面或提取自定义页面范围。</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="delete-pages" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>删除页面</h3>
+          </div>
+          <p>从 PDF 文档中删除不需要的页面。</p>
+        </div>
+      </div>
+
+      <!-- PAIR 7: Unlock PDF & Protect PDF (Tier 3 - Security Pair) -->
+      <div class="tool-card" data-tool="unlock" data-category="security">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4.5" y="11" width="15" height="11" rx="2"/><path d="M7.5 11V6.5a4.5 4.5 0 0 1 9 0v-1"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF 解密</h3>
+          </div>
+          <p>移除 PDF 的安全密码与限制。</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="protect" data-category="security">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4.5" y="11" width="15" height="11" rx="2"/><path d="M7.5 11V6.5a4.5 4.5 0 0 1 9 0V11"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF 加密</h3>
+          </div>
+          <p>使用自定义密码加密您的 PDF 文件。</p>
+        </div>
+      </div>
+
+      <!-- PAIR 8: Rotate PDF & Page Numbers (Tier 3 - Page Adjustments) -->
+      <div class="tool-card" data-tool="rotate" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><polyline points="21 3 21 8 16 8"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>旋转 PDF</h3>
+          </div>
+          <p>旋转 PDF 页面 90°、180° 或 270°。</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="page-numbers" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M10.5 14l2-2v7"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>页码添加</h3>
+          </div>
+          <p>在 PDF 页眉或页脚中添加页码。</p>
+        </div>
+      </div>
+
+      <!-- PAIR 9: Watermark PDF & Grayscale PDF (Tier 3 & 4 - Document Formatting) -->
+      <div class="tool-card" data-tool="watermark" data-category="security">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 11c0 0-3 2.8-3 4.2a3 3 0 0 0 6 0c0-1.4-3-4.2-3-4.2z"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF 水印</h3>
+          </div>
+          <p>在 PDF 页面上添加自定义文本水印。</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="ocr" data-category="security">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><circle cx="11" cy="14" r="3"/><path d="m14.5 17.5 2 2"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF 文字识别 (OCR)</h3>
+          </div>
+          <p>让扫描的 PDF 可以搜索、选中和复制。</p>
+        </div>
+      </div>
+      <div class="tool-card" data-tool="grayscale" data-category="security">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF 转黑白</h3>
+          </div>
+          <p>将彩色 PDF 文档转换为黑白（灰度）格式。</p>
+        </div>
+      </div>
+
+      <!-- PAIR 10: PDF to HTML & HTML to PDF (Tier 4 - Web Converters) -->
+      <div class="tool-card" data-tool="pdf-to-html" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF 转 HTML</h3>
+          </div>
+          <p>将 PDF 文档转换为 Web HTML 代码。</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="html-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>HTML 转 PDF</h3>
+          </div>
+          <p>将 HTML 文本代码转换为 PDF 文件。</p>
+        </div>
+      </div>
+
+      <!-- PAIR 11: PDF to Markdown & Markdown to PDF (Tier 5 - Emerging AI & RAG Pair) -->
+      <div class="tool-card" data-tool="pdf-to-md" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF 转 Markdown</h3>
+            <span class="tool-badge" data-badge="badgeAi">AI 就绪</span>
+          </div>
+          <p>将 PDF 转换为 Markdown (.md) 供 AI 与 Notion 使用。</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="md-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Markdown 转 PDF</h3>
+            <span class="tool-badge" data-badge="badgeAi">AI 就绪</span>
+          </div>
+          <p>将 Markdown (.md) 文件转换为排版精美的 PDF。</p>
+        </div>
+      </div>
+
+      <!-- PAIR 12: Extract Text & Extract Images (Tier 4 - Extractor Tools) -->
+      <div class="tool-card" data-tool="pdf-to-text" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>提取文本</h3>
+          </div>
+          <p>从 PDF 中提取纯文本 (.txt) 内容。</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="extract-images" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>提取图片</h3>
+          </div>
+          <p>提取 PDF 内部嵌入的所有图片资源。</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Leaderboard Banner Below Tools Grid (Home Page) -->
+    <div class="ad-banner-wrapper ad-banner-below-grid" aria-label="Advertisement">
+      <span class="ad-label" data-badge="pubblicita">广告</span>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2272593869740076"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- Active Tool Workspace View (Hidden by default) -->
+    <div id="toolWorkspace" class="tool-workspace" style="display: block">
+      <!-- Side Skyscrapers anchored directly to Tool Workspace (100% aligned top & bottom) -->
+      <aside class="ad-skyscraper ad-skyscraper-tool ad-skyscraper-tool-left" aria-label="Advertisement">
+        <span class="ad-label" data-badge="pubblicitaBreve">广告</span>
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;height:100%"
+             data-ad-client="ca-pub-2272593869740076"
+             data-ad-slot="auto"></ins>
+      </aside>
+      <aside class="ad-skyscraper ad-skyscraper-tool ad-skyscraper-tool-right" aria-label="Advertisement">
+        <span class="ad-label" data-badge="pubblicitaBreve">广告</span>
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;height:100%"
+             data-ad-client="ca-pub-2272593869740076"
+             data-ad-slot="auto"></ins>
+      </aside>
+
+      <div class="workspace-header">
+        <button id="backBtn" class="back-btn back-btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span data-i18n="backBtn">返回所有工具</span>
+        </button>
+
+        <div class="workspace-title-box">
+          <h2 id="workspaceTitle">PDF 文字识别 (OCR)</h2>
+          <p id="workspaceDesc">让扫描的 PDF 可以搜索、选中和复制。</p>
+        </div>
+      </div>
+
+      <!-- Workspace Mid Banner Ad Slot (Between Title and Dropzone) -->
+      <div class="ad-banner-wrapper ad-banner-workspace" aria-label="Advertisement">
+        <span class="ad-label" data-badge="pubblicita">广告</span>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2272593869740076"
+             data-ad-slot="auto"
+             data-ad-format="rectangle,horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <!-- Dropzone -->
+      <div id="dropzone" class="dropzone">
+        <div class="dropzone-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </div>
+        <div class="dropzone-text">
+          <h3 data-i18n="dragTitle">拖放文件至此处</h3>
+          <p data-i18n="dragSub">支持多个文件 • 每个最大 100 MB</p>
+        </div>
+        <input type="file" id="fileInput" style="display:none;">
+      </div>
+
+      <!-- File Previews Grid -->
+      <div id="filePreviewList" class="file-list-preview"></div>
+
+      <!-- Dynamic Settings Form -->
+      <div id="toolSettings" class="tool-settings" style="display:none;"></div>
+
+      <!-- Action Button & Progress -->
+      <div class="process-actions">
+        <button id="processBtn" class="btn-primary" disabled>
+          <span id="processBtnText" data-i18n="processBtn">开始识别</span>
+        </button>
+      </div>
+
+      <div id="progressContainer" class="progress-container">
+        <p id="progressText">Processing document client-side...</p>
+        <div class="progress-bar-bg">
+          <div id="progressBarFill" class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <!-- Download Box -->
+      <div id="downloadBox" class="download-box">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div>
+          <h3 data-i18n="readyTitle">文件已就绪！</h3>
+          <p data-i18n="readySub">您的文件已可下载。</p>
+        </div>
+
+        <!-- Download Box High-CTR Ad Slot -->
+
+        <div class="download-buttons-group">
+          <button id="downloadBtn" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download File
+          </button>
+          <button id="resetToolBtn" class="btn-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
+            Convert Another File
+          </button>
+        </div>
+      </div>
+
+          <div class="ad-banner-wrapper ad-banner-download" aria-label="Advertisement">
+          <span class="ad-label" data-badge="pubblicita">广告</span>
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-2272593869740076"
+               data-ad-slot="auto"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+        </div>
+
+    </div>
+
+  </main>
+
+  <!-- PDFAXIOM:GENERATO -->
+  <section class="seo-blocco">
+    <h1>让扫描的 PDF 可以搜索</h1>
+    <p class="seo-dove"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></svg> 在我们的服务器上处理，随后立即删除</p>
+    <p>扫描页面本质上是一张照片：你的眼睛能读，电脑看到的只是像素。本工具读取页面，把识别出的文字以不可见的方式写在图像下方，因此文档外观完全不变，却可以搜索、选中和复制。原图分辨率保持不变。</p>
+
+    <h2>操作步骤</h2>
+    <ol class="seo-passi">
+        <li>上传扫描的 PDF，最多 50 页。</li>
+        <li>每一页会被摆正、识别，并在原图下方加上一层看不见的文字。</li>
+        <li>下载可搜索的 PDF，通常比你上传的文件更小。</li>
+    </ol>
+
+    <div class="ad-banner-wrapper ad-banner-in-content" aria-label="Advertisement">
+      <span class="ad-label" data-badge="pubblicita">广告</span>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2272593869740076"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <h2>常见问题</h2>
+    <div class="seo-faq">
+        <details>
+          <summary>页面外观会改变吗？</summary>
+          <p>不会。图像保持原分辨率，识别出的文字放在下方，看不见。唯一的变化是 Ctrl+F 现在能找到内容了。</p>
+        </details>
+        <details>
+          <summary>能识别手写吗？</summary>
+          <p>效果很差，我们宁愿直说。印刷页面大约能恢复十分之八的词；手写笔记则大多是乱码。如果你的文件是拍摄的笔记本，这个工具会让你失望。</p>
+        </details>
+        <details>
+          <summary>带下标的公式呢？</summary>
+          <p>下标是最先丢失的。在数学文档里，带下标零的 M 和带下标 el 的 M 都会变成普通的 M：叙述性文字能恢复，公式不能。</p>
+        </details>
+        <details>
+          <summary>我的 PDF 里已经有文字了，会怎样？</summary>
+          <p>什么都不做，这是有意的。在已有的良好文字层上再做识别，只会换成更差的一层，所以已含文字的页面会原样保留。</p>
+        </details>
+    </div>
+  </section>
+
+  <nav class="seo-indice">
+    <div class="seo-indice-dentro">
+      <h2>全部 24 个 PDF 工具</h2>
+      <div class="seo-colonne">
+        <div class="seo-colonna">
+          <h3>从 PDF 转换</h3>
+          <ul>
+          <li><a href="/zh/pdf-to-word/">PDF → Word</a></li>
+          <li><a href="/zh/pdf-to-excel/">PDF → Excel</a></li>
+          <li><a href="/zh/pdf-to-powerpoint/">PDF → PowerPoint</a></li>
+          <li><a href="/zh/pdf-to-markdown/">PDF → Markdown</a></li>
+          <li><a href="/zh/pdf-to-html/">PDF → HTML</a></li>
+          <li><a href="/zh/pdf-to-jpg/">PDF → JPG</a></li>
+          <li><a href="/zh/pdf-to-text/">PDF → 文本</a></li>
+          </ul>
+        </div>
+        <div class="seo-colonna">
+          <h3>转换为 PDF</h3>
+          <ul>
+          <li><a href="/zh/word-to-pdf/">Word → PDF</a></li>
+          <li><a href="/zh/excel-to-pdf/">Excel → PDF</a></li>
+          <li><a href="/zh/powerpoint-to-pdf/">PowerPoint → PDF</a></li>
+          <li><a href="/zh/markdown-to-pdf/">Markdown → PDF</a></li>
+          <li><a href="/zh/html-to-pdf/">HTML → PDF</a></li>
+          <li><a href="/zh/jpg-to-pdf/">图片 → PDF</a></li>
+          </ul>
+        </div>
+        <div class="seo-colonna">
+          <h3>整理</h3>
+          <ul>
+          <li><a href="/zh/merge-pdf/">合并</a></li>
+          <li><a href="/zh/split-pdf/">拆分</a></li>
+          <li><a href="/zh/delete-pdf-pages/">删除页面</a></li>
+          <li><a href="/zh/rotate-pdf/">旋转</a></li>
+          <li><a href="/zh/add-page-numbers/">添加页码</a></li>
+          <li><a href="/zh/extract-images-from-pdf/">提取图片</a></li>
+          </ul>
+        </div>
+        <div class="seo-colonna">
+          <h3>编辑与保护</h3>
+          <ul>
+          <li><a href="/zh/compress-pdf/">压缩</a></li>
+          <li><a href="/zh/protect-pdf/">加密码</a></li>
+          <li><a href="/zh/unlock-pdf/">解锁</a></li>
+          <li><a href="/zh/watermark-pdf/">加水印</a></li>
+          <li><a href="/zh/ocr-pdf/" aria-current="page">undefined</a></li>
+          <li><a href="/zh/grayscale-pdf/">转灰度</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- /PDFAXIOM:GENERATO -->
+
+  <!-- Clean Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="logo">
+        <img src="/assets/logo-dark-mode.png" alt="PDFAXIOM Logo" class="brand-logo-img">
+      </div>
+      <!-- Invito a installare l'estensione.
+           Sta nel piede e non in mezzo agli strumenti: chi arriva qui vuole
+           convertire un file, non installare qualcosa. Lo trova quando ha
+           finito, che e' il momento in cui l'offerta ha senso. -->
+      <a class="estensione-invito"
+         href="https://chromewebstore.google.com/detail/pdfaxiom-free-private-pdf/jopelajhpfhcpoagalpjbhcagdigking"
+         target="_blank" rel="noopener">
+        <span class="estensione-icona">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3a1 1 0 0 0 1-1V5a2 2 0 1 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 1 1 0 4h-1a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/></svg>
+        </span>
+        <span class="estensione-testo">
+          <strong id="estensioneTitolo" data-i18n="extTitle">PDFAxiom Chrome 扩展程序</strong>
+          <span id="estensioneSotto" data-i18n="extSub">每个标签页,工具一键即达。</span>
+        </span>
+        <span class="estensione-azione" id="estensioneAzione" data-i18n="extBtn">添加到 Chrome</span>
+      </a>
+
+      <div class="footer-row">
+        <p class="copyright" data-i18n="footerCopy">© 2026 PDFAxiom. 免费 • 无需注册。</p>
+        <nav class="footer-legale">
+          <!-- Niente data-piede su questi due: genera.js li localizza gia' a
+               tempo di compilazione, e solo dove la pagina legale esiste
+               davvero in quella lingua. Tradurre l'etichetta a runtime la
+               metterebbe in tedesco sopra un collegamento a una pagina
+               inglese. -->
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+          <a href="/about/" id="aboutUsLink">About Us</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- About Us Floating Modal Overlay -->
+
+  <!-- App Scripts (v8.0 100% Browser Engine) -->
+    <script>window.PDFAXIOM_LANG="zh";window.PDFAXIOM_TOOL="ocr";</script>
+  <script defer src="/js/rotte.js?v=11.1"></script>
+  <script defer src="/js/i18n.zh.js?v=18.0"></script>
+  <script defer src="/js/ad-manager.js?v=20.0"></script>
+  <script defer src="/js/librerie.js?v=12.0"></script>
+  <script defer src="/js/pdf-engine.js?v=12.0"></script>
+  <script defer src="/js/api-client.js?v=11.1"></script>
+  <script defer src="/js/app.js?v=18.0"></script>
+</body>
+</html>

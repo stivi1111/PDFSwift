@@ -230,6 +230,23 @@ module.exports = {
       ],
     },
 
+    'ocr-pdf': {
+      titolo: "OCR PDF — Make a scanned PDF searchable, free",
+      descrizione: "Turn a scanned PDF into one you can search, select and copy. The page looks identical. Free, no signup, no page watermark.",
+      h1: "Make a scanned PDF searchable",
+      intro: "A scanned page is a photograph: your eyes read it, your computer sees only pixels. This tool reads the page and writes the recognised text invisibly underneath the image, so the document looks exactly as before but you can search it, select it and copy from it. The original image keeps its resolution.",
+      passi: [
+        "Upload the scanned PDF. Up to 50 pages.",
+        "Every page is straightened, read, and given an invisible text layer beneath the original image.",
+        "Download the searchable PDF. It is usually smaller than the file you uploaded.",
+      ],
+      faq: [
+        { d: "Does it change how the pages look?", r: "No. The image is kept at its original resolution and the recognised text goes underneath it, where you cannot see it. What changes is that Ctrl+F now finds things." },
+        { d: "Does it read handwriting?", r: "Badly, and we would rather say so. On printed pages it recovers around eight words in ten; on handwritten notes it produces mostly nonsense. If your file is a photographed notebook, this tool will disappoint you." },
+        { d: "What about formulas and subscripts?", r: "Subscripts are the first thing lost. In a maths document M subscript zero and M subscript el both come out as plain M, so the prose is recovered but the formulas are not." },
+        { d: "My PDF already has text in it. What happens?", r: "Nothing, on purpose. Running recognition over a good text layer would replace it with a worse one, so pages that already contain text are left untouched." },
+      ],
+    },
     'grayscale-pdf': {
       titolo: 'Grayscale PDF — Convert to Black and White Free',
       descrizione: 'Turn a colour PDF into greyscale to save ink when printing. Text stays sharp. Free, no account.',

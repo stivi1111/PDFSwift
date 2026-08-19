@@ -221,6 +221,23 @@ module.exports = {
       ],
     },
 
+    'ocr-pdf': {
+      titolo: "OCR PDF — Fă un PDF scanat căutabil, gratuit",
+      descrizione: "Transformă un PDF scanat în unul în care poți căuta, selecta și copia. Pagina rămâne identică. Gratuit, fără cont.",
+      h1: "Cum faci căutabil un PDF scanat",
+      intro: "O pagină scanată este o fotografie: ochii tăi o citesc, calculatorul vede doar pixeli. Acest instrument citește pagina și scrie textul recunoscut invizibil sub imagine, așa că documentul arată exact ca înainte, dar poate fi căutat, selectat și copiat. Imaginea originală își păstrează rezoluția.",
+      passi: [
+        "Încarcă PDF-ul scanat. Până la 50 de pagini.",
+        "Fiecare pagină este îndreptată, citită și primește un strat de text invizibil sub imaginea originală.",
+        "Descarcă PDF-ul căutabil. De obicei este mai mic decât fișierul încărcat.",
+      ],
+      faq: [
+        { d: "Se schimbă aspectul paginilor?", r: "Nu. Imaginea își păstrează rezoluția, iar textul recunoscut stă dedesubt, unde nu se vede. Se schimbă doar faptul că acum Ctrl+F găsește." },
+        { d: "Citește scrisul de mână?", r: "Prost, și preferăm să o spunem. Pe pagini tipărite recuperează cam opt cuvinte din zece; pe notițe scrise de mână produce mai ales lucruri fără sens. Dacă fișierul tău este un caiet fotografiat, instrumentul te va dezamăgi." },
+        { d: "Dar formulele cu indici?", r: "Indicii se pierd primii. Într-un document de matematică, M cu indice zero și M cu indice el ies amândouă ca un simplu M: textul curgător se recuperează, formulele nu." },
+        { d: "PDF-ul meu are deja text. Ce se întâmplă?", r: "Nimic, intenționat. Recunoașterea peste un strat de text bun l-ar înlocui cu unul mai slab, așa că paginile care conțin deja text sunt lăsate neatinse." },
+      ],
+    },
     'grayscale-pdf': {
       titolo: 'PDF în tonuri de gri — Alb-negru gratuit',
       descrizione: 'Transformă un PDF color în tonuri de gri ca să economisești cerneală. Textul rămâne clar.',

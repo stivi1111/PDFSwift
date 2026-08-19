@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<!-- Pagina generata da build/genera.js.
+     Non modificarla a mano: le modifiche vanno in build/modello.html
+     (struttura) o in build/contenuti/*.js (testi), poi si rilancia
+     "node build/genera.js". -->
+<html lang="ro" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OCR PDF — Fă un PDF scanat căutabil, gratuit | PDFAxiom</title>
+  <meta name="description" content="Transformă un PDF scanat în unul în care poți căuta, selecta și copia. Pagina rămâne identică. Gratuit, fără cont.">
+  <link rel="canonical" href="https://pdfaxiom.com/ro/ocr-pdf/">
+  <link rel="alternate" hreflang="en" href="https://pdfaxiom.com/ocr-pdf/">
+  <link rel="alternate" hreflang="it" href="https://pdfaxiom.com/it/ocr-pdf/">
+  <link rel="alternate" hreflang="es" href="https://pdfaxiom.com/es/ocr-pdf/">
+  <link rel="alternate" hreflang="de" href="https://pdfaxiom.com/de/ocr-pdf/">
+  <link rel="alternate" hreflang="zh" href="https://pdfaxiom.com/zh/ocr-pdf/">
+  <link rel="alternate" hreflang="ro" href="https://pdfaxiom.com/ro/ocr-pdf/">
+  <link rel="alternate" hreflang="hi" href="https://pdfaxiom.com/hi/ocr-pdf/">
+  <link rel="alternate" hreflang="ru" href="https://pdfaxiom.com/ru/ocr-pdf/">
+  <link rel="alternate" hreflang="x-default" href="https://pdfaxiom.com/ocr-pdf/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PDFAxiom">
+  <meta property="og:title" content="OCR PDF — Fă un PDF scanat căutabil, gratuit | PDFAxiom">
+  <meta property="og:description" content="Transformă un PDF scanat în unul în care poți căuta, selecta și copia. Pagina rămâne identică. Gratuit, fără cont.">
+  <meta property="og:url" content="https://pdfaxiom.com/ro/ocr-pdf/">
+  <meta property="og:locale" content="ro">
+  <meta property="og:image" content="https://pdfaxiom.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="OCR PDF — Fă un PDF scanat căutabil, gratuit | PDFAxiom">
+  <meta name="twitter:description" content="Transformă un PDF scanat în unul în care poți căuta, selecta și copia. Pagina rămâne identică. Gratuit, fără cont.">
+  <meta name="twitter:image" content="https://pdfaxiom.com/assets/og-image.png">
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Cum faci căutabil un PDF scanat","url":"https://pdfaxiom.com/ro/ocr-pdf/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","description":"Transformă un PDF scanat în unul în care poți căuta, selecta și copia. Pagina rămâne identică. Gratuit, fără cont.","inLanguage":"ro","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Se schimbă aspectul paginilor?","acceptedAnswer":{"@type":"Answer","text":"Nu. Imaginea își păstrează rezoluția, iar textul recunoscut stă dedesubt, unde nu se vede. Se schimbă doar faptul că acum Ctrl+F găsește."}},{"@type":"Question","name":"Citește scrisul de mână?","acceptedAnswer":{"@type":"Answer","text":"Prost, și preferăm să o spunem. Pe pagini tipărite recuperează cam opt cuvinte din zece; pe notițe scrise de mână produce mai ales lucruri fără sens. Dacă fișierul tău este un caiet fotografiat, instrumentul te va dezamăgi."}},{"@type":"Question","name":"Dar formulele cu indici?","acceptedAnswer":{"@type":"Answer","text":"Indicii se pierd primii. Într-un document de matematică, M cu indice zero și M cu indice el ies amândouă ca un simplu M: textul curgător se recuperează, formulele nu."}},{"@type":"Question","name":"PDF-ul meu are deja text. Ce se întâmplă?","acceptedAnswer":{"@type":"Answer","text":"Nimic, intenționat. Recunoașterea peste un strat de text bun l-ar înlocui cu unul mai slab, așa că paginile care conțin deja text sunt lăsate neatinse."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"Cum faci căutabil un PDF scanat","step":[{"@type":"HowToStep","position":1,"text":"Încarcă PDF-ul scanat. Până la 50 de pagini."},{"@type":"HowToStep","position":2,"text":"Fiecare pagină este îndreptată, citită și primește un strat de text invizibil sub imaginea originală."},{"@type":"HowToStep","position":3,"text":"Descarcă PDF-ul căutabil. De obicei este mai mic decât fișierul încărcat."}]}</script>
+  <link rel="icon" id="dynamicFavicon" type="image/png" href="/assets/favicon-light-mode.png">
+  
+  <!-- Il font ora e' nostro: niente collegamento a fonts.googleapis.com, che
+       bloccava il disegno della pagina e faceva passare da Google il browser
+       di chi ci visita. -->
+  <link rel="preload" href="/assets/font/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/font.css?v=12.0">
+  <link rel="stylesheet" href="/css/styles.css?v=37.0">
+  
+  <!-- Le librerie PDF non si caricano piu' qui: erano 949 KB a ogni visita,
+       di cui 649 KB per strumenti che oggi girano sul server e non le usano
+       mai. Ora le prende js/librerie.js quando l'utente avvia una conversione
+       che ne ha davvero bisogno. -->
+
+  <!-- Analytics self-hosted: nessun cookie, nessun dato personale raccolto -->
+  <script defer src="https://api.pdfaxiom.com/s.js"
+          data-website-id="f41ebfb5-4efb-4211-9bf9-2641dd21986a"></script>
+
+  <!-- Google AdSense Official Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2272593869740076"
+          crossorigin="anonymous"></script>
+</head>
+<body class="pagina-strumento">
+
+  <!-- Header / Navigation -->
+  <header class="app-header">
+    <div class="header-container">
+      
+      <!-- Left: Brand Logo -->
+      <div class="logo-wrapper">
+        <a href="/ro/" class="logo">
+          <img src="/assets/logo-dark-mode.png" alt="PDFAXIOM Logo" class="brand-logo-img">
+        </a>
+      </div>
+
+      <!-- Center: 100% Perfectly Centered Navbar Category Buttons -->
+      <nav class="header-nav">
+        
+        <!-- 1. Convert PDF Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="nav-btn">
+            <span data-i18n="navConvert">Convertește PDF</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown dropdown-sm">
+            <div class="mini-dropdown-grid">
+              <div class="mini-col">
+                <div class="mega-title" data-badge="menuDaPdf">CONVERTEȘTE DIN PDF</div>
+                <a href="/ro/pdf-to-word/" class="mega-item" data-tool="pdf-to-word">PDF în Word</a>
+                <a href="/ro/pdf-to-excel/" class="mega-item" data-tool="pdf-to-excel">PDF în Excel</a>
+                <a href="/ro/pdf-to-powerpoint/" class="mega-item" data-tool="pdf-to-pptx">PDF în PowerPoint</a>
+                <a href="/ro/pdf-to-markdown/" class="mega-item" data-tool="pdf-to-md">PDF în Markdown</a>
+                <a href="/ro/pdf-to-html/" class="mega-item" data-tool="pdf-to-html">PDF în HTML</a>
+              </div>
+              <div class="mini-col">
+                <div class="mega-title" data-badge="menuAPdf">CONVERTEȘTE ÎN PDF</div>
+                <a href="/ro/word-to-pdf/" class="mega-item" data-tool="word-to-pdf">Word în PDF</a>
+                <a href="/ro/excel-to-pdf/" class="mega-item" data-tool="excel-to-pdf">Excel în PDF</a>
+                <a href="/ro/powerpoint-to-pdf/" class="mega-item" data-tool="pptx-to-pdf">PowerPoint în PDF</a>
+                <a href="/ro/markdown-to-pdf/" class="mega-item" data-tool="md-to-pdf">Markdown în PDF</a>
+                <a href="/ro/html-to-pdf/" class="mega-item" data-tool="html-to-pdf">HTML în PDF</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Merge & Split Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="nav-btn">
+            <span data-i18n="navMergeSplit">Unește &amp; Divide</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown dropdown-single">
+            <div class="mini-col">
+              <a href="/ro/merge-pdf/" class="mega-item" data-tool="merge">Unește PDF</a>
+              <a href="/ro/split-pdf/" class="mega-item" data-tool="split">Divide PDF</a>
+              <a href="/ro/delete-pdf-pages/" class="mega-item" data-tool="delete-pages">Șterge Pagini</a>
+              <a href="/ro/add-page-numbers/" class="mega-item" data-tool="page-numbers">Numere de Pagină</a>
+              <a href="/ro/rotate-pdf/" class="mega-item" data-tool="rotate">Rotește PDF</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Image Tools Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="nav-btn">
+            <span data-i18n="navImages">Instrumente Imagini</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown dropdown-single">
+            <div class="mini-col">
+              <a href="/ro/jpg-to-pdf/" class="mega-item" data-tool="img-to-pdf">Imagini în PDF</a>
+              <a href="/ro/pdf-to-jpg/" class="mega-item" data-tool="pdf-to-img">PDF în JPG / PNG</a>
+              <a href="/ro/extract-images-from-pdf/" class="mega-item" data-tool="extract-images">Extrage Imagini</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Edit & Security Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="nav-btn">
+            <span data-i18n="navEdit">Editare &amp; Securitate</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown dropdown-single">
+            <div class="mini-col">
+              <a href="/ro/compress-pdf/" class="mega-item" data-tool="compress">Comprimă PDF</a>
+              <a href="/ro/protect-pdf/" class="mega-item" data-tool="protect">Protejează PDF</a>
+              <a href="/ro/unlock-pdf/" class="mega-item" data-tool="unlock">Deblochează PDF</a>
+              <a href="/ro/watermark-pdf/" class="mega-item" data-tool="watermark">Filigran PDF</a>
+              <a href="/ro/ocr-pdf/" class="mega-item" data-tool="ocr">PDF căutabil (OCR)</a>
+              <a href="/ro/grayscale-pdf/" class="mega-item" data-tool="grayscale">PDF Alb-Negru</a>
+              <a href="/ro/pdf-to-text/" class="mega-item" data-tool="pdf-to-text">Extrage Text</a>
+            </div>
+          </div>
+        </div>
+
+      </nav>
+
+      <!-- Right: International Language Selector & Mobile Menu Trigger -->
+      <div class="header-actions">
+        <button class="nav-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation Menu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <span data-i18n="mobileMenu">Instrumente</span>
+        </button>
+
+        <div class="dropdown-wrapper lang-dropdown-wrapper">
+          <button class="nav-btn lang-btn" id="langBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span id="currentLangText">EN</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown dropdown-single lang-dropdown-menu">
+            <div class="mini-col">
+              <a href="#" class="mega-item lang-option active" data-lang="en">English (EN)</a>
+              <a href="#" class="mega-item lang-option" data-lang="it">Italiano (IT)</a>
+              <a href="#" class="mega-item lang-option" data-lang="es">Español (ES)</a>
+              <a href="#" class="mega-item lang-option" data-lang="de">Deutsch (DE)</a>
+              <a href="#" class="mega-item lang-option" data-lang="zh">中文 (ZH)</a>
+              <a href="#" class="mega-item lang-option" data-lang="ro">Română (RO)</a>
+              <a href="#" class="mega-item lang-option" data-lang="hi">हिन्दी (HI)</a>
+              <a href="#" class="mega-item lang-option" data-lang="ru">Русский (RU)</a>
+            </div>
+          </div>
+        </div>
+
+        <button class="nav-btn theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Light and Dark Mode" title="Toggle Theme">
+          <svg class="sun-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M22 12h2"/><path d="m4.93 19.07 1.41-1.41"/><path d="m17.66 6.34 1.41-1.41"/></svg>
+          <svg class="moon-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="heroSection" class="hero" style="display: none">
+    <p class="hero-titolo" data-i18n="heroTitle">PDFAXIOM Totul în Unul</p>
+    <p data-i18n="heroDesc">Convertește, editează, comprimă și securizează fișierele PDF în câteva secunde, fără înregistrare.</p>
+  </section>
+
+  <!-- Slim Discreet Banner between Hero Subtitle and Tools Grid (Home Page Only) -->
+  <div class="ad-banner-wrapper ad-banner-hero" aria-label="Advertisement">
+    <span class="ad-label" data-badge="pubblicita">PUBLICITATE</span>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-2272593869740076"
+         data-ad-slot="auto"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+  </div>
+
+  <!-- Main Content & Massive Tools Grid -->
+  <main class="main-content">
+    
+    <!-- Category Filter Tabs -->
+    <div class="category-tabs" style="display: none">
+      <button class="tab-btn active" data-category="all" data-i18n="tabAll">Toate Instrumentele</button>
+      <button class="tab-btn" data-category="convert" data-i18n="tabConvert">Conversie &amp; Office</button>
+      <button class="tab-btn" data-category="organize" data-i18n="tabOrganize">Unește &amp; Organizează</button>
+      <button class="tab-btn" data-category="security" data-i18n="tabSecurity">Securitate &amp; Editare</button>
+    </div>
+
+    <!-- Main Tools Grid -->
+    <div id="toolsGrid" class="tools-grid" style="display: none">
+
+      <!-- PAIR 1: PDF to Word & Word to PDF (Tier 1 ~4M & 2.5M) -->
+      <div class="tool-card" data-tool="pdf-to-word" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF în Word</h3>
+            <span class="tool-badge hot" data-badge="badgePopolare">POPULAR</span>
+          </div>
+          <p>Convertește fișiere PDF în documente Word editabile (.docx).</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="word-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Word în PDF</h3>
+            <span class="tool-badge hot" data-badge="badgePopolare">POPULAR</span>
+          </div>
+          <p>Convertește documente Word (.docx) în format PDF.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 2: Compress PDF (3rd) & Merge PDF (4th) -->
+      <div class="tool-card" data-tool="compress" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Comprimă PDF</h3>
+            <span class="tool-badge hot" data-badge="badgePopolare">POPULAR</span>
+          </div>
+          <p>Reduce dimensiunea fișierului PDF păstrând calitatea maximă.</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="merge" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h10a2 2 0 0 1 2 2v10"/><path d="M4 10h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Unește PDF</h3>
+            <span class="tool-badge hot" data-badge="badgePopolare">POPULAR</span>
+          </div>
+          <p>Combină mai multe fișiere PDF într-un singur document.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 3: Images to PDF & PDF to JPG/PNG -->
+      <div class="tool-card" data-tool="img-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Imagini în PDF</h3>
+            <span class="tool-badge" data-badge="badgeImmagini">IMAGINI</span>
+          </div>
+          <p>Convertește imagini JPG, PNG, WEBP într-un document PDF.</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="pdf-to-img" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF în JPG / PNG</h3>
+            <span class="tool-badge" data-badge="badgeImmagini">IMAGINI</span>
+          </div>
+          <p>Extrage paginile PDF în imagini JPG sau PNG de înaltă rezoluție.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 4: PDF to Excel & Excel to PDF (Tier 2) -->
+      <div class="tool-card" data-tool="pdf-to-excel" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 12h8"/><path d="M8 16h8"/><path d="M12 10v8"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF în Excel</h3>
+            <span class="tool-badge office" data-badge="badgeOffice">OFFICE</span>
+          </div>
+          <p>Extrage tabelele PDF în Excel (.xlsx / .csv).</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="excel-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 12h8"/><path d="M8 16h8"/><path d="M12 10v8"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Excel în PDF</h3>
+            <span class="tool-badge office" data-badge="badgeOffice">OFFICE</span>
+          </div>
+          <p>Convertește foile de calcul Excel (.xlsx) în PDF.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 5: PDF to PowerPoint & PowerPoint to PDF (Tier 2) -->
+      <div class="tool-card" data-tool="pdf-to-pptx" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF în PowerPoint</h3>
+            <span class="tool-badge slides" data-badge="badgeSlides">DIAPOZITIVE</span>
+          </div>
+          <p>Transformă paginile PDF în diapoze PowerPoint (.pptx).</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="pptx-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PowerPoint în PDF</h3>
+            <span class="tool-badge slides" data-badge="badgeSlides">DIAPOZITIVE</span>
+          </div>
+          <p>Convertește prezentările PowerPoint (.pptx) în PDF.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 6: Split PDF & Delete Pages (Tier 2 & 3 - Edit & Organize) -->
+      <div class="tool-card" data-tool="split" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Divide PDF</h3>
+          </div>
+          <p>Separă paginile PDF sau extrage intervale personalizate.</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="delete-pages" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Șterge Pagini</h3>
+          </div>
+          <p>Elimină paginile nedorite dintr-un document PDF.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 7: Unlock PDF & Protect PDF (Tier 3 - Security Pair) -->
+      <div class="tool-card" data-tool="unlock" data-category="security">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4.5" y="11" width="15" height="11" rx="2"/><path d="M7.5 11V6.5a4.5 4.5 0 0 1 9 0v-1"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Deblochează PDF</h3>
+          </div>
+          <p>Elimină parolele de securitate și restricțiile din PDF.</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="protect" data-category="security">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4.5" y="11" width="15" height="11" rx="2"/><path d="M7.5 11V6.5a4.5 4.5 0 0 1 9 0V11"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Protejează PDF</h3>
+          </div>
+          <p>Criptează PDF-ul cu o parolă personalizată.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 8: Rotate PDF & Page Numbers (Tier 3 - Page Adjustments) -->
+      <div class="tool-card" data-tool="rotate" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><polyline points="21 3 21 8 16 8"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Rotește PDF</h3>
+          </div>
+          <p>Rotește paginile PDF cu 90°, 180° sau 270°.</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="page-numbers" data-category="organize">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M10.5 14l2-2v7"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Numere de Pagină</h3>
+          </div>
+          <p>Adaugă numere de pagină în antet sau subsol.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 9: Watermark PDF & Grayscale PDF (Tier 3 & 4 - Document Formatting) -->
+      <div class="tool-card" data-tool="watermark" data-category="security">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 11c0 0-3 2.8-3 4.2a3 3 0 0 0 6 0c0-1.4-3-4.2-3-4.2z"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Filigran PDF</h3>
+          </div>
+          <p>Adaugă un filigran de text personalizat pe paginile PDF.</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="ocr" data-category="security">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><circle cx="11" cy="14" r="3"/><path d="m14.5 17.5 2 2"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF căutabil (OCR)</h3>
+          </div>
+          <p>Fă un PDF scanat căutabil, selectabil și copiabil.</p>
+        </div>
+      </div>
+      <div class="tool-card" data-tool="grayscale" data-category="security">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF Alb-Negru</h3>
+          </div>
+          <p>Convertește PDF-urile color în Alb și Negru (Grayscale).</p>
+        </div>
+      </div>
+
+      <!-- PAIR 10: PDF to HTML & HTML to PDF (Tier 4 - Web Converters) -->
+      <div class="tool-card" data-tool="pdf-to-html" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF în HTML</h3>
+          </div>
+          <p>Convertește documentele PDF în cod web HTML.</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="html-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>HTML în PDF</h3>
+          </div>
+          <p>Convertește codul text HTML într-un fișier PDF.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 11: PDF to Markdown & Markdown to PDF (Tier 5 - Emerging AI & RAG Pair) -->
+      <div class="tool-card" data-tool="pdf-to-md" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>PDF în Markdown</h3>
+            <span class="tool-badge" data-badge="badgeAi">PREGĂTIT PENTRU IA</span>
+          </div>
+          <p>Convertește PDF în Markdown curat (.md) pentru AI &amp; Notion.</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="md-to-pdf" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Markdown în PDF</h3>
+            <span class="tool-badge" data-badge="badgeAi">PREGĂTIT PENTRU IA</span>
+          </div>
+          <p>Convertește fișierele Markdown (.md) în PDF stilizat.</p>
+        </div>
+      </div>
+
+      <!-- PAIR 12: Extract Text & Extract Images (Tier 4 - Extractor Tools) -->
+      <div class="tool-card" data-tool="pdf-to-text" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Extrage Text</h3>
+          </div>
+          <p>Extrage conținutul de text brut (.txt) din PDF.</p>
+        </div>
+      </div>
+
+      <div class="tool-card" data-tool="extract-images" data-category="convert">
+        <div class="tool-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <h3>Extrage Imagini</h3>
+          </div>
+          <p>Extrage toate imaginile încorporate din PDF.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Leaderboard Banner Below Tools Grid (Home Page) -->
+    <div class="ad-banner-wrapper ad-banner-below-grid" aria-label="Advertisement">
+      <span class="ad-label" data-badge="pubblicita">PUBLICITATE</span>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2272593869740076"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- Active Tool Workspace View (Hidden by default) -->
+    <div id="toolWorkspace" class="tool-workspace" style="display: block">
+      <!-- Side Skyscrapers anchored directly to Tool Workspace (100% aligned top & bottom) -->
+      <aside class="ad-skyscraper ad-skyscraper-tool ad-skyscraper-tool-left" aria-label="Advertisement">
+        <span class="ad-label" data-badge="pubblicitaBreve">REC.</span>
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;height:100%"
+             data-ad-client="ca-pub-2272593869740076"
+             data-ad-slot="auto"></ins>
+      </aside>
+      <aside class="ad-skyscraper ad-skyscraper-tool ad-skyscraper-tool-right" aria-label="Advertisement">
+        <span class="ad-label" data-badge="pubblicitaBreve">REC.</span>
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;height:100%"
+             data-ad-client="ca-pub-2272593869740076"
+             data-ad-slot="auto"></ins>
+      </aside>
+
+      <div class="workspace-header">
+        <button id="backBtn" class="back-btn back-btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span data-i18n="backBtn">Înapoi la toate instrumentele</span>
+        </button>
+
+        <div class="workspace-title-box">
+          <h2 id="workspaceTitle">PDF căutabil (OCR)</h2>
+          <p id="workspaceDesc">Fă un PDF scanat căutabil, selectabil și copiabil.</p>
+        </div>
+      </div>
+
+      <!-- Workspace Mid Banner Ad Slot (Between Title and Dropzone) -->
+      <div class="ad-banner-wrapper ad-banner-workspace" aria-label="Advertisement">
+        <span class="ad-label" data-badge="pubblicita">PUBLICITATE</span>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2272593869740076"
+             data-ad-slot="auto"
+             data-ad-format="rectangle,horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <!-- Dropzone -->
+      <div id="dropzone" class="dropzone">
+        <div class="dropzone-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </div>
+        <div class="dropzone-text">
+          <h3 data-i18n="dragTitle">Trage și plasează fișierele aici</h3>
+          <p data-i18n="dragSub">Mai multe fișiere • Până la 100 MB fiecare</p>
+        </div>
+        <input type="file" id="fileInput" style="display:none;">
+      </div>
+
+      <!-- File Previews Grid -->
+      <div id="filePreviewList" class="file-list-preview"></div>
+
+      <!-- Dynamic Settings Form -->
+      <div id="toolSettings" class="tool-settings" style="display:none;"></div>
+
+      <!-- Action Button & Progress -->
+      <div class="process-actions">
+        <button id="processBtn" class="btn-primary" disabled>
+          <span id="processBtnText" data-i18n="processBtn">Fă căutabil</span>
+        </button>
+      </div>
+
+      <div id="progressContainer" class="progress-container">
+        <p id="progressText">Processing document client-side...</p>
+        <div class="progress-bar-bg">
+          <div id="progressBarFill" class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <!-- Download Box -->
+      <div id="downloadBox" class="download-box">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div>
+          <h3 data-i18n="readyTitle">Fișierul este gata!</h3>
+          <p data-i18n="readySub">Fișierul tău este gata de descărcare.</p>
+        </div>
+
+        <!-- Download Box High-CTR Ad Slot -->
+
+        <div class="download-buttons-group">
+          <button id="downloadBtn" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download File
+          </button>
+          <button id="resetToolBtn" class="btn-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
+            Convert Another File
+          </button>
+        </div>
+      </div>
+
+          <div class="ad-banner-wrapper ad-banner-download" aria-label="Advertisement">
+          <span class="ad-label" data-badge="pubblicita">PUBLICITATE</span>
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-2272593869740076"
+               data-ad-slot="auto"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+        </div>
+
+    </div>
+
+  </main>
+
+  <!-- PDFAXIOM:GENERATO -->
+  <section class="seo-blocco">
+    <h1>Cum faci căutabil un PDF scanat</h1>
+    <p class="seo-dove"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></svg> Procesat pe serverul nostru și șters imediat după</p>
+    <p>O pagină scanată este o fotografie: ochii tăi o citesc, calculatorul vede doar pixeli. Acest instrument citește pagina și scrie textul recunoscut invizibil sub imagine, așa că documentul arată exact ca înainte, dar poate fi căutat, selectat și copiat. Imaginea originală își păstrează rezoluția.</p>
+
+    <h2>Cum se face</h2>
+    <ol class="seo-passi">
+        <li>Încarcă PDF-ul scanat. Până la 50 de pagini.</li>
+        <li>Fiecare pagină este îndreptată, citită și primește un strat de text invizibil sub imaginea originală.</li>
+        <li>Descarcă PDF-ul căutabil. De obicei este mai mic decât fișierul încărcat.</li>
+    </ol>
+
+    <div class="ad-banner-wrapper ad-banner-in-content" aria-label="Advertisement">
+      <span class="ad-label" data-badge="pubblicita">PUBLICITATE</span>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2272593869740076"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <h2>Întrebări frecvente</h2>
+    <div class="seo-faq">
+        <details>
+          <summary>Se schimbă aspectul paginilor?</summary>
+          <p>Nu. Imaginea își păstrează rezoluția, iar textul recunoscut stă dedesubt, unde nu se vede. Se schimbă doar faptul că acum Ctrl+F găsește.</p>
+        </details>
+        <details>
+          <summary>Citește scrisul de mână?</summary>
+          <p>Prost, și preferăm să o spunem. Pe pagini tipărite recuperează cam opt cuvinte din zece; pe notițe scrise de mână produce mai ales lucruri fără sens. Dacă fișierul tău este un caiet fotografiat, instrumentul te va dezamăgi.</p>
+        </details>
+        <details>
+          <summary>Dar formulele cu indici?</summary>
+          <p>Indicii se pierd primii. Într-un document de matematică, M cu indice zero și M cu indice el ies amândouă ca un simplu M: textul curgător se recuperează, formulele nu.</p>
+        </details>
+        <details>
+          <summary>PDF-ul meu are deja text. Ce se întâmplă?</summary>
+          <p>Nimic, intenționat. Recunoașterea peste un strat de text bun l-ar înlocui cu unul mai slab, așa că paginile care conțin deja text sunt lăsate neatinse.</p>
+        </details>
+    </div>
+  </section>
+
+  <nav class="seo-indice">
+    <div class="seo-indice-dentro">
+      <h2>Toate cele 24 de instrumente PDF</h2>
+      <div class="seo-colonne">
+        <div class="seo-colonna">
+          <h3>Conversie din PDF</h3>
+          <ul>
+          <li><a href="/ro/pdf-to-word/">PDF → Word</a></li>
+          <li><a href="/ro/pdf-to-excel/">PDF → Excel</a></li>
+          <li><a href="/ro/pdf-to-powerpoint/">PDF → PowerPoint</a></li>
+          <li><a href="/ro/pdf-to-markdown/">PDF → Markdown</a></li>
+          <li><a href="/ro/pdf-to-html/">PDF → HTML</a></li>
+          <li><a href="/ro/pdf-to-jpg/">PDF → JPG</a></li>
+          <li><a href="/ro/pdf-to-text/">PDF → Text</a></li>
+          </ul>
+        </div>
+        <div class="seo-colonna">
+          <h3>Conversie în PDF</h3>
+          <ul>
+          <li><a href="/ro/word-to-pdf/">Word → PDF</a></li>
+          <li><a href="/ro/excel-to-pdf/">Excel → PDF</a></li>
+          <li><a href="/ro/powerpoint-to-pdf/">PowerPoint → PDF</a></li>
+          <li><a href="/ro/markdown-to-pdf/">Markdown → PDF</a></li>
+          <li><a href="/ro/html-to-pdf/">HTML → PDF</a></li>
+          <li><a href="/ro/jpg-to-pdf/">Imagini → PDF</a></li>
+          </ul>
+        </div>
+        <div class="seo-colonna">
+          <h3>Organizare</h3>
+          <ul>
+          <li><a href="/ro/merge-pdf/">Unire</a></li>
+          <li><a href="/ro/split-pdf/">Împărțire</a></li>
+          <li><a href="/ro/delete-pdf-pages/">Ștergere pagini</a></li>
+          <li><a href="/ro/rotate-pdf/">Rotire</a></li>
+          <li><a href="/ro/add-page-numbers/">Numere de pagină</a></li>
+          <li><a href="/ro/extract-images-from-pdf/">Extragere imagini</a></li>
+          </ul>
+        </div>
+        <div class="seo-colonna">
+          <h3>Editare și protecție</h3>
+          <ul>
+          <li><a href="/ro/compress-pdf/">Comprimare</a></li>
+          <li><a href="/ro/protect-pdf/">Parolă</a></li>
+          <li><a href="/ro/unlock-pdf/">Deblocare</a></li>
+          <li><a href="/ro/watermark-pdf/">Filigran</a></li>
+          <li><a href="/ro/ocr-pdf/" aria-current="page">undefined</a></li>
+          <li><a href="/ro/grayscale-pdf/">Tonuri de gri</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- /PDFAXIOM:GENERATO -->
+
+  <!-- Clean Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="logo">
+        <img src="/assets/logo-dark-mode.png" alt="PDFAXIOM Logo" class="brand-logo-img">
+      </div>
+      <!-- Invito a installare l'estensione.
+           Sta nel piede e non in mezzo agli strumenti: chi arriva qui vuole
+           convertire un file, non installare qualcosa. Lo trova quando ha
+           finito, che e' il momento in cui l'offerta ha senso. -->
+      <a class="estensione-invito"
+         href="https://chromewebstore.google.com/detail/pdfaxiom-free-private-pdf/jopelajhpfhcpoagalpjbhcagdigking"
+         target="_blank" rel="noopener">
+        <span class="estensione-icona">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3a1 1 0 0 0 1-1V5a2 2 0 1 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 1 1 0 4h-1a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/></svg>
+        </span>
+        <span class="estensione-testo">
+          <strong id="estensioneTitolo" data-i18n="extTitle">PDFAxiom pentru Chrome</strong>
+          <span id="estensioneSotto" data-i18n="extSub">Instrumentele tale la un clic, în orice filă.</span>
+        </span>
+        <span class="estensione-azione" id="estensioneAzione" data-i18n="extBtn">Adaugă în Chrome</span>
+      </a>
+
+      <div class="footer-row">
+        <p class="copyright" data-i18n="footerCopy">© 2026 PDFAxiom. Gratuit • Fără înregistrare.</p>
+        <nav class="footer-legale">
+          <!-- Niente data-piede su questi due: genera.js li localizza gia' a
+               tempo di compilazione, e solo dove la pagina legale esiste
+               davvero in quella lingua. Tradurre l'etichetta a runtime la
+               metterebbe in tedesco sopra un collegamento a una pagina
+               inglese. -->
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+          <a href="/about/" id="aboutUsLink">About Us</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- About Us Floating Modal Overlay -->
+
+  <!-- App Scripts (v8.0 100% Browser Engine) -->
+    <script>window.PDFAXIOM_LANG="ro";window.PDFAXIOM_TOOL="ocr";</script>
+  <script defer src="/js/rotte.js?v=11.1"></script>
+  <script defer src="/js/i18n.ro.js?v=18.0"></script>
+  <script defer src="/js/ad-manager.js?v=20.0"></script>
+  <script defer src="/js/librerie.js?v=12.0"></script>
+  <script defer src="/js/pdf-engine.js?v=12.0"></script>
+  <script defer src="/js/api-client.js?v=11.1"></script>
+  <script defer src="/js/app.js?v=18.0"></script>
+</body>
+</html>

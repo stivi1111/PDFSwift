@@ -35,6 +35,10 @@ module.exports = [
   { slug: 'protect-pdf',              tool: 'protect',         motore: 'server',  gruppo: 'modifica' },
   { slug: 'unlock-pdf',               tool: 'unlock',          motore: 'server',  gruppo: 'modifica' },
   { slug: 'watermark-pdf',            tool: 'watermark',       motore: 'browser', gruppo: 'modifica' },
+  // Da scansione a PDF con il testo dentro. Sta fra gli strumenti di
+  // modifica e non fra i convertitori perche' non cambia formato: il PDF
+  // entra ed esce PDF, con in piu' un livello di testo invisibile.
+  { slug: 'ocr-pdf',                  tool: 'ocr',             motore: 'server',  gruppo: 'modifica' },
   { slug: 'grayscale-pdf',            tool: 'grayscale',       motore: 'server',  gruppo: 'modifica' },
 ];
 
