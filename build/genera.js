@@ -35,6 +35,31 @@ const LINGUE = (process.env.LINGUE || 'en,it,es,de,zh,ro,hi,ru').split(',');
 const contenuti = {};
 LINGUE.forEach((l) => { contenuti[l] = require(`./contenuti/${l}`); });
 
+/* L'elenco degli strumenti vive in due posti: qui, che genera le pagine, e
+   js/rotte.js, che al clic sulla scheda porta all'indirizzo giusto. Aggiungere
+   uno strumento e scordarsi il secondo da' una scheda che si clicca a vuoto,
+   senza nessun errore da nessuna parte: e' successo con l'OCR. Questo controllo
+   ferma la generazione invece di lasciar uscire una scheda morta. */
+{
+  const rotte = fs.readFileSync(path.join(__dirname, '..', 'js', 'rotte.js'), 'utf8');
+  const blocco = rotte.slice(rotte.indexOf('PER_STRUMENTO = {'), rotte.indexOf('};', rotte.indexOf('PER_STRUMENTO = {')));
+  const noti = new Map();
+  blocco.replace(/'([^']+)':\s*'([^']+)'/g, (_, id, slug) => { noti.set(id, slug); return _; });
+  strumenti.forEach((v) => {
+    if (!noti.has(v.tool)) {
+      throw new Error(`js/rotte.js non conosce lo strumento '${v.tool}': la sua scheda si cliccherebbe a vuoto`);
+    }
+    if (noti.get(v.tool) !== v.slug) {
+      throw new Error(`js/rotte.js manda '${v.tool}' su '${noti.get(v.tool)}', qui e' '${v.slug}'`);
+    }
+  });
+  noti.forEach((slug, id) => {
+    if (!strumenti.some((v) => v.tool === id)) {
+      throw new Error(`js/rotte.js conosce '${id}' ma build/strumenti.js no: porterebbe a una pagina che non esiste`);
+    }
+  });
+}
+
 const APRI = '<!-- PDFAXIOM:GENERATO -->';
 const CHIUDI = '<!-- /PDFAXIOM:GENERATO -->';
 
