@@ -389,6 +389,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // pagina vera e non una finta navigazione.
   if (window.PDFAXIOM_TOOL && toolsConfig[window.PDFAXIOM_TOOL]) {
     openToolWorkspace(window.PDFAXIOM_TOOL, true);
+  } else if (window.PDFAXIOM_TOOL) {
+    /* La pagina dichiara uno strumento che questo app.js non conosce. Prima
+       non succedeva niente di visibile: il pannello restava li' con il titolo
+       giusto, ma nessun file veniva accettato e trascinarne uno apriva un
+       altro strumento. Meglio dirlo forte in console: quasi sempre e' una
+       copia vecchia rimasta in cache, oppure uno strumento aggiunto a meta'. */
+    console.error('PDFAxiom: la pagina chiede lo strumento "' + window.PDFAXIOM_TOOL +
+      '", che questo app.js non conosce. Probabile copia vecchia in cache.');
   }
 
   // Global Drag & Drop Handling across the ENTIRE Window / Page
@@ -417,8 +425,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const droppedFiles = Array.from(e.dataTransfer.files);
     if (!droppedFiles || droppedFiles.length === 0) return;
 
-    // If on homepage view (no tool open), automatically open matching tool based on file extension
-    if (toolWorkspace.style.display === 'none' || !state.activeTool) {
+    /* Indovinare lo strumento dall'estensione ha senso solo sulla pagina
+       iniziale, dove l'utente non ne ha ancora scelto uno. Su una pagina di
+       strumento la scelta e' gia' fatta dall'indirizzo, e indovinare vuol dire
+       portare altrove chi ha appena cliccato: se app.js non conosce lo
+       strumento dichiarato dalla pagina, `state.activeTool` resta vuoto e
+       trascinare un PDF sulla pagina dell'OCR apriva "PDF in Word". E'
+       successo davvero, con una copia vecchia di app.js rimasta in cache. */
+    const dichiarato = window.PDFAXIOM_TOOL;
+    if (dichiarato && !toolsConfig[dichiarato]) {
+      alert(et('errGenerico'));
+      return;
+    }
+    if (!dichiarato && (toolWorkspace.style.display === 'none' || !state.activeTool)) {
       const ext = droppedFiles[0].name.split('.').pop().toLowerCase();
       let targetTool = 'pdf-to-word';
       if (ext === 'docx' || ext === 'doc') targetTool = 'word-to-pdf';
