@@ -10,7 +10,7 @@ module.exports = {
   etichette: {
     passi: 'Come si fa',
     faq: 'Domande frequenti',
-    altri: 'Tutti i 24 strumenti PDF',
+    altri: 'Tutti i {n} strumenti PDF',
     apri: 'Apri lo strumento',
     browserBadge: 'Funziona nel tuo browser: il file non lascia il dispositivo',
     serverBadge: 'Elaborato sui nostri server e cancellato subito dopo',

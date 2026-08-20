@@ -10,7 +10,9 @@ module.exports = {
   etichette: {
     passi: 'Как это сделать',
     faq: 'Частые вопросы',
-    altri: 'Все 24 инструмента для PDF',
+    // Il russo declina il sostantivo secondo il numero: 22-24 vuole
+    // 'instrumenta', da 25 in su 'instrumentov'. Siamo a 25.
+    altri: 'Все {n} инструментов для PDF',
     apri: 'Открыть инструмент',
     browserBadge: 'Работает в вашем браузере — файл не покидает устройство',
     serverBadge: 'Обрабатывается на нашем сервере и сразу удаляется',

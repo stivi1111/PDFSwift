@@ -10,7 +10,7 @@ module.exports = {
   etichette: {
     passi: '操作步骤',
     faq: '常见问题',
-    altri: '全部 24 个 PDF 工具',
+    altri: '全部 {n} 个 PDF 工具',
     apri: '打开工具',
     browserBadge: '在您的浏览器中运行 — 文件不会离开您的设备',
     serverBadge: '在我们的服务器上处理，随后立即删除',

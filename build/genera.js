@@ -96,6 +96,22 @@ LINGUE.forEach((l) => { contenuti[l] = require(`./contenuti/${l}`); });
   fs.writeFileSync(schedario, JSON.stringify(nuove, null, 2) + '\n');
 }
 
+/* "Tutti i 24 strumenti PDF" era scritto a mano in otto lingue, e alla
+   venticinquesima e' rimasto indietro: sbagliato in pagina, e sbagliato anche
+   nei dati strutturati che legge Google. Ora nei testi c'e' {n} e il numero lo
+   mette la generazione, contando gli strumenti veri. */
+LINGUE.forEach((l) => {
+  const e = contenuti[l].etichette;
+  if (!e || typeof e.altri !== 'string') throw new Error(`contenuti/${l}.js: manca etichette.altri`);
+  if (/\d/.test(e.altri)) {
+    throw new Error(`contenuti/${l}.js: etichette.altri ha un numero scritto a mano, usa {n}`);
+  }
+  if (!e.altri.includes('{n}')) {
+    throw new Error(`contenuti/${l}.js: etichette.altri deve contenere {n}`);
+  }
+  e.altri = e.altri.replace('{n}', String(strumenti.length));
+});
+
 const APRI = '<!-- PDFAXIOM:GENERATO -->';
 const CHIUDI = '<!-- /PDFAXIOM:GENERATO -->';
 

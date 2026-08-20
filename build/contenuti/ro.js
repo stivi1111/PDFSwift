@@ -10,7 +10,7 @@ module.exports = {
   etichette: {
     passi: 'Cum se face',
     faq: 'Întrebări frecvente',
-    altri: 'Toate cele 24 de instrumente PDF',
+    altri: 'Toate cele {n} de instrumente PDF',
     apri: 'Deschide instrumentul',
     browserBadge: 'Rulează în browserul tău — fișierul nu părăsește dispozitivul',
     serverBadge: 'Procesat pe serverul nostru și șters imediat după',

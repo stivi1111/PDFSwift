@@ -19,7 +19,7 @@ module.exports = {
   etichette: {
     passi: 'How to do it',
     faq: 'Common questions',
-    altri: 'All 24 PDF tools',
+    altri: 'All {n} PDF tools',
     apri: 'Open the tool',
     browserBadge: 'Runs in your browser — the file never leaves your device',
     serverBadge: 'Processed on our server, then deleted right away',
