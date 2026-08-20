@@ -38,7 +38,11 @@ module.exports = [
   // Da scansione a PDF con il testo dentro. Sta fra gli strumenti di
   // modifica e non fra i convertitori perche' non cambia formato: il PDF
   // entra ed esce PDF, con in piu' un livello di testo invisibile.
-  { slug: 'ocr-pdf',                  tool: 'ocr',             motore: 'server',  gruppo: 'modifica' },
+  // Nascosto dal sito il 20 agosto 2026 finche' non e' pronto da pubblicare:
+  // il servizio sulla VM resta in piedi e risponde, ma nessuna pagina lo
+  // mostra. Per rimetterlo: togliere `nascosto` e rimettere 'ocr' in
+  // js/rotte.js (la build lo pretende).
+  { slug: 'ocr-pdf',                  tool: 'ocr',             motore: 'server',  gruppo: 'modifica', nascosto: true },
   { slug: 'grayscale-pdf',            tool: 'grayscale',       motore: 'server',  gruppo: 'modifica' },
 ];
 

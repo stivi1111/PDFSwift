@@ -145,12 +145,6 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://pdfaxiom.com/ocr-pdf/</loc>
-    <lastmod>2026-08-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://pdfaxiom.com/grayscale-pdf/</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -296,12 +290,6 @@
   </url>
   <url>
     <loc>https://pdfaxiom.com/it/watermark-pdf/</loc>
-    <lastmod>2026-08-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://pdfaxiom.com/it/ocr-pdf/</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -457,12 +445,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://pdfaxiom.com/es/ocr-pdf/</loc>
-    <lastmod>2026-08-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://pdfaxiom.com/es/grayscale-pdf/</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -608,12 +590,6 @@
   </url>
   <url>
     <loc>https://pdfaxiom.com/de/watermark-pdf/</loc>
-    <lastmod>2026-08-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://pdfaxiom.com/de/ocr-pdf/</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -769,12 +745,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://pdfaxiom.com/zh/ocr-pdf/</loc>
-    <lastmod>2026-08-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://pdfaxiom.com/zh/grayscale-pdf/</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -920,12 +890,6 @@
   </url>
   <url>
     <loc>https://pdfaxiom.com/ro/watermark-pdf/</loc>
-    <lastmod>2026-08-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://pdfaxiom.com/ro/ocr-pdf/</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -1081,12 +1045,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://pdfaxiom.com/hi/ocr-pdf/</loc>
-    <lastmod>2026-08-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://pdfaxiom.com/hi/grayscale-pdf/</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -1232,12 +1190,6 @@
   </url>
   <url>
     <loc>https://pdfaxiom.com/ru/watermark-pdf/</loc>
-    <lastmod>2026-08-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://pdfaxiom.com/ru/ocr-pdf/</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

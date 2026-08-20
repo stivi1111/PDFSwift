@@ -23,7 +23,6 @@ window.PDFAxiomRotte = (() => {
     'protect':        'protect-pdf',
     'unlock':         'unlock-pdf',
     'grayscale':      'grayscale-pdf',
-    'ocr':            'ocr-pdf',
     'pdf-to-md':      'pdf-to-markdown',
     'merge':          'merge-pdf',
     'split':          'split-pdf',

@@ -19,7 +19,15 @@ const RADICE = path.join(__dirname, '..');
 const SITO = 'https://pdfaxiom.com';
 const VERSIONE = '10.0';
 
-const strumenti = require('./strumenti');
+/* Uno strumento puo' essere pronto sul server ma non ancora da mostrare.
+   `nascosto: true` in build/strumenti.js lo toglie dal sito - niente pagina,
+   niente scheda, niente voce di menu, niente sitemap - senza cancellare
+   niente: il servizio sulla VM continua a rispondere e i testi restano
+   scritti, pronti per il giorno in cui si toglie la riga. */
+const catalogo = require('./strumenti');
+const nascosti = catalogo.filter((v) => v.nascosto);
+const strumenti = catalogo.filter((v) => !v.nascosto);
+strumenti.GRUPPI = catalogo.GRUPPI;
 const brevi = require('./contenuti/brevi');
 const legali = require('./contenuti/legali');
 
@@ -51,6 +59,11 @@ LINGUE.forEach((l) => { contenuti[l] = require(`./contenuti/${l}`); });
     }
     if (noti.get(v.tool) !== v.slug) {
       throw new Error(`js/rotte.js manda '${v.tool}' su '${noti.get(v.tool)}', qui e' '${v.slug}'`);
+    }
+  });
+  nascosti.forEach((v) => {
+    if (noti.has(v.tool)) {
+      throw new Error(`'${v.tool}' e' nascosto ma sta ancora in js/rotte.js: manderebbe a una pagina che non viene piu' generata`);
     }
   });
   noti.forEach((slug, id) => {
@@ -144,7 +157,29 @@ function percorsoFile(lingua, slug) {
 // significherebbe rigenerare partendo dai collegamenti gia' sostituiti, e le
 // pagine in italiano finirebbero per puntare agli indirizzi inglesi.
 const MODELLO = path.join(__dirname, 'modello.html');
-const modello = fs.readFileSync(MODELLO, 'utf8');
+let modello = fs.readFileSync(MODELLO, 'utf8');
+
+/* La scheda e la voce di menu di uno strumento nascosto si tolgono qui, una
+   volta sola, invece che in ognuna delle duecento pagine. */
+nascosti.forEach((v) => {
+  // Si lavora per righe invece che con un'espressione regolare: la scheda e'
+  // un blocco annidato, e cercare la sua chiusura contando l'indentazione e'
+  // piu' leggibile - e piu' facile da correggere - di dieci barre rovesciate.
+  const righe = modello.split('\n');
+  const apre = righe.findIndex((r) => r.startsWith(`      <div class="tool-card" data-tool="${v.tool}"`));
+  if (apre < 0) throw new Error(`nascondere '${v.tool}': non trovo la sua scheda nel modello`);
+  let chiude = apre;
+  while (chiude < righe.length && righe[chiude].trimEnd() !== '      </div>') chiude++;
+  if (chiude >= righe.length) throw new Error(`nascondere '${v.tool}': la sua scheda non si chiude`);
+
+  const voce = righe.findIndex((r) => r.includes(`class="mega-item" data-tool="${v.tool}"`));
+  if (voce < 0) throw new Error(`nascondere '${v.tool}': non trovo la sua voce di menu nel modello`);
+
+  // si toglie prima la riga piu' in basso, altrimenti gli indici si spostano
+  const daTogliere = [[apre, chiude - apre + 1], [voce, 1]].sort((a, b) => b[0] - a[0]);
+  daTogliere.forEach(([da, quante]) => righe.splice(da, quante));
+  modello = righe.join('\n');
+});
 
 const guasti = [
   ['</main>', 'manca la chiusura di <main>'],
